@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tianfei92.github.io">
-  <title>Tag: Network | Ariel&#39;s Blog</title>
+  <title>Ariel&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="神游在初见的午后">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ariel&#39;s Blog">
-<meta property="og:url" content="https://tianfei92.github.io/tags/Network/index.html">
+<meta property="og:url" content="https://tianfei92.github.io/page/2/index.html">
 <meta property="og:site_name" content="Ariel&#39;s Blog">
 <meta property="og:description" content="神游在初见的午后">
 <meta property="og:locale" content="zh_CN">
@@ -154,69 +154,203 @@
           <div id="js-content" class="content-ll">
             
   
-  
+    <article id="post-React Fiber" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2025" class="archive-year">2025</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2025/06/20/Network%20Study%20Notes/" class="archive-article-date">
-  	<time datetime="2025-06-20T07:50:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-06-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2025/06/20/Network%20Study%20Notes/">网络知识专题学习</a>
+      <a class="article-title" href="/2025/06/05/React%20Fiber/">React Fiber 专题知识学习</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2025/06/05/React%20Fiber/" class="archive-article-date">
+  	<time datetime="2025-06-05T06:07:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-06-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第一章：React-Fiber-的诞生背景"><a href="#第一章：React-Fiber-的诞生背景" class="headerlink" title="第一章：React Fiber 的诞生背景"></a>第一章：React Fiber 的诞生背景</h1><h2 id="1-1-React15-及之前版本的渲染瓶颈"><a href="#1-1-React15-及之前版本的渲染瓶颈" class="headerlink" title="1.1 React15 及之前版本的渲染瓶颈"></a>1.1 React15 及之前版本的渲染瓶颈</h2><h3 id="递归不可中断的协调过程（stack-reconciler栈协调器）"><a href="#递归不可中断的协调过程（stack-reconciler栈协调器）" class="headerlink" title="递归不可中断的协调过程（stack reconciler栈协调器）"></a>递归不可中断的协调过程（stack reconciler栈协调器）</h3><p><strong>stack reconciler 是什么？</strong></p>
+<p>stack reconciler 是 React15 及之前版本中使用的虚拟 dom 协调算法，负责计算组件树的变化并更新真实 dom。其核心特点是基于递归遍历、不可中断的同步更新流程。</p>
+<p><strong>递归遍历虚拟 dom</strong></p>
+<p>采用深度优先遍历策略（FDS），从组件树根节点开始，递归调用组件的 render 方法，生成完整的虚拟 dom 树。递归遍历依赖于 JavaScript 调用栈（call stack），一旦开始就必须执行到底，无法中途暂停。</p>
+<p><strong>同步更新机制</strong></p>
+<p>所有更新（比如 setState）都会立即触发完整的 diff 计算，无法合并和延迟。当一个应用的组件树过于庞大时，一次递归 diff 计算是十分耗时的。stack reconciler 的工作流程分为两个阶段：</p>
+<ul>
+<li>协调（reconciliation）：该阶段中采用递归 diff 算法，对比新旧虚拟 dom 树的差异，找到需要进行更新的树节点，标记需要更新的节点的增删改</li>
+<li>提交（commit）：根据 diff 计算的结果，一次性同步执行所有的 dom 操作，并触发生命周期钩子（componentDidMount、componentDidUpdate等）</li>
+</ul>
+<p><strong>局限性</strong></p>
+<p>在了解上述知识后，我们可以很清晰的感知到 stack reconciler 的局限性：</p>
+<ul>
+<li>无法中断长任务：递归遍历一旦开始就无法中断，这会占用 js 主线程，导致无法响应其他高优先级任务</li>
+<li>缺乏任务优先级调度：所有的更新任务同步执行，享有同等优先级</li>
+<li>内存泄漏风险：当组件树十分庞大时，深度递归可能会引起栈内存泄漏</li>
+</ul>
+        
+          <a class="article-more-a" href="/2025/06/05/React%20Fiber/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Network</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Network//" class="article-tag-list-link color3">Network</a>
+        			<a href="/categories/React//" class="article-tag-list-link color1">React</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2025/06/05/React%20Fiber/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
+    <article id="post-Webpack Study Notes" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
-    </div></section>
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/05/29/Webpack%20Study%20Notes/">Webpack 学习笔记</a>
+    </h1>
   
 
+        
+        <a href="/2025/05/29/Webpack%20Study%20Notes/" class="archive-article-date">
+  	<time datetime="2025-05-29T09:01:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-05-29</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="入口起点（entry-point）"><a href="#入口起点（entry-point）" class="headerlink" title="入口起点（entry point）"></a>入口起点（entry point）</h2><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>语法：entry: string | [string] | { <entryChunkName> string | [string] } | {}</p>
+<p><strong>webpack.config.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">entry</span>: &#123;</span><br><span class="line">    <span class="attr">app</span>: <span class="string">&#x27;./src/app.js&#x27;</span>,</span><br><span class="line">    <span class="attr">file</span>: [<span class="string">&#x27;./src/file_1.js&#x27;</span>, <span class="string">&#x27;./src/file_2.js&#x27;</span>],</span><br><span class="line">    <span class="attr">a1</span>: &#123;</span><br><span class="line">      <span class="attr">dependOn</span>: <span class="string">&#x27;app&#x27;</span>, <span class="comment">// 当前入口所依赖的入口。它们必须在该入口被加载前被加载。</span></span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 指定要输出的文件名称</span></span><br><span class="line">      <span class="attr">import</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 启动时需加载的模块</span></span><br><span class="line">      <span class="attr">library</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 指定 library 选项，为当前 entry 构建一个 library</span></span><br><span class="line">      <span class="attr">runtime</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 运行时 chunk 的名字。如果设置了，就会创建一个新的运行时 chunk。在 webpack 5.43.0 之后可将其设为 false 以避免一个新的运行时 chunk</span></span><br><span class="line">      <span class="attr">publicPath</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">// 当该入口的输出文件在浏览器中被引用时，为它们指定一个公共 URL 地址</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2025/05/29/Webpack%20Study%20Notes/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/webpack//" class="article-tag-list-link color3">webpack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2025/05/29/Webpack%20Study%20Notes/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -238,10 +372,10 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

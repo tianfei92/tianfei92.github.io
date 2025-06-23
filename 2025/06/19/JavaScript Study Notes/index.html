@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://tianfei92.github.io">
-  <title>JavaScript 专题学习 | Ariel&#39;s Blog</title>
+  <title>JavaScript 专题知识学习 | Ariel&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="深拷贝与浅拷贝基本概念浅拷贝（shallow copy） 浅拷贝只复制对象的第一层属性，如果属性类型是基本类型，则复制其值，如果属性类型是引用类型，则复制其在内存中的地址（即引用），因此拷贝后的对象与原对象共享引用类型的属性 深拷贝（deep copy） 深拷贝会递归复制对象的所有层级，创建一个全新的对象，新对象与原对象不共享任何引用类型的属性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript 专题学习">
-<meta property="og:url" content="https://tianfei92.github.io/2025/06/19/JavaScript/index.html">
+<meta property="og:title" content="JavaScript 专题知识学习">
+<meta property="og:url" content="https://tianfei92.github.io/2025/06/19/JavaScript%20Study%20Notes/index.html">
 <meta property="og:site_name" content="Ariel&#39;s Blog">
 <meta property="og:description" content="深拷贝与浅拷贝基本概念浅拷贝（shallow copy） 浅拷贝只复制对象的第一层属性，如果属性类型是基本类型，则复制其值，如果属性类型是引用类型，则复制其在内存中的地址（即引用），因此拷贝后的对象与原对象共享引用类型的属性 深拷贝（deep copy） 深拷贝会递归复制对象的所有层级，创建一个全新的对象，新对象与原对象不共享任何引用类型的属性">
-<meta property="og:locale">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-19T12:59:21.000Z">
-<meta property="article:modified_time" content="2025-06-20T07:31:19.594Z">
+<meta property="article:modified_time" content="2025-06-23T07:57:51.447Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -155,19 +155,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JavaScript" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JavaScript Study Notes" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript 专题学习
+      JavaScript 专题知识学习
     </h1>
   
 
         
-        <a href="/2025/06/19/JavaScript/" class="archive-article-date">
+        <a href="/2025/06/19/JavaScript%20Study%20Notes/" class="archive-article-date">
   	<time datetime="2025-06-19T12:59:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2025-06-19</time>
 </a>
         
@@ -950,6 +950,507 @@
 
 <p><strong>动态路径问题</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误：无法静态分析</span></span><br><span class="line"><span class="keyword">import</span> <span class="variable language_">module</span> <span class="keyword">from</span> <span class="string">`<span class="subst">$&#123;path&#125;</span>/module.js`</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确：使用import()函数</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable language_">module</span> = <span class="keyword">await</span> <span class="keyword">import</span>(<span class="string">`<span class="subst">$&#123;path&#125;</span>/module.js`</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="ES6-Symbol"><a href="#ES6-Symbol" class="headerlink" title="ES6+ Symbol"></a>ES6+ Symbol</h1><h2 id="定义与描述"><a href="#定义与描述" class="headerlink" title="定义与描述"></a>定义与描述</h2><p>Symbol 是 ES6 新引入的一种原始数据类型，表示独一无二的值，Symbol 的主要用途是创建唯一标识符，用于对象属性的键，以避免属性名冲突。</p>
+<h2 id="创建与使用"><a href="#创建与使用" class="headerlink" title="创建与使用"></a>创建与使用</h2><p><strong>基础创建</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无描述创建</span></span><br><span class="line"><span class="keyword">const</span> sym1 = <span class="title class_">Symbol</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 带描述创建（仅用于调试）</span></span><br><span class="line"><span class="keyword">const</span> sym2 = <span class="title class_">Symbol</span>(<span class="string">&#x27;description&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sym2.<span class="title function_">toString</span>()); <span class="comment">// &quot;Symbol(description)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>全局注册表</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建或获取全局 Symbol</span></span><br><span class="line"><span class="keyword">const</span> globalSym = <span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;global_key&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Symbol</span>.<span class="title function_">keyFor</span>(globalSym)); <span class="comment">// &quot;global_key&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 跨模块访问</span></span><br><span class="line"><span class="comment">// module1.js</span></span><br><span class="line"><span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;shared&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// module2.js</span></span><br><span class="line"><span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;shared&#x27;</span>) === <span class="title class_">Symbol</span>.<span class="title function_">for</span>(<span class="string">&#x27;shared&#x27;</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="核心特性"><a href="#核心特性" class="headerlink" title="核心特性"></a>核心特性</h2><p><strong>唯一性</strong></p>
+<p>每个 Symbol 的值都是唯一的，即使它们有相同的描述</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s1 = <span class="title class_">Symbol</span>();</span><br><span class="line"><span class="keyword">const</span> s2 = <span class="title class_">Symbol</span>();</span><br><span class="line">s1 === s2 <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> s3 = <span class="title class_">Symbol</span>(<span class="string">&#x27;desc&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> s4 = <span class="title class_">Symbol</span>(<span class="string">&#x27;desc&#x27;</span>);</span><br><span class="line">s3 === s4 <span class="comment">// false（即使描述相同）</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>值不可修改</strong></p>
+<p>Symbol 值一旦创建不可被修改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sym = <span class="title class_">Symbol</span>(<span class="string">&#x27;unique&#x27;</span>);</span><br><span class="line"><span class="comment">// 没有任何方法可以改变 sym 的值</span></span><br><span class="line">sym.<span class="property">description</span> = <span class="string">&#x27;changed&#x27;</span>; <span class="comment">// 静默失败（非严格模式）</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>不可枚举性</strong></p>
+<p>当使用 Symbol 值作为对象属性键时，默认情况下常规方法（如 <code>for...in</code>，<code>Object.keys()</code>）中不可见，但可以通过 <code>Object.getOwnPropertySymbols()</code> 和 <code>Reflect.ownKeys()</code> 获取</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  [<span class="title class_">Symbol</span>(<span class="string">&#x27;key&#x27;</span>)]: <span class="string">&#x27;value&#x27;</span>,</span><br><span class="line">  <span class="attr">normalKey</span>: <span class="string">&#x27;normal&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key); <span class="comment">// 只输出 &quot;normalKey&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="title function_">keys</span>(obj)); <span class="comment">// [&quot;normalKey&quot;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj)); <span class="comment">// &#123;&quot;normalKey&quot;:&quot;normal&quot;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>特殊运算</strong></p>
+<p>Symbol 类型的值不能与其他类型的值进行运算，会报错，但 Symbol 值可以转为字符串和布尔值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> s = <span class="title class_">Symbol</span>(<span class="string">&#x27;hello&#x27;</span>)</span><br><span class="line">s + <span class="string">&#x27;world&#x27;</span> <span class="comment">// TypeError: can&#x27;t convert a Symbol value to a string</span></span><br><span class="line"><span class="string">`<span class="subst">$&#123;s&#125;</span> world`</span> <span class="comment">// TypeError: can&#x27;t convert a Symbol value to a string</span></span><br><span class="line"><span class="title class_">Number</span>(s) <span class="comment">// TypeError: Cannot convert a Symbol value to a number</span></span><br><span class="line">s + <span class="number">2</span> <span class="comment">// TypeError: Cannot convert a Symbol value to a number</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="内置的-Symbol-值"><a href="#内置的-Symbol-值" class="headerlink" title="内置的 Symbol 值"></a>内置的 Symbol 值</h2><p>JavaScript 内置的 Symbol 属性可以用于修改语言的内部行为</p>
+<p><strong>Symbol.hasInstance - 自定义 instanceof 行为</strong></p>
+<p>对象的 Symbol.hasInstance 属性指向一个内部方法，当其他对象使用 instanceof 运算符判断是否为该对象的实例时，就会调用这个内部方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyObj</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> [<span class="title class_">Symbol</span>.<span class="property">hasInstance</span>](obj) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(obj) === <span class="string">&#x27;[object Number]&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="keyword">instanceof</span> <span class="title class_">MyObj</span> <span class="comment">// true</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">obj <span class="keyword">instanceof</span> <span class="title class_">MyObj</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Symbol.iterator - 定义对象的默认迭代器</strong></p>
+<p>对象的 Symbol.iterator 属性指向该对象的默认遍历器方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...&#123; [<span class="title class_">Symbol</span>.<span class="property">iterator</span>]: <span class="keyword">function</span>*() &#123; <span class="keyword">yield</span> <span class="number">1</span>; <span class="keyword">yield</span> <span class="number">2</span>; &#125; &#125;] <span class="comment">// [1, 2]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Symbol.toStringTag - 定制 Object.prototype.toString</strong></p>
+<p>对象的 Symbol.toStringTag 属性用来设定一个字符串，当其他对象调用 Object.prototype.toString 判断类型时，如果 Symbol.toStringTag 属性存在，则该属性设定的字符串会出现在 toString 方法返回的字符串中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CustomClass</span> &#123;</span><br><span class="line">  get [<span class="title class_">Symbol</span>.<span class="property">toStringTag</span>]() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Custom&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj = <span class="keyword">new</span> <span class="title class_">CustomClass</span>()</span><br><span class="line"><span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(obj) <span class="comment">// [object Custom]</span></span><br><span class="line"></span><br><span class="line">(&#123; [<span class="title class_">Symbol</span>.<span class="property">toStringTag</span>]: <span class="string">&#x27;Custom&#x27;</span> &#125;).<span class="title function_">toString</span>() <span class="comment">// [object Custom]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Symbol.species - 指定衍生对象的构造函数</strong></p>
+<p>对象的 Symbol.species 属性指向一个构造函数，当创建衍生对象时，会使用该属性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyArray</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Array</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> get [<span class="title class_">Symbol</span>.<span class="property">species</span>]() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Array</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> <span class="title class_">MyArray</span>();</span><br><span class="line"><span class="keyword">const</span> b = a.<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x);</span><br><span class="line"></span><br><span class="line">b <span class="keyword">instanceof</span> <span class="title class_">MyArray</span> <span class="comment">// false</span></span><br><span class="line">b <span class="keyword">instanceof</span> <span class="title class_">Array</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>由于创建 MyArray 时使用了 Symbol.species 属性，因此会使用 Symbol.species 返回的函数作为构造函数，衍生对象 b 就不是 MyArray 的实例</p>
+<p><strong>Symbol.match - 定制字符串匹配行为</strong></p>
+<p>对象的 Symbol.match 属性指向一个函数，当执行 str.match(MyObj)，如果 MyObj 存在该属性，会调用该属性指向的函数，并将函数的返回值作为 str.match(MyObj) 的返回值</p>
+<p>默认行为中，regex[Symbol.match] 指向 RegExp 内置的匹配方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> regex = <span class="regexp">/foo/</span>;</span><br><span class="line"><span class="string">&#x27;foobar&#x27;</span>.<span class="title function_">match</span>(regex); <span class="comment">// [&quot;foo&quot;, index: 0, input: &quot;foobar&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<p>通过 Symbol.match 属性可以让任何对象成为合法的 match 参数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> customMatcher = &#123;</span><br><span class="line">  [<span class="title class_">Symbol</span>.<span class="property">match</span>](str) &#123;</span><br><span class="line">    <span class="keyword">return</span> str.<span class="title function_">includes</span>(<span class="string">&#x27;hello&#x27;</span>) ? </span><br><span class="line">      [<span class="string">&#x27;匹配成功&#x27;</span>] : </span><br><span class="line">      <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;world hello&#x27;</span>.<span class="title function_">match</span>(customMatcher); <span class="comment">// [&quot;匹配成功&quot;]</span></span><br><span class="line"><span class="string">&#x27;no match&#x27;</span>.<span class="title function_">match</span>(customMatcher);    <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+
+<p>此外，还有 Symbol.replace、Symbol.search、Symbol.split 等属性，都是用于定制 String 对应的方法</p>
+<h2 id="Symbol-与相关技术对比"><a href="#Symbol-与相关技术对比" class="headerlink" title="Symbol 与相关技术对比"></a>Symbol 与相关技术对比</h2><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">Symbol</th>
+<th align="left">字符串属性</th>
+<th align="left">WeakMap</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">唯一性</td>
+<td align="left">唯一</td>
+<td align="left">不唯一</td>
+<td align="left">唯一（键为对象）</td>
+</tr>
+<tr>
+<td align="left">可枚举性</td>
+<td align="left">不可枚举（默认）</td>
+<td align="left">可枚举</td>
+<td align="left">N&#x2F;A</td>
+</tr>
+<tr>
+<td align="left">内存管理</td>
+<td align="left">全局注册 Symbol 需手动管理</td>
+<td align="left">自动回收</td>
+<td align="left">可被 GC 垃圾回收</td>
+</tr>
+<tr>
+<td align="left">私有性</td>
+<td align="left">弱私有（反射可获取）</td>
+<td align="left">完全公开</td>
+<td align="left">强私有</td>
+</tr>
+<tr>
+<td align="left">适用场景</td>
+<td align="left">协议实现&#x2F;防冲突</td>
+<td align="left">常规数据存储</td>
+<td align="left">真正私有数据存储</td>
+</tr>
+</tbody></table>
+<h2 id="Symbol-的核心价值"><a href="#Symbol-的核心价值" class="headerlink" title="Symbol 的核心价值"></a>Symbol 的核心价值</h2><ul>
+<li>提供真正唯一的标识符，解决命名冲突问题</li>
+<li>实现 JavaScript 内置协议（如迭代协议）</li>
+<li>支持元编程，改变语言内部行为</li>
+<li>为对象提供弱封装能力（非完全私有）</li>
+</ul>
+<h1 id="ES6-Set-和-Map-结构"><a href="#ES6-Set-和-Map-结构" class="headerlink" title="ES6+ Set 和 Map 结构"></a>ES6+ Set 和 Map 结构</h1><h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="Set-的定义和基本用法"><a href="#Set-的定义和基本用法" class="headerlink" title="Set 的定义和基本用法"></a>Set 的定义和基本用法</h3><p>Set 是 ES6 引入的新的数据结构，是一种集合类型，类似于数组，但成员的值是唯一的，没有重复成员。Set 本身是一个构造函数，用于生成 Set 数据结构。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> set = <span class="keyword">new</span> <span class="title class_">Set</span>()</span><br></pre></td></tr></table></figure>
+
+<p>Set()函数可以接受一个数组（或者具有 iterable 接口的其他数据结构）作为参数，用来初始化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> set = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="Set-的核心特性"><a href="#Set-的核心特性" class="headerlink" title="Set 的核心特性"></a>Set 的核心特性</h3><p><strong>唯一性</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> set = <span class="keyword">new</span> <span class="title class_">Set</span>();</span><br><span class="line">set.<span class="title function_">add</span>(<span class="number">1</span>);</span><br><span class="line">set.<span class="title function_">add</span>(<span class="number">1</span>);</span><br><span class="line">set.<span class="title function_">add</span>(<span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set.<span class="property">size</span>); <span class="comment">// 2 (1 和 &#x27;1&#x27; 是不同的值)</span></span><br></pre></td></tr></table></figure>
+
+<p>唯一性判断采用 <code>SameValueZero</code> 算法：</p>
+<ul>
+<li>NaN 被视为相等</li>
+<li>+0 和 -0 被视为相等</li>
+<li>对象引用比较（不同对象即使内容相同也被视为不同）</li>
+</ul>
+<p>根据该特性可以实现数组去重：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 去除数组的重复成员</span></span><br><span class="line">[...<span class="keyword">new</span> <span class="title class_">Set</span>(array)]</span><br></pre></td></tr></table></figure>
+
+<p><strong>值类型支持</strong></p>
+<p>Set 数据结构可以存储任意类型的值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> set = <span class="keyword">new</span> <span class="title class_">Set</span>([</span><br><span class="line">  <span class="number">1</span>, </span><br><span class="line">  <span class="string">&#x27;text&#x27;</span>,</span><br><span class="line">  &#123;<span class="attr">name</span>: <span class="string">&#x27;obj&#x27;</span>&#125;,</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  <span class="title class_">NaN</span>,</span><br><span class="line">  <span class="literal">undefined</span>,</span><br><span class="line">  <span class="literal">null</span></span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Set-的基础-API-详解"><a href="#Set-的基础-API-详解" class="headerlink" title="Set 的基础 API 详解"></a>Set 的基础 API 详解</h3><table>
+<thead>
+<tr>
+<th align="left">方法&#x2F;属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">new Set(iterable)</td>
+<td align="left">构造函数</td>
+</tr>
+<tr>
+<td align="left">set.has(value)</td>
+<td align="left">检查值是否存在</td>
+</tr>
+<tr>
+<td align="left">set.add(value)</td>
+<td align="left">添加值</td>
+</tr>
+<tr>
+<td align="left">set.delete(value)</td>
+<td align="left">删除值</td>
+</tr>
+<tr>
+<td align="left">set.clear(value)</td>
+<td align="left">清空集合</td>
+</tr>
+<tr>
+<td align="left">set.size</td>
+<td align="left">获取 Set 实例的成员数量（非函数属性，不能 set.size()）</td>
+</tr>
+</tbody></table>
+<h3 id="Set-的迭代操作"><a href="#Set-的迭代操作" class="headerlink" title="Set 的迭代操作"></a>Set 的迭代操作</h3><p>Set 结构的实例有四个迭代方法，用于遍历成员：</p>
+<ul>
+<li>set.values()：返回键值的遍历器</li>
+<li>set.keys()：返回键名的遍历器</li>
+<li>set.entries()：返回键值对的遍历器</li>
+<li>set.forEach()：使用回调函数变量成员</li>
+</ul>
+<p>Set 实例的遍历顺序就是成员插入的顺序，该特性可以用于保证回调函数列表的执行顺序。Set 结构实例的默认遍历器生成函数就是它的 values()方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> set = <span class="keyword">new</span> <span class="title class_">Set</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. for...of</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> item <span class="keyword">of</span> set) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(item);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. forEach</span></span><br><span class="line">set.<span class="title function_">forEach</span>(<span class="function">(<span class="params">value, valueAgain</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value); <span class="comment">// 注意：两个参数相同</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 获取迭代器</span></span><br><span class="line"><span class="keyword">const</span> iterator = set.<span class="title function_">values</span>(); <span class="comment">// 或 set[Symbol.iterator]()</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Set-的高级特性与应用"><a href="#Set-的高级特性与应用" class="headerlink" title="Set 的高级特性与应用"></a>Set 的高级特性与应用</h3><p><strong>性能优势</strong></p>
+<p>Set 的查找性能远优于数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组 vs Set 查找性能对比</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="comment">/* 10,000 个元素 */</span>];</span><br><span class="line"><span class="keyword">const</span> set = <span class="keyword">new</span> <span class="title class_">Set</span>(arr);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>(<span class="string">&#x27;Array&#x27;</span>);</span><br><span class="line">arr.<span class="title function_">includes</span>(<span class="number">9999</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>(<span class="string">&#x27;Array&#x27;</span>); <span class="comment">// ~0.1ms</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>(<span class="string">&#x27;Set&#x27;</span>);</span><br><span class="line">set.<span class="title function_">has</span>(<span class="number">9999</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>(<span class="string">&#x27;Set&#x27;</span>); <span class="comment">// ~0.005ms</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>集合运算实现</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 并集</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">union</span>(<span class="params">setA, setB</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Set</span>([...setA, ...setB]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 交集</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">intersection</span>(<span class="params">setA, setB</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Set</span>([...setA].<span class="title function_">filter</span>(<span class="function"><span class="params">x</span> =&gt;</span> setB.<span class="title function_">has</span>(x)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 差集</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">difference</span>(<span class="params">setA, setB</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Set</span>([...setA].<span class="title function_">filter</span>(<span class="function"><span class="params">x</span> =&gt;</span> !setB.<span class="title function_">has</span>(x)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>对象引用管理</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> users = <span class="keyword">new</span> <span class="title class_">Set</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">trackUser</span>(<span class="params">user</span>) &#123;</span><br><span class="line">  users.<span class="title function_">add</span>(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">untrackUser</span>(<span class="params">user</span>) &#123;</span><br><span class="line">  users.<span class="title function_">delete</span>(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自动去重：同一对象不会被重复添加</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Set-的实现原理"><a href="#Set-的实现原理" class="headerlink" title="Set 的实现原理"></a>Set 的实现原理</h3><p>现代 JavaScript 引擎通常使用：</p>
+<ul>
+<li>哈希表作为底层实现</li>
+<li>使用 开放寻址法 或 链表法 解决冲突</li>
+<li>自动扩容机制（类似 Map）</li>
+</ul>
+<h2 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h2><h3 id="WeakSet-的定义"><a href="#WeakSet-的定义" class="headerlink" title="WeakSet 的定义"></a>WeakSet 的定义</h3><p>WeakSet 是 ES6 引入的一种特殊集合类型，与 Set 类似，也是不重复的值的集合。</p>
+<h3 id="WeakSet-的核心特性"><a href="#WeakSet-的核心特性" class="headerlink" title="WeakSet 的核心特性"></a>WeakSet 的核心特性</h3><p><strong>成员类型限制</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// WeakSet 的成员只能是对象和 Symbol 值，不能是其他类型的值</span></span><br><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="title class_">WeakSet</span>();</span><br><span class="line">ws.<span class="title function_">add</span>(<span class="number">1</span>) <span class="comment">// 报错</span></span><br><span class="line">ws.<span class="title function_">add</span>(<span class="title class_">Symbol</span>()) <span class="comment">// 不报错</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>弱引用</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">data</span>: <span class="string">&#x27;important&#x27;</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> weakset = <span class="keyword">new</span> <span class="title class_">WeakSet</span>();</span><br><span class="line"></span><br><span class="line">weakset.<span class="title function_">add</span>(obj);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(weakset.<span class="title function_">has</span>(obj)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当对象不再被引用时</span></span><br><span class="line">obj = <span class="literal">null</span>; </span><br><span class="line"></span><br><span class="line"><span class="comment">// 垃圾回收后，对象会自动从WeakSet移除</span></span><br><span class="line"><span class="comment">// weakset.has(原obj) 将返回 false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>不可遍历</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="title class_">WeakSet</span>();</span><br><span class="line">ws.<span class="title function_">add</span>(&#123;&#125;);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ws.<span class="property">size</span>); <span class="comment">// undefined (无size属性)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下操作都会报错：</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> item <span class="keyword">of</span> ws) &#123;&#125;</span><br><span class="line">ws.<span class="title function_">forEach</span>(<span class="function">() =&gt;</span> &#123;&#125;)</span><br><span class="line">[...ws]</span><br></pre></td></tr></table></figure>
+
+<h3 id="WeakSet-的-API-详解"><a href="#WeakSet-的-API-详解" class="headerlink" title="WeakSet 的 API 详解"></a>WeakSet 的 API 详解</h3><table>
+<thead>
+<tr>
+<th align="left">方法&#x2F;属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">new WeakSet(iterable)</td>
+<td align="left">构造函数</td>
+</tr>
+<tr>
+<td align="left">weakSet.has(value)</td>
+<td align="left">检查值是否存在</td>
+</tr>
+<tr>
+<td align="left">weakSet.add(value)</td>
+<td align="left">添加值</td>
+</tr>
+<tr>
+<td align="left">weakSet.delete(value)</td>
+<td align="left">删除值</td>
+</tr>
+</tbody></table>
+<p>WeakSet 没有 size 属性，不可遍历（即没有keys()、values()和entries()方法），因为成员都是弱引用，随时都可能消失。WeakSet 也没有 clear() 方法。</p>
+<h3 id="WeakSet-和-Set-的区别"><a href="#WeakSet-和-Set-的区别" class="headerlink" title="WeakSet 和 Set 的区别"></a>WeakSet 和 Set 的区别</h3><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">Set</th>
+<th align="left">WeakSet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">成员类型</td>
+<td align="left">任意类型</td>
+<td align="left">仅对象和 Symbol</td>
+</tr>
+<tr>
+<td align="left">可枚举性</td>
+<td align="left">可遍历</td>
+<td align="left">不可遍历</td>
+</tr>
+<tr>
+<td align="left">引用类型</td>
+<td align="left">强引用</td>
+<td align="left">弱引用</td>
+</tr>
+<tr>
+<td align="left">自动清理</td>
+<td align="left">否</td>
+<td align="left">是</td>
+</tr>
+</tbody></table>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="Map-的定义和基本用法"><a href="#Map-的定义和基本用法" class="headerlink" title="Map 的定义和基本用法"></a>Map 的定义和基本用法</h3><p>Map 是 ES6 引入的新的数据结构，是一种键值对集合类型（Hash结构），使用 new 关键字创建 Map 结构实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> m = <span class="keyword">new</span> <span class="title class_">Map</span>()</span><br></pre></td></tr></table></figure>
+
+<p>Map 构造函数可以接受一个数组作为参数，数组成员是一个个表示键值对的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> items = [</span><br><span class="line">  [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;张三&#x27;</span>],</span><br><span class="line">  [<span class="string">&#x27;title&#x27;</span>, <span class="string">&#x27;Author&#x27;</span>]</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Map-的核心特性"><a href="#Map-的核心特性" class="headerlink" title="Map 的核心特性"></a>Map 的核心特性</h3><p><strong>键的灵活性</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 支持任意类型作为键</span></span><br><span class="line">map.<span class="title function_">set</span>(<span class="number">1</span>, <span class="string">&#x27;number&#x27;</span>);</span><br><span class="line">map.<span class="title function_">set</span>(<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;string&#x27;</span>);</span><br><span class="line">map.<span class="title function_">set</span>(&#123;<span class="attr">id</span>: <span class="number">1</span>&#125;, <span class="string">&#x27;object&#x27;</span>);</span><br><span class="line">map.<span class="title function_">set</span>(<span class="function">() =&gt;</span> &#123;&#125;, <span class="string">&#x27;function&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map.<span class="property">size</span>); <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>键值相等性判断</strong></p>
+<p>Map 和 Set 一样使用 SameValueZero 算法：</p>
+<ul>
+<li>NaN 被视为相等</li>
+<li>+0 和 -0 被视为相等</li>
+<li>对象按引用比较</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">map.<span class="title function_">set</span>(obj, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map.<span class="title function_">get</span>(obj)); <span class="comment">// &#x27;value&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map.<span class="title function_">get</span>(&#123;&#125;)); <span class="comment">// undefined (不同引用)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Map-的基础-API详解"><a href="#Map-的基础-API详解" class="headerlink" title="Map 的基础 API详解"></a>Map 的基础 API详解</h3><table>
+<thead>
+<tr>
+<th align="left">方法&#x2F;属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">new Map(iterable)</td>
+<td align="left">构造函数</td>
+</tr>
+<tr>
+<td align="left">map.set(key, value)</td>
+<td align="left">添加&#x2F;更新键值对</td>
+</tr>
+<tr>
+<td align="left">map.get(key)</td>
+<td align="left">获取对应值</td>
+</tr>
+<tr>
+<td align="left">map.has(key)</td>
+<td align="left">检查键是否存在</td>
+</tr>
+<tr>
+<td align="left">map.delete(key)</td>
+<td align="left">删除键值对</td>
+</tr>
+<tr>
+<td align="left">map.clear()</td>
+<td align="left">清空集合</td>
+</tr>
+<tr>
+<td align="left">map.size</td>
+<td align="left">获取键值对的数量（非函数属性，不能 set.size()）</td>
+</tr>
+</tbody></table>
+<h3 id="Map-的迭代操作"><a href="#Map-的迭代操作" class="headerlink" title="Map 的迭代操作"></a>Map 的迭代操作</h3><p>Map 结构原生提供三个遍历器生成函数和一个遍历方法</p>
+<ul>
+<li>map.values()：返回键值的遍历器</li>
+<li>map.keys()：返回键名的遍历器</li>
+<li>map.entries()：返回所有成员的遍历器</li>
+<li>map.forEach()：遍历 Map 所有成员</li>
+</ul>
+<p>和 Set 一样，Map 的遍历顺序也是插入顺序，Map 的默认遍历器生成函数是它的 entries 方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="title class_">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;Alice&#x27;</span>],</span><br><span class="line">  [<span class="string">&#x27;age&#x27;</span>, <span class="number">30</span>]</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. for...of 遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> [key, value] <span class="keyword">of</span> map) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. forEach 遍历</span></span><br><span class="line">map.<span class="title function_">forEach</span>(<span class="function">(<span class="params">value, key</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key, value);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 获取迭代器</span></span><br><span class="line"><span class="keyword">const</span> keys = map.<span class="title function_">keys</span>();    <span class="comment">// 键迭代器</span></span><br><span class="line"><span class="keyword">const</span> values = map.<span class="title function_">values</span>();<span class="comment">// 值迭代器</span></span><br><span class="line"><span class="keyword">const</span> entries = map.<span class="title function_">entries</span>(); <span class="comment">// 键值对迭代器</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Map-的高级特性与应用"><a href="#Map-的高级特性与应用" class="headerlink" title="Map 的高级特性与应用"></a>Map 的高级特性与应用</h3><p><strong>性能优势</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 与 Object 的性能对比</span></span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line"><span class="keyword">const</span> n = <span class="number">1000000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入性能</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>(<span class="string">&#x27;Object insert&#x27;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) obj[i] = i;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>(<span class="string">&#x27;Object insert&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>(<span class="string">&#x27;Map insert&#x27;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) map.<span class="title function_">set</span>(i, i);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>(<span class="string">&#x27;Map insert&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找性能</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>(<span class="string">&#x27;Object lookup&#x27;</span>);</span><br><span class="line">obj[n/<span class="number">2</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>(<span class="string">&#x27;Object lookup&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">time</span>(<span class="string">&#x27;Map lookup&#x27;</span>);</span><br><span class="line">map.<span class="title function_">get</span>(n/<span class="number">2</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">timeEnd</span>(<span class="string">&#x27;Map lookup&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>对象元数据存储</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 更优雅的元数据管理</span></span><br><span class="line"><span class="keyword">const</span> metadata = <span class="keyword">new</span> <span class="title class_">Map</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">setMetadata</span>(<span class="params">obj, data</span>) &#123;</span><br><span class="line">  metadata.<span class="title function_">set</span>(obj, data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getMetadata</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> metadata.<span class="title function_">get</span>(obj);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 避免直接修改对象属性</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Map-与-Object-的对比"><a href="#Map-与-Object-的对比" class="headerlink" title="Map 与 Object 的对比"></a>Map 与 Object 的对比</h3><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">Map</th>
+<th align="left">Object</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">键类型</td>
+<td align="left">任意值</td>
+<td align="left">String&#x2F;Symbol</td>
+</tr>
+<tr>
+<td align="left">键顺序</td>
+<td align="left">插入顺序</td>
+<td align="left">复杂规则(整数属性优先)</td>
+</tr>
+<tr>
+<td align="left">size 属性</td>
+<td align="left">直接获取</td>
+<td align="left">需要手动计算</td>
+</tr>
+<tr>
+<td align="left">迭代</td>
+<td align="left">直接可迭代</td>
+<td align="left">需要Object.keys()等转换</td>
+</tr>
+<tr>
+<td align="left">性能</td>
+<td align="left">频繁增删操作更优</td>
+<td align="left">静态键值访问略快</td>
+</tr>
+<tr>
+<td align="left">序列化</td>
+<td align="left">需手动处理</td>
+<td align="left">原生支持JSON序列化</td>
+</tr>
+<tr>
+<td align="left">原型链污染</td>
+<td align="left">完全隔离</td>
+<td align="left">可能被污染</td>
+</tr>
+</tbody></table>
+<h2 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h2><h3 id="WeakMap-的定义"><a href="#WeakMap-的定义" class="headerlink" title="WeakMap 的定义"></a>WeakMap 的定义</h3><p>WeakMap 和 Map 类似，也是用于生成键值对集合</p>
+<h3 id="WeakMap-的核心特性"><a href="#WeakMap-的核心特性" class="headerlink" title="WeakMap 的核心特性"></a>WeakMap 的核心特性</h3><p><strong>弱引用键机制</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> user = &#123; <span class="attr">id</span>: <span class="number">123</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> weakmap = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line"></span><br><span class="line">weakmap.<span class="title function_">set</span>(user, <span class="string">&#x27;user data&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(weakmap.<span class="title function_">has</span>(user)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 当对象失去所有强引用时</span></span><br><span class="line">user = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 垃圾回收后自动移除条目</span></span><br><span class="line"><span class="comment">// weakmap.has(原user) 将返回 false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>键类型限制</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wm = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仅允许对象(null 除外)和 Symbol作为键</span></span><br><span class="line">wm.<span class="title function_">set</span>(&#123;&#125;, <span class="string">&#x27;valid&#x27;</span>);</span><br><span class="line">wm.<span class="title function_">set</span>(<span class="variable language_">document</span>.<span class="property">body</span>, <span class="string">&#x27;valid&#x27;</span>);</span><br><span class="line">wm.<span class="title function_">set</span>(<span class="function">() =&gt;</span> &#123;&#125;, <span class="string">&#x27;valid&#x27;</span>);</span><br><span class="line">wm.<span class="title function_">set</span>(<span class="title class_">Symbol</span>(), <span class="number">2</span>) <span class="comment">// 不报错</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原始值会报错</span></span><br><span class="line">wm.<span class="title function_">set</span>(<span class="number">1</span>, <span class="string">&#x27;invalid&#x27;</span>); <span class="comment">// TypeError: Invalid value used as weak map key</span></span><br><span class="line">wm.<span class="title function_">set</span>(<span class="string">&#x27;key&#x27;</span>, <span class="string">&#x27;invalid&#x27;</span>); <span class="comment">// TypeError</span></span><br><span class="line">wm.<span class="title function_">set</span>(<span class="literal">null</span>, <span class="number">2</span>) <span class="comment">// TypeError</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="WeakMap-的-API-详解"><a href="#WeakMap-的-API-详解" class="headerlink" title="WeakMap 的 API 详解"></a>WeakMap 的 API 详解</h3><table>
+<thead>
+<tr>
+<th align="left">方法&#x2F;属性</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">new WeakMap(iterable)</td>
+<td align="left">构造函数</td>
+</tr>
+<tr>
+<td align="left">weakMap.set(key, value)</td>
+<td align="left">添加&#x2F;更新键值对</td>
+</tr>
+<tr>
+<td align="left">weakMap.get(key)</td>
+<td align="left">获取对应值</td>
+</tr>
+<tr>
+<td align="left">weakMap.has(key)</td>
+<td align="left">检查键是否存在</td>
+</tr>
+<tr>
+<td align="left">weakMap.delete(key)</td>
+<td align="left">删除键值对</td>
+</tr>
+</tbody></table>
+<p>weakMap 没有 size 属性，不可遍历（即没有keys()、values()和entries()方法），因为成员都是弱引用，随时都可能消失。WeakMap 也没有 clear() 方法</p>
+<h3 id="WeakMap-的特殊行为与边界情况"><a href="#WeakMap-的特殊行为与边界情况" class="headerlink" title="WeakMap 的特殊行为与边界情况"></a>WeakMap 的特殊行为与边界情况</h3><p><strong>键不可枚举</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wm = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line"><span class="keyword">const</span> key = &#123;&#125;;</span><br><span class="line">wm.<span class="title function_">set</span>(key, <span class="string">&#x27;secret&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 无法通过反射获取键</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">getOwnPropertySymbols</span>(key); <span class="comment">// []</span></span><br><span class="line"><span class="title class_">Reflect</span>.<span class="title function_">ownKeys</span>(key);             <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>垃圾回收不确定性</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line">wm.<span class="title function_">set</span>(obj, <span class="string">&#x27;data&#x27;</span>);</span><br><span class="line">obj = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 无法预测何时条目会被移除</span></span><br><span class="line"><span class="comment">// 依赖垃圾回收器运行</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>不可克隆</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无法正确克隆WeakMap</span></span><br><span class="line"><span class="keyword">const</span> wm1 = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line">wm1.<span class="title function_">set</span>(&#123;&#125;, <span class="string">&#x27;value&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> wm2 = <span class="keyword">new</span> <span class="title class_">WeakMap</span>(wm1); <span class="comment">// 无效！</span></span><br><span class="line"><span class="comment">// 没有方法可以复制现有WeakMap的内容</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="WeakMap-和相关数据结构的区别"><a href="#WeakMap-和相关数据结构的区别" class="headerlink" title="WeakMap 和相关数据结构的区别"></a>WeakMap 和相关数据结构的区别</h3><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">WeakMap</th>
+<th align="left">Map</th>
+<th align="left">WeakSet</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">键类型</td>
+<td align="left">仅对象</td>
+<td align="left">任意值</td>
+<td align="left">仅对象</td>
+</tr>
+<tr>
+<td align="left">值类型</td>
+<td align="left">任意值</td>
+<td align="left">任意值</td>
+<td align="left">无值（仅存储键）</td>
+</tr>
+<tr>
+<td align="left">可枚举性</td>
+<td align="left">不可枚举</td>
+<td align="left">可枚举</td>
+<td align="left">不可枚举</td>
+</tr>
+<tr>
+<td align="left">内存管理</td>
+<td align="left">弱引用键</td>
+<td align="left">强引用键值</td>
+<td align="left">弱引用键</td>
+</tr>
+<tr>
+<td align="left">使用场景</td>
+<td align="left">私有数据&#x2F;元数据存储</td>
+<td align="left">通用键值存储</td>
+<td align="left">对象存在性检查</td>
+</tr>
+</tbody></table>
+<h2 id="面试常见问题-6"><a href="#面试常见问题-6" class="headerlink" title="面试常见问题"></a>面试常见问题</h2><p><strong>Q：请解释 Map 和 Object 的主要区别是什么？</strong></p>
+<ul>
+<li>键类型不同：Map 键可以是任意类型，Object 键只能是字符串或 Symbol 值</li>
+<li>顺序保证：Map 严格按照插入顺序迭代，Object 则是数字键升序排序后其他按插入顺序</li>
+<li>大小获取：Map 可以直接用 size 属性，Object 则需要 Object.keys(obj).length</li>
+<li>性能：Map 增删改查操作更高效</li>
+<li>序列化：Map 需要手动转为数组，Object 直接支持 JSON.stringify</li>
+</ul>
+<p><strong>Q：WeakMap 和 Map 的核心区别是什么？为什么要有 WeakMap？</strong></p>
+<p>核心区别：</p>
+<ul>
+<li>键类型：Map 键可以是任意类型，WeakMap 键只能是对象和 Symbol</li>
+<li>内存管理：WeakMap 键是弱引用，不阻止 GC 垃圾回收，Map 键是强引用</li>
+<li>可访问性：WeakMap 不可遍历，Map 可以遍历所有键值</li>
+</ul>
+<p>为什么要有 WeakMap？</p>
+<ul>
+<li>防止内存泄露：当键对象不再使用时自动清除关联值</li>
+<li>私有数据存储：实现真正无法外部访问的私有属性</li>
+</ul>
+<p><strong>Q：为什么 WeakMap 的键必须是对象？</strong></p>
+<p>主要基于两个核心设计目标：</p>
+<ul>
+<li>内存管理：只有对象存在垃圾回收机制，原始值（字符串、数字等）在 JavaScript 中永生；弱引用机制仅对需要回收的对象有意义</li>
+<li>技术实现限制：引擎底层通过对象指针实现弱引用，弱允许原始值会破坏弱引用设计初衷，导致永久占用内存</li>
+</ul>
+<p><strong>Q：Set 如何保证元素的唯一性？</strong></p>
+<p>通过 SameValueZero 算法和底层哈希表现（插入时先计算哈希值定位桶，桶内遍历采用 SameValueZero 算法精确比对，存在相同值则覆盖，否则新增）</p>
+<p><strong>Q：WeakSet 为什么没有 size 属性和遍历方法？</strong></p>
+<p>弱引用设计约束：成员对象都是弱引用，随时可能被回收，计算 size 可能会得到非确定的结果，同样，遍历结果也不可靠</p>
+<p><strong>Q：为什么 Map 要保持插入顺序而 Object 不保证？</strong></p>
+<ul>
+<li>设计目标差异：Map 是专门设计的键值集合，顺序是其核心特新要求，Object 不是</li>
+<li>历史兼容性：Object 的乱序行为是历史包袱，Map 没有历史包袱，直接规范顺序保证</li>
+<li>性能取舍：Map 用额外链表维护顺序（空间换时间），Object 为优化访问速度牺牲顺序</li>
+</ul>
+<p><strong>Q：WeakSet 在垃圾回收时的行为是怎样的？</strong></p>
+<ul>
+<li>自动清理：当 WeakSet 中的成员失去引用时，GC 垃圾回收器会将该对象从 WeakSet 中移除</li>
+<li>不可观测性：无法直接观测到回收时机</li>
+<li>内存影响：不会阻止其键对象被回收</li>
+</ul>
+<p><strong>Q: 如何用 Object 模拟实现一个 Map？</strong></p>
+<p>核心实现思路：</p>
+<p>（1）用 Symbol 保证唯一性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> _keys = <span class="title class_">Symbol</span>(<span class="string">&#x27;keys&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> _values = <span class="title class_">Symbol</span>(<span class="string">&#x27;values&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>（2）基本结构</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleMap</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>[_keys] = [];   <span class="comment">// 存储键</span></span><br><span class="line">    <span class="variable language_">this</span>[_values] = []; <span class="comment">// 存储值</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）关键方法实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">set</span>(<span class="params">key, value</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> index = <span class="variable language_">this</span>[_keys].<span class="title function_">indexOf</span>(key);</span><br><span class="line">  <span class="keyword">if</span> (index === -<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>[_keys].<span class="title function_">push</span>(key);</span><br><span class="line">    <span class="variable language_">this</span>[_values].<span class="title function_">push</span>(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>[_values][index] = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">get</span>(<span class="params">key</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> index = <span class="variable language_">this</span>[_keys].<span class="title function_">indexOf</span>(key);</span><br><span class="line">  <span class="keyword">return</span> index !== -<span class="number">1</span> ? <span class="variable language_">this</span>[_values][index] : <span class="literal">undefined</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Q: 请手写一个简化版的 WeakMap（不考虑弱引用）</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleWeakMap</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_id</span> = <span class="string">`weakmap@<span class="subst">$&#123;<span class="built_in">Date</span>.now()&#125;</span>`</span>; <span class="comment">// 唯一标识符</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">set</span>(<span class="params">key, value</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> key !== <span class="string">&#x27;object&#x27;</span> || key === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;Invalid key type&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    key[<span class="variable language_">this</span>.<span class="property">_id</span>] = value; <span class="comment">// 直接存储到对象上</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">get</span>(<span class="params">key</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> key?.[<span class="variable language_">this</span>.<span class="property">_id</span>];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">has</span>(<span class="params">key</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">_id</span> <span class="keyword">in</span> key;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">delete</span>(<span class="params">key</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="title function_">has</span>(key)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">delete</span> key[<span class="variable language_">this</span>.<span class="property">_id</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line"><span class="keyword">const</span> map = <span class="keyword">new</span> <span class="title class_">SimpleWeakMap</span>();</span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">map.<span class="title function_">set</span>(obj, <span class="string">&#x27;data&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map.<span class="title function_">get</span>(obj)); <span class="comment">// &#x27;data&#x27;</span></span><br><span class="line">map.<span class="title function_">delete</span>(obj);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(map.<span class="title function_">has</span>(obj)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Q: 如何用数组实现 Set 的基本功能？</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ArraySet</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_items</span> = [];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">add</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="title function_">has</span>(value)) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">_items</span>.<span class="title function_">push</span>(value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">has</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">_items</span>.<span class="title function_">includes</span>(value); <span class="comment">// 或 indexOf(value) !== -1</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">delete</span>(<span class="params">value</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> index = <span class="variable language_">this</span>.<span class="property">_items</span>.<span class="title function_">indexOf</span>(value);</span><br><span class="line">    <span class="keyword">if</span> (index &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">_items</span>.<span class="title function_">splice</span>(index, <span class="number">1</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title function_">size</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">_items</span>.<span class="property">length</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">clear</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_items</span> = [];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line"><span class="keyword">const</span> set = <span class="keyword">new</span> <span class="title class_">ArraySet</span>();</span><br><span class="line">set.<span class="title function_">add</span>(<span class="number">1</span>).<span class="title function_">add</span>(<span class="number">2</span>).<span class="title function_">add</span>(<span class="number">1</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set.<span class="property">size</span>); <span class="comment">// 2</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set.<span class="title function_">has</span>(<span class="number">1</span>)); <span class="comment">// true</span></span><br><span class="line">set.<span class="title function_">delete</span>(<span class="number">1</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(set.<span class="title function_">has</span>(<span class="number">1</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Q: 模拟实现一个支持基本操作的 WeakSet</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SimpleWeakSet</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_id</span> = <span class="string">`weakset@<span class="subst">$&#123;<span class="built_in">Date</span>.now()&#125;</span>`</span>; <span class="comment">// 唯一标识符</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">add</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> obj !== <span class="string">&#x27;object&#x27;</span> || obj === <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="title class_">TypeError</span>(<span class="string">&#x27;Invalid value used in weak set&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    obj[<span class="variable language_">this</span>.<span class="property">_id</span>] = <span class="literal">true</span>; <span class="comment">// 标记对象</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">has</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> !!obj &amp;&amp; obj[<span class="variable language_">this</span>.<span class="property">_id</span>] === <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">delete</span>(<span class="params">obj</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="title function_">has</span>(obj)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">delete</span> obj[<span class="variable language_">this</span>.<span class="property">_id</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line"><span class="keyword">const</span> ws = <span class="keyword">new</span> <span class="title class_">SimpleWeakSet</span>();</span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;;</span><br><span class="line">ws.<span class="title function_">add</span>(obj);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ws.<span class="title function_">has</span>(obj)); <span class="comment">// true</span></span><br><span class="line">ws.<span class="title function_">delete</span>(obj);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(ws.<span class="title function_">has</span>(obj)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -1050,7 +1551,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://tianfei92.github.io/2025/06/19/JavaScript/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://tianfei92.github.io/2025/06/19/JavaScript%20Study%20Notes/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -1064,18 +1565,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2025/06/20/JavaScript%20prototype/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2025/06/20/Network%20Study%20Notes/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          JavaScript 原型/原型链专题知识学习
+          网络知识专题学习
         
       </div>
     </a>
   
   
-    <a href="/2025/06/18/React%20Fiber/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">React Fiber 专题学习</div>
+    <a href="/2025/06/05/React%20Fiber/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React Fiber 专题知识学习</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -1102,7 +1603,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-number">1.</span> <span class="toc-text">深拷贝与浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">浅拷贝的实现方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">深拷贝的实现方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%80%83%E8%99%91"><span class="toc-number">1.4.</span> <span class="toc-text">性能考虑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.5.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">循环引用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">循环引用的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.2.</span> <span class="toc-text">循环引用的示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.</span> <span class="toc-text">循环引用带来的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8"><span class="toc-number">2.4.</span> <span class="toc-text">如何检测循环引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-1"><span class="toc-number">2.5.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85"><span class="toc-number">3.</span> <span class="toc-text">JavaScript 中的闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text">闭包的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.2.</span> <span class="toc-text">闭包的简单示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">3.3.</span> <span class="toc-text">闭包的工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">3.4.</span> <span class="toc-text">闭包的常见应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E4%B8%8E%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.5.</span> <span class="toc-text">闭包与内存管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E8%BF%9B%E9%98%B6%E7%90%86%E8%A7%A3"><span class="toc-number">3.6.</span> <span class="toc-text">闭包的进阶理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">3.7.</span> <span class="toc-text">闭包的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-2"><span class="toc-number">3.8.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE-this%E6%8C%87%E5%90%91"><span class="toc-number">4.</span> <span class="toc-text">作用域&#x2F;作用域链&#x2F;this指向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88Scope%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">作用域（Scope）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%EF%BC%88Scope-Chain%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">作用域链（Scope Chain）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this-%E6%8C%87%E5%90%91"><span class="toc-number">4.3.</span> <span class="toc-text">this 指向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E8%80%85%E7%9A%84%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB"><span class="toc-number">4.4.</span> <span class="toc-text">三者的关系与区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-3"><span class="toc-number">4.5.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%92%8C%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">5.</span> <span class="toc-text">事件循环和消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E5%BF%85%E8%A6%81%E6%80%A7"><span class="toc-number">5.1.</span> <span class="toc-text">事件循环的本质与必要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E6%88%90"><span class="toc-number">5.2.</span> <span class="toc-text">事件循环的核心组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E7%9A%84%E8%AF%A6%E7%BB%86%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">5.3.</span> <span class="toc-text">事件循环的详细工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8ENode-js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%B7%AE%E5%BC%82"><span class="toc-number">5.4.</span> <span class="toc-text">浏览器与Node.js事件循环差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">5.5.</span> <span class="toc-text">高级应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-4"><span class="toc-number">5.6.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">6.</span> <span class="toc-text">JavaScript 垃圾回收机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80"><span class="toc-number">6.1.</span> <span class="toc-text">内存管理基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">6.1.1.</span> <span class="toc-text">内存生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E6%9C%BA%E5%88%B6"><span class="toc-number">6.1.2.</span> <span class="toc-text">内存分配机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99"><span class="toc-number">6.2.</span> <span class="toc-text">内存使用规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">6.3.</span> <span class="toc-text">垃圾回收算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V8-%E5%BC%95%E6%93%8E%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">6.4.</span> <span class="toc-text">V8 引擎的垃圾回收机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E4%B8%8E%E6%8E%92%E6%9F%A5"><span class="toc-number">6.5.</span> <span class="toc-text">内存泄露与排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5"><span class="toc-number">6.6.</span> <span class="toc-text">性能优化实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-5"><span class="toc-number">6.7.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96%E6%9C%BA%E5%88%B6"><span class="toc-number">7.</span> <span class="toc-text">JavaScript模块化机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E6%BC%94%E8%BF%9B%E5%8F%B2%EF%BC%9A%E4%BB%8E%E6%B7%B7%E4%B9%B1%E5%88%B0%E6%A0%87%E5%87%86%E5%8C%96"><span class="toc-number">7.1.</span> <span class="toc-text">模块化演进史：从混乱到标准化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES-Modules-%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90"><span class="toc-number">7.2.</span> <span class="toc-text">ES Modules 核心机制深度剖析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94"><span class="toc-number">7.3.</span> <span class="toc-text">现代模块系统核心特性对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E6%A8%A1%E5%9D%97%E5%8C%96%E8%AE%A1%E6%95%B0%E4%B8%8E%E5%AE%9E%E8%B7%B5"><span class="toc-number">7.4.</span> <span class="toc-text">高级模块化计数与实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5"><span class="toc-number">7.5.</span> <span class="toc-text">模块化工程实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">7.6.</span> <span class="toc-text">常见问题与解决方案</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-number">1.</span> <span class="toc-text">深拷贝与浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">浅拷贝的实现方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">深拷贝的实现方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%80%83%E8%99%91"><span class="toc-number">1.4.</span> <span class="toc-text">性能考虑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.5.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">循环引用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">循环引用的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.2.</span> <span class="toc-text">循环引用的示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.</span> <span class="toc-text">循环引用带来的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%A3%80%E6%B5%8B%E5%BE%AA%E7%8E%AF%E5%BC%95%E7%94%A8"><span class="toc-number">2.4.</span> <span class="toc-text">如何检测循环引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-1"><span class="toc-number">2.5.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-%E4%B8%AD%E7%9A%84%E9%97%AD%E5%8C%85"><span class="toc-number">3.</span> <span class="toc-text">JavaScript 中的闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text">闭包的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.2.</span> <span class="toc-text">闭包的简单示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">3.3.</span> <span class="toc-text">闭包的工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">3.4.</span> <span class="toc-text">闭包的常见应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E4%B8%8E%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.5.</span> <span class="toc-text">闭包与内存管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E8%BF%9B%E9%98%B6%E7%90%86%E8%A7%A3"><span class="toc-number">3.6.</span> <span class="toc-text">闭包的进阶理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AD%E5%8C%85%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">3.7.</span> <span class="toc-text">闭包的优缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-2"><span class="toc-number">3.8.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE-this%E6%8C%87%E5%90%91"><span class="toc-number">4.</span> <span class="toc-text">作用域&#x2F;作用域链&#x2F;this指向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88Scope%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">作用域（Scope）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%EF%BC%88Scope-Chain%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">作用域链（Scope Chain）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this-%E6%8C%87%E5%90%91"><span class="toc-number">4.3.</span> <span class="toc-text">this 指向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E8%80%85%E7%9A%84%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB"><span class="toc-number">4.4.</span> <span class="toc-text">三者的关系与区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-3"><span class="toc-number">4.5.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%92%8C%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-number">5.</span> <span class="toc-text">事件循环和消息队列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E5%BF%85%E8%A6%81%E6%80%A7"><span class="toc-number">5.1.</span> <span class="toc-text">事件循环的本质与必要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E7%9A%84%E6%A0%B8%E5%BF%83%E7%BB%84%E6%88%90"><span class="toc-number">5.2.</span> <span class="toc-text">事件循环的核心组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E7%9A%84%E8%AF%A6%E7%BB%86%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">5.3.</span> <span class="toc-text">事件循环的详细工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8ENode-js%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%B7%AE%E5%BC%82"><span class="toc-number">5.4.</span> <span class="toc-text">浏览器与Node.js事件循环差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">5.5.</span> <span class="toc-text">高级应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-4"><span class="toc-number">5.6.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">6.</span> <span class="toc-text">JavaScript 垃圾回收机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%9F%BA%E7%A1%80"><span class="toc-number">6.1.</span> <span class="toc-text">内存管理基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">6.1.1.</span> <span class="toc-text">内存生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E6%9C%BA%E5%88%B6"><span class="toc-number">6.1.2.</span> <span class="toc-text">内存分配机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99"><span class="toc-number">6.2.</span> <span class="toc-text">内存使用规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">6.3.</span> <span class="toc-text">垃圾回收算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V8-%E5%BC%95%E6%93%8E%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">6.4.</span> <span class="toc-text">V8 引擎的垃圾回收机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E4%B8%8E%E6%8E%92%E6%9F%A5"><span class="toc-number">6.5.</span> <span class="toc-text">内存泄露与排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5"><span class="toc-number">6.6.</span> <span class="toc-text">性能优化实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-5"><span class="toc-number">6.7.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaScript%E6%A8%A1%E5%9D%97%E5%8C%96%E6%9C%BA%E5%88%B6"><span class="toc-number">7.</span> <span class="toc-text">JavaScript模块化机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E6%BC%94%E8%BF%9B%E5%8F%B2%EF%BC%9A%E4%BB%8E%E6%B7%B7%E4%B9%B1%E5%88%B0%E6%A0%87%E5%87%86%E5%8C%96"><span class="toc-number">7.1.</span> <span class="toc-text">模块化演进史：从混乱到标准化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES-Modules-%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90"><span class="toc-number">7.2.</span> <span class="toc-text">ES Modules 核心机制深度剖析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E6%A8%A1%E5%9D%97%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7%E5%AF%B9%E6%AF%94"><span class="toc-number">7.3.</span> <span class="toc-text">现代模块系统核心特性对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E6%A8%A1%E5%9D%97%E5%8C%96%E8%AE%A1%E6%95%B0%E4%B8%8E%E5%AE%9E%E8%B7%B5"><span class="toc-number">7.4.</span> <span class="toc-text">高级模块化计数与实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5"><span class="toc-number">7.5.</span> <span class="toc-text">模块化工程实践</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">7.6.</span> <span class="toc-text">常见问题与解决方案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ES6-Symbol"><span class="toc-number">8.</span> <span class="toc-text">ES6+ Symbol</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%8F%8F%E8%BF%B0"><span class="toc-number">8.1.</span> <span class="toc-text">定义与描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-number">8.2.</span> <span class="toc-text">创建与使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-number">8.3.</span> <span class="toc-text">核心特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E7%9A%84-Symbol-%E5%80%BC"><span class="toc-number">8.4.</span> <span class="toc-text">内置的 Symbol 值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Symbol-%E4%B8%8E%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF%E5%AF%B9%E6%AF%94"><span class="toc-number">8.5.</span> <span class="toc-text">Symbol 与相关技术对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Symbol-%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC"><span class="toc-number">8.6.</span> <span class="toc-text">Symbol 的核心价值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ES6-Set-%E5%92%8C-Map-%E7%BB%93%E6%9E%84"><span class="toc-number">9.</span> <span class="toc-text">ES6+ Set 和 Map 结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Set"><span class="toc-number">9.1.</span> <span class="toc-text">Set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">9.1.1.</span> <span class="toc-text">Set 的定义和基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-number">9.1.2.</span> <span class="toc-text">Set 的核心特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E7%9A%84%E5%9F%BA%E7%A1%80-API-%E8%AF%A6%E8%A7%A3"><span class="toc-number">9.1.3.</span> <span class="toc-text">Set 的基础 API 详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E7%9A%84%E8%BF%AD%E4%BB%A3%E6%93%8D%E4%BD%9C"><span class="toc-number">9.1.4.</span> <span class="toc-text">Set 的迭代操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="toc-number">9.1.5.</span> <span class="toc-text">Set 的高级特性与应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">9.1.6.</span> <span class="toc-text">Set 的实现原理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WeakSet"><span class="toc-number">9.2.</span> <span class="toc-text">WeakSet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakSet-%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">9.2.1.</span> <span class="toc-text">WeakSet 的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakSet-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-number">9.2.2.</span> <span class="toc-text">WeakSet 的核心特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakSet-%E7%9A%84-API-%E8%AF%A6%E8%A7%A3"><span class="toc-number">9.2.3.</span> <span class="toc-text">WeakSet 的 API 详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakSet-%E5%92%8C-Set-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">9.2.4.</span> <span class="toc-text">WeakSet 和 Set 的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map"><span class="toc-number">9.3.</span> <span class="toc-text">Map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">9.3.1.</span> <span class="toc-text">Map 的定义和基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-number">9.3.2.</span> <span class="toc-text">Map 的核心特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-%E7%9A%84%E5%9F%BA%E7%A1%80-API%E8%AF%A6%E8%A7%A3"><span class="toc-number">9.3.3.</span> <span class="toc-text">Map 的基础 API详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-%E7%9A%84%E8%BF%AD%E4%BB%A3%E6%93%8D%E4%BD%9C"><span class="toc-number">9.3.4.</span> <span class="toc-text">Map 的迭代操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="toc-number">9.3.5.</span> <span class="toc-text">Map 的高级特性与应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-%E4%B8%8E-Object-%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">9.3.6.</span> <span class="toc-text">Map 与 Object 的对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WeakMap"><span class="toc-number">9.4.</span> <span class="toc-text">WeakMap</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakMap-%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">9.4.1.</span> <span class="toc-text">WeakMap 的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakMap-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="toc-number">9.4.2.</span> <span class="toc-text">WeakMap 的核心特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakMap-%E7%9A%84-API-%E8%AF%A6%E8%A7%A3"><span class="toc-number">9.4.3.</span> <span class="toc-text">WeakMap 的 API 详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakMap-%E7%9A%84%E7%89%B9%E6%AE%8A%E8%A1%8C%E4%B8%BA%E4%B8%8E%E8%BE%B9%E7%95%8C%E6%83%85%E5%86%B5"><span class="toc-number">9.4.4.</span> <span class="toc-text">WeakMap 的特殊行为与边界情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WeakMap-%E5%92%8C%E7%9B%B8%E5%85%B3%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">9.4.5.</span> <span class="toc-text">WeakMap 和相关数据结构的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98-6"><span class="toc-number">9.5.</span> <span class="toc-text">面试常见问题</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -1222,11 +1723,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Network</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
             
             <div class="clearfix"></div>
