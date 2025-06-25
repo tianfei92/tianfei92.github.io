@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://tianfei92.github.io">
   <title>CSS 专题知识学习 | Ariel&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一章：CSS 基础与核心概念1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）">
+  <meta name="description" content="第一章：CSS 基础与核心概念1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）基础语法结构1234&#x2F;* 标准规则 *&#x2F;selector &#123;  property: value; &#x2F;* 声明块 *&#x2F;&#125;  基础选择器1. 元素选择器 1div &#123; color: red; &#125;   权重：0,0,1 适用场景：全局样式覆盖  2. 类选择器 1.ac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS 专题知识学习">
 <meta property="og:url" content="https://tianfei92.github.io/2025/06/22/CSS%20Study%20Notes/index.html">
 <meta property="og:site_name" content="Ariel&#39;s Blog">
-<meta property="og:description" content="第一章：CSS 基础与核心概念1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）">
+<meta property="og:description" content="第一章：CSS 基础与核心概念1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）基础语法结构1234&#x2F;* 标准规则 *&#x2F;selector &#123;  property: value; &#x2F;* 声明块 *&#x2F;&#125;  基础选择器1. 元素选择器 1div &#123; color: red; &#125;   权重：0,0,1 适用场景：全局样式覆盖  2. 类选择器 1.ac">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-22T08:47:01.000Z">
-<meta property="article:modified_time" content="2025-06-20T09:05:49.989Z">
+<meta property="article:modified_time" content="2025-06-25T09:19:14.983Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
@@ -175,9 +175,736 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="第一章：CSS-基础与核心概念"><a href="#第一章：CSS-基础与核心概念" class="headerlink" title="第一章：CSS 基础与核心概念"></a>第一章：CSS 基础与核心概念</h1><h2 id="1-1-CSS-语法与选择器（基础选择器、组合选择器、属性选择器）"><a href="#1-1-CSS-语法与选择器（基础选择器、组合选择器、属性选择器）" class="headerlink" title="1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）"></a>1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）</h2><span id="more"></span>
+        <h1 id="第一章：CSS-基础与核心概念"><a href="#第一章：CSS-基础与核心概念" class="headerlink" title="第一章：CSS 基础与核心概念"></a>第一章：CSS 基础与核心概念</h1><h2 id="1-1-CSS-语法与选择器（基础选择器、组合选择器、属性选择器）"><a href="#1-1-CSS-语法与选择器（基础选择器、组合选择器、属性选择器）" class="headerlink" title="1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）"></a>1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）</h2><h3 id="基础语法结构"><a href="#基础语法结构" class="headerlink" title="基础语法结构"></a>基础语法结构</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 标准规则 */</span></span><br><span class="line">selector &#123;</span><br><span class="line">  property: value; <span class="comment">/* 声明块 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="1-2-盒模型（标准盒模型-vs-怪异盒模型）"><a href="#1-2-盒模型（标准盒模型-vs-怪异盒模型）" class="headerlink" title="1.2 盒模型（标准盒模型 vs. 怪异盒模型）"></a>1.2 盒模型（标准盒模型 vs. 怪异盒模型）</h2><h2 id="1-3-布局模式（块级、行内、行内块、Flex、Grid）"><a href="#1-3-布局模式（块级、行内、行内块、Flex、Grid）" class="headerlink" title="1.3 布局模式（块级、行内、行内块、Flex、Grid）"></a>1.3 布局模式（块级、行内、行内块、Flex、Grid）</h2><h2 id="1-4-常用单位（px、em、rem、vw-vh、-）"><a href="#1-4-常用单位（px、em、rem、vw-vh、-）" class="headerlink" title="1.4 常用单位（px、em、rem、vw&#x2F;vh、%）"></a>1.4 常用单位（px、em、rem、vw&#x2F;vh、%）</h2><h2 id="1-5-层叠与继承（z-index、-important、继承规则）"><a href="#1-5-层叠与继承（z-index、-important、继承规则）" class="headerlink" title="1.5 层叠与继承（z-index、!important、继承规则）"></a>1.5 层叠与继承（z-index、!important、继承规则）</h2><h1 id="第二章：CSS-布局技术"><a href="#第二章：CSS-布局技术" class="headerlink" title="第二章：CSS 布局技术"></a>第二章：CSS 布局技术</h1><h2 id="2-1-传统布局（浮动-float、定位-position）"><a href="#2-1-传统布局（浮动-float、定位-position）" class="headerlink" title="2.1 传统布局（浮动 float、定位 position）"></a>2.1 传统布局（浮动 float、定位 position）</h2><h2 id="2-2-Flex-弹性布局（flex-direction、justify-content、align-items）"><a href="#2-2-Flex-弹性布局（flex-direction、justify-content、align-items）" class="headerlink" title="2.2 Flex 弹性布局（flex-direction、justify-content、align-items）"></a>2.2 Flex 弹性布局（flex-direction、justify-content、align-items）</h2><h2 id="2-3-Grid-网格布局（grid-template、grid-area、fr-单位）"><a href="#2-3-Grid-网格布局（grid-template、grid-area、fr-单位）" class="headerlink" title="2.3 Grid 网格布局（grid-template、grid-area、fr 单位）"></a>2.3 Grid 网格布局（grid-template、grid-area、fr 单位）</h2><h2 id="2-4-多列布局（column-count、column-gap）"><a href="#2-4-多列布局（column-count、column-gap）" class="headerlink" title="2.4 多列布局（column-count、column-gap）"></a>2.4 多列布局（column-count、column-gap）</h2><h2 id="2-5-响应式布局（-media-查询、移动优先策略）"><a href="#2-5-响应式布局（-media-查询、移动优先策略）" class="headerlink" title="2.5 响应式布局（@media 查询、移动优先策略）"></a>2.5 响应式布局（@media 查询、移动优先策略）</h2><h1 id="第三章：CSS-视觉与动画"><a href="#第三章：CSS-视觉与动画" class="headerlink" title="第三章：CSS 视觉与动画"></a>第三章：CSS 视觉与动画</h1><h2 id="3-1-背景与边框（background、border-radius、box-shadow）"><a href="#3-1-背景与边框（background、border-radius、box-shadow）" class="headerlink" title="3.1 背景与边框（background、border-radius、box-shadow）"></a>3.1 背景与边框（background、border-radius、box-shadow）</h2><h2 id="3-2-渐变与滤镜（linear-gradient、backdrop-filter）"><a href="#3-2-渐变与滤镜（linear-gradient、backdrop-filter）" class="headerlink" title="3.2 渐变与滤镜（linear-gradient、backdrop-filter）"></a>3.2 渐变与滤镜（linear-gradient、backdrop-filter）</h2><h2 id="3-3-过渡与动画（transition、-keyframes、animation）"><a href="#3-3-过渡与动画（transition、-keyframes、animation）" class="headerlink" title="3.3 过渡与动画（transition、@keyframes、animation）"></a>3.3 过渡与动画（transition、@keyframes、animation）</h2><h2 id="3-4-变形（transform：rotate、scale、translate）"><a href="#3-4-变形（transform：rotate、scale、translate）" class="headerlink" title="3.4 变形（transform：rotate、scale、translate）"></a>3.4 变形（transform：rotate、scale、translate）</h2><h2 id="3-5-3D-变换（perspective、transform-style）"><a href="#3-5-3D-变换（perspective、transform-style）" class="headerlink" title="3.5 3D 变换（perspective、transform-style）"></a>3.5 3D 变换（perspective、transform-style）</h2><h1 id="第四章：CSS-高级特性"><a href="#第四章：CSS-高级特性" class="headerlink" title="第四章：CSS 高级特性"></a>第四章：CSS 高级特性</h1><h2 id="4-1-变量（CSS-Custom-Properties）"><a href="#4-1-变量（CSS-Custom-Properties）" class="headerlink" title="4.1 变量（CSS Custom Properties）"></a>4.1 变量（CSS Custom Properties）</h2><h2 id="4-2-伪类与伪元素（-hover、-before、-selection）"><a href="#4-2-伪类与伪元素（-hover、-before、-selection）" class="headerlink" title="4.2 伪类与伪元素（:hover、::before、::selection）"></a>4.2 伪类与伪元素（:hover、::before、::selection）</h2><h2 id="4-3-BFC（块级格式化上下文）与-IFC（行内格式化上下文）"><a href="#4-3-BFC（块级格式化上下文）与-IFC（行内格式化上下文）" class="headerlink" title="4.3 BFC（块级格式化上下文）与 IFC（行内格式化上下文）"></a>4.3 BFC（块级格式化上下文）与 IFC（行内格式化上下文）</h2><h2 id="4-4-CSS-性能优化（will-change、contain、GPU-加速）"><a href="#4-4-CSS-性能优化（will-change、contain、GPU-加速）" class="headerlink" title="4.4 CSS 性能优化（will-change、contain、GPU 加速）"></a>4.4 CSS 性能优化（will-change、contain、GPU 加速）</h2><h2 id="4-5-现代-CSS-特性（aspect-ratio、gap、scroll-snap）"><a href="#4-5-现代-CSS-特性（aspect-ratio、gap、scroll-snap）" class="headerlink" title="4.5 现代 CSS 特性（aspect-ratio、gap、scroll-snap）"></a>4.5 现代 CSS 特性（aspect-ratio、gap、scroll-snap）</h2><h1 id="第五章：CSS-工程化与架构"><a href="#第五章：CSS-工程化与架构" class="headerlink" title="第五章：CSS 工程化与架构"></a>第五章：CSS 工程化与架构</h1><h2 id="5-1-CSS-预处理（Sass-Less-变量、嵌套、Mixin）"><a href="#5-1-CSS-预处理（Sass-Less-变量、嵌套、Mixin）" class="headerlink" title="5.1 CSS 预处理（Sass&#x2F;Less 变量、嵌套、Mixin）"></a>5.1 CSS 预处理（Sass&#x2F;Less 变量、嵌套、Mixin）</h2><h2 id="5-2-CSS-模块化（BEM、CSS-Modules、CSS-in-JS）"><a href="#5-2-CSS-模块化（BEM、CSS-Modules、CSS-in-JS）" class="headerlink" title="5.2 CSS 模块化（BEM、CSS Modules、CSS-in-JS）"></a>5.2 CSS 模块化（BEM、CSS Modules、CSS-in-JS）</h2><h2 id="5-3-PostCSS-与-Autoprefixer"><a href="#5-3-PostCSS-与-Autoprefixer" class="headerlink" title="5.3 PostCSS 与 Autoprefixer"></a>5.3 PostCSS 与 Autoprefixer</h2><h2 id="5-4-原子化-CSS（Tailwind-CSS、UnoCSS）"><a href="#5-4-原子化-CSS（Tailwind-CSS、UnoCSS）" class="headerlink" title="5.4 原子化 CSS（Tailwind CSS、UnoCSS）"></a>5.4 原子化 CSS（Tailwind CSS、UnoCSS）</h2><h2 id="5-5-设计系统与-CSS-架构（主题切换、变量管理）"><a href="#5-5-设计系统与-CSS-架构（主题切换、变量管理）" class="headerlink" title="5.5 设计系统与 CSS 架构（主题切换、变量管理）"></a>5.5 设计系统与 CSS 架构（主题切换、变量管理）</h2><h1 id="第六章：CSS-面试高频考点"><a href="#第六章：CSS-面试高频考点" class="headerlink" title="第六章：CSS 面试高频考点"></a>第六章：CSS 面试高频考点</h1><h2 id="6-1-居中布局的-N-种方式"><a href="#6-1-居中布局的-N-种方式" class="headerlink" title="6.1 居中布局的 N 种方式"></a>6.1 居中布局的 N 种方式</h2><h2 id="6-2-清除浮动的方法与-BFC-应用"><a href="#6-2-清除浮动的方法与-BFC-应用" class="headerlink" title="6.2 清除浮动的方法与 BFC 应用"></a>6.2 清除浮动的方法与 BFC 应用</h2><h2 id="6-3-响应式设计与移动端适配（REM、Viewport）"><a href="#6-3-响应式设计与移动端适配（REM、Viewport）" class="headerlink" title="6.3 响应式设计与移动端适配（REM、Viewport）"></a>6.3 响应式设计与移动端适配（REM、Viewport）</h2><h2 id="6-4-CSS-渲染优化（减少重排、重绘）"><a href="#6-4-CSS-渲染优化（减少重排、重绘）" class="headerlink" title="6.4 CSS 渲染优化（减少重排、重绘）"></a>6.4 CSS 渲染优化（减少重排、重绘）</h2><h2 id="6-5-浏览器渲染流程（CSSOM、Critical-CSS）"><a href="#6-5-浏览器渲染流程（CSSOM、Critical-CSS）" class="headerlink" title="6.5 浏览器渲染流程（CSSOM、Critical CSS）"></a>6.5 浏览器渲染流程（CSSOM、Critical CSS）</h2><h1 id="第七章：实战与前沿技术"><a href="#第七章：实战与前沿技术" class="headerlink" title="第七章：实战与前沿技术"></a>第七章：实战与前沿技术</h1><h2 id="7-1-CSS-绘制复杂图形（clip-path、SVG-CSS）"><a href="#7-1-CSS-绘制复杂图形（clip-path、SVG-CSS）" class="headerlink" title="7.1 CSS 绘制复杂图形（clip-path、SVG + CSS）"></a>7.1 CSS 绘制复杂图形（clip-path、SVG + CSS）</h2><h2 id="7-2-暗黑模式实现（prefers-color-scheme）"><a href="#7-2-暗黑模式实现（prefers-color-scheme）" class="headerlink" title="7.2 暗黑模式实现（prefers-color-scheme）"></a>7.2 暗黑模式实现（prefers-color-scheme）</h2><h2 id="7-3-视差滚动（background-attachment）"><a href="#7-3-视差滚动（background-attachment）" class="headerlink" title="7.3 视差滚动（background-attachment）"></a>7.3 视差滚动（background-attachment）</h2><h2 id="7-4-CSS-Houdini（自定义属性、Paint-API）"><a href="#7-4-CSS-Houdini（自定义属性、Paint-API）" class="headerlink" title="7.4 CSS Houdini（自定义属性、Paint API）"></a>7.4 CSS Houdini（自定义属性、Paint API）</h2><h2 id="7-5-未来-CSS-趋势（-container、subgrid、-has-）"><a href="#7-5-未来-CSS-趋势（-container、subgrid、-has-）" class="headerlink" title="7.5 未来 CSS 趋势（@container、subgrid、:has()）"></a>7.5 未来 CSS 趋势（@container、subgrid、:has()）</h2>
+<h3 id="基础选择器"><a href="#基础选择器" class="headerlink" title="基础选择器"></a>基础选择器</h3><p><strong>1. 元素选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123; <span class="attribute">color</span>: red; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>权重：0,0,1</li>
+<li>适用场景：全局样式覆盖</li>
+</ul>
+<p><strong>2. 类选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.active</span> &#123; <span class="attribute">background</span>: blue; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>权重：0,1,0</li>
+<li>实践：BEM命名规范（block__element–modifier）</li>
+</ul>
+<p><strong>3. ID 选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123; <span class="attribute">height</span>: <span class="number">60px</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>权重：1,0,0</li>
+<li>禁用场景：React&#x2F;Vue中易导致样式污染（组件化开发慎用）</li>
+</ul>
+<p><strong>4. 通配选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* &#123; <span class="attribute">box-sizing</span>: border-box; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>权重：0,0,0</li>
+<li>性能影响：大型项目避免过度使用</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="组合选择器"><a href="#组合选择器" class="headerlink" title="组合选择器"></a>组合选择器</h3><p><strong>1. 后代选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nav</span> <span class="selector-tag">a</span> &#123; <span class="attribute">color</span>: green; &#125; <span class="comment">/* 所有层级后代 */</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>权重：各选择器权重相加</li>
+<li>性能陷阱：深层嵌套增加渲染成本（建议限制 3 层）</li>
+</ul>
+<p><strong>2. 子选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span> &#123; <span class="attribute">list-style</span>: none; &#125; <span class="comment">/* 仅直接子元素 */</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>与后代选择器区别：不匹配非直接嵌套元素</li>
+</ul>
+<p><strong>3. 相邻兄弟选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> + <span class="selector-tag">p</span> &#123; <span class="attribute">margin-top</span>: <span class="number">0</span>; &#125; <span class="comment">/* 紧邻的下一个兄弟 */</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>典型场景：表单元素间隔控制</li>
+</ul>
+<p><strong>4. 通用兄弟选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h2</span> ~ <span class="selector-tag">p</span> &#123; <span class="attribute">color</span>: gray; &#125; <span class="comment">/* 后续所有同级兄弟 */</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>应用案例：目录标题与内容样式关联</li>
+</ul>
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><table>
+<thead>
+<tr>
+<th align="left">选择器类型</th>
+<th align="left">示例</th>
+<th align="left">匹配规则</th>
+<th align="left">权重</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">[attr]</td>
+<td align="left">[target]</td>
+<td align="left">存在该属性即可</td>
+<td align="left">0,1,0</td>
+</tr>
+<tr>
+<td align="left">[attr&#x3D;value]</td>
+<td align="left">[lang&#x3D;”en”]</td>
+<td align="left">属性值完全匹配</td>
+<td align="left">0,1,0</td>
+</tr>
+<tr>
+<td align="left">[attr~&#x3D;value]</td>
+<td align="left">[class~&#x3D;”logo”]</td>
+<td align="left">属性值包含该词（空格分隔）</td>
+<td align="left">0,1,0</td>
+</tr>
+<tr>
+<td align="left">[attr&#x3D;value]</td>
+<td align="left">[lang&#x3D;”zh”]</td>
+<td align="left">属性值为zh或以zh-开头</td>
+<td align="left">0,1,0</td>
+</tr>
+<tr>
+<td align="left">[attr^&#x3D;value]</td>
+<td align="left">[href^&#x3D;”https”]</td>
+<td align="left">属性值以指定字符串开头</td>
+<td align="left">0,1,0</td>
+</tr>
+<tr>
+<td align="left">[attr$&#x3D;value]</td>
+<td align="left">[src$&#x3D;”.png”]</td>
+<td align="left">属性值以指定字符串结尾</td>
+<td align="left">0,1,0</td>
+</tr>
+<tr>
+<td align="left">[attr*&#x3D;value]</td>
+<td align="left">[data*&#x3D;”error”]</td>
+<td align="left">属性值包含子字符串</td>
+<td align="left">0,1,0</td>
+</tr>
+</tbody></table>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p><strong>Q：<code>.nav li &gt; a</code> 和 <code>.nav &gt; li &gt; a</code> 的权重与作用域差异？</strong></p>
+<p>权重相同（0,2,1），但后者限制 <code>li</code> 必须为 <code>.nav</code> 的直接子元素</p>
+<p><strong>Q：<code>div:not([class])</code> 会匹配哪些元素？</strong></p>
+<p>所有没有 class 属性的 div 元素</p>
+<h2 id="1-2-盒模型（标准盒模型-vs-怪异盒模型）"><a href="#1-2-盒模型（标准盒模型-vs-怪异盒模型）" class="headerlink" title="1.2 盒模型（标准盒模型 vs. 怪异盒模型）"></a>1.2 盒模型（标准盒模型 vs. 怪异盒模型）</h2><h3 id="核心概念对比"><a href="#核心概念对比" class="headerlink" title="核心概念对比"></a>核心概念对比</h3><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">标准盒模型（W3C）</th>
+<th align="left">怪异盒模型（Quirks Mode）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">触发条件</td>
+<td align="left">box-sizing: content-box</td>
+<td align="left">box-sizing: border-box</td>
+</tr>
+<tr>
+<td align="left">宽度计算</td>
+<td align="left">width &#x3D; content宽度</td>
+<td align="left">width &#x3D; content + padding + border</td>
+</tr>
+<tr>
+<td align="left">高度计算</td>
+<td align="left">height &#x3D; content高度</td>
+<td align="left">height &#x3D; content + padding + border</td>
+</tr>
+<tr>
+<td align="left">默认场景</td>
+<td align="left">现代浏览器默认模式</td>
+<td align="left">传统IE5及更早浏览器</td>
+</tr>
+</tbody></table>
+<h3 id="代码验证"><a href="#代码验证" class="headerlink" title="代码验证"></a>代码验证</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;std-box&quot;&gt;标准盒模型&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;weird-box&quot;&gt;怪异盒模型&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.std-box</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: content-box; <span class="comment">/* 默认值可省略 */</span></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">5px</span> solid red;</span><br><span class="line">  <span class="comment">/* 实际占用宽度：100 + 20*2 + 5*2 = 150px */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.weird-box</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">5px</span> solid blue;</span><br><span class="line">  <span class="comment">/* 实际占用宽度：100px (content自动压缩为50px) */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="思考-1"><a href="#思考-1" class="headerlink" title="思考"></a>思考</h3><p><strong>Q：为什么大型项目普遍采用 <code>border-box</code>？</strong></p>
+<ul>
+<li>开发体验优化：轻松实现栅格化布局，无需计算 padding</li>
+<li>性能优势：减少重排计算（浏览器无需重新计算内容区尺寸）</li>
+<li>设计系统适配：确保 UI 标注尺寸与实际渲染尺寸一致</li>
+</ul>
+<h2 id="1-3-布局模式（块级、行内、行内块、Flex、Grid）"><a href="#1-3-布局模式（块级、行内、行内块、Flex、Grid）" class="headerlink" title="1.3 布局模式（块级、行内、行内块、Flex、Grid）"></a>1.3 布局模式（块级、行内、行内块、Flex、Grid）</h2><h3 id="块级布局（Block）"><a href="#块级布局（Block）" class="headerlink" title="块级布局（Block）"></a>块级布局（Block）</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">display</span>: block;</span><br></pre></td></tr></table></figure>
+
+<p><strong>核心特性</strong></p>
+<ul>
+<li>独占一行，默认宽度撑满父容器</li>
+<li>可设置宽高&#x2F;margin&#x2F;padding所有方向</li>
+<li>典型元素：<code>&lt;div&gt;</code>、<code>&lt;p&gt;</code>、<code>&lt;section&gt;</code></li>
+</ul>
+<h3 id="行内布局（Inline）"><a href="#行内布局（Inline）" class="headerlink" title="行内布局（Inline）"></a>行内布局（Inline）</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">display</span>: inline;</span><br></pre></td></tr></table></figure>
+
+<p><strong>核心特性</strong></p>
+<ul>
+<li>不独占一行，宽度由内容决定</li>
+<li>不可设置宽高，垂直方向的 margin&#x2F;padding 不生效</li>
+<li>典型元素：<code>&lt;span&gt;</code>、<code>&lt;a&gt;</code>、<code>&lt;em&gt;</code></li>
+</ul>
+<h3 id="行内块布局（Inline-block）"><a href="#行内块布局（Inline-block）" class="headerlink" title="行内块布局（Inline-block）"></a>行内块布局（Inline-block）</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">display</span>: inline-block;</span><br></pre></td></tr></table></figure>
+
+<p><strong>核心特性</strong></p>
+<ul>
+<li>不独占一行但可以设置宽高（兼具块级布局和行内布局特性）</li>
+<li>默认基线对齐（引发经典垂直对齐问题）</li>
+</ul>
+<p><strong>思考</strong></p>
+<ul>
+<li>如何消除行内块元素间隙：父容器font-size: 0或HTML代码无空格</li>
+<li>垂直对齐控制：vertical-align: middle&#x2F;top&#x2F;bottom</li>
+</ul>
+<h3 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">display</span>: flex;</span><br></pre></td></tr></table></figure>
+
+<p><strong>核心特性</strong></p>
+<ul>
+<li>主轴&#x2F;交叉轴双轴控制</li>
+<li>子项弹性伸缩（flex-grow&#x2F;shrink&#x2F;basis）</li>
+</ul>
+<p><strong>思考</strong></p>
+<ul>
+<li>实现等高布局：<code>align-items: stretch</code></li>
+<li>圣杯布局：<code>flex: 1</code> + <code>order</code> 属性</li>
+<li>性能优化：避免过度嵌套</li>
+</ul>
+<p><strong>实战实例</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">  <span class="attribute">gap</span>: <span class="number">10px</span>; <span class="comment">/* 替代margin方案 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">0</span> <span class="built_in">calc</span>(<span class="number">33.33%</span> - <span class="number">10px</span>); <span class="comment">/* 三栏自适应 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Grid网格布局"><a href="#Grid网格布局" class="headerlink" title="Grid网格布局"></a>Grid网格布局</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">display</span>: grid;</span><br></pre></td></tr></table></figure>
+
+<p><strong>核心特性</strong></p>
+<ul>
+<li>二维布局系统（行列显式定义）</li>
+<li>网格线&#x2F;网格区域命名控制</li>
+</ul>
+<h3 id="渲染性能排序"><a href="#渲染性能排序" class="headerlink" title="渲染性能排序"></a>渲染性能排序</h3><p>Block &gt; Flex ≈ Grid &gt; Inline-block（复合层创建成本）</p>
+<h2 id="1-4-常用单位（px、em、rem、vw-vh、-）"><a href="#1-4-常用单位（px、em、rem、vw-vh、-）" class="headerlink" title="1.4 常用单位（px、em、rem、vw&#x2F;vh、%）"></a>1.4 常用单位（px、em、rem、vw&#x2F;vh、%）</h2><h3 id="绝对单位与相对单位的对比"><a href="#绝对单位与相对单位的对比" class="headerlink" title="绝对单位与相对单位的对比"></a>绝对单位与相对单位的对比</h3><table>
+<thead>
+<tr>
+<th align="left">单位类型</th>
+<th align="left">代表单位</th>
+<th align="left">基准参照物</th>
+<th align="left">适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">绝对单位</td>
+<td align="left">px</td>
+<td align="left">设备物理像素</td>
+<td align="left">边框&#x2F;阴影等固定尺寸</td>
+</tr>
+<tr>
+<td align="left">相对单位</td>
+<td align="left">em&#x2F;rem</td>
+<td align="left">字体大小&#x2F;根字体大小</td>
+<td align="left">响应式文本&#x2F;组件间距</td>
+</tr>
+<tr>
+<td align="left">视口单位</td>
+<td align="left">vw&#x2F;vh</td>
+<td align="left">视窗宽高</td>
+<td align="left">全屏布局&#x2F;自适应元素</td>
+</tr>
+<tr>
+<td align="left">百分比</td>
+<td align="left">%</td>
+<td align="left">父元素对应属性值</td>
+<td align="left">流式布局&#x2F;继承比例</td>
+</tr>
+</tbody></table>
+<h3 id="核心单位详解"><a href="#核心单位详解" class="headerlink" title="核心单位详解"></a>核心单位详解</h3><p><strong>px（像素）</strong></p>
+<ul>
+<li>本质：与设备物理像素挂钩（但受 DPR 影响）</li>
+<li>陷阱：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">2px</span>; <span class="comment">/* 高清屏可能实际渲染为4物理像素 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>em</strong></p>
+<ul>
+<li>计算规则：<code>1em = 当前元素 font-size</code></li>
+<li>级联问题：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;parent&quot; style=&quot;<span class="attribute">font-size</span>: <span class="number">20px</span><span class="string">&quot;&gt;</span></span><br><span class="line"><span class="string">  &lt;div class=&quot;</span>child<span class="string">&quot; style=&quot;</span>font-size: <span class="number">1.2em</span><span class="string">&quot;&gt; &lt;!-- 24px --&gt;</span></span><br><span class="line"><span class="string">    &lt;div class=&quot;</span>grandchild<span class="string">&quot; style=&quot;</span>width: <span class="number">2em</span><span class="string">&quot;&gt; &lt;!-- 48px (!) --&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>rem（Root em）</strong></p>
+<ul>
+<li>计算规则：<code>1rem = 根元素 font-size</code></li>
+</ul>
+<p><strong>vw&#x2F;vh（视口单位）</strong></p>
+<ul>
+<li>计算规则：<code>1vw = 视口宽度的 1%</code>，<code>1vh = 视口高度的 1%</code></li>
+<li>陷阱：移动端vh包含浏览器工具栏区域（可用dvh单位解决）</li>
+</ul>
+<p><strong>%（百分比）</strong></p>
+<ul>
+<li><p>参照基准：</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">参照对象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">width&#x2F;height</td>
+<td align="left">父元素的内容区宽度&#x2F;高度</td>
+</tr>
+<tr>
+<td align="left">padding&#x2F;margin</td>
+<td align="left">父元素的内容区宽度</td>
+</tr>
+<tr>
+<td align="left">top&#x2F;left</td>
+<td align="left">包含块的高度&#x2F;宽度</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>经典面试题</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 实际padding值为20px（基于父元素width计算） */</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="1-5-层叠与继承（z-index、-important、继承规则）"><a href="#1-5-层叠与继承（z-index、-important、继承规则）" class="headerlink" title="1.5 层叠与继承（z-index、!important、继承规则）"></a>1.5 层叠与继承（z-index、!important、继承规则）</h2><h3 id="层叠上下文的核心原理"><a href="#层叠上下文的核心原理" class="headerlink" title="层叠上下文的核心原理"></a>层叠上下文的核心原理</h3><p><strong>形成条件（触发 BFC 的升级版）</strong></p>
+<ul>
+<li>position: relative&#x2F;absolute&#x2F;fixed + z-index ≠ auto</li>
+<li>opacity &lt; 1</li>
+<li>transform&#x2F;filter 非 none</li>
+<li>flex&#x2F;grid容器的子项且z-index ≠ auto</li>
+</ul>
+<p><strong>黄金规则</strong></p>
+<ul>
+<li>每个层叠上下文自成体系（内部 z-index 仅在该上下文中比较）</li>
+<li>兄弟元素按 z-index 数值排序</li>
+<li>不同上下文的比较取决于父级层叠上下文的层级</li>
+</ul>
+<p><strong>示例</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=&quot;position: relative; z-index: 1;&quot;&gt;</span><br><span class="line">  &lt;div style=&quot;position: absolute; z-index: 100;&quot;&gt;A&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div style=&quot;position: relative; z-index: 2;&quot;&gt;</span><br><span class="line">  &lt;div style=&quot;position: absolute; z-index: 1;&quot;&gt;B&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最终显示顺序：B 覆盖 A（父级上下文 z-index: 2 &gt; 1）</p>
+<h3 id="important-终极权重"><a href="#important-终极权重" class="headerlink" title="!important 终极权重"></a>!important 终极权重</h3><p><strong>权重等级表</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">来源</th>
+<th align="left">示例</th>
+<th align="left">权重值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">用户代理!important</td>
+<td align="left">浏览器默认样式</td>
+<td align="left">∞+3</td>
+</tr>
+<tr>
+<td align="left">用户!important</td>
+<td align="left">用户自定义样式表</td>
+<td align="left">∞+2</td>
+</tr>
+<tr>
+<td align="left">作者!important</td>
+<td align="left">开发者写的!important</td>
+<td align="left">∞+1</td>
+</tr>
+<tr>
+<td align="left">动画关键帧</td>
+<td align="left">@keyframes</td>
+<td align="left">∞</td>
+</tr>
+<tr>
+<td align="left">普通作者声明</td>
+<td align="left">常规CSS规则</td>
+<td align="left">按选择器权重</td>
+</tr>
+</tbody></table>
+<p><strong>破解 !important</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 原始问题样式 */</span></span><br><span class="line"><span class="selector-class">.btn</span> &#123; <span class="attribute">color</span>: red <span class="meta">!important</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 解决方案1：更高权重!important */</span></span><br><span class="line"><span class="selector-tag">html</span> <span class="selector-tag">body</span> <span class="selector-class">.btn</span> &#123; <span class="attribute">color</span>: blue <span class="meta">!important</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 解决方案2：JavaScript修改内联样式 */</span></span><br><span class="line">element<span class="selector-class">.style</span><span class="selector-class">.setProperty</span>(&#x27;<span class="attribute">color</span>&#x27;, &#x27;green&#x27;, &#x27;important&#x27;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承规则"><a href="#继承规则" class="headerlink" title="继承规则"></a>继承规则</h3><p><strong>可继承属性清单</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- 文本相关：`font-family`, `color`, `line-height`</span><br><span class="line">- 列表相关：`list-style-type`</span><br><span class="line">- 表格相关：`border-collapse`</span><br><span class="line">- 可见性：`visibility`</span><br><span class="line">- 光标：`cursor`</span><br></pre></td></tr></table></figure>
+
+<p><strong>显式继承技巧</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.ant-input</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: inherit;  <span class="comment">/* 强制继承父元素字体设置 */</span></span><br><span class="line">  <span class="attribute">color</span>: inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>继承链中断场景</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div style=&quot;font-size: 16px;&quot;&gt;</span><br><span class="line">  &lt;span style=&quot;font-size: 1.5em;&quot;&gt;24px&lt;/span&gt;</span><br><span class="line">  &lt;!-- 子元素设置非继承属性如width会中断 --&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第二章：CSS-布局技术"><a href="#第二章：CSS-布局技术" class="headerlink" title="第二章：CSS 布局技术"></a>第二章：CSS 布局技术</h1><h2 id="2-1-传统布局（浮动-float、定位-position）"><a href="#2-1-传统布局（浮动-float、定位-position）" class="headerlink" title="2.1 传统布局（浮动 float、定位 position）"></a>2.1 传统布局（浮动 float、定位 position）</h2><h3 id="浮动布局（float）"><a href="#浮动布局（float）" class="headerlink" title="浮动布局（float）"></a>浮动布局（float）</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.float-item</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left | right | none;</span><br><span class="line">  <span class="attribute">clear</span>: both | left | right; <span class="comment">/* 清除浮动影响 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>核心机制</strong></p>
+<ul>
+<li>文档流破坏：浮动元素会脱离普通流，其他盒子会“无视它”（但文本内容会围绕）</li>
+<li>包裹性：浮动元素会默认收缩宽度以适应内容（除非显式设置宽度）</li>
+</ul>
+<p><strong>经典应用场景</strong></p>
+<p>（1）多栏布局（早期实现方式）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left-col</span> &#123; <span class="attribute">float</span>: left; <span class="attribute">width</span>: <span class="number">200px</span>; &#125;</span><br><span class="line"><span class="selector-class">.right-col</span> &#123; <span class="attribute">margin-left</span>: <span class="number">210px</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）图文混排</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">  <span class="attribute">margin-right</span>: <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">shape-outside</span>: <span class="built_in">circle</span>(); <span class="comment">/* 高级文字环绕 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>陷阱：高度塌陷问题</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;parent&quot;&gt;</span><br><span class="line">  &lt;<span class="selector-tag">div</span> class=&quot;<span class="attribute">float</span>-child&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&lt;!-- parent高度为<span class="number">0</span> --&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定位布局（position）-精准控制的利器"><a href="#定位布局（position）-精准控制的利器" class="headerlink" title="定位布局（position） - 精准控制的利器"></a>定位布局（position） - 精准控制的利器</h3><p><strong>各大定位类型对比</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">脱离文档流</th>
+<th align="left">定位基准</th>
+<th align="left">典型应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">static</td>
+<td align="left">否</td>
+<td align="left">正常流</td>
+<td align="left">默认值</td>
+</tr>
+<tr>
+<td align="left">relative</td>
+<td align="left">否</td>
+<td align="left">自身原始位置</td>
+<td align="left">微调元素&#x2F;建立定位上下文</td>
+</tr>
+<tr>
+<td align="left">absolute</td>
+<td align="left">是</td>
+<td align="left">最近非static祖先</td>
+<td align="left">弹窗&#x2F;下拉菜单&#x2F;工具提示</td>
+</tr>
+<tr>
+<td align="left">fixed</td>
+<td align="left">是</td>
+<td align="left">视口</td>
+<td align="left">固定导航栏&#x2F;悬浮按钮</td>
+</tr>
+<tr>
+<td align="left">sticky</td>
+<td align="left">是（滚动时）</td>
+<td align="left">最近滚动容器</td>
+<td align="left">吸顶效果&#x2F;表头固定</td>
+</tr>
+</tbody></table>
+<p><strong>粘性定位（sticky）的阈值控制</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.sticky-header</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: sticky;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">20px</span>; <span class="comment">/* 距离视口顶部20px时触发固定 */</span></span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">100</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>失效条件：</p>
+<ul>
+<li>父元素设置 overflow: hidden</li>
+<li>未指定 top&#x2F;bottom&#x2F;left&#x2F;right 任一值</li>
+</ul>
+<h2 id="2-2-Flex-弹性布局（flex-direction、justify-content、align-items）"><a href="#2-2-Flex-弹性布局（flex-direction、justify-content、align-items）" class="headerlink" title="2.2 Flex 弹性布局（flex-direction、justify-content、align-items）"></a>2.2 Flex 弹性布局（flex-direction、justify-content、align-items）</h2><p>flex 弹性布局最核心的三要素：</p>
+<ul>
+<li>flex-direction</li>
+<li>justify-content</li>
+<li>align-items</li>
+</ul>
+<h3 id="flex-direction-主轴方向控制"><a href="#flex-direction-主轴方向控制" class="headerlink" title="flex-direction - 主轴方向控制"></a><code>flex-direction</code> - 主轴方向控制</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 响应式布局切换 */</span></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row;   <span class="comment">/* 桌面端 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column; <span class="comment">/* 移动端 */</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>作用</strong>：定义 Flex 容器的主轴方向，直接影响子项的排列方式</p>
+<p><strong>属性详解</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">属性值</th>
+<th align="left">效果图示</th>
+<th align="left">典型应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">row（默认）</td>
+<td align="left">→ → → →</td>
+<td align="left">水平导航栏&#x2F;商品列表</td>
+</tr>
+<tr>
+<td align="left">row-reverse</td>
+<td align="left">← ← ← ←</td>
+<td align="left">从右到左的特殊布局需求</td>
+</tr>
+<tr>
+<td align="left">column</td>
+<td align="left">↓</td>
+<td align="left">移动端垂直菜单&#x2F;瀑布流</td>
+</tr>
+<tr>
+<td align="left">column-reverse</td>
+<td align="left">↑</td>
+<td align="left">聊天消息时间倒序展示</td>
+</tr>
+</tbody></table>
+<h3 id="justify-content-主轴对齐方式"><a href="#justify-content-主轴对齐方式" class="headerlink" title="justify-content - 主轴对齐方式"></a><code>justify-content</code> - 主轴对齐方式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 表格工具栏布局 */</span></span><br><span class="line"><span class="selector-class">.toolbar</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between; <span class="comment">/* 左右分组 */</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 弹性网格布局 */</span></span><br><span class="line"><span class="selector-class">.grid</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-around; <span class="comment">/* 卡片四周留白均匀 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>作用</strong>：控制子项在主轴上的对齐与空间分配</p>
+<p><strong>属性详解</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">属性值</th>
+<th align="left">效果图示</th>
+<th align="left">空间分配规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">flex-start</td>
+<td align="left">[■ ■ ■]________</td>
+<td align="left">向主轴起点聚集（默认）</td>
+</tr>
+<tr>
+<td align="left">flex-end</td>
+<td align="left">________[■ ■ ■]</td>
+<td align="left">向主轴终点聚集</td>
+</tr>
+<tr>
+<td align="left">center</td>
+<td align="left"><code>____[■ ■ ■]____</code></td>
+<td align="left">居中排列</td>
+</tr>
+<tr>
+<td align="left">space-between</td>
+<td align="left">[■][■][■]</td>
+<td align="left">首尾贴边，中间均分</td>
+</tr>
+<tr>
+<td align="left">space-around</td>
+<td align="left">[■][■][■]</td>
+<td align="left">每个项目两侧间距相等</td>
+</tr>
+<tr>
+<td align="left">space-evenly</td>
+<td align="left">[■][■][■]</td>
+<td align="left">项目与容器间距完全均分</td>
+</tr>
+</tbody></table>
+<h3 id="align-items-交叉轴对齐方式"><a href="#align-items-交叉轴对齐方式" class="headerlink" title="align-items - 交叉轴对齐方式"></a><code>align-items</code> - 交叉轴对齐方式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 表单输入行对齐 */</span></span><br><span class="line"><span class="selector-class">.form-row</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: baseline; <span class="comment">/* 让label和input文字基线对齐 */</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 垂直居中终极方案 */</span></span><br><span class="line"><span class="selector-class">.modal</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>作用</strong>：控制子项在交叉轴上的对齐方式（单行布局）</p>
+<p><strong>属性详解</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">属性值</th>
+<th align="left">对齐规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">stretch（默认）</td>
+<td align="left">拉伸填满容器高度</td>
+</tr>
+<tr>
+<td align="left">flex-start</td>
+<td align="left">向交叉轴起点对齐</td>
+</tr>
+<tr>
+<td align="left">flex-end</td>
+<td align="left">向交叉轴终点对齐</td>
+</tr>
+<tr>
+<td align="left">center</td>
+<td align="left">居中对齐</td>
+</tr>
+<tr>
+<td align="left">baseline</td>
+<td align="left">按文本基线对齐</td>
+</tr>
+</tbody></table>
+<h3 id="三属性联调实践"><a href="#三属性联调实践" class="headerlink" title="三属性联调实践"></a>三属性联调实践</h3><p>（1）圣杯布局实现</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.holy-grail</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  <span class="attribute">min-height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.header</span>, <span class="selector-class">.footer</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.content</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-direction</span>: row;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sidebar</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">order</span>: -<span class="number">1</span>; <span class="comment">/* 左侧边栏 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）等高卡片组</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card-group</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: stretch; <span class="comment">/* 关键设置 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="comment">/* 无需设置高度 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="高频面试题"><a href="#高频面试题" class="headerlink" title="高频面试题"></a>高频面试题</h3><p>（1）justify-content: space-between 最后一行左对齐怎么实现？</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/* 添加占位元素 */</span></span><br><span class="line"><span class="selector-class">.grid</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="attribute">flex</span>: auto; <span class="comment">/* 或固定宽度 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）如何让 flex 项目在交叉方向上溢出容器？</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start; <span class="comment">/* 关键设置 */</span></span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）flex 实现两栏布局，右侧内容溢出时出现滚动条？</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.layout</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.sidebar</span> &#123; <span class="attribute">flex</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">200px</span>; &#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-Grid-网格布局（grid-template、grid-area、fr-单位）"><a href="#2-3-Grid-网格布局（grid-template、grid-area、fr-单位）" class="headerlink" title="2.3 Grid 网格布局（grid-template、grid-area、fr 单位）"></a>2.3 Grid 网格布局（grid-template、grid-area、fr 单位）</h2><h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><p>grid 布局属于二维布局模型：同时控制行和列的排布，与 flexbox （一维）形成互补</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid; <span class="comment">/* 开启网格布局 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="grid-template-系列属性详解"><a href="#grid-template-系列属性详解" class="headerlink" title="grid-template 系列属性详解"></a><code>grid-template</code> 系列属性详解</h3><p><strong>grid-template-columns&#x2F;rows</strong></p>
+<ul>
+<li>作用：定义显示网格的列&#x2F;行尺寸<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid; <span class="comment">/* 开启网格布局 */</span></span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="number">200px</span> <span class="number">1</span>fr; <span class="comment">/* 两列：固定+弹性 */</span></span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="number">80px</span> auto <span class="number">60px</span>; <span class="comment">/* 三行 */</span></span><br><span class="line">  <span class="attribute">gap</span>: <span class="number">16px</span>; <span class="comment">/* 网格间隙 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>grid-template-areas</strong></p>
+<ul>
+<li>作用：可视化布局声明<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.dashboard</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">&quot;header header header&quot;</span></span><br><span class="line">    <span class="string">&quot;sidebar content .&quot;</span></span><br><span class="line">    <span class="string">&quot;footer footer footer&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.header</span> &#123; <span class="attribute">grid-area</span>: header; &#125;</span><br><span class="line"><span class="comment">/* 其他区域同理 */</span></span><br></pre></td></tr></table></figure></li>
+<li>规则：相同命名区域必须形成矩形；点号（.）表示空白区域</li>
+</ul>
+<p><strong>复合写法 <code>grid-template</code></strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 行 / 列 / 区域 */</span></span><br><span class="line"><span class="attribute">grid-template</span>: </span><br><span class="line">  <span class="string">&quot;head head&quot;</span> <span class="number">80px</span></span><br><span class="line">  <span class="string">&quot;nav main&quot;</span> <span class="number">1</span>fr</span><br><span class="line">  / <span class="number">200px</span> <span class="number">1</span>fr;</span><br></pre></td></tr></table></figure>
+
+<h3 id="grid-area-详解"><a href="#grid-area-详解" class="headerlink" title="grid-area 详解"></a><code>grid-area</code> 详解</h3><p><strong>基础定义</strong></p>
+<p>grid-area 是 CSS Grid 布局中用于精确控制网格项位置的核心属性，是以下属性的复合写法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">grid-row-start</span> / <span class="attribute">grid-column-start</span> / <span class="attribute">grid-row-end</span> / <span class="attribute">grid-column-end</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>四大核心功能</strong></p>
+<p>（1）作为 <code>grid-template-areas</code> 的命名引用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">&quot;header header&quot;</span></span><br><span class="line">    <span class="string">&quot;sidebar main&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.header</span> &#123; <span class="attribute">grid-area</span>: header; &#125; <span class="comment">/* 自动填充对应区域 */</span></span><br><span class="line"><span class="selector-class">.sidebar</span> &#123; <span class="attribute">grid-area</span>: sidebar; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）作为定位简写（行开始&#x2F;列开始&#x2F;行结束&#x2F;列结束）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*3 行 3 列共 9 格*/</span></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">1</span>fr); <span class="comment">/* 3 列 */</span></span><br><span class="line">  <span class="attribute">grid-template-rows</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">100px</span>); <span class="comment">/* 3 行 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*第 2 行第 1 列开始，第 4 行第 3 列结束，占用第2-3行，第1-2列*/</span></span><br><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: <span class="number">2</span> / <span class="number">1</span> / <span class="number">4</span> / <span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）配合命名线使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: [main-start] <span class="number">1</span>fr [content-start] <span class="number">1</span>fr [main-end];</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: <span class="number">1</span> / content-start / <span class="number">3</span> / main-end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（4）自适应布局案例</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.app</span> &#123;</span><br><span class="line">    <span class="attribute">grid-template-areas</span>:</span><br><span class="line">      <span class="string">&quot;header&quot;</span></span><br><span class="line">      <span class="string">&quot;content&quot;</span></span><br><span class="line">      <span class="string">&quot;sidebar&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="fr-单位-网格专属空间分配"><a href="#fr-单位-网格专属空间分配" class="headerlink" title="fr 单位 - 网格专属空间分配"></a><code>fr</code> 单位 - 网格专属空间分配</h3><p><strong>核心特性</strong></p>
+<ul>
+<li>按比例分配容器剩余可用空间，与 Flex 的 flex-grow 类似但计算时机不同</li>
+<li>与 <code>minmax()</code> 组合实现弹性限制<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">grid-template-columns</span>: <span class="number">300px</span> <span class="built_in">minmax</span>(<span class="number">0</span>, <span class="number">2</span>fr) <span class="number">1</span>fr;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>计算规则</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">grid-template-columns</span>: <span class="number">1</span>fr <span class="number">2</span>fr <span class="number">100px</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>总宽度 &#x3D; 容器宽度 - 固定列宽（100px）- 列间距（gap）</li>
+<li>剩余空间按 1:2 比例分配</li>
+</ul>
+<p><strong>与百分比的区别</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">fr</th>
+<th align="left">%</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">计算基准</td>
+<td align="left">剩余空间</td>
+<td align="left">父容器总空间</td>
+</tr>
+<tr>
+<td align="left">是否受网格间隙（gap）影响</td>
+<td align="left">分配前扣除gap</td>
+<td align="left">包含gap</td>
+</tr>
+<tr>
+<td align="left">组合弹性</td>
+<td align="left">可与固定宽度混合</td>
+<td align="left">需配合calc</td>
+</tr>
+</tbody></table>
+<h3 id="高频面试问题"><a href="#高频面试问题" class="headerlink" title="高频面试问题"></a>高频面试问题</h3><p>（1）grid-area 如何实现跨行跨列</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 跨3行2列 */</span></span><br><span class="line"><span class="selector-class">.item</span> &#123;</span><br><span class="line">  <span class="attribute">grid-area</span>: <span class="number">2</span> / <span class="number">1</span> / span <span class="number">3</span> / span <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）同名 grid-area 的项目会发生什么</p>
+<ul>
+<li>根据 DOM 顺序层叠（后者覆盖前者），可通过 z-index 控制层级</li>
+</ul>
+<p>（3）如何使用 grid-area 实现圣杯布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">grid-template-areas</span>:</span><br><span class="line">    <span class="string">&quot;header header&quot;</span></span><br><span class="line">    <span class="string">&quot;sidebar main&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.header</span> &#123; <span class="attribute">grid-area</span>: header; &#125;</span><br><span class="line"><span class="selector-class">.sidebar</span> &#123; <span class="attribute">grid-area</span>: sidebar; &#125;</span><br><span class="line"><span class="selector-class">.main</span> &#123; <span class="attribute">grid-area</span>: main; &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><ul>
+<li>所有现代浏览器都支持</li>
+<li>可以使用 <code>@supports</code> 检测<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@supports</span> (<span class="attribute">display</span>: <span class="attribute">grid</span>) &#123;</span><br><span class="line">  <span class="selector-class">.item</span> &#123; <span class="attribute">grid-area</span>: main; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-4-多列布局（column-count、column-gap）"><a href="#2-4-多列布局（column-count、column-gap）" class="headerlink" title="2.4 多列布局（column-count、column-gap）"></a>2.4 多列布局（column-count、column-gap）</h2><p>多列布局专为文本内容的分栏展示设计，适合新闻阅读、文档排版等场景</p>
+<h3 id="核心属性"><a href="#核心属性" class="headerlink" title="核心属性"></a>核心属性</h3><p><strong>column-count - 分栏数量控制</strong></p>
+<ul>
+<li>作用：指定内容分为多少列</li>
+<li>取值：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">column-count</span>: <span class="number">3</span>; <span class="comment">/* 固定3栏 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>auto（默认）：由其他属性（如column-width）决定列数</li>
+<li>整数：强制分栏数量（内容不足时会留空）</li>
+</ul>
+</li>
+</ul>
+<p><strong>column-gap - 栏间间距</strong></p>
+<ul>
+<li>作用：控制列与列之间的间隙</li>
+<li>语法：<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">column-gap</span>: <span class="number">2em</span>;    <span class="comment">/* 相对单位 */</span></span><br><span class="line">  <span class="attribute">column-gap</span>: <span class="number">24px</span>;   <span class="comment">/* 固定像素 */</span></span><br><span class="line">  <span class="attribute">column-gap</span>: normal; <span class="comment">/* 浏览器默认值（通常1em） */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>与Grid&#x2F;Flex的gap区别：多列布局的gap仅支持单值（不支持行列分别设置）</li>
+</ul>
+<h3 id="完整属性体系"><a href="#完整属性体系" class="headerlink" title="完整属性体系"></a>完整属性体系</h3><table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">作用</th>
+<th align="left">示例值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">column-width</td>
+<td align="left">每列理想宽度（实际可能调整）</td>
+<td align="left">200px &#x2F; auto</td>
+</tr>
+<tr>
+<td align="left">column-count</td>
+<td align="left">最大分栏数</td>
+<td align="left">3 &#x2F; auto</td>
+</tr>
+<tr>
+<td align="left">column-gap</td>
+<td align="left">栏间间距</td>
+<td align="left">1em &#x2F; 20px</td>
+</tr>
+<tr>
+<td align="left">column-rule</td>
+<td align="left">栏间分隔线（类似border）</td>
+<td align="left">1px solid #ddd</td>
+</tr>
+<tr>
+<td align="left">column-fill</td>
+<td align="left">内容填充方式</td>
+<td align="left">auto &#x2F; balance</td>
+</tr>
+<tr>
+<td align="left">column-span</td>
+<td align="left">元素跨列（仅all&#x2F;none）</td>
+<td align="left">all（标题跨所有列）</td>
+</tr>
+</tbody></table>
+<h2 id="2-5-响应式布局（-media-查询、移动优先策略）"><a href="#2-5-响应式布局（-media-查询、移动优先策略）" class="headerlink" title="2.5 响应式布局（@media 查询、移动优先策略）"></a>2.5 响应式布局（@media 查询、移动优先策略）</h2><h3 id="响应式核心机制：-media-查询"><a href="#响应式核心机制：-media-查询" class="headerlink" title="响应式核心机制：@media 查询"></a>响应式核心机制：<code>@media</code> 查询</h3><p>作用：根据设备特性（宽度、分辨率、方向等）应用不同的CSS规则</p>
+<p><strong>基础语法结构</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> [媒体类型] [<span class="keyword">and</span>] (媒体特征) &#123;</span><br><span class="line">  <span class="comment">/* 条件满足时应用的CSS */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键媒体特征</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">特征</th>
+<th align="left">应用场景</th>
+<th align="left">示例值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">min-width &#x2F; max-width</td>
+<td align="left">视口宽度断点</td>
+<td align="left">(min-width: 768px)</td>
+</tr>
+<tr>
+<td align="left">orientation</td>
+<td align="left">设备方向</td>
+<td align="left">(orientation: portrait)</td>
+</tr>
+<tr>
+<td align="left">resolution</td>
+<td align="left">屏幕分辨率</td>
+<td align="left">(min-resolution: 2dppx)</td>
+</tr>
+<tr>
+<td align="left">hover</td>
+<td align="left">输入设备是否支持悬停</td>
+<td align="left">(hover: hover)</td>
+</tr>
+<tr>
+<td align="left">prefers-color-scheme</td>
+<td align="left">系统深色模式</td>
+<td align="left">(prefers-color-scheme: dark)</td>
+</tr>
+</tbody></table>
+<p><strong>复合条件查询</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 平板横屏且最小宽度1024px */</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">1024px</span>) <span class="keyword">and</span> (<span class="attribute">orientation</span>: landscape) &#123;</span><br><span class="line">  <span class="selector-class">.sidebar</span> &#123; <span class="attribute">display</span>: block; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="移动优先（mobile-first）策略"><a href="#移动优先（mobile-first）策略" class="headerlink" title="移动优先（mobile-first）策略"></a>移动优先（mobile-first）策略</h3><p><strong>核心理念</strong></p>
+<p>先为移动设备编写基础样式，再通过 <code>min-width</code> 逐步增强大屏体验</p>
+<p><strong>代码实现范式</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 基础样式（移动端） */</span></span><br><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 平板适配（≥768px） */</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: <span class="number">768px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 桌面端适配（≥1200px） */</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">min-width</span>: <span class="number">1200px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">1140px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第三章：CSS-视觉与动画"><a href="#第三章：CSS-视觉与动画" class="headerlink" title="第三章：CSS 视觉与动画"></a>第三章：CSS 视觉与动画</h1><h2 id="3-1-背景与边框（background、border-radius、box-shadow）"><a href="#3-1-背景与边框（background、border-radius、box-shadow）" class="headerlink" title="3.1 背景与边框（background、border-radius、box-shadow）"></a>3.1 背景与边框（background、border-radius、box-shadow）</h2><h2 id="3-2-渐变与滤镜（linear-gradient、backdrop-filter）"><a href="#3-2-渐变与滤镜（linear-gradient、backdrop-filter）" class="headerlink" title="3.2 渐变与滤镜（linear-gradient、backdrop-filter）"></a>3.2 渐变与滤镜（linear-gradient、backdrop-filter）</h2><h2 id="3-3-过渡与动画（transition、-keyframes、animation）"><a href="#3-3-过渡与动画（transition、-keyframes、animation）" class="headerlink" title="3.3 过渡与动画（transition、@keyframes、animation）"></a>3.3 过渡与动画（transition、@keyframes、animation）</h2><h2 id="3-4-变形（transform：rotate、scale、translate）"><a href="#3-4-变形（transform：rotate、scale、translate）" class="headerlink" title="3.4 变形（transform：rotate、scale、translate）"></a>3.4 变形（transform：rotate、scale、translate）</h2><h2 id="3-5-3D-变换（perspective、transform-style）"><a href="#3-5-3D-变换（perspective、transform-style）" class="headerlink" title="3.5 3D 变换（perspective、transform-style）"></a>3.5 3D 变换（perspective、transform-style）</h2><h1 id="第四章：CSS-高级特性"><a href="#第四章：CSS-高级特性" class="headerlink" title="第四章：CSS 高级特性"></a>第四章：CSS 高级特性</h1><h2 id="4-1-变量（CSS-Custom-Properties）"><a href="#4-1-变量（CSS-Custom-Properties）" class="headerlink" title="4.1 变量（CSS Custom Properties）"></a>4.1 变量（CSS Custom Properties）</h2><h2 id="4-2-伪类与伪元素（-hover、-before、-selection）"><a href="#4-2-伪类与伪元素（-hover、-before、-selection）" class="headerlink" title="4.2 伪类与伪元素（:hover、::before、::selection）"></a>4.2 伪类与伪元素（:hover、::before、::selection）</h2><h2 id="4-3-BFC（块级格式化上下文）与-IFC（行内格式化上下文）"><a href="#4-3-BFC（块级格式化上下文）与-IFC（行内格式化上下文）" class="headerlink" title="4.3 BFC（块级格式化上下文）与 IFC（行内格式化上下文）"></a>4.3 BFC（块级格式化上下文）与 IFC（行内格式化上下文）</h2><h2 id="4-4-CSS-性能优化（will-change、contain、GPU-加速）"><a href="#4-4-CSS-性能优化（will-change、contain、GPU-加速）" class="headerlink" title="4.4 CSS 性能优化（will-change、contain、GPU 加速）"></a>4.4 CSS 性能优化（will-change、contain、GPU 加速）</h2><h2 id="4-5-现代-CSS-特性（aspect-ratio、gap、scroll-snap）"><a href="#4-5-现代-CSS-特性（aspect-ratio、gap、scroll-snap）" class="headerlink" title="4.5 现代 CSS 特性（aspect-ratio、gap、scroll-snap）"></a>4.5 现代 CSS 特性（aspect-ratio、gap、scroll-snap）</h2><h1 id="第五章：CSS-工程化与架构"><a href="#第五章：CSS-工程化与架构" class="headerlink" title="第五章：CSS 工程化与架构"></a>第五章：CSS 工程化与架构</h1><h2 id="5-1-CSS-预处理（Sass-Less-变量、嵌套、Mixin）"><a href="#5-1-CSS-预处理（Sass-Less-变量、嵌套、Mixin）" class="headerlink" title="5.1 CSS 预处理（Sass&#x2F;Less 变量、嵌套、Mixin）"></a>5.1 CSS 预处理（Sass&#x2F;Less 变量、嵌套、Mixin）</h2><h2 id="5-2-CSS-模块化（BEM、CSS-Modules、CSS-in-JS）"><a href="#5-2-CSS-模块化（BEM、CSS-Modules、CSS-in-JS）" class="headerlink" title="5.2 CSS 模块化（BEM、CSS Modules、CSS-in-JS）"></a>5.2 CSS 模块化（BEM、CSS Modules、CSS-in-JS）</h2><h2 id="5-3-PostCSS-与-Autoprefixer"><a href="#5-3-PostCSS-与-Autoprefixer" class="headerlink" title="5.3 PostCSS 与 Autoprefixer"></a>5.3 PostCSS 与 Autoprefixer</h2><h2 id="5-4-原子化-CSS（Tailwind-CSS、UnoCSS）"><a href="#5-4-原子化-CSS（Tailwind-CSS、UnoCSS）" class="headerlink" title="5.4 原子化 CSS（Tailwind CSS、UnoCSS）"></a>5.4 原子化 CSS（Tailwind CSS、UnoCSS）</h2><h2 id="5-5-设计系统与-CSS-架构（主题切换、变量管理）"><a href="#5-5-设计系统与-CSS-架构（主题切换、变量管理）" class="headerlink" title="5.5 设计系统与 CSS 架构（主题切换、变量管理）"></a>5.5 设计系统与 CSS 架构（主题切换、变量管理）</h2><h1 id="第六章：CSS-面试高频考点"><a href="#第六章：CSS-面试高频考点" class="headerlink" title="第六章：CSS 面试高频考点"></a>第六章：CSS 面试高频考点</h1><h2 id="6-1-居中布局的-N-种方式"><a href="#6-1-居中布局的-N-种方式" class="headerlink" title="6.1 居中布局的 N 种方式"></a>6.1 居中布局的 N 种方式</h2><h2 id="6-2-清除浮动的方法与-BFC-应用"><a href="#6-2-清除浮动的方法与-BFC-应用" class="headerlink" title="6.2 清除浮动的方法与 BFC 应用"></a>6.2 清除浮动的方法与 BFC 应用</h2><h2 id="6-3-响应式设计与移动端适配（REM、Viewport）"><a href="#6-3-响应式设计与移动端适配（REM、Viewport）" class="headerlink" title="6.3 响应式设计与移动端适配（REM、Viewport）"></a>6.3 响应式设计与移动端适配（REM、Viewport）</h2><h2 id="6-4-CSS-渲染优化（减少重排、重绘）"><a href="#6-4-CSS-渲染优化（减少重排、重绘）" class="headerlink" title="6.4 CSS 渲染优化（减少重排、重绘）"></a>6.4 CSS 渲染优化（减少重排、重绘）</h2><h2 id="6-5-浏览器渲染流程（CSSOM、Critical-CSS）"><a href="#6-5-浏览器渲染流程（CSSOM、Critical-CSS）" class="headerlink" title="6.5 浏览器渲染流程（CSSOM、Critical CSS）"></a>6.5 浏览器渲染流程（CSSOM、Critical CSS）</h2><h1 id="第七章：实战与前沿技术"><a href="#第七章：实战与前沿技术" class="headerlink" title="第七章：实战与前沿技术"></a>第七章：实战与前沿技术</h1><h2 id="7-1-CSS-绘制复杂图形（clip-path、SVG-CSS）"><a href="#7-1-CSS-绘制复杂图形（clip-path、SVG-CSS）" class="headerlink" title="7.1 CSS 绘制复杂图形（clip-path、SVG + CSS）"></a>7.1 CSS 绘制复杂图形（clip-path、SVG + CSS）</h2><h2 id="7-2-暗黑模式实现（prefers-color-scheme）"><a href="#7-2-暗黑模式实现（prefers-color-scheme）" class="headerlink" title="7.2 暗黑模式实现（prefers-color-scheme）"></a>7.2 暗黑模式实现（prefers-color-scheme）</h2><h2 id="7-3-视差滚动（background-attachment）"><a href="#7-3-视差滚动（background-attachment）" class="headerlink" title="7.3 视差滚动（background-attachment）"></a>7.3 视差滚动（background-attachment）</h2><h2 id="7-4-CSS-Houdini（自定义属性、Paint-API）"><a href="#7-4-CSS-Houdini（自定义属性、Paint-API）" class="headerlink" title="7.4 CSS Houdini（自定义属性、Paint API）"></a>7.4 CSS Houdini（自定义属性、Paint API）</h2><h2 id="7-5-未来-CSS-趋势（-container、subgrid、-has-）"><a href="#7-5-未来-CSS-趋势（-container、subgrid、-has-）" class="headerlink" title="7.5 未来 CSS 趋势（@container、subgrid、:has()）"></a>7.5 未来 CSS 趋势（@container、subgrid、:has()）</h2>
       
 
       
@@ -330,7 +1057,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9ACSS-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">第一章：CSS 基础与核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-CSS-%E8%AF%AD%E6%B3%95%E4%B8%8E%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%88%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8%E3%80%81%E7%BB%84%E5%90%88%E9%80%89%E6%8B%A9%E5%99%A8%E3%80%81%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%9B%92%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B-vs-%E6%80%AA%E5%BC%82%E7%9B%92%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 盒模型（标准盒模型 vs. 怪异盒模型）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%B8%83%E5%B1%80%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%9D%97%E7%BA%A7%E3%80%81%E8%A1%8C%E5%86%85%E3%80%81%E8%A1%8C%E5%86%85%E5%9D%97%E3%80%81Flex%E3%80%81Grid%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 布局模式（块级、行内、行内块、Flex、Grid）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%B8%B8%E7%94%A8%E5%8D%95%E4%BD%8D%EF%BC%88px%E3%80%81em%E3%80%81rem%E3%80%81vw-vh%E3%80%81-%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 常用单位（px、em、rem、vw&#x2F;vh、%）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E5%B1%82%E5%8F%A0%E4%B8%8E%E7%BB%A7%E6%89%BF%EF%BC%88z-index%E3%80%81-important%E3%80%81%E7%BB%A7%E6%89%BF%E8%A7%84%E5%88%99%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 层叠与继承（z-index、!important、继承规则）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9ACSS-%E5%B8%83%E5%B1%80%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text">第二章：CSS 布局技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%BC%A0%E7%BB%9F%E5%B8%83%E5%B1%80%EF%BC%88%E6%B5%AE%E5%8A%A8-float%E3%80%81%E5%AE%9A%E4%BD%8D-position%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 传统布局（浮动 float、定位 position）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Flex-%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80%EF%BC%88flex-direction%E3%80%81justify-content%E3%80%81align-items%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Flex 弹性布局（flex-direction、justify-content、align-items）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Grid-%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80%EF%BC%88grid-template%E3%80%81grid-area%E3%80%81fr-%E5%8D%95%E4%BD%8D%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Grid 网格布局（grid-template、grid-area、fr 单位）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%A4%9A%E5%88%97%E5%B8%83%E5%B1%80%EF%BC%88column-count%E3%80%81column-gap%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 多列布局（column-count、column-gap）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%EF%BC%88-media-%E6%9F%A5%E8%AF%A2%E3%80%81%E7%A7%BB%E5%8A%A8%E4%BC%98%E5%85%88%E7%AD%96%E7%95%A5%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 响应式布局（@media 查询、移动优先策略）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9ACSS-%E8%A7%86%E8%A7%89%E4%B8%8E%E5%8A%A8%E7%94%BB"><span class="toc-number">3.</span> <span class="toc-text">第三章：CSS 视觉与动画</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E8%83%8C%E6%99%AF%E4%B8%8E%E8%BE%B9%E6%A1%86%EF%BC%88background%E3%80%81border-radius%E3%80%81box-shadow%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 背景与边框（background、border-radius、box-shadow）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%B8%90%E5%8F%98%E4%B8%8E%E6%BB%A4%E9%95%9C%EF%BC%88linear-gradient%E3%80%81backdrop-filter%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 渐变与滤镜（linear-gradient、backdrop-filter）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB%EF%BC%88transition%E3%80%81-keyframes%E3%80%81animation%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 过渡与动画（transition、@keyframes、animation）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%8F%98%E5%BD%A2%EF%BC%88transform%EF%BC%9Arotate%E3%80%81scale%E3%80%81translate%EF%BC%89"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 变形（transform：rotate、scale、translate）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-3D-%E5%8F%98%E6%8D%A2%EF%BC%88perspective%E3%80%81transform-style%EF%BC%89"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 3D 变换（perspective、transform-style）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9ACSS-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">第四章：CSS 高级特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%8F%98%E9%87%8F%EF%BC%88CSS-Custom-Properties%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 变量（CSS Custom Properties）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0%EF%BC%88-hover%E3%80%81-before%E3%80%81-selection%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 伪类与伪元素（:hover、::before、::selection）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-BFC%EF%BC%88%E5%9D%97%E7%BA%A7%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%89%E4%B8%8E-IFC%EF%BC%88%E8%A1%8C%E5%86%85%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 BFC（块级格式化上下文）与 IFC（行内格式化上下文）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-CSS-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%88will-change%E3%80%81contain%E3%80%81GPU-%E5%8A%A0%E9%80%9F%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 CSS 性能优化（will-change、contain、GPU 加速）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E7%8E%B0%E4%BB%A3-CSS-%E7%89%B9%E6%80%A7%EF%BC%88aspect-ratio%E3%80%81gap%E3%80%81scroll-snap%EF%BC%89"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 现代 CSS 特性（aspect-ratio、gap、scroll-snap）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9ACSS-%E5%B7%A5%E7%A8%8B%E5%8C%96%E4%B8%8E%E6%9E%B6%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">第五章：CSS 工程化与架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-CSS-%E9%A2%84%E5%A4%84%E7%90%86%EF%BC%88Sass-Less-%E5%8F%98%E9%87%8F%E3%80%81%E5%B5%8C%E5%A5%97%E3%80%81Mixin%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 CSS 预处理（Sass&#x2F;Less 变量、嵌套、Mixin）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-CSS-%E6%A8%A1%E5%9D%97%E5%8C%96%EF%BC%88BEM%E3%80%81CSS-Modules%E3%80%81CSS-in-JS%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 CSS 模块化（BEM、CSS Modules、CSS-in-JS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-PostCSS-%E4%B8%8E-Autoprefixer"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 PostCSS 与 Autoprefixer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E5%8E%9F%E5%AD%90%E5%8C%96-CSS%EF%BC%88Tailwind-CSS%E3%80%81UnoCSS%EF%BC%89"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 原子化 CSS（Tailwind CSS、UnoCSS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E8%AE%BE%E8%AE%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E-CSS-%E6%9E%B6%E6%9E%84%EF%BC%88%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2%E3%80%81%E5%8F%98%E9%87%8F%E7%AE%A1%E7%90%86%EF%BC%89"><span class="toc-number">5.5.</span> <span class="toc-text">5.5 设计系统与 CSS 架构（主题切换、变量管理）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9ACSS-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">第六章：CSS 面试高频考点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E5%B1%85%E4%B8%AD%E5%B8%83%E5%B1%80%E7%9A%84-N-%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 居中布局的 N 种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%8E-BFC-%E5%BA%94%E7%94%A8"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 清除浮动的方法与 BFC 应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88REM%E3%80%81Viewport%EF%BC%89"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 响应式设计与移动端适配（REM、Viewport）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-CSS-%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%EF%BC%88%E5%87%8F%E5%B0%91%E9%87%8D%E6%8E%92%E3%80%81%E9%87%8D%E7%BB%98%EF%BC%89"><span class="toc-number">6.4.</span> <span class="toc-text">6.4 CSS 渲染优化（减少重排、重绘）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%EF%BC%88CSSOM%E3%80%81Critical-CSS%EF%BC%89"><span class="toc-number">6.5.</span> <span class="toc-text">6.5 浏览器渲染流程（CSSOM、Critical CSS）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E5%AE%9E%E6%88%98%E4%B8%8E%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF"><span class="toc-number">7.</span> <span class="toc-text">第七章：实战与前沿技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-CSS-%E7%BB%98%E5%88%B6%E5%A4%8D%E6%9D%82%E5%9B%BE%E5%BD%A2%EF%BC%88clip-path%E3%80%81SVG-CSS%EF%BC%89"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 CSS 绘制复杂图形（clip-path、SVG + CSS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%EF%BC%88prefers-color-scheme%EF%BC%89"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 暗黑模式实现（prefers-color-scheme）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E8%A7%86%E5%B7%AE%E6%BB%9A%E5%8A%A8%EF%BC%88background-attachment%EF%BC%89"><span class="toc-number">7.3.</span> <span class="toc-text">7.3 视差滚动（background-attachment）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-CSS-Houdini%EF%BC%88%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E3%80%81Paint-API%EF%BC%89"><span class="toc-number">7.4.</span> <span class="toc-text">7.4 CSS Houdini（自定义属性、Paint API）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-%E6%9C%AA%E6%9D%A5-CSS-%E8%B6%8B%E5%8A%BF%EF%BC%88-container%E3%80%81subgrid%E3%80%81-has-%EF%BC%89"><span class="toc-number">7.5.</span> <span class="toc-text">7.5 未来 CSS 趋势（@container、subgrid、:has()）</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9ACSS-%E5%9F%BA%E7%A1%80%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">第一章：CSS 基础与核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-CSS-%E8%AF%AD%E6%B3%95%E4%B8%8E%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%88%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8%E3%80%81%E7%BB%84%E5%90%88%E9%80%89%E6%8B%A9%E5%99%A8%E3%80%81%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">基础语法结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">基础选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">组合选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.1.4.</span> <span class="toc-text">属性选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">1.1.5.</span> <span class="toc-text">思考</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E7%9B%92%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B-vs-%E6%80%AA%E5%BC%82%E7%9B%92%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 盒模型（标准盒模型 vs. 怪异盒模型）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%E5%AF%B9%E6%AF%94"><span class="toc-number">1.2.1.</span> <span class="toc-text">核心概念对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%AA%8C%E8%AF%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">代码验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">思考</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%B8%83%E5%B1%80%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%9D%97%E7%BA%A7%E3%80%81%E8%A1%8C%E5%86%85%E3%80%81%E8%A1%8C%E5%86%85%E5%9D%97%E3%80%81Flex%E3%80%81Grid%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 布局模式（块级、行内、行内块、Flex、Grid）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E7%BA%A7%E5%B8%83%E5%B1%80%EF%BC%88Block%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">块级布局（Block）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%B8%83%E5%B1%80%EF%BC%88Inline%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">行内布局（Inline）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E5%86%85%E5%9D%97%E5%B8%83%E5%B1%80%EF%BC%88Inline-block%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">行内块布局（Inline-block）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flex%E5%B8%83%E5%B1%80"><span class="toc-number">1.3.4.</span> <span class="toc-text">Flex布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Grid%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80"><span class="toc-number">1.3.5.</span> <span class="toc-text">Grid网格布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E6%80%A7%E8%83%BD%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.6.</span> <span class="toc-text">渲染性能排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%B8%B8%E7%94%A8%E5%8D%95%E4%BD%8D%EF%BC%88px%E3%80%81em%E3%80%81rem%E3%80%81vw-vh%E3%80%81-%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 常用单位（px、em、rem、vw&#x2F;vh、%）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E5%8D%95%E4%BD%8D%E4%B8%8E%E7%9B%B8%E5%AF%B9%E5%8D%95%E4%BD%8D%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">1.4.1.</span> <span class="toc-text">绝对单位与相对单位的对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8D%95%E4%BD%8D%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.4.2.</span> <span class="toc-text">核心单位详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E5%B1%82%E5%8F%A0%E4%B8%8E%E7%BB%A7%E6%89%BF%EF%BC%88z-index%E3%80%81-important%E3%80%81%E7%BB%A7%E6%89%BF%E8%A7%84%E5%88%99%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 层叠与继承（z-index、!important、继承规则）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%82%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="toc-number">1.5.1.</span> <span class="toc-text">层叠上下文的核心原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#important-%E7%BB%88%E6%9E%81%E6%9D%83%E9%87%8D"><span class="toc-number">1.5.2.</span> <span class="toc-text">!important 终极权重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E8%A7%84%E5%88%99"><span class="toc-number">1.5.3.</span> <span class="toc-text">继承规则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9ACSS-%E5%B8%83%E5%B1%80%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text">第二章：CSS 布局技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%BC%A0%E7%BB%9F%E5%B8%83%E5%B1%80%EF%BC%88%E6%B5%AE%E5%8A%A8-float%E3%80%81%E5%AE%9A%E4%BD%8D-position%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 传统布局（浮动 float、定位 position）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E5%8A%A8%E5%B8%83%E5%B1%80%EF%BC%88float%EF%BC%89"><span class="toc-number">2.1.1.</span> <span class="toc-text">浮动布局（float）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%BD%8D%E5%B8%83%E5%B1%80%EF%BC%88position%EF%BC%89-%E7%B2%BE%E5%87%86%E6%8E%A7%E5%88%B6%E7%9A%84%E5%88%A9%E5%99%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text">定位布局（position） - 精准控制的利器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-Flex-%E5%BC%B9%E6%80%A7%E5%B8%83%E5%B1%80%EF%BC%88flex-direction%E3%80%81justify-content%E3%80%81align-items%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 Flex 弹性布局（flex-direction、justify-content、align-items）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-direction-%E4%B8%BB%E8%BD%B4%E6%96%B9%E5%90%91%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.1.</span> <span class="toc-text">flex-direction - 主轴方向控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#justify-content-%E4%B8%BB%E8%BD%B4%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.2.</span> <span class="toc-text">justify-content - 主轴对齐方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-items-%E4%BA%A4%E5%8F%89%E8%BD%B4%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.3.</span> <span class="toc-text">align-items - 交叉轴对齐方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E5%B1%9E%E6%80%A7%E8%81%94%E8%B0%83%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.2.4.</span> <span class="toc-text">三属性联调实践</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">2.2.5.</span> <span class="toc-text">高频面试题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Grid-%E7%BD%91%E6%A0%BC%E5%B8%83%E5%B1%80%EF%BC%88grid-template%E3%80%81grid-area%E3%80%81fr-%E5%8D%95%E4%BD%8D%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Grid 网格布局（grid-template、grid-area、fr 单位）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">2.3.1.</span> <span class="toc-text">核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grid-template-%E7%B3%BB%E5%88%97%E5%B1%9E%E6%80%A7%E8%AF%A6%E8%A7%A3"><span class="toc-number">2.3.2.</span> <span class="toc-text">grid-template 系列属性详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grid-area-%E8%AF%A6%E8%A7%A3"><span class="toc-number">2.3.3.</span> <span class="toc-text">grid-area 详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fr-%E5%8D%95%E4%BD%8D-%E7%BD%91%E6%A0%BC%E4%B8%93%E5%B1%9E%E7%A9%BA%E9%97%B4%E5%88%86%E9%85%8D"><span class="toc-number">2.3.4.</span> <span class="toc-text">fr 单位 - 网格专属空间分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.5.</span> <span class="toc-text">高频面试问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-number">2.3.6.</span> <span class="toc-text">兼容性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E5%A4%9A%E5%88%97%E5%B8%83%E5%B1%80%EF%BC%88column-count%E3%80%81column-gap%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 多列布局（column-count、column-gap）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%B1%9E%E6%80%A7"><span class="toc-number">2.4.1.</span> <span class="toc-text">核心属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E5%B1%9E%E6%80%A7%E4%BD%93%E7%B3%BB"><span class="toc-number">2.4.2.</span> <span class="toc-text">完整属性体系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80%EF%BC%88-media-%E6%9F%A5%E8%AF%A2%E3%80%81%E7%A7%BB%E5%8A%A8%E4%BC%98%E5%85%88%E7%AD%96%E7%95%A5%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 响应式布局（@media 查询、移动优先策略）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6%EF%BC%9A-media-%E6%9F%A5%E8%AF%A2"><span class="toc-number">2.5.1.</span> <span class="toc-text">响应式核心机制：@media 查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E4%BC%98%E5%85%88%EF%BC%88mobile-first%EF%BC%89%E7%AD%96%E7%95%A5"><span class="toc-number">2.5.2.</span> <span class="toc-text">移动优先（mobile-first）策略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0%EF%BC%9ACSS-%E8%A7%86%E8%A7%89%E4%B8%8E%E5%8A%A8%E7%94%BB"><span class="toc-number">3.</span> <span class="toc-text">第三章：CSS 视觉与动画</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E8%83%8C%E6%99%AF%E4%B8%8E%E8%BE%B9%E6%A1%86%EF%BC%88background%E3%80%81border-radius%E3%80%81box-shadow%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 背景与边框（background、border-radius、box-shadow）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%B8%90%E5%8F%98%E4%B8%8E%E6%BB%A4%E9%95%9C%EF%BC%88linear-gradient%E3%80%81backdrop-filter%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 渐变与滤镜（linear-gradient、backdrop-filter）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E8%BF%87%E6%B8%A1%E4%B8%8E%E5%8A%A8%E7%94%BB%EF%BC%88transition%E3%80%81-keyframes%E3%80%81animation%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 过渡与动画（transition、@keyframes、animation）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%8F%98%E5%BD%A2%EF%BC%88transform%EF%BC%9Arotate%E3%80%81scale%E3%80%81translate%EF%BC%89"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 变形（transform：rotate、scale、translate）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-3D-%E5%8F%98%E6%8D%A2%EF%BC%88perspective%E3%80%81transform-style%EF%BC%89"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 3D 变换（perspective、transform-style）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0%EF%BC%9ACSS-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">第四章：CSS 高级特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%8F%98%E9%87%8F%EF%BC%88CSS-Custom-Properties%EF%BC%89"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 变量（CSS Custom Properties）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0%EF%BC%88-hover%E3%80%81-before%E3%80%81-selection%EF%BC%89"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 伪类与伪元素（:hover、::before、::selection）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-BFC%EF%BC%88%E5%9D%97%E7%BA%A7%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%89%E4%B8%8E-IFC%EF%BC%88%E8%A1%8C%E5%86%85%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%89"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 BFC（块级格式化上下文）与 IFC（行内格式化上下文）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-CSS-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%EF%BC%88will-change%E3%80%81contain%E3%80%81GPU-%E5%8A%A0%E9%80%9F%EF%BC%89"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 CSS 性能优化（will-change、contain、GPU 加速）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E7%8E%B0%E4%BB%A3-CSS-%E7%89%B9%E6%80%A7%EF%BC%88aspect-ratio%E3%80%81gap%E3%80%81scroll-snap%EF%BC%89"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 现代 CSS 特性（aspect-ratio、gap、scroll-snap）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0%EF%BC%9ACSS-%E5%B7%A5%E7%A8%8B%E5%8C%96%E4%B8%8E%E6%9E%B6%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">第五章：CSS 工程化与架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-CSS-%E9%A2%84%E5%A4%84%E7%90%86%EF%BC%88Sass-Less-%E5%8F%98%E9%87%8F%E3%80%81%E5%B5%8C%E5%A5%97%E3%80%81Mixin%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 CSS 预处理（Sass&#x2F;Less 变量、嵌套、Mixin）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-CSS-%E6%A8%A1%E5%9D%97%E5%8C%96%EF%BC%88BEM%E3%80%81CSS-Modules%E3%80%81CSS-in-JS%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 CSS 模块化（BEM、CSS Modules、CSS-in-JS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-PostCSS-%E4%B8%8E-Autoprefixer"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 PostCSS 与 Autoprefixer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E5%8E%9F%E5%AD%90%E5%8C%96-CSS%EF%BC%88Tailwind-CSS%E3%80%81UnoCSS%EF%BC%89"><span class="toc-number">5.4.</span> <span class="toc-text">5.4 原子化 CSS（Tailwind CSS、UnoCSS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E8%AE%BE%E8%AE%A1%E7%B3%BB%E7%BB%9F%E4%B8%8E-CSS-%E6%9E%B6%E6%9E%84%EF%BC%88%E4%B8%BB%E9%A2%98%E5%88%87%E6%8D%A2%E3%80%81%E5%8F%98%E9%87%8F%E7%AE%A1%E7%90%86%EF%BC%89"><span class="toc-number">5.5.</span> <span class="toc-text">5.5 设计系统与 CSS 架构（主题切换、变量管理）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0%EF%BC%9ACSS-%E9%9D%A2%E8%AF%95%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">第六章：CSS 面试高频考点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E5%B1%85%E4%B8%AD%E5%B8%83%E5%B1%80%E7%9A%84-N-%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 居中布局的 N 种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%8E-BFC-%E5%BA%94%E7%94%A8"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 清除浮动的方法与 BFC 应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1%E4%B8%8E%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%EF%BC%88REM%E3%80%81Viewport%EF%BC%89"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 响应式设计与移动端适配（REM、Viewport）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-CSS-%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%EF%BC%88%E5%87%8F%E5%B0%91%E9%87%8D%E6%8E%92%E3%80%81%E9%87%8D%E7%BB%98%EF%BC%89"><span class="toc-number">6.4.</span> <span class="toc-text">6.4 CSS 渲染优化（减少重排、重绘）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%B5%81%E7%A8%8B%EF%BC%88CSSOM%E3%80%81Critical-CSS%EF%BC%89"><span class="toc-number">6.5.</span> <span class="toc-text">6.5 浏览器渲染流程（CSSOM、Critical CSS）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0%EF%BC%9A%E5%AE%9E%E6%88%98%E4%B8%8E%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF"><span class="toc-number">7.</span> <span class="toc-text">第七章：实战与前沿技术</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-CSS-%E7%BB%98%E5%88%B6%E5%A4%8D%E6%9D%82%E5%9B%BE%E5%BD%A2%EF%BC%88clip-path%E3%80%81SVG-CSS%EF%BC%89"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 CSS 绘制复杂图形（clip-path、SVG + CSS）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E6%9A%97%E9%BB%91%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%EF%BC%88prefers-color-scheme%EF%BC%89"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 暗黑模式实现（prefers-color-scheme）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E8%A7%86%E5%B7%AE%E6%BB%9A%E5%8A%A8%EF%BC%88background-attachment%EF%BC%89"><span class="toc-number">7.3.</span> <span class="toc-text">7.3 视差滚动（background-attachment）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-CSS-Houdini%EF%BC%88%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E3%80%81Paint-API%EF%BC%89"><span class="toc-number">7.4.</span> <span class="toc-text">7.4 CSS Houdini（自定义属性、Paint API）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-%E6%9C%AA%E6%9D%A5-CSS-%E8%B6%8B%E5%8A%BF%EF%BC%88-container%E3%80%81subgrid%E3%80%81-has-%EF%BC%89"><span class="toc-number">7.5.</span> <span class="toc-text">7.5 未来 CSS 趋势（@container、subgrid、:has()）</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -450,11 +1177,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color3">Network</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Network</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">

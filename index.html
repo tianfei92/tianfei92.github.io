@@ -261,7 +261,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="第一章：CSS-基础与核心概念"><a href="#第一章：CSS-基础与核心概念" class="headerlink" title="第一章：CSS 基础与核心概念"></a>第一章：CSS 基础与核心概念</h1><h2 id="1-1-CSS-语法与选择器（基础选择器、组合选择器、属性选择器）"><a href="#1-1-CSS-语法与选择器（基础选择器、组合选择器、属性选择器）" class="headerlink" title="1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）"></a>1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）</h2>
+        <h1 id="第一章：CSS-基础与核心概念"><a href="#第一章：CSS-基础与核心概念" class="headerlink" title="第一章：CSS 基础与核心概念"></a>第一章：CSS 基础与核心概念</h1><h2 id="1-1-CSS-语法与选择器（基础选择器、组合选择器、属性选择器）"><a href="#1-1-CSS-语法与选择器（基础选择器、组合选择器、属性选择器）" class="headerlink" title="1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）"></a>1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）</h2><h3 id="基础语法结构"><a href="#基础语法结构" class="headerlink" title="基础语法结构"></a>基础语法结构</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 标准规则 */</span></span><br><span class="line">selector &#123;</span><br><span class="line">  property: value; <span class="comment">/* 声明块 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="基础选择器"><a href="#基础选择器" class="headerlink" title="基础选择器"></a>基础选择器</h3><p><strong>1. 元素选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123; <span class="attribute">color</span>: red; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>权重：0,0,1</li>
+<li>适用场景：全局样式覆盖</li>
+</ul>
+<p><strong>2. 类选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.active</span> &#123; <span class="attribute">background</span>: blue; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>权重：0,1,0</li>
+<li>实践：BEM命名规范（block__element–modifier）</li>
+</ul>
+<p><strong>3. ID 选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#header</span> &#123; <span class="attribute">height</span>: <span class="number">60px</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>权重：1,0,0</li>
+<li>禁用场景：React&#x2F;Vue中易导致样式污染（组件化开发慎用）</li>
+</ul>
+<p><strong>4. 通配选择器</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* &#123; <span class="attribute">box-sizing</span>: border-box; &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>权重：0,0,0</li>
+<li>性能影响：大型项目避免过度使用</li>
+</ul>
         
           <a class="article-more-a" href="/2025/06/22/CSS%20Study%20Notes/#more">more >></a>
         
@@ -705,11 +734,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color3">Network</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Network</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
