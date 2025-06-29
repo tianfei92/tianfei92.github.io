@@ -27,7 +27,7 @@
 <meta property="og:description" content="一、基础网络协议1.1 HTTP&#x2F;HTTPS协议核心HTTP协议定义 HTTP（HyperText Transfer Protocol）是应用层协议，基于 请求-响应 模型，用于客户端（浏览器）与服务器之间的数据传输，默认端口 80 核心特性  无状态：每个请求独立，服务器不保留客户端上下文（状态管理依赖 Cookie 和 Session） 明文传输：请求与响应内容以未加密的文本形式传输">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-20T07:50:13.000Z">
-<meta property="article:modified_time" content="2025-06-27T08:46:06.915Z">
+<meta property="article:modified_time" content="2025-06-29T01:48:11.687Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
         
         
         
-          122 分钟
+          124 分钟
         
       </span>
     
@@ -1003,7 +1003,7 @@
     User->>Browser: 触发事件（点击/滚动等）
     Browser->>Server: 发送异步请求（XHR对象）
     Server->>Browser: 返回数据（JSON/XML/Text）
-    Browser->>Browser: 解析数据 → 更新DOM
+    Browser->>Browser: 解析数据 -> 更新DOM
     Browser-->>User: 局部刷新页面</pre>
 
 <p>关键特性：</p>
@@ -1731,7 +1731,7 @@
     前端->>后端: 请求页面
     后端-->>前端: 返回HTML + CSRF Token（存入Session）
     前端->>后端: 提交表单（携带Token）
-    后端->>后端: 验证Token匹配 → 执行操作</pre>
+    后端->>后端: 验证Token匹配 -> 执行操作</pre>
 
 <p>token 生成与存储：</p>
 <table>
@@ -1838,8 +1838,8 @@
     用户->>HTTPS网站: 访问https://example.com
     HTTPS网站->>用户: 返回加密HTML
     用户->>HTTP资源服务器: 请求http://cdn.com/script.js（未加密）
-    攻击者->>用户: 中间人劫持HTTP流量 → 注入恶意脚本
-    用户->>HTTPS网站: 执行被篡改脚本 → 数据泄露</pre>
+    攻击者->>用户: 中间人劫持HTTP流量 -> 注入恶意脚本
+    用户->>HTTPS网站: 执行被篡改脚本 -> 数据泄露</pre>
 
 <p>风险等级：</p>
 <table>
@@ -2088,7 +2088,7 @@
 
 <p>工作流程：</p>
 <pre class="mermaid">graph LR
-  A[浏览器请求资源] --> B{本地缓存是否有效？}
+  A[浏览器请求资源] --> B{本地缓存是否有效?}
   B -->|Cache-Control有效| C[直接使用缓存]
   B -->|缓存失效| D[发起网络请求]</pre>
 
@@ -2191,18 +2191,18 @@
 </ul>
 <p><strong>缓存层级决策策略</strong></p>
 <pre class="mermaid">graph TD
-  A[资源类型] --> B{是否版本化？}
-  B -->|是| C[强缓存：max-age=1年+immutable]
-  B -->|否| D{更新频率？}
-  D -->|高频更新| E[协商缓存：no-cache+ETag]
-  D -->|低频更新| F[强缓存：max-age=1小时]</pre>
+  A[资源类型] --> B{是否版本化?}
+  B -->|是| C[强缓存: max-age=1年+immutable]
+  B -->|否| D{更新频率?}
+  D -->|高频更新| E[协商缓存: no-cache+ETag]
+  D -->|低频更新| F[强缓存: max-age=1小时]</pre>
 
 <h3 id="Service-Worker离线缓存"><a href="#Service-Worker离线缓存" class="headerlink" title="Service Worker离线缓存"></a>Service Worker离线缓存</h3><p><strong>核心原理</strong></p>
 <p>Service Worker 是浏览器独立于网页运行的脚本，作为网络请求的可编程代理，通过拦截请求实现离线缓存控制。</p>
 <pre class="mermaid">graph LR
   A[网页请求] --> B{Service Worker}
   B -->|命中缓存| C[返回缓存]
-  B -->|未命中| D[转发请求 → 网络]
+  B -->|未命中| D[转发请求 -> 网络]
   D --> E[缓存新资源]</pre>
 
 <p><strong>关键实现步骤</strong></p>
@@ -2481,7 +2481,7 @@
     Client->>Server: 发送HEADERS帧（含HPACK压缩头）
     Server->>Client: 推送关键CSS（PUSH_PROMISE帧）
     Server->>Client: 并行传输HTML+CSS+JS（多DATA帧）
-    Client->>Browser: 流优先级排序 → 快速渲染</pre>
+    Client->>Browser: 流优先级排序 -> 快速渲染</pre>
 
 <p><strong>实战优化策略</strong></p>
 <p>(1) 压缩策略组合</p>
@@ -2872,6 +2872,27 @@
 <td align="left">快速拥塞算法更新</td>
 </tr>
 </tbody></table>
+<p><strong>前端性能优化实践</strong></p>
+<ul>
+<li>优先关键资源：<ul>
+<li>HTTP&#x2F;3下无需过度域名分片（单连接多流独立），集中CDN域名提升缓存命中率。</li>
+</ul>
+</li>
+<li>0-RTT会话利用：<ul>
+<li>静态资源设置长缓存 (Cache-Control: immutable)，匹配0-RTT快速加载 4。</li>
+</ul>
+</li>
+<li>监控协议升级：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 查看浏览器Network面板Protocol列</span><br>performance.<span class="hljs-title function_">getEntriesByType</span>(<span class="hljs-string">&quot;resource&quot;</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (res.<span class="hljs-property">nextHopProtocol</span> === <span class="hljs-string">&quot;h3&quot;</span>) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;HTTP/3 used&quot;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+<ul>
+<li>降级兼容方案：<ul>
+<li>服务器同时监听HTTP&#x2F;2与HTTP&#x2F;3，Alt-Svc头自动协商协议：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs HTTP"><span class="hljs-attribute">Alt-Svc</span><span class="hljs-punctuation">: </span>h3=&quot;:443&quot;; ma=2592000; v=&quot;46,43&quot;<br></code></pre></td></tr></table></figure>
+
 <h1 id="五、高级网络技术"><a href="#五、高级网络技术" class="headerlink" title="五、高级网络技术"></a>五、高级网络技术</h1><h2 id="5-1-API设计规范"><a href="#5-1-API设计规范" class="headerlink" title="5.1 API设计规范"></a>5.1 API设计规范</h2><h3 id="RESTful架构原则（资源化-状态转移）"><a href="#RESTful架构原则（资源化-状态转移）" class="headerlink" title="RESTful架构原则（资源化&#x2F;状态转移）"></a>RESTful架构原则（资源化&#x2F;状态转移）</h3><h3 id="GraphQL查询与REST对比"><a href="#GraphQL查询与REST对比" class="headerlink" title="GraphQL查询与REST对比"></a>GraphQL查询与REST对比</h3><h2 id="5-2-调试与监控"><a href="#5-2-调试与监控" class="headerlink" title="5.2 调试与监控"></a>5.2 调试与监控</h2><h3 id="浏览器Network面板分析（Waterfall-Timing）"><a href="#浏览器Network面板分析（Waterfall-Timing）" class="headerlink" title="浏览器Network面板分析（Waterfall&#x2F;Timing）"></a>浏览器Network面板分析（Waterfall&#x2F;Timing）</h3><h3 id="性能指标（TTFB-LCP-FCP）监控"><a href="#性能指标（TTFB-LCP-FCP）监控" class="headerlink" title="性能指标（TTFB&#x2F;LCP&#x2F;FCP）监控"></a>性能指标（TTFB&#x2F;LCP&#x2F;FCP）监控</h3><h2 id="5-3-新兴技术"><a href="#5-3-新兴技术" class="headerlink" title="5.3 新兴技术"></a>5.3 新兴技术</h2><h3 id="WebRTC基础（P2P通信-信令服务）"><a href="#WebRTC基础（P2P通信-信令服务）" class="headerlink" title="WebRTC基础（P2P通信&#x2F;信令服务）"></a>WebRTC基础（P2P通信&#x2F;信令服务）</h3><h3 id="WebTransport协议探索"><a href="#WebTransport协议探索" class="headerlink" title="WebTransport协议探索"></a>WebTransport协议探索</h3>
                 
               </div>
