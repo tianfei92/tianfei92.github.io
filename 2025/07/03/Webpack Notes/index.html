@@ -27,7 +27,7 @@
 <meta property="og:description" content="一、核心概念与基础1.1 Webpack 定位与核心价值1.1.1 模块化打包的本质需求前端开发的核心演变 原始阶段：全局变量污染 1234&lt;!-- 传统开发方式 --&gt;&lt;script src&#x3D;&quot;jquery.js&quot;&gt;&lt;&#x2F;script&gt;&lt;script src&#x3D;&quot;plugin1.js&quot;&gt;&lt;&#x2F;script&amp;g">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-03T01:11:35.000Z">
-<meta property="article:modified_time" content="2025-07-03T13:12:14.885Z">
+<meta property="article:modified_time" content="2025-07-04T06:05:50.399Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="Webpack">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          27k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          147 分钟
+          228 分钟
         
       </span>
     
@@ -2694,8 +2694,1165 @@ C --> D[原始代码位置: 第42行第8列]</pre>
 <li>检查混淆配置是否影响框架运行时</li>
 <li>通过<code>/*#__PURE__*/</code>标记副作用函数</li>
 </ul>
-<h1 id="四、高级特性与工程化"><a href="#四、高级特性与工程化" class="headerlink" title="四、高级特性与工程化"></a>四、高级特性与工程化</h1><h2 id="4-1-环境区分与动态配置"><a href="#4-1-环境区分与动态配置" class="headerlink" title="4.1 环境区分与动态配置"></a>4.1 环境区分与动态配置</h2><h3 id="4-1-1-基于webpack-merge的多环境配置"><a href="#4-1-1-基于webpack-merge的多环境配置" class="headerlink" title="4.1.1 基于webpack-merge的多环境配置"></a>4.1.1 基于<code>webpack-merge</code>的多环境配置</h3><h3 id="4-1-2-环境变量注入（dotenv与DefinePlugin结合）"><a href="#4-1-2-环境变量注入（dotenv与DefinePlugin结合）" class="headerlink" title="4.1.2 环境变量注入（dotenv与DefinePlugin结合）"></a>4.1.2 环境变量注入（<code>dotenv</code>与<code>DefinePlugin</code>结合）</h3><h2 id="4-2-微前端集成"><a href="#4-2-微前端集成" class="headerlink" title="4.2 微前端集成"></a>4.2 微前端集成</h2><h3 id="4-2-1-Module-Federation原理与配置"><a href="#4-2-1-Module-Federation原理与配置" class="headerlink" title="4.2.1 Module Federation原理与配置"></a>4.2.1 Module Federation原理与配置</h3><h3 id="4-2-2-跨应用共享模块策略"><a href="#4-2-2-跨应用共享模块策略" class="headerlink" title="4.2.2 跨应用共享模块策略"></a>4.2.2 跨应用共享模块策略</h3><h2 id="4-3-自定义构建流程"><a href="#4-3-自定义构建流程" class="headerlink" title="4.3 自定义构建流程"></a>4.3 自定义构建流程</h2><h3 id="4-3-1-编写CLI工具集成Webpack"><a href="#4-3-1-编写CLI工具集成Webpack" class="headerlink" title="4.3.1 编写CLI工具集成Webpack"></a>4.3.1 编写CLI工具集成Webpack</h3><h3 id="4-3-2-钩子函数深度使用（afterEmit-done）"><a href="#4-3-2-钩子函数深度使用（afterEmit-done）" class="headerlink" title="4.3.2 钩子函数深度使用（afterEmit&#x2F;done）"></a>4.3.2 钩子函数深度使用（<code>afterEmit</code>&#x2F;<code>done</code>）</h3><h1 id="五、调试与性能分析"><a href="#五、调试与性能分析" class="headerlink" title="五、调试与性能分析"></a>五、调试与性能分析</h1><h2 id="5-1-构建过程监控"><a href="#5-1-构建过程监控" class="headerlink" title="5.1 构建过程监控"></a>5.1 构建过程监控</h2><h3 id="5-1-1-speed-measure-webpack-plugin（构建耗时分析）"><a href="#5-1-1-speed-measure-webpack-plugin（构建耗时分析）" class="headerlink" title="5.1.1 speed-measure-webpack-plugin（构建耗时分析）"></a>5.1.1 <code>speed-measure-webpack-plugin</code>（构建耗时分析）</h3><h3 id="5-1-2-webpack-bundle-analyzer（产物体积可视化）"><a href="#5-1-2-webpack-bundle-analyzer（产物体积可视化）" class="headerlink" title="5.1.2 webpack-bundle-analyzer（产物体积可视化）"></a>5.1.2 <code>webpack-bundle-analyzer</code>（产物体积可视化）</h3><h2 id="5-2-DevServer深度配置"><a href="#5-2-DevServer深度配置" class="headerlink" title="5.2 DevServer深度配置"></a>5.2 DevServer深度配置</h2><h3 id="5-2-1-HMR原理与热更新范围控制"><a href="#5-2-1-HMR原理与热更新范围控制" class="headerlink" title="5.2.1 HMR原理与热更新范围控制"></a>5.2.1 HMR原理与热更新范围控制</h3><h3 id="5-2-2-Proxy配置解决跨域（pathRewrite-context）"><a href="#5-2-2-Proxy配置解决跨域（pathRewrite-context）" class="headerlink" title="5.2.2 Proxy配置解决跨域（pathRewrite&#x2F;context）"></a>5.2.2 Proxy配置解决跨域（<code>pathRewrite</code>&#x2F;<code>context</code>）</h3><h3 id="5-2-3-中间件扩展（before-after钩子）"><a href="#5-2-3-中间件扩展（before-after钩子）" class="headerlink" title="5.2.3 中间件扩展（before&#x2F;after钩子）"></a>5.2.3 中间件扩展（<code>before</code>&#x2F;<code>after</code>钩子）</h3><h1 id="六、原理与源码层"><a href="#六、原理与源码层" class="headerlink" title="六、原理与源码层"></a>六、原理与源码层</h1><h2 id="6-1-Tapable事件流机制"><a href="#6-1-Tapable事件流机制" class="headerlink" title="6.1 Tapable事件流机制"></a>6.1 Tapable事件流机制</h2><h3 id="6-1-1-同步-异步钩子调用流程"><a href="#6-1-1-同步-异步钩子调用流程" class="headerlink" title="6.1.1 同步&#x2F;异步钩子调用流程"></a>6.1.1 同步&#x2F;异步钩子调用流程</h3><h3 id="6-1-2-插件注册与触发原理"><a href="#6-1-2-插件注册与触发原理" class="headerlink" title="6.1.2 插件注册与触发原理"></a>6.1.2 插件注册与触发原理</h3><h2 id="6-2-AST应用"><a href="#6-2-AST应用" class="headerlink" title="6.2 AST应用"></a>6.2 AST应用</h2><h3 id="6-2-1-Loader中的AST操作（Babel-Parser案例）"><a href="#6-2-1-Loader中的AST操作（Babel-Parser案例）" class="headerlink" title="6.2.1 Loader中的AST操作（Babel Parser案例）"></a>6.2.1 Loader中的AST操作（Babel Parser案例）</h3><h3 id="6-2-2-依赖图（Dependency-Graph）生成过程"><a href="#6-2-2-依赖图（Dependency-Graph）生成过程" class="headerlink" title="6.2.2 依赖图（Dependency Graph）生成过程"></a>6.2.2 依赖图（Dependency Graph）生成过程</h3><h2 id="6-3-核心流程源码解析"><a href="#6-3-核心流程源码解析" class="headerlink" title="6.3 核心流程源码解析"></a>6.3 核心流程源码解析</h2><h3 id="6-3-1-编译阶段：Module-→-Chunk-→-Asset-转换"><a href="#6-3-1-编译阶段：Module-→-Chunk-→-Asset-转换" class="headerlink" title="6.3.1 编译阶段：Module → Chunk → Asset 转换"></a>6.3.1 编译阶段：Module → Chunk → Asset 转换</h3><h3 id="6-3-2-输出阶段：Template渲染与文件生成"><a href="#6-3-2-输出阶段：Template渲染与文件生成" class="headerlink" title="6.3.2 输出阶段：Template渲染与文件生成"></a>6.3.2 输出阶段：Template渲染与文件生成</h3><h1 id="七、生态与未来趋势"><a href="#七、生态与未来趋势" class="headerlink" title="七、生态与未来趋势"></a>七、生态与未来趋势</h1><h2 id="7-1-Webpack-5-新特性"><a href="#7-1-Webpack-5-新特性" class="headerlink" title="7.1 Webpack 5 新特性"></a>7.1 Webpack 5 新特性</h2><h3 id="7-1-1-持久化缓存（persistentCache）"><a href="#7-1-1-持久化缓存（persistentCache）" class="headerlink" title="7.1.1 持久化缓存（persistentCache）"></a>7.1.1 持久化缓存（<code>persistentCache</code>）</h3><h3 id="7-1-2-模块联邦（Module-Federation）"><a href="#7-1-2-模块联邦（Module-Federation）" class="headerlink" title="7.1.2 模块联邦（Module Federation）"></a>7.1.2 模块联邦（Module Federation）</h3><h3 id="7-1-3-Asset-Modules资源处理"><a href="#7-1-3-Asset-Modules资源处理" class="headerlink" title="7.1.3 Asset Modules资源处理"></a>7.1.3 Asset Modules资源处理</h3><h2 id="7-2-与新兴工具协作"><a href="#7-2-与新兴工具协作" class="headerlink" title="7.2 与新兴工具协作"></a>7.2 与新兴工具协作</h2><h3 id="7-2-1-Webpack-Vite-混合开发模式"><a href="#7-2-1-Webpack-Vite-混合开发模式" class="headerlink" title="7.2.1 Webpack + Vite 混合开发模式"></a>7.2.1 Webpack + Vite 混合开发模式</h3><h3 id="7-2-2-Rust工具链集成（swc-loader替代Babel）"><a href="#7-2-2-Rust工具链集成（swc-loader替代Babel）" class="headerlink" title="7.2.2 Rust工具链集成（swc-loader替代Babel）"></a>7.2.2 Rust工具链集成（<code>swc-loader</code>替代Babel）</h3><hr>
-<h1 id="八、面试专项准备建议"><a href="#八、面试专项准备建议" class="headerlink" title="八、面试专项准备建议"></a>八、面试专项准备建议</h1><h2 id="8-1-高频考点"><a href="#8-1-高频考点" class="headerlink" title="8.1 高频考点"></a>8.1 高频考点</h2><h3 id="8-1-1-Tree-Shaking条件与副作用处理"><a href="#8-1-1-Tree-Shaking条件与副作用处理" class="headerlink" title="8.1.1 Tree Shaking条件与副作用处理"></a>8.1.1 Tree Shaking条件与副作用处理</h3><h3 id="8-1-2-SplitChunks配置项优先级"><a href="#8-1-2-SplitChunks配置项优先级" class="headerlink" title="8.1.2 SplitChunks配置项优先级"></a>8.1.2 SplitChunks配置项优先级</h3><h3 id="8-1-3-HMR工作流程（WebSocket-→-HotModuleReplacementPlugin）"><a href="#8-1-3-HMR工作流程（WebSocket-→-HotModuleReplacementPlugin）" class="headerlink" title="8.1.3 HMR工作流程（WebSocket → HotModuleReplacementPlugin）"></a>8.1.3 HMR工作流程（WebSocket → HotModuleReplacementPlugin）</h3><h2 id="8-2-场景设计题"><a href="#8-2-场景设计题" class="headerlink" title="8.2 场景设计题"></a>8.2 场景设计题</h2><h3 id="8-2-1-“如何实现秒级构建的微前端项目？”"><a href="#8-2-1-“如何实现秒级构建的微前端项目？”" class="headerlink" title="8.2.1 “如何实现秒级构建的微前端项目？”"></a>8.2.1 “如何实现秒级构建的微前端项目？”</h3><h3 id="8-2-2-“首屏加载慢，从哪些维度优化？”"><a href="#8-2-2-“首屏加载慢，从哪些维度优化？”" class="headerlink" title="8.2.2 “首屏加载慢，从哪些维度优化？”"></a>8.2.2 “首屏加载慢，从哪些维度优化？”</h3><h2 id="8-3-原理深挖"><a href="#8-3-原理深挖" class="headerlink" title="8.3 原理深挖"></a>8.3 原理深挖</h2><h3 id="8-3-1-手写简易Webpack核心流程（解析依赖→生成Chunk）"><a href="#8-3-1-手写简易Webpack核心流程（解析依赖→生成Chunk）" class="headerlink" title="8.3.1 手写简易Webpack核心流程（解析依赖→生成Chunk）"></a>8.3.1 手写简易Webpack核心流程（解析依赖→生成Chunk）</h3><h3 id="8-3-2-对比Webpack与Vite的Bundleless设计差异"><a href="#8-3-2-对比Webpack与Vite的Bundleless设计差异" class="headerlink" title="8.3.2 对比Webpack与Vite的Bundleless设计差异"></a>8.3.2 对比Webpack与Vite的Bundleless设计差异</h3><hr>
+<h1 id="四、高级特性与工程化"><a href="#四、高级特性与工程化" class="headerlink" title="四、高级特性与工程化"></a>四、高级特性与工程化</h1><h2 id="4-1-环境区分与动态配置"><a href="#4-1-环境区分与动态配置" class="headerlink" title="4.1 环境区分与动态配置"></a>4.1 环境区分与动态配置</h2><h3 id="4-1-1-基于webpack-merge的多环境配置"><a href="#4-1-1-基于webpack-merge的多环境配置" class="headerlink" title="4.1.1 基于webpack-merge的多环境配置"></a>4.1.1 基于<code>webpack-merge</code>的多环境配置</h3><p><strong>核心作用</strong></p>
+<p>通过分离环境配置实现安全、高效的构建管理，避免生产环境误用开发配置。</p>
+<p><strong>基础目录结构</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">config/<br>├── webpack.common.js    <span class="hljs-comment"># 通用配置（入口/输出/公共规则）</span><br>├── webpack.dev.js       <span class="hljs-comment"># 开发配置（devServer/热更新）</span><br>└── webpack.prod.js      <span class="hljs-comment"># 生产配置（压缩/代码分割）</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>核心合并操作</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// webpack.dev.js</span><br><span class="hljs-keyword">const</span> &#123; merge &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack-merge&#x27;</span>);<br><span class="hljs-keyword">const</span> common = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./webpack.common.js&#x27;</span>);<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">merge</span>(common, &#123;<br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>,<br>  <span class="hljs-attr">devtool</span>: <span class="hljs-string">&#x27;eval-cheap-module-source-map&#x27;</span>,<br>  <span class="hljs-attr">devServer</span>: &#123;<br>    <span class="hljs-attr">hot</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">port</span>: <span class="hljs-number">8080</span><br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// webpack.prod.js</span><br><span class="hljs-keyword">const</span> &#123; merge &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack-merge&#x27;</span>);<br><span class="hljs-keyword">const</span> common = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./webpack.common.js&#x27;</span>);<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">merge</span>(common, &#123;<br>  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;production&#x27;</span>,<br>  <span class="hljs-attr">devtool</span>: <span class="hljs-string">&#x27;hidden-source-map&#x27;</span>,<br>  <span class="hljs-attr">optimization</span>: &#123;<br>    <span class="hljs-attr">minimize</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">minimizer</span>: [<span class="hljs-keyword">new</span> <span class="hljs-title class_">TerserPlugin</span>()]<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>配置合并规则解析</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">智能覆盖</td>
+<td align="left">同名属性直接覆盖（如output.path）</td>
+</tr>
+<tr>
+<td align="left">数组合并</td>
+<td align="left">对module.rules等数组执行concat操作（非覆盖！）</td>
+</tr>
+<tr>
+<td align="left">对象深度合并</td>
+<td align="left">嵌套对象递归合并（如optimization.splitChunks.cacheGroups）</td>
+</tr>
+<tr>
+<td align="left">特殊属性处理</td>
+<td align="left">plugins数组通过构造函数名称去重合并</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>避坑提示：若需完全覆盖数组（如plugins），使用 merge.withCustomize 自定义规则</p>
+</blockquote>
+<p><strong>企业级多环境扩展</strong></p>
+<p>(1) 动态环境变量注入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// package.json</span><br><span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>  <span class="hljs-string">&quot;build:prod&quot;</span>: <span class="hljs-string">&quot;NODE_ENV=production webpack --config config/webpack.prod.js&quot;</span>,<br>  <span class="hljs-string">&quot;build:stage&quot;</span>: <span class="hljs-string">&quot;NODE_ENV=staging webpack --config config/webpack.prod.js&quot;</span><br>&#125;<br><br><span class="hljs-comment">// webpack.prod.js</span><br><span class="hljs-keyword">const</span> env = process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span>; <span class="hljs-comment">// &#x27;production&#x27; 或 &#x27;staging&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>(2) 环境专属插件示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 仅生产环境启用Bundle分析</span><br><span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> === <span class="hljs-string">&#x27;production&#x27;</span>) &#123;<br>  prodConfig.<span class="hljs-property">plugins</span>.<span class="hljs-title function_">push</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">BundleAnalyzerPlugin</span>());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>高阶合并技巧</strong></p>
+<p>(1) 条件合并（根据环境变量）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">merge</span>(common, &#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    process.<span class="hljs-property">env</span>.<span class="hljs-property">USE_MOCK</span> &amp;&amp; <span class="hljs-keyword">new</span> <span class="hljs-title class_">MockPlugin</span>() <span class="hljs-comment">// 条件添加插件</span><br>  ].<span class="hljs-title function_">filter</span>(<span class="hljs-title class_">Boolean</span>)<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(2) 自定义合并规则</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> &#123; customizeArray &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack-merge&#x27;</span>);<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">merge</span>(&#123;<br>  <span class="hljs-attr">customizeArray</span>: <span class="hljs-title function_">customizeArray</span>(&#123;<br>    <span class="hljs-string">&#x27;module.rules&#x27;</span>: <span class="hljs-string">&#x27;replace&#x27;</span> <span class="hljs-comment">// 完全替换rules数组而非合并</span><br>  &#125;)<br>&#125;)(common, devConfig);<br></code></pre></td></tr></table></figure>
+
+<p>(3) TypeScript类型支持</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Configuration</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;webpack&#x27;</span>;<br><span class="hljs-keyword">import</span> &#123; merge &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;webpack-merge&#x27;</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-attr">common</span>: <span class="hljs-title class_">Configuration</span> = &#123; ... &#125;;<br><span class="hljs-keyword">const</span> <span class="hljs-attr">dev</span>: <span class="hljs-title class_">Configuration</span> = &#123; ... &#125;;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">merge</span>(common, dev); <span class="hljs-comment">// 自动推导完整类型</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>面试核心要点</strong></p>
+<p>Q：为何不用 Object.assign 合并配置？</p>
+<p>Object.assign 仅浅层合并，会破坏嵌套结构（如 module.rules），而 webpack-merge 支持深度递归合并</p>
+<p>Q：多环境配置如何防止信息泄露？</p>
+<ul>
+<li>生产环境禁用 devtool: eval 等不安全Source Map</li>
+<li>通过 DefinePlugin 替换API密钥等敏感变量</li>
+<li>开发配置绝不包含压缩密钥等生产凭据</li>
+</ul>
+<p>Q：如何验证配置合并结果？</p>
+<p>方案：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npx webpack --config config/webpack.prod.js --json &gt; stats.json<br></code></pre></td></tr></table></figure>
+
+<p>分析生成的stats.json文件确认最终配置</p>
+<h3 id="4-1-2-环境变量注入（dotenv与DefinePlugin结合）"><a href="#4-1-2-环境变量注入（dotenv与DefinePlugin结合）" class="headerlink" title="4.1.2 环境变量注入（dotenv与DefinePlugin结合）"></a>4.1.2 环境变量注入（<code>dotenv</code>与<code>DefinePlugin</code>结合）</h3><p><strong>基础工作流程</strong></p>
+<pre class="mermaid">graph LR
+  A[.env文件] --> B[dotenv解析] --> C[DefinePlugin转换] --> D[代码中process.env访问]</pre>
+
+<p><strong>标准实施步骤</strong></p>
+<p>(1) 安装依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install dotenv-webpack --save-dev<br></code></pre></td></tr></table></figure>
+
+<p>(2) 创建环境文件</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># .env.development</span><br><span class="hljs-attr">API_BASE_URL</span> = https://dev.example.com<br><span class="hljs-attr">DEBUG_MODE</span> = <span class="hljs-literal">true</span><br><span class="hljs-attr">SENTRY_DSN</span> = <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-comment"># 开发环境不启用监控</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># .env.production</span><br><span class="hljs-attr">API_BASE_URL</span> = https://api.example.com<br><span class="hljs-attr">DEBUG_MODE</span> = <span class="hljs-literal">false</span><br><span class="hljs-attr">SENTRY_DSN</span> = <span class="hljs-string">&#x27;https://key@sentry.io/project&#x27;</span> <span class="hljs-comment"># 生产环境监控</span><br></code></pre></td></tr></table></figure>
+
+<p>(3) Webpack配置集成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// webpack.config.js</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Dotenv</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;dotenv-webpack&#x27;</span>);<br><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack&#x27;</span>);<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function">(<span class="hljs-params">env</span>) =&gt;</span> (&#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dotenv</span>(&#123;<br>      <span class="hljs-attr">path</span>: <span class="hljs-string">`.env.<span class="hljs-subst">$&#123;env.mode&#125;</span>`</span>, <span class="hljs-comment">// 根据mode加载对应文件</span><br>      <span class="hljs-attr">systemvars</span>: <span class="hljs-literal">true</span>,          <span class="hljs-comment">// 兼容系统环境变量</span><br>      <span class="hljs-attr">safe</span>: <span class="hljs-literal">true</span>                 <span class="hljs-comment">// 如果不存在文件不报错</span><br>    &#125;),<br>    <span class="hljs-keyword">new</span> webpack.<span class="hljs-title class_">DefinePlugin</span>(&#123;<br>      <span class="hljs-string">&#x27;process.env.DEBUG_MODE&#x27;</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(process.<span class="hljs-property">env</span>.<span class="hljs-property">DEBUG_MODE</span>)<br>    &#125;)<br>  ]<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>安全防护机制</strong></p>
+<p>(1) 前端环境变量白名单</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 只允许特定前缀变量注入前端代码</span><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Dotenv</span>(&#123;<br>  <span class="hljs-attr">allow</span>: [<span class="hljs-string">&#x27;API_&#x27;</span>, <span class="hljs-string">&#x27;PUBLIC_&#x27;</span>] <span class="hljs-comment">// 禁止注入DB_PASSWORD等敏感变量</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>(2) .gitignore保护敏感文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gitignore"># 禁止提交生产环境文件<br>.env.production<br>.env.staging<br></code></pre></td></tr></table></figure>
+
+<p>(3) CI&#x2F;CD环境变量托管</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># GitHub Actions示例</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">production</span><br>  <span class="hljs-attr">run:</span> <span class="hljs-string">npm</span> <span class="hljs-string">run</span> <span class="hljs-string">build</span><br>  <span class="hljs-attr">env:</span><br>    <span class="hljs-attr">API_BASE_URL:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.PROD_API_URL</span> <span class="hljs-string">&#125;&#125;</span><br>    <span class="hljs-attr">SENTRY_DSN:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.SENTRY_DSN</span> <span class="hljs-string">&#125;&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>框架集成方案</strong></p>
+<p>(1) React (create-react-app)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 直接使用REACT_APP_前缀变量</span><br><span class="hljs-comment">// .env</span><br><span class="hljs-variable constant_">REACT_APP_API_URL</span>=<span class="hljs-attr">https</span>:<span class="hljs-comment">//api.example.com</span><br><br><span class="hljs-comment">// 组件内访问</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(process.<span class="hljs-property">env</span>.<span class="hljs-property">REACT_APP_API_URL</span>);<br></code></pre></td></tr></table></figure>
+
+<p>(2) Vue CLI</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// vue.config.js</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">chainWebpack</span>: <span class="hljs-function"><span class="hljs-params">config</span> =&gt;</span> &#123;<br>    config.<span class="hljs-title function_">plugin</span>(<span class="hljs-string">&#x27;define&#x27;</span>).<span class="hljs-title function_">tap</span>(<span class="hljs-function"><span class="hljs-params">args</span> =&gt;</span> &#123;<br>      args[<span class="hljs-number">0</span>][<span class="hljs-string">&#x27;process.env&#x27;</span>].<span class="hljs-property">API_URL</span> = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(process.<span class="hljs-property">env</span>.<span class="hljs-property">API_URL</span>)<br>      <span class="hljs-keyword">return</span> args<br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>企业级实践技巧</strong></p>
+<p>(1) 类型支持 (TypeScript)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs TypeScript"><span class="hljs-comment">// env.d.ts</span><br><span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> <span class="hljs-title class_">NodeJS</span> &#123;<br>  <span class="hljs-keyword">interface</span> <span class="hljs-title class_">ProcessEnv</span> &#123;<br>    <span class="hljs-keyword">readonly</span> <span class="hljs-attr">API_BASE_URL</span>: <span class="hljs-built_in">string</span>;<br>    <span class="hljs-keyword">readonly</span> <span class="hljs-variable constant_">DEBUG_MODE</span>?: <span class="hljs-string">&#x27;true&#x27;</span> | <span class="hljs-string">&#x27;false&#x27;</span>;<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 业务代码</span><br><span class="hljs-keyword">const</span> <span class="hljs-attr">apiUrl</span>: <span class="hljs-built_in">string</span> = process.<span class="hljs-property">env</span>.<span class="hljs-property">API_BASE_URL</span>;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 环境变量校验</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 启动时验证必要变量</span><br><span class="hljs-keyword">const</span> requiredVars = [<span class="hljs-string">&#x27;API_BASE_URL&#x27;</span>];<br>requiredVars.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">varName</span> =&gt;</span> &#123;<br>  <span class="hljs-keyword">if</span> (!process.<span class="hljs-property">env</span>[varName]) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`缺少环境变量: <span class="hljs-subst">$&#123;varName&#125;</span>`</span>);<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(3) 多环境配置生成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 根据环境生成不同配置对象</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">getConfig</span> = (<span class="hljs-params"></span>) =&gt; (&#123;<br>  <span class="hljs-attr">api</span>: &#123;<br>    <span class="hljs-attr">baseURL</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">API_BASE_URL</span>,<br>    <span class="hljs-attr">timeout</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> === <span class="hljs-string">&#x27;development&#x27;</span> ? <span class="hljs-number">30000</span> : <span class="hljs-number">10000</span><br>  &#125;,<br>  <span class="hljs-attr">sentry</span>: &#123;<br>    <span class="hljs-attr">dsn</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">SENTRY_DSN</span> || <span class="hljs-string">&#x27;&#x27;</span>,<br>    <span class="hljs-attr">enabled</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> === <span class="hljs-string">&#x27;production&#x27;</span><br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>面试高频问题</strong></p>
+<p>Q：前端为什么不能直接使用 process.env？</p>
+<p>Node.js 的 process.env 仅在构建阶段可用，DefinePlugin 通过字符串替换将变量硬编码到客户端代码中</p>
+<p>Q：如何防止敏感信息泄露？</p>
+<p>安全策略：</p>
+<ul>
+<li>使用 Dotenv 的 allowlist 过滤变量</li>
+<li>在 .gitignore 中排除生产环境文件</li>
+<li>敏感变量通过 CI&#x2F;CD 管道注入</li>
+</ul>
+<p>Q：开发环境与生产环境变量冲突怎么办？</p>
+<p>解决方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Dotenv</span>(&#123;<br>  <span class="hljs-attr">path</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">CUSTOM_ENV</span> ? <span class="hljs-string">`.env.<span class="hljs-subst">$&#123;process.env.CUSTOM_ENV&#125;</span>`</span> : <span class="hljs-literal">null</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>启动命令：CUSTOM_ENV&#x3D;staging npm run build</p>
+<h2 id="4-2-微前端集成"><a href="#4-2-微前端集成" class="headerlink" title="4.2 微前端集成"></a>4.2 微前端集成</h2><h3 id="4-2-1-Module-Federation原理与配置"><a href="#4-2-1-Module-Federation原理与配置" class="headerlink" title="4.2.1 Module Federation原理与配置"></a>4.2.1 Module Federation原理与配置</h3><p>Module Federation（模块联邦）是 Webpack 5 的革命性特性，实现跨应用实时共享模块，彻底改变微前端架构模式。</p>
+<p><strong>核心理念</strong></p>
+<pre class="mermaid">graph LR
+  AppA[应用A] -- 运行时加载 --> Shared[共享模块]
+  AppB[应用B] -- 直接使用 --> Shared
+  Shared[React/工具库/业务组件] -- 仅加载一次 --> Browser</pre>
+
+<p>核心价值：</p>
+<ul>
+<li>避免重复依赖加载</li>
+<li>应用独立开发部署</li>
+<li>运行时动态模块共享</li>
+</ul>
+<p><strong>核心配置项解析</strong></p>
+<p>(1) 基础配置结构</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// app1/webpack.config.js</span><br><span class="hljs-keyword">const</span> &#123; <span class="hljs-title class_">ModuleFederationPlugin</span> &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack&#x27;</span>).<span class="hljs-property">container</span>;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModuleFederationPlugin</span>(&#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;app1&#x27;</span>,                  <span class="hljs-comment">// 唯一ID（必填）</span><br>      <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;remoteEntry.js&#x27;</span>,    <span class="hljs-comment">// 入口文件名</span><br>      <span class="hljs-attr">exposes</span>: &#123;                     <span class="hljs-comment">// 暴露给外部的模块</span><br>        <span class="hljs-string">&#x27;./Button&#x27;</span>: <span class="hljs-string">&#x27;./src/Button.jsx&#x27;</span>,<br>        <span class="hljs-string">&#x27;./Store&#x27;</span>: <span class="hljs-string">&#x27;./src/redux/store.js&#x27;</span><br>      &#125;,<br>      <span class="hljs-attr">remotes</span>: &#123;                     <span class="hljs-comment">// 引用远程模块</span><br>        <span class="hljs-attr">app2</span>: <span class="hljs-string">&#x27;app2@http://cdn.com/app2/remoteEntry.js&#x27;</span><br>      &#125;,<br>      <span class="hljs-attr">shared</span>: &#123;                      <span class="hljs-comment">// 共享依赖</span><br>        <span class="hljs-attr">react</span>: &#123; <span class="hljs-attr">singleton</span>: <span class="hljs-literal">true</span> &#125;,   <span class="hljs-comment">// 单例模式</span><br>        <span class="hljs-string">&#x27;react-dom&#x27;</span>: &#123; <span class="hljs-attr">eager</span>: <span class="hljs-literal">true</span> &#125;  <span class="hljs-comment">// 立即加载</span><br>      &#125;<br>    &#125;)<br>  ]<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 关键配置项说明</p>
+<table>
+<thead>
+<tr>
+<th align="left">配置项</th>
+<th align="left">类型</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">name</td>
+<td align="left">string</td>
+<td align="left">应用唯一标识（全局命名空间）</td>
+</tr>
+<tr>
+<td align="left">filename</td>
+<td align="left">string</td>
+<td align="left">生成的入口文件（默认remoteEntry.js）</td>
+</tr>
+<tr>
+<td align="left">exposes</td>
+<td align="left">object</td>
+<td align="left">暴露的模块路径（key为公共路径，value为本地路径）</td>
+</tr>
+<tr>
+<td align="left">remotes</td>
+<td align="left">object</td>
+<td align="left">远程模块映射（key为引用名，value为<code>&lt;name&gt;@&lt;url&gt;</code>格式）</td>
+</tr>
+<tr>
+<td align="left">shared</td>
+<td align="left">object&#x2F;array</td>
+<td align="left">共享的依赖库（可配置加载策略）</td>
+</tr>
+</tbody></table>
+<p><strong>共享依赖策略</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">shared</span>: &#123;<br>  <span class="hljs-attr">react</span>: &#123;<br>    <span class="hljs-attr">singleton</span>: <span class="hljs-literal">true</span>,    <span class="hljs-comment">// 只加载一个版本（不同版本会警告）</span><br>    <span class="hljs-attr">requiredVersion</span>: <span class="hljs-string">&#x27;^17.0.0&#x27;</span>,  <span class="hljs-comment">// 指定版本范围</span><br>    <span class="hljs-attr">eager</span>: <span class="hljs-literal">false</span>,       <span class="hljs-comment">// 不立即加载（异步按需）</span><br>    <span class="hljs-attr">strictVersion</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// 严格版本匹配（不匹配报错）</span><br>  &#125;,<br>  <span class="hljs-attr">lodash</span>: &#123;<br>    <span class="hljs-attr">eager</span>: <span class="hljs-literal">true</span>,        <span class="hljs-comment">// 主应用启动时立即加载</span><br>    <span class="hljs-attr">version</span>: <span class="hljs-string">&#x27;4.17.21&#x27;</span>  <span class="hljs-comment">// 显式声明版本</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>版本冲突解决方案：</p>
+<ul>
+<li>使用 singleton: true 强制单例</li>
+<li>通过 requiredVersion 约束版本范围</li>
+<li>自定义 get 方法实现版本降级</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">shared</span>: &#123;<br>  <span class="hljs-attr">react</span>: &#123;<br>    <span class="hljs-attr">get</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;react&#x27;</span>))<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>动态远程加载</strong></p>
+<p>(1) 运行时决定远程地址</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 业务代码中动态加载</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">RemoteButton</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">lazy</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> url = <span class="hljs-variable language_">window</span>.<span class="hljs-property">isAdmin</span> <br>    ? <span class="hljs-string">&#x27;http://admin-app/remoteEntry.js&#x27;</span><br>    : <span class="hljs-string">&#x27;http://user-app/remoteEntry.js&#x27;</span>;<br>    <br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;app2/Button&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">module</span> =&gt;</span> (&#123;<br>    <span class="hljs-attr">default</span>: <span class="hljs-variable language_">module</span>.<span class="hljs-property">Button</span><br>  &#125;));<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(2) Promise-based 远程解析</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// webpack.config.js</span><br><span class="hljs-attr">remotes</span>: &#123;<br>  <span class="hljs-attr">app2</span>: <span class="hljs-string">`promise new Promise(resolve =&gt; &#123;</span><br><span class="hljs-string">    const urlParams = new URLSearchParams(window.location.search);</span><br><span class="hljs-string">    const version = urlParams.get(&#x27;app2Version&#x27;) || &#x27;latest&#x27;;</span><br><span class="hljs-string">    resolve(&#123;</span><br><span class="hljs-string">      get: () =&gt; window.app2[version],</span><br><span class="hljs-string">      init: (arg) =&gt; window.app2[arg].init(arg)</span><br><span class="hljs-string">    &#125;);</span><br><span class="hljs-string">  &#125;)`</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>企业级应用场景</strong></p>
+<p>(1) 微前端架构</p>
+<pre class="mermaid">graph TD
+  Shell[主应用] --> AppA[产品模块]
+  Shell --> AppB[订单模块]
+  Shell --> AppC[用户模块]
+  shared[共享React/状态管理] --> Shell & AppA & AppB & AppC</pre>
+
+<p>(2) 跨团队组件共享</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 组件提供方</span><br><span class="hljs-attr">exposes</span>: &#123;<br>  <span class="hljs-string">&#x27;./DataTable&#x27;</span>: <span class="hljs-string">&#x27;./src/components/DataTable.jsx&#x27;</span><br>&#125;<br><br><span class="hljs-comment">// 消费者应用</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">DataTable</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;team_ui/DataTable&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>(3) 插件化系统</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 动态注册插件</span><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">registerPlugin</span> = <span class="hljs-function">(<span class="hljs-params">name, <span class="hljs-variable language_">module</span></span>) =&gt;</span> &#123;<br>  __webpack_require__.<span class="hljs-property">m</span>[name] = <span class="hljs-variable language_">module</span>;<br>&#125;;<br><br><span class="hljs-comment">// 插件使用</span><br><span class="hljs-keyword">const</span> plugin = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;paymentPlugin/PayModule&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>性能优化策略</strong></p>
+<p>(1) 共享依赖预加载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs HTML">&lt;!-- 主应用HTML中预加载 --&gt;<br>&lt;link rel=&quot;preload&quot; href=&quot;https://cdn.com/shared-react.js&quot; as=&quot;script&quot;&gt;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 按需加载暴露模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 使用import()动态加载</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">ProductModal</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;productApp/Modal&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>(3) 请求合并（HTTP&#x2F;2）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 配置多个exposes时生成单个入口文件</span><br><span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;remoteEntry.js?exposes=Button,Store&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>常见问题解决方案</strong></p>
+<p>Q：如何解决跨域问题？</p>
+<p>方案1：开发环境配置 devServer.headers</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">devServer</span>: &#123;<br>  <span class="hljs-attr">headers</span>: &#123; <span class="hljs-string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="hljs-string">&#x27;*&#x27;</span> &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>方案2：生产环境配置CDN CORS策略</p>
+<p>Q：共享模块版本不兼容？</p>
+<p>方案：</p>
+<ul>
+<li>使用 requiredVersion 约束版本</li>
+<li>封装适配层接口</li>
+<li>降级到独立加载模式</li>
+</ul>
+<p>Q：如何调试远程模块？</p>
+<p>方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// webpack.config.js</span><br><span class="hljs-attr">devtool</span>: <span class="hljs-string">&#x27;source-map&#x27;</span>,<br><span class="hljs-attr">plugins</span>: [<br>  <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModuleFederationPlugin</span>(&#123; <br>    <span class="hljs-attr">exposes</span>: &#123; ... &#125;,<br>    <span class="hljs-attr">shared</span>: &#123; <span class="hljs-string">&#x27;react&#x27;</span>: &#123; <span class="hljs-attr">shareScope</span>: <span class="hljs-string">&#x27;debug&#x27;</span> &#125; &#125; <span class="hljs-comment">// 独立作用域</span><br>  &#125;)<br>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-2-跨应用共享模块策略"><a href="#4-2-2-跨应用共享模块策略" class="headerlink" title="4.2.2 跨应用共享模块策略"></a>4.2.2 跨应用共享模块策略</h3><p><strong>共享模块类型与策略矩阵</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">模块类型</th>
+<th align="left">共享策略</th>
+<th align="left">风险控制</th>
+<th align="left">典型案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">基础框架</td>
+<td align="left">强制单例 + 严格版本</td>
+<td align="left">singleton: true + requiredVersion</td>
+<td align="left">React&#x2F;Vue 核心库</td>
+</tr>
+<tr>
+<td align="left">UI组件库</td>
+<td align="left">按需加载 + 宽松版本</td>
+<td align="left">eager: false + 语义化版本</td>
+<td align="left">Ant Design &#x2F; Element UI</td>
+</tr>
+<tr>
+<td align="left">状态管理</td>
+<td align="left">单例 + 自定义初始化</td>
+<td align="left">init 回调统一配置</td>
+<td align="left">Redux Store &#x2F; Pinia</td>
+</tr>
+<tr>
+<td align="left">业务工具库</td>
+<td align="left">多版本并行 + 隔离</td>
+<td align="left">import() 动态加载</td>
+<td align="left">支付SDK&#x2F;埋点工具</td>
+</tr>
+<tr>
+<td align="left">配置对象</td>
+<td align="left">不共享 + 独立加载</td>
+<td align="left">通过API通信获取</td>
+<td align="left">权限配置&#x2F;多语言资源</td>
+</tr>
+</tbody></table>
+<p><strong>版本冲突解决方案</strong></p>
+<p>(1) 语义化版本控制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">shared</span>: &#123;<br>  <span class="hljs-string">&#x27;react-dom&#x27;</span>: &#123;<br>    <span class="hljs-attr">requiredVersion</span>: <span class="hljs-string">&#x27;^18.1.0&#x27;</span>, <span class="hljs-comment">// 允许18.x最新版本</span><br>    <span class="hljs-attr">strictVersion</span>: <span class="hljs-literal">false</span>       <span class="hljs-comment">// 非严格匹配</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 版本降级适配层</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 创建适配模块</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">compatibleVue2</span>(<span class="hljs-params">originalVue</span>) &#123;<br>  <span class="hljs-keyword">return</span> originalVue.<span class="hljs-title function_">extend</span>(&#123; <span class="hljs-comment">/* 兼容逻辑 */</span> &#125;);<br>&#125;<br><br><span class="hljs-comment">// 消费者应用</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Vue</span> = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;legacyApp/vue&#x27;</span>);<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">CompatibleVue</span> = <span class="hljs-title function_">compatibleVue2</span>(<span class="hljs-title class_">Vue</span>);<br></code></pre></td></tr></table></figure>
+
+<p>(3) 运行时版本检测</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 主应用初始化时</span><br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">window</span>.<span class="hljs-property">sharedReact</span> &amp;&amp; <span class="hljs-variable language_">window</span>.<span class="hljs-property">sharedReact</span>.<span class="hljs-property">version</span> !== <span class="hljs-string">&#x27;18.2.0&#x27;</span>) &#123;<br>  <span class="hljs-title function_">showWarning</span>(<span class="hljs-string">&#x27;React版本不兼容，正在降级...&#x27;</span>);<br>  <span class="hljs-title function_">loadFallbackReact</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>性能优化策略</strong></p>
+<p>(1) 层级化共享</p>
+<p>架构设计：</p>
+<pre class="mermaid">graph BT
+  MainApp[主应用] -->|共享| Core[核心库]
+  SubAppA[子应用A] --> Core
+  SubAppB[子应用B] --> Core
+  SubAppA -->|私有共享| UtilsA[工具库A]
+  SubAppB -->|私有共享| UtilsB[工具库B]</pre>
+
+<p>(2) 共享模块预加载</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs HTML">&lt;!-- 主应用HTML --&gt;<br>&lt;link rel=&quot;preload&quot; href=&quot;https://cdn.com/shared-react.js&quot; as=&quot;script&quot; crossorigin&gt;<br>&lt;link rel=&quot;preload&quot; href=&quot;https://cdn.com/antd.js&quot; as=&quot;script&quot; crossorigin&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// Webpack配置</span><br><span class="hljs-attr">shared</span>: &#123;<br>  <span class="hljs-attr">react</span>: &#123; <span class="hljs-attr">eager</span>: <span class="hljs-literal">true</span> &#125; <span class="hljs-comment">// 同步加载</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 按路由动态共享</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 动态加载共享配置</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">getSharedDeps</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">if</span> (route.<span class="hljs-property">path</span>.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;/admin&#x27;</span>)) &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      <span class="hljs-string">&#x27;admin-libs&#x27;</span>: <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;admin-app/shared-libs&#x27;</span>)<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> &#123;&#125;<br>&#125;<br><br><span class="hljs-comment">// 包裹应用渲染</span><br>&lt;<span class="hljs-title class_">ModuleFederationContext</span>.<span class="hljs-property">Provider</span> value=&#123;<span class="hljs-title function_">getSharedDeps</span>()&#125;&gt;<br>  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span><br>&lt;/<span class="hljs-title class_">ModuleFederationContext</span>.<span class="hljs-property">Provider</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>安全沙箱策略</strong></p>
+<p>(1) CSS隔离方案</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// Webpack配置</span><br>&#123;<br>  <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>,<br>  <span class="hljs-attr">use</span>: [<br>    &#123;<br>      <span class="hljs-attr">loader</span>: <span class="hljs-string">&#x27;style-loader&#x27;</span>,<br>      <span class="hljs-attr">options</span>: &#123; <br>        <span class="hljs-attr">injectType</span>: <span class="hljs-string">&#x27;shadowDom&#x27;</span> <span class="hljs-comment">// 使用Shadow DOM隔离</span><br>      &#125;<br>    &#125;,<br>    <span class="hljs-string">&#x27;css-loader&#x27;</span><br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) JS执行沙箱</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 创建安全执行环境</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">safeEval</span> = (<span class="hljs-params">code, sandbox</span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Proxy</span>(sandbox, &#123;<br>    <span class="hljs-attr">has</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">get</span>: <span class="hljs-function">(<span class="hljs-params">target, key</span>) =&gt;</span> key === <span class="hljs-title class_">Symbol</span>.<span class="hljs-property">unscopables</span> ? <span class="hljs-literal">undefined</span> : target[key]<br>  &#125;);<br>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Function</span>(<span class="hljs-string">&#x27;sandbox&#x27;</span>, <span class="hljs-string">`with(sandbox)&#123;<span class="hljs-subst">$&#123;code&#125;</span>&#125;`</span>).<span class="hljs-title function_">bind</span>(proxy)(proxy);<br>&#125;<br><br><span class="hljs-comment">// 执行远程模块</span><br><span class="hljs-keyword">const</span> remoteModule = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;untrustedApp/module&#x27;</span>);<br><span class="hljs-title function_">safeEval</span>(remoteModule.<span class="hljs-property">init</span>, &#123; <span class="hljs-variable language_">console</span>, <span class="hljs-title class_">Date</span> &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(3) API访问控制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 创建安全代理对象</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">createSafeAPI</span> = (<span class="hljs-params"></span>) =&gt; (&#123;<br>  <span class="hljs-attr">localStorage</span>: &#123;<br>    <span class="hljs-attr">getItem</span>: <span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> key.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;safe_&#x27;</span>) ? <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(key) : <span class="hljs-literal">null</span>,<br>    <span class="hljs-attr">setItem</span>: <span class="hljs-function">(<span class="hljs-params">key, val</span>) =&gt;</span> &#123; <span class="hljs-comment">/* 过滤写入 */</span> &#125;<br>  &#125;<br>&#125;);<br><br><span class="hljs-comment">// 注入共享API</span><br><span class="hljs-attr">shared</span>: &#123;<br>  <span class="hljs-string">&#x27;@safe-api&#x27;</span>: &#123;<br>    <span class="hljs-attr">import</span>: createSafeAPI,<br>    <span class="hljs-attr">eager</span>: <span class="hljs-literal">true</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>监控与诊断体系</strong></p>
+<p>(1) 共享模块健康检查</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 运行时监控</span><br><span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;federated-module-error&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>  sentry.<span class="hljs-title function_">captureException</span>(e.<span class="hljs-property">detail</span>.<span class="hljs-property">error</span>);<br>  <span class="hljs-title function_">showErrorToast</span>(<span class="hljs-string">`模块加载失败: <span class="hljs-subst">$&#123;e.detail.moduleName&#125;</span>`</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(2) 性能追踪</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 记录模块加载时间</span><br>performance.<span class="hljs-title function_">mark</span>(<span class="hljs-string">&#x27;start-load-shared&#x27;</span>);<br><span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;shared-lib&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>  performance.<span class="hljs-title function_">measure</span>(<span class="hljs-string">&#x27;shared-load&#x27;</span>, <span class="hljs-string">&#x27;start-load-shared&#x27;</span>);<br>  <span class="hljs-title function_">reportPerfData</span>();<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(3) 依赖关系可视化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 生成共享图谱</span><br>npx module-federation-stats --json &gt; stats.json<br></code></pre></td></tr></table></figure>
+
+<p><strong>面试深度问题</strong></p>
+<p>Q：如何实现CSS跨应用隔离？</p>
+<ul>
+<li>Shadow DOM 原生隔离</li>
+<li>CSS Module 命名空间</li>
+<li>PostCSS 添加作用域前缀</li>
+<li>运行时样式卸载机制</li>
+</ul>
+<p>Q：共享Redux Store时如何避免污染？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 创建命名空间Store</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">createScopedStore</span> = (<span class="hljs-params">rootStore</span>) =&gt; (&#123;<br>  <span class="hljs-attr">dispatch</span>: <span class="hljs-function"><span class="hljs-params">action</span> =&gt;</span> rootStore.<span class="hljs-title function_">dispatch</span>(&#123; ...action, <span class="hljs-attr">meta</span>: &#123; <span class="hljs-attr">scope</span>: <span class="hljs-string">&#x27;app1&#x27;</span> &#125; &#125;),<br>  <span class="hljs-attr">getState</span>: <span class="hljs-function">() =&gt;</span> rootStore.<span class="hljs-title function_">getState</span>().<span class="hljs-property">app1</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>Q：如何设计灰度发布方案？</p>
+<p>架构：</p>
+<ul>
+<li>通过URL参数控制版本 (?shared_react&#x3D;18.2)</li>
+<li>配置中心下发共享策略</li>
+<li>动态加载对应版本的 remoteEntry.js</li>
+<li>监控错误率自动回滚</li>
+</ul>
+<h2 id="4-3-自定义构建流程"><a href="#4-3-自定义构建流程" class="headerlink" title="4.3 自定义构建流程"></a>4.3 自定义构建流程</h2><h3 id="4-3-1-编写CLI工具集成Webpack"><a href="#4-3-1-编写CLI工具集成Webpack" class="headerlink" title="4.3.1 编写CLI工具集成Webpack"></a>4.3.1 编写CLI工具集成Webpack</h3><p><strong>CLI 工具核心架构</strong></p>
+<pre class="mermaid">graph TD
+  CLI[命令行工具] --> Parser[参数解析]
+  Parser --> Config[动态生成Webpack配置]
+  Config --> Executor[执行Webpack构建]
+  Executor --> Reporter[构建结果分析]
+  Reporter --> Notifier[通知机制]</pre>
+
+<p><strong>基础实现步骤</strong></p>
+<p>(1) 初始化 CLI 工程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> my-webpack-cli &amp;&amp; <span class="hljs-built_in">cd</span> my-webpack-cli<br>npm init -y<br>npm install webpack webpack-cli commander chalk ora @types/node -D<br></code></pre></td></tr></table></figure>
+
+<p>(2) 创建命令入口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// bin/cli.js</span><br>#!<span class="hljs-regexp">/usr/</span>bin/env node<br><span class="hljs-keyword">const</span> &#123; program &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;commander&#x27;</span>);<br><span class="hljs-keyword">const</span> build = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;../lib/build&#x27;</span>);<br><br>program<br>  .<span class="hljs-title function_">command</span>(<span class="hljs-string">&#x27;build&#x27;</span>)<br>  .<span class="hljs-title function_">option</span>(<span class="hljs-string">&#x27;--env &lt;env&gt;&#x27;</span>, <span class="hljs-string">&#x27;设置构建环境&#x27;</span>, <span class="hljs-string">&#x27;production&#x27;</span>)<br>  .<span class="hljs-title function_">option</span>(<span class="hljs-string">&#x27;--analyze&#x27;</span>, <span class="hljs-string">&#x27;启用包分析&#x27;</span>)<br>  .<span class="hljs-title function_">action</span>(<span class="hljs-function"><span class="hljs-params">options</span> =&gt;</span> &#123;<br>    <span class="hljs-title function_">build</span>(options);<br>  &#125;);<br><br>program.<span class="hljs-title function_">parse</span>(process.<span class="hljs-property">argv</span>);<br></code></pre></td></tr></table></figure>
+
+<p>(3) 动态生成 Webpack 配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// lib/build.js</span><br><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack&#x27;</span>);<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">generateConfig</span> = (<span class="hljs-params">options</span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> base = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./webpack.base&#x27;</span>);<br>  <span class="hljs-keyword">const</span> envConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">`./webpack.<span class="hljs-subst">$&#123;options.env&#125;</span>`</span>);<br>  <br>  <span class="hljs-keyword">return</span> &#123; <br>    ...base, <br>    ...envConfig,<br>    <span class="hljs-attr">plugins</span>: options.<span class="hljs-property">analyze</span> <br>      ? [...envConfig.<span class="hljs-property">plugins</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">BundleAnalyzerPlugin</span>()] <br>      : envConfig.<span class="hljs-property">plugins</span><br>  &#125;;<br>&#125;;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title function_">async</span> (options) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> config = <span class="hljs-title function_">generateConfig</span>(options);<br>  <span class="hljs-keyword">const</span> compiler = <span class="hljs-title function_">webpack</span>(config);<br>  <br>  <span class="hljs-comment">// 执行构建</span><br>  compiler.<span class="hljs-title function_">run</span>(<span class="hljs-function">(<span class="hljs-params">err, stats</span>) =&gt;</span> &#123; ... &#125;);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>核心增强功能实现</strong></p>
+<p>(1) 多进程编译加速</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 集成 thread-loader</span><br><span class="hljs-keyword">const</span> threadLoader = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;thread-loader&#x27;</span>);<br><br>threadLoader.<span class="hljs-title function_">warmup</span>(&#123;<br>  <span class="hljs-attr">workers</span>: <span class="hljs-number">4</span>,<br>  <span class="hljs-attr">poolTimeout</span>: <span class="hljs-title class_">Infinity</span><br>&#125;, [<span class="hljs-string">&#x27;babel-loader&#x27;</span>]);<br><br><span class="hljs-comment">// webpack 配置</span><br><span class="hljs-attr">module</span>: &#123;<br>  <span class="hljs-attr">rules</span>: [&#123;<br>    <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js$/</span>,<br>    <span class="hljs-attr">use</span>: [<br>      &#123; <span class="hljs-attr">loader</span>: <span class="hljs-string">&#x27;thread-loader&#x27;</span>, <span class="hljs-attr">options</span>: &#123; <span class="hljs-attr">workers</span>: <span class="hljs-number">4</span> &#125; &#125;,<br>      <span class="hljs-string">&#x27;babel-loader&#x27;</span><br>    ]<br>  &#125;]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 智能缓存策略</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 根据环境启用缓存</span><br><span class="hljs-keyword">const</span> &#123; cache &#125; = options.<span class="hljs-property">env</span> === <span class="hljs-string">&#x27;development&#x27;</span><br>  ? &#123; <span class="hljs-attr">cache</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;memory&#x27;</span> &#125; &#125;<br>  : &#123; <span class="hljs-attr">cache</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;filesystem&#x27;</span>, <span class="hljs-attr">cacheDirectory</span>: <span class="hljs-string">&#x27;.cache&#x27;</span> &#125; &#125;;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  ...config,<br>  cache<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 构建进度可视化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 使用 ora + webpack 进度插件</span><br><span class="hljs-keyword">const</span> ora = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ora&#x27;</span>);<br><span class="hljs-keyword">const</span> spinner = <span class="hljs-title function_">ora</span>(<span class="hljs-string">&#x27;开始构建...&#x27;</span>).<span class="hljs-title function_">start</span>();<br><br><span class="hljs-keyword">new</span> webpack.<span class="hljs-title class_">ProgressPlugin</span>(<span class="hljs-function">(<span class="hljs-params">percentage, message</span>) =&gt;</span> &#123;<br>  spinner.<span class="hljs-property">text</span> = <span class="hljs-string">`构建进度 <span class="hljs-subst">$&#123;(percentage * <span class="hljs-number">100</span>).toFixed(<span class="hljs-number">2</span>)&#125;</span>%: <span class="hljs-subst">$&#123;message&#125;</span>`</span>;<br>  <span class="hljs-keyword">if</span> (percentage === <span class="hljs-number">1</span>) spinner.<span class="hljs-title function_">succeed</span>(<span class="hljs-string">&#x27;构建完成&#x27;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>企业级功能扩展</strong></p>
+<p>(1) 配置文件热更新</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 监听配置变化</span><br><span class="hljs-keyword">const</span> chokidar = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;chokidar&#x27;</span>);<br><br>chokidar.<span class="hljs-title function_">watch</span>(<span class="hljs-string">&#x27;config/**/*.js&#x27;</span>).<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;change&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;配置更新，自动重启构建...&#x27;</span>);<br>  compiler.<span class="hljs-title function_">close</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    compiler = <span class="hljs-title function_">webpack</span>(<span class="hljs-title function_">generateConfig</span>(options));<br>    compiler.<span class="hljs-title function_">run</span>();<br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(2) 多项目配置管理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 支持项目选择</span><br>program<br>  .<span class="hljs-title function_">command</span>(<span class="hljs-string">&#x27;build&#x27;</span>)<br>  .<span class="hljs-title function_">option</span>(<span class="hljs-string">&#x27;--project &lt;name&gt;&#x27;</span>, <span class="hljs-string">&#x27;指定项目名称&#x27;</span>)<br>  .<span class="hljs-title function_">action</span>(<span class="hljs-function"><span class="hljs-params">options</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> projectConfig = <span class="hljs-title function_">loadProjectConfig</span>(options.<span class="hljs-property">project</span>);<br>    <span class="hljs-title function_">build</span>(&#123; ...options, ...projectConfig &#125;);<br>  &#125;);<br><br><span class="hljs-comment">// 项目配置文件</span><br><span class="hljs-comment">// projects/dashboard.json</span><br>&#123;<br>  <span class="hljs-string">&quot;entry&quot;</span>: <span class="hljs-string">&quot;./src/dashboard.js&quot;</span>,<br>  <span class="hljs-string">&quot;outputPath&quot;</span>: <span class="hljs-string">&quot;dist/dashboard&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 构建结果分析报告</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 生成HTML报告</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">ReportGenerator</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack-bundle-analyzer&#x27;</span>).<span class="hljs-property">BundleAnalyzerPlugin</span>;<br><br>compiler.<span class="hljs-title function_">run</span>(<span class="hljs-function">(<span class="hljs-params">err, stats</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> report = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReportGenerator</span>(stats.<span class="hljs-title function_">toJson</span>()).<span class="hljs-title function_">generate</span>();<br>  fs.<span class="hljs-title function_">writeFileSync</span>(<span class="hljs-string">&#x27;report.html&#x27;</span>, report.<span class="hljs-property">html</span>);<br>  <br>  <span class="hljs-comment">// 关键指标提取</span><br>  <span class="hljs-keyword">const</span> &#123; assets, warnings &#125; = stats.<span class="hljs-title function_">toJson</span>();<br>  <span class="hljs-keyword">const</span> mainSize = assets.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">a</span> =&gt;</span> a.<span class="hljs-property">name</span> === <span class="hljs-string">&#x27;main.js&#x27;</span>).<span class="hljs-property">size</span>;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`主包体积: <span class="hljs-subst">$&#123;(mainSize / <span class="hljs-number">1024</span>).toFixed(<span class="hljs-number">2</span>)&#125;</span>KB`</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>发布与集成</strong></p>
+<p>(1) 全局安装</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JSON"><span class="hljs-comment">// package.json</span><br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;my-webpack-cli&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;bin&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;mwpack&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;./bin/cli.js&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install -g my-webpack-cli<br>mwpack build --<span class="hljs-built_in">env</span>=<span class="hljs-built_in">test</span><br></code></pre></td></tr></table></figure>
+
+<p>(2) CI&#x2F;CD 集成</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># .gitlab-ci.yml</span><br><span class="hljs-attr">build_prod:</span><br>  <span class="hljs-attr">stage:</span> <span class="hljs-string">build</span><br>  <span class="hljs-attr">script:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">mwpack</span> <span class="hljs-string">build</span> <span class="hljs-string">--env=production</span> <span class="hljs-string">--analyze</span><br>  <span class="hljs-attr">artifacts:</span><br>    <span class="hljs-attr">paths:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">dist/</span><br></code></pre></td></tr></table></figure>
+
+<p>(3) 插件扩展机制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 插件系统设计</span><br>program.<span class="hljs-property">plugin</span> = <span class="hljs-function">(<span class="hljs-params">hook, fn</span>) =&gt;</span> &#123;<br>  pluginHooks[hook] = [...(pluginHooks[hook] || []), fn];<br>&#125;;<br><br><span class="hljs-comment">// 用户插件</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-function">(<span class="hljs-params">cli</span>) =&gt;</span> &#123;<br>  cli.<span class="hljs-title function_">plugin</span>(<span class="hljs-string">&#x27;beforeBuild&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">config</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;注入自定义规则&#x27;</span>);<br>    config.<span class="hljs-property">module</span>.<span class="hljs-property">rules</span>.<span class="hljs-title function_">push</span>(...);<br>  &#125;);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>面试要点总结</strong></p>
+<p>Q：为什么需要 CLI 封装 Webpack？</p>
+<ul>
+<li>解决配置碎片化、统一团队规范、集成高级功能（如安全扫描&#x2F;性能分析）</li>
+</ul>
+<p>Q：如何实现配置的动态生成？</p>
+<p>关键技术：</p>
+<ul>
+<li>基于环境变量合并配置</li>
+<li>函数式配置生成（如 defineConfig）</li>
+<li>插件扩展点</li>
+</ul>
+<p>Q：构建过程卡死如何诊断？</p>
+<p>排查方案：</p>
+<ul>
+<li>添加 –inspect-brk 调试 Webpack</li>
+<li>使用 progress-plugin 定位卡住阶段</li>
+<li>分析线程锁（特别是多进程场景）</li>
+</ul>
+<p>Q：如何确保 CLI 的向后兼容？</p>
+<p>策略：</p>
+<ul>
+<li>语义化版本控制</li>
+<li>弃用警告系统</li>
+<li>迁移指南生成器</li>
+</ul>
+<h3 id="4-3-2-钩子函数深度使用（afterEmit-done）"><a href="#4-3-2-钩子函数深度使用（afterEmit-done）" class="headerlink" title="4.3.2 钩子函数深度使用（afterEmit&#x2F;done）"></a>4.3.2 钩子函数深度使用（<code>afterEmit</code>&#x2F;<code>done</code>）</h3><p><strong>核心钩子分类与时机</strong></p>
+<pre class="mermaid">graph LR
+  A[初始化] --> B[编译] --> C[封包] --> D[优化] --> E[输出] --> F[结束]
+  
+  subgraph 关键钩子
+    B --> compiler.make(开始编译)
+    C --> compilation.processAssets(资源处理)
+    E -->|输出后| compiler.afterEmit(资源写入磁盘)
+    F --> compiler.done(构建完成)
+  end</pre>
+
+<p><strong>钩子注册机制详解</strong></p>
+<p>(1) 基础注册方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 同步钩子</span><br>compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">afterEmit</span>.<span class="hljs-title function_">tap</span>(<span class="hljs-string">&#x27;MyPlugin&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">compilation</span>) =&gt;</span> &#123;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;资源已写入磁盘&#x27;</span>);<br>&#125;);<br><br><span class="hljs-comment">// 异步钩子 (支持Promise)</span><br>compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">done</span>.<span class="hljs-title function_">tapPromise</span>(<span class="hljs-string">&#x27;MyPlugin&#x27;</span>, <span class="hljs-title function_">async</span> (stats) =&gt; &#123;<br>  <span class="hljs-keyword">await</span> <span class="hljs-title function_">uploadToCDN</span>(stats); <br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(2) 执行优先级控制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 通过stage调整执行顺序（数值越小优先级越高）</span><br>compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">afterEmit</span>.<span class="hljs-title function_">tap</span>(<br>  &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;PluginA&#x27;</span>, <span class="hljs-attr">stage</span>: -<span class="hljs-number">10</span> &#125;, <span class="hljs-comment">// 优先执行</span><br>  <span class="hljs-function">() =&gt;</span> &#123; ... &#125;<br>);<br><br>compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">afterEmit</span>.<span class="hljs-title function_">tap</span>(<br>  &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;PluginB&#x27;</span>, <span class="hljs-attr">stage</span>: <span class="hljs-number">10</span> &#125;, <span class="hljs-comment">// 延后执行</span><br>  <span class="hljs-function">() =&gt;</span> &#123; ... &#125;<br>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>企业级应用场景</strong></p>
+<p>(1) 构建结果分析（afterEmit）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">BuildAnalyzerPlugin</span> &#123;<br>  <span class="hljs-title function_">apply</span>(<span class="hljs-params">compiler</span>) &#123;<br>    compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">afterEmit</span>.<span class="hljs-title function_">tap</span>(<span class="hljs-string">&#x27;BuildAnalyzer&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">compilation</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">const</span> assets = compilation.<span class="hljs-title function_">getAssets</span>();<br>      <span class="hljs-keyword">const</span> report = &#123;<br>        <span class="hljs-attr">buildTime</span>: <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() - compilation.<span class="hljs-property">startTime</span>,<br>        <span class="hljs-attr">totalSize</span>: assets.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">sum, asset</span>) =&gt;</span> sum + asset.<span class="hljs-property">size</span>, <span class="hljs-number">0</span>),<br>        <span class="hljs-attr">largestAsset</span>: assets.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b.<span class="hljs-property">size</span> - a.<span class="hljs-property">size</span>)[<span class="hljs-number">0</span>].<span class="hljs-property">name</span><br>      &#125;;<br>      <br>      <span class="hljs-comment">// 写入分析报告</span><br>      compilation.<span class="hljs-title function_">emitAsset</span>(<br>        <span class="hljs-string">&#x27;build-report.json&#x27;</span>,<br>        <span class="hljs-keyword">new</span> sources.<span class="hljs-title class_">RawSource</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(report))<br>    &#125;);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 资源自动上传（done）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">done</span>.<span class="hljs-title function_">tapPromise</span>(<span class="hljs-string">&#x27;OSSPlugin&#x27;</span>, <span class="hljs-title function_">async</span> (stats) =&gt; &#123;<br>  <span class="hljs-keyword">if</span> (stats.<span class="hljs-title function_">hasErrors</span>()) <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 构建失败不上传</span><br>  <br>  <span class="hljs-keyword">const</span> files = glob.<span class="hljs-title function_">sync</span>(<span class="hljs-string">&#x27;dist/**/*.&#123;js,css,woff2&#125;&#x27;</span>);<br>  <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(files.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> &#123;<br>    <span class="hljs-keyword">return</span> ossClient.<span class="hljs-title function_">put</span>(file, path.<span class="hljs-title function_">resolve</span>(file));<br>  &#125;));<br>  <br>  <span class="hljs-comment">// 更新版本清单</span><br>  <span class="hljs-keyword">await</span> <span class="hljs-title function_">updateVersionManifest</span>(stats.<span class="hljs-property">hash</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(3) 构建通知集成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">done</span>.<span class="hljs-title function_">tap</span>(<span class="hljs-string">&#x27;SlackNotifier&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">stats</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> message = stats.<span class="hljs-title function_">hasErrors</span>() <br>    ? <span class="hljs-string">`❌ 构建失败: <span class="hljs-subst">$&#123;stats.compilation.errors[<span class="hljs-number">0</span>].message&#125;</span>`</span><br>    : <span class="hljs-string">`✅ 构建成功! 耗时: <span class="hljs-subst">$&#123;stats.endTime - stats.startTime&#125;</span>ms`</span>;<br>    <br>  slack.<span class="hljs-title function_">send</span>(&#123;<br>    <span class="hljs-attr">text</span>: message,<br>    <span class="hljs-attr">attachments</span>: [&#123;<br>      <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;构建报告&#x27;</span>,<br>      <span class="hljs-attr">fields</span>: [&#123;<br>        <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;版本哈希&#x27;</span>,<br>        <span class="hljs-attr">value</span>: stats.<span class="hljs-property">hash</span><br>      &#125;]<br>    &#125;]<br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>面试深度问题</strong></p>
+<p>(1) afterEmit 和 done 的本质区别？</p>
+<ul>
+<li>afterEmit：资源已写入磁盘但构建未结束，可追加新资源</li>
+<li>done：所有流程已完成，适合通知&#x2F;清理操作</li>
+</ul>
+<p>(2) 如何修改已存在的输出文件？</p>
+<p>方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">compilation.<span class="hljs-property">hooks</span>.<span class="hljs-property">processAssets</span>.<span class="hljs-title function_">tap</span>(<br>  &#123; <span class="hljs-attr">stage</span>: <span class="hljs-title class_">Compilation</span>.<span class="hljs-property">PROCESS_ASSETS_STAGE_OPTIMIZE</span> &#125;,<br>  <span class="hljs-function">(<span class="hljs-params">assets</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> source = assets[<span class="hljs-string">&#x27;main.js&#x27;</span>].<span class="hljs-title function_">source</span>();<br>    <span class="hljs-keyword">const</span> newSource = source.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/console\.log/g</span>, <span class="hljs-string">&#x27;&#x27;</span>);<br>    compilation.<span class="hljs-title function_">updateAsset</span>(<span class="hljs-string">&#x27;main.js&#x27;</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">RawSource</span>(newSource));<br>  &#125;<br>);<br></code></pre></td></tr></table></figure>
+
+<p>(3) 多插件如何保证执行顺序？</p>
+<p>控制策略：</p>
+<ul>
+<li>使用 stage 参数显式排序</li>
+<li>通过 tapAsync + 回调等待前置插件</li>
+<li>在插件名添加排序前缀（01_PluginA, 02_PluginB）</li>
+</ul>
+<h1 id="五、调试与性能分析"><a href="#五、调试与性能分析" class="headerlink" title="五、调试与性能分析"></a>五、调试与性能分析</h1><h2 id="5-1-构建过程监控"><a href="#5-1-构建过程监控" class="headerlink" title="5.1 构建过程监控"></a>5.1 构建过程监控</h2><h3 id="5-1-1-speed-measure-webpack-plugin（构建耗时分析）"><a href="#5-1-1-speed-measure-webpack-plugin（构建耗时分析）" class="headerlink" title="5.1.1 speed-measure-webpack-plugin（构建耗时分析）"></a>5.1.1 <code>speed-measure-webpack-plugin</code>（构建耗时分析）</h3><p><strong>核心价值与工作原理</strong></p>
+<pre class="mermaid">graph LR
+  A[Webpack 编译] --> B[插件注入计时器]
+  B --> C[监控Loader/Plugin生命周期]
+  C --> D[生成阶段耗时报告]
+  D --> E[可视化输出瓶颈点]</pre>
+
+<p>核心能力：</p>
+<ul>
+<li>测量 Loader 和 Plugin 精确耗时</li>
+<li>显示并行&#x2F;串行任务链关系</li>
+<li>输出可交互的终端报告</li>
+</ul>
+<p><strong>基础配置与输出解析</strong></p>
+<p>(1) 安装与集成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install speed-measure-webpack-plugin --save-dev<br></code></pre></td></tr></table></figure>
+
+<p>(2) 基础配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// webpack.config.js</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">SpeedMeasurePlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;speed-measure-webpack-plugin&quot;</span>);<br><span class="hljs-keyword">const</span> smp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SpeedMeasurePlugin</span>();<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = smp.<span class="hljs-title function_">wrap</span>(&#123;<br>  <span class="hljs-comment">// 原始Webpack配置</span><br>  <span class="hljs-attr">module</span>: &#123;<br>    <span class="hljs-attr">rules</span>: [&#123;<br>      <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js$/</span>,<br>      <span class="hljs-attr">use</span>: [<span class="hljs-string">&#x27;babel-loader&#x27;</span>]<br>    &#125;]<br>  &#125;,<br>  <span class="hljs-attr">plugins</span>: [<span class="hljs-keyword">new</span> <span class="hljs-title class_">HtmlWebpackPlugin</span>()]<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p>(3) 终端报告解读</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"> SMP  ⏱  <br>General output <span class="hljs-keyword">time</span> took 15.25 secs<br><br> SMP  ⏱  Plugins<br>HtmlWebpackPlugin took 3.21 secs<br><br> SMP  ⏱  Loaders<br>babel-loader took 8.43 secs, 25% of total <span class="hljs-keyword">time</span><br>  modules with no loaders took 1.2 secs<br></code></pre></td></tr></table></figure>
+
+<p><strong>高级配置技巧</strong></p>
+<p>(1) 选择性监控</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">new</span> <span class="hljs-title class_">SpeedMeasurePlugin</span>(&#123;<br>  <span class="hljs-attr">disable</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> === <span class="hljs-string">&#x27;production&#x27;</span>, <span class="hljs-comment">// 生产环境禁用</span><br>  <span class="hljs-attr">outputFormat</span>: <span class="hljs-string">&#x27;human&#x27;</span>, <span class="hljs-comment">// 可选：human/json</span><br>  <span class="hljs-attr">loaderTopFiles</span>: <span class="hljs-number">5</span>, <span class="hljs-comment">// 显示前5个耗时Loader</span><br>  <span class="hljs-attr">pluginTopFiles</span>: <span class="hljs-number">3</span>   <span class="hljs-comment">// 显示前3个耗时Plugin</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>(2) 多配置支持</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 合并多个配置的耗时</span><br><span class="hljs-keyword">const</span> config1 = &#123; <span class="hljs-comment">/* 配置A */</span> &#125;;<br><span class="hljs-keyword">const</span> config2 = &#123; <span class="hljs-comment">/* 配置B */</span> &#125;;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = [<br>  smp.<span class="hljs-title function_">wrap</span>(config1),<br>  smp.<span class="hljs-title function_">wrap</span>(config2)<br>];<br></code></pre></td></tr></table></figure>
+
+<p>(3) 生成HTML报告</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> &#123; <span class="hljs-title class_">WebpackStatsWriterPlugin</span> &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;webpack-stats-plugin&quot;</span>);<br><br><span class="hljs-attr">plugins</span>: [<br>  <span class="hljs-keyword">new</span> <span class="hljs-title class_">WebpackStatsWriterPlugin</span>(&#123;<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&quot;build-stats.json&quot;</span> <br>  &#125;)<br>]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">// 分析命令<br>npx smp-analyze build-stats.json --output report.html<br></code></pre></td></tr></table></figure>
+
+<p><strong>避坑指南</strong></p>
+<p>(1) 插件兼容性问题</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 解决方案：包装特定插件</span><br><span class="hljs-attr">plugins</span>: smp.<span class="hljs-title function_">wrap</span>(&#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">IncompatiblePlugin</span>() <span class="hljs-comment">// 被smp特殊处理</span><br>  ]<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>(2) 时间测量误差</p>
+<ul>
+<li>关闭其他CPU密集型应用</li>
+<li>多次测量取平均值（建议3次以上）</li>
+</ul>
+<p>(3) 生产环境使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 通过环境变量禁用</span><br><span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">ANALYZE_BUILD</span>) &#123;<br>  config = smp.<span class="hljs-title function_">wrap</span>(config);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-1-2-webpack-bundle-analyzer（产物体积可视化）"><a href="#5-1-2-webpack-bundle-analyzer（产物体积可视化）" class="headerlink" title="5.1.2 webpack-bundle-analyzer（产物体积可视化）"></a>5.1.2 <code>webpack-bundle-analyzer</code>（产物体积可视化）</h3><p><strong>核心功能全景图</strong></p>
+<pre class="mermaid">graph LR
+  A[Webpack Stats] --> B[Analyzer]
+  B --> C[交互式树状图]
+  B --> D[模块体积排行榜]
+  B --> E[重复依赖检测]
+  C --> F[优化决策]</pre>
+
+<p>核心价值：</p>
+<ul>
+<li>可视化模块体积占比</li>
+<li>识别重复依赖&#x2F;未使用代码</li>
+<li>分析按需加载效果</li>
+</ul>
+<p><strong>进阶配置与解读技巧</strong></p>
+<p>(1) 精准配置方案</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> <span class="hljs-title class_">BundleAnalyzerPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack-bundle-analyzer&#x27;</span>)<br>  .<span class="hljs-property">BundleAnalyzerPlugin</span>;<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">BundleAnalyzerPlugin</span>(&#123;<br>      <span class="hljs-attr">analyzerMode</span>: <span class="hljs-string">&#x27;server&#x27;</span>,     <span class="hljs-comment">// 可选：server/static/json/disabled</span><br>      <span class="hljs-attr">analyzerHost</span>: <span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<br>      <span class="hljs-attr">analyzerPort</span>: <span class="hljs-number">8888</span>,         <span class="hljs-comment">// 自定义端口</span><br>      <span class="hljs-attr">openAnalyzer</span>: <span class="hljs-literal">false</span>,        <span class="hljs-comment">// 禁止自动打开浏览器</span><br>      <span class="hljs-attr">reportFilename</span>: <span class="hljs-string">&#x27;report.html&#x27;</span>,<br>      <span class="hljs-attr">defaultSizes</span>: <span class="hljs-string">&#x27;parsed&#x27;</span>,     <span class="hljs-comment">// 显示解析后体积(gzip前)</span><br>      <span class="hljs-attr">statsOptions</span>: &#123;<br>        <span class="hljs-attr">excludeModules</span>: <span class="hljs-regexp">/node_modules\/core-js/</span> <span class="hljs-comment">// 排除特定模块</span><br>      &#125;,<br>      <span class="hljs-attr">generateStatsFile</span>: <span class="hljs-literal">true</span>,    <span class="hljs-comment">// 生成stats.json</span><br>      <span class="hljs-attr">statsFilename</span>: <span class="hljs-string">&#x27;stats.json&#x27;</span><br>    &#125;)<br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 关键视图解读</p>
+<table>
+<thead>
+<tr>
+<th align="left">视图类型</th>
+<th align="left">分析重点</th>
+<th align="left">优化方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">树状图(Treemap)</td>
+<td align="left">矩形面积&#x3D;模块体积</td>
+<td align="left">定位体积异常模块</td>
+</tr>
+<tr>
+<td align="left">网络图(Network)</td>
+<td align="left">模块依赖关系</td>
+<td align="left">识别重复依赖包</td>
+</tr>
+<tr>
+<td align="left">排行榜(Toplist)</td>
+<td align="left">体积TOP10模块</td>
+<td align="left">优先优化大头模块</td>
+</tr>
+<tr>
+<td align="left">时间线(Timeline)</td>
+<td align="left">模块加入顺序</td>
+<td align="left">优化异步加载时机</td>
+</tr>
+</tbody></table>
+<p><strong>高级分析技巧</strong></p>
+<p>(1) 源码映射分析</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 关联SourceMap分析源码</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">UnusedFilesPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;unused-files-webpack-plugin&#x27;</span>);<br><br><span class="hljs-attr">plugins</span>: [<br>  <span class="hljs-keyword">new</span> <span class="hljs-title class_">UnusedFilesPlugin</span>(&#123;<br>    <span class="hljs-attr">patterns</span>: [<span class="hljs-string">&#x27;src/**/*.js&#x27;</span>],<br>    <span class="hljs-attr">globOptions</span>: &#123; <span class="hljs-attr">ignore</span>: <span class="hljs-string">&#x27;node_modules/**&#x27;</span> &#125;<br>  &#125;)<br>]<br></code></pre></td></tr></table></figure>
+
+<p>(2) 第三方库占比计算</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 生成node_modules占比报告</span><br><span class="hljs-keyword">const</span> nodeModuleSize = stats.<span class="hljs-property">compilation</span>.<span class="hljs-property">chunks</span>.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">sum, chunk</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">return</span> sum + chunk.<span class="hljs-property">modules</span>.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.<span class="hljs-property">name</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&#x27;node_modules&#x27;</span>))<br>    .<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">size, m</span>) =&gt;</span> size + m.<span class="hljs-property">size</span>, <span class="hljs-number">0</span>);<br>&#125;, <span class="hljs-number">0</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`node_modules占比：<span class="hljs-subst">$&#123;(nodeModuleSize/stats.compilation.assets[<span class="hljs-string">&#x27;main.js&#x27;</span>].size()*<span class="hljs-number">100</span>).toFixed(<span class="hljs-number">1</span>)&#125;</span>%`</span>);<br></code></pre></td></tr></table></figure>
+
+<p>(3) Gzip后体积预估</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">new</span> <span class="hljs-title class_">BundleAnalyzerPlugin</span>(&#123;<br>  <span class="hljs-attr">defaultSizes</span>: <span class="hljs-string">&#x27;gzip&#x27;</span>, <span class="hljs-comment">// 显示gzip后体积</span><br>  <span class="hljs-attr">analyzerStatsOptions</span>: &#123;<br>    <span class="hljs-comment">// 自定义压缩配置</span><br>    <span class="hljs-attr">gzipLevel</span>: <span class="hljs-number">9</span>,<br>    <span class="hljs-attr">brotli</span>: <span class="hljs-literal">true</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><strong>避坑指南</strong></p>
+<p>(1) 分析结果失真</p>
+<ul>
+<li>确保使用production模式分析（mode: ‘production’）</li>
+<li>禁用devtool或设为hidden-source-map</li>
+</ul>
+<p>(2) 内存溢出处理</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 增加Node内存限制</span><br>node --max-old-space-size=4096 node_modules/webpack/bin/webpack.js<br></code></pre></td></tr></table></figure>
+
+<p>(3) 安全风险防范</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 生产环境自动禁用</span><br><span class="hljs-attr">plugins</span>: [<br>  process.<span class="hljs-property">env</span>.<span class="hljs-property">ANALYZE</span> ? <span class="hljs-keyword">new</span> <span class="hljs-title class_">BundleAnalyzerPlugin</span>() : <span class="hljs-literal">false</span><br>].<span class="hljs-title function_">filter</span>(<span class="hljs-title class_">Boolean</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-2-DevServer深度配置"><a href="#5-2-DevServer深度配置" class="headerlink" title="5.2 DevServer深度配置"></a>5.2 DevServer深度配置</h2><h3 id="5-2-1-HMR原理与热更新范围控制"><a href="#5-2-1-HMR原理与热更新范围控制" class="headerlink" title="5.2.1 HMR原理与热更新范围控制"></a>5.2.1 HMR原理与热更新范围控制</h3><p><strong>HMR 核心工作流程</strong></p>
+<pre class="mermaid">sequenceDiagram
+  Browser->>Webpack DevServer: 1. 建立 WebSocket 连接
+  Webpack DevServer->>Browser: 2. 推送当前编译哈希
+  Note left of Webpack DevServer: 文件修改
+  Webpack DevServer->>Compiler: 3. 触发增量编译
+  Compiler->>Webpack DevServer: 4. 发送更新信号(hash-update)
+  Webpack DevServer->>Browser: 5. 通过 WS 发送更新清单
+  Browser->>Webpack Runtime: 6. 发起 JSONP 请求获取更新模块
+  Webpack Runtime->>Browser: 7. 执行模块替换
+  Browser->>HMR API: 8. 触发 module.hot.accept</pre>
+
+<p><strong>底层实现原理</strong></p>
+<p>(1) 关键模块协作</p>
+<table>
+<thead>
+<tr>
+<th align="left">模块</th>
+<th align="left">职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Webpack DevServer</td>
+<td align="left">提供 HTTP 服务 + WebSocket 通信</td>
+</tr>
+<tr>
+<td align="left">HotModuleReplacementPlugin</td>
+<td align="left">在输出代码中注入 HMR Runtime 和模块更新逻辑</td>
+</tr>
+<tr>
+<td align="left">HMR Runtime (客户端)</td>
+<td align="left">处理更新消息、加载新模块、执行热替换</td>
+</tr>
+<tr>
+<td align="left">webpack&#x2F;hot&#x2F;emitter</td>
+<td align="left">服务端事件广播机制</td>
+</tr>
+</tbody></table>
+<p>(2) 更新包结构解析</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 客户端接收的更新包</span><br>&#123;<br>  <span class="hljs-string">&quot;c&quot;</span>: &#123; <span class="hljs-comment">// 更新的 chunk ID</span><br>    <span class="hljs-string">&quot;main&quot;</span>: [ <span class="hljs-comment">// 更新的模块数组</span><br>      [moduleId, <span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-variable language_">module</span></span>) &#123; <span class="hljs-comment">/* 新模块工厂函数 */</span> &#125;]<br>    ]<br>  &#125;,<br>  <span class="hljs-string">&quot;r&quot;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] <span class="hljs-comment">// 需要重新加载的 chunk</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>热更新范围控制策略</strong></p>
+<p>(1) 模块级粒度控制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 只监控特定模块更新</span><br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>) &#123;<br>  <span class="hljs-comment">// 精确监听组件</span><br>  <span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>.<span class="hljs-title function_">accept</span>(<br>    [<span class="hljs-string">&#x27;./components/Button.jsx&#x27;</span>, <span class="hljs-string">&#x27;./utils/api.js&#x27;</span>], <br>    <span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-comment">// 手动更新逻辑</span><br>      <span class="hljs-keyword">const</span> <span class="hljs-title class_">NewButton</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./components/Button.jsx&#x27;</span>).<span class="hljs-property">default</span>;<br>      <span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">NewButton</span> /&gt;</span></span>, buttonContainer);<br>    &#125;<br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 状态保留技术</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// React 组件状态保留</span><br><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>) &#123;<br>  <span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>.<span class="hljs-title function_">accept</span>(<span class="hljs-string">&#x27;./App.jsx&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-comment">// 获取当前组件状态</span><br>    <span class="hljs-keyword">const</span> currentState = store.<span class="hljs-title function_">getState</span>();<br>    <br>    <span class="hljs-comment">// 重新渲染</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-title class_">NextApp</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./App.jsx&#x27;</span>).<span class="hljs-property">default</span>;<br>    <span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(<br>      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">&#123;store&#125;</span>&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">NextApp</span> /&gt;</span></span><br><span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,<br>      rootEl<br>    );<br>    <br>    <span class="hljs-comment">// 恢复状态</span><br>    store.<span class="hljs-title function_">dispatch</span>(&#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;HMR_RELOAD&#x27;</span>, <span class="hljs-attr">payload</span>: currentState &#125;);<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 更新边界控制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 设置更新边界（CSS模块无需处理）</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>.<span class="hljs-title function_">accept</span>([<span class="hljs-string">&#x27;./styles.css&#x27;</span>], <span class="hljs-function">() =&gt;</span> &#123;<br>  <span class="hljs-comment">// CSS 更新自动应用，无需操作</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>性能优化实践</strong></p>
+<p>(1) 大型应用更新加速</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 配置 webpack.config.js</span><br><span class="hljs-attr">devServer</span>: &#123;<br>  <span class="hljs-attr">hot</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">devMiddleware</span>: &#123;<br>    <span class="hljs-attr">writeToDisk</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 禁止写入磁盘</span><br>    <span class="hljs-attr">serverSideRender</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// 服务端渲染优化</span><br>  &#125;,<br>  <span class="hljs-attr">client</span>: &#123;<br>    <span class="hljs-attr">overlay</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 关闭错误遮罩</span><br>    <span class="hljs-attr">progress</span>: <span class="hljs-literal">false</span> <span class="hljs-comment">// 关闭进度条</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 更新频率节流</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 自定义中间件</span><br>devServer.<span class="hljs-property">setupMiddlewares</span> = <span class="hljs-function">(<span class="hljs-params">middlewares</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> throttle = <span class="hljs-title function_">createThrottle</span>(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 1秒节流</span><br>  <br>  <span class="hljs-keyword">return</span> [<br>    ...middlewares,<br>    <span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (req.<span class="hljs-property">url</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&#x27;__webpack_hmr&#x27;</span>)) &#123;<br>        <span class="hljs-title function_">throttle</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">next</span>());<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-title function_">next</span>();<br>      &#125;<br>    &#125;<br>  ];<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 选择性 HMR 注入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 只对开发环境关键模块启用</span><br><span class="hljs-keyword">new</span> webpack.<span class="hljs-title class_">HotModuleReplacementPlugin</span>(&#123;<br>  <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.(jsx|tsx|vue)$/</span> <span class="hljs-comment">// 仅 JSX/TSX/Vue 文件启用</span><br>&#125;)<br><br><span class="hljs-comment">// 阻止冒泡更新</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>.<span class="hljs-title function_">decline</span>([<span class="hljs-string">&#x27;./config.js&#x27;</span>]); <span class="hljs-comment">// 此模块变更时强制刷新</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>面试深度问题</strong></p>
+<p>(1) HMR 如何保留 React 组件的状态？</p>
+<p>通过 react-refresh 的 runtime 注入，在组件更新时：</p>
+<ul>
+<li>创建代理组件保留状态树</li>
+<li>映射新旧组件关系</li>
+<li>触发生命周期钩子（如 useEffect 清理）</li>
+</ul>
+<p>(2) WebSocket 断开后如何恢复 HMR？</p>
+<p>方案：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 自动重连机制</span><br><span class="hljs-keyword">const</span> socket = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WebSocket</span>(url);<br>socket.<span class="hljs-property">onclose</span> = <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">setTimeout</span>(initSocket, <span class="hljs-number">1000</span>);<br><span class="hljs-comment">// 超时检测</span><br><span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> &#123; <br>  <span class="hljs-keyword">if</span> (socket.<span class="hljs-property">readyState</span> &gt; <span class="hljs-number">1</span>) <span class="hljs-title function_">initSocket</span>(); <br>&#125;, <span class="hljs-number">5000</span>);<br></code></pre></td></tr></table></figure>
+
+<p>(3) 如何实现 Vuex store 的热更新？</p>
+<p>代码实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">if</span> (<span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>) &#123;<br>  <span class="hljs-variable language_">module</span>.<span class="hljs-property">hot</span>.<span class="hljs-title function_">accept</span>(<span class="hljs-string">&#x27;./store&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> newStore = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./store&#x27;</span>).<span class="hljs-property">default</span>;<br>    store.<span class="hljs-title function_">hotUpdate</span>(&#123;<br>      <span class="hljs-attr">modules</span>: newStore.<span class="hljs-property">modules</span><br>    &#125;);<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-2-2-Proxy配置解决跨域（pathRewrite-context）"><a href="#5-2-2-Proxy配置解决跨域（pathRewrite-context）" class="headerlink" title="5.2.2 Proxy配置解决跨域（pathRewrite&#x2F;context）"></a>5.2.2 Proxy配置解决跨域（<code>pathRewrite</code>&#x2F;<code>context</code>）</h3><p><strong>跨域问题本质与解决方案对比</strong></p>
+<pre class="mermaid">graph LR
+  A[浏览器] -->|同源策略| B[API请求被拦截]
+  B --> C[解决方案]
+  C --> D1[后端CORS]
+  C --> D2[JSONP]
+  C --> D3[代理转发]
+  D3 --> E[Webpack DevServer Proxy]</pre>
+
+<p>代理方案优势：</p>
+<ul>
+<li>前端零改造</li>
+<li>支持HTTPS&#x2F;WebSocket</li>
+<li>路径重写&#x2F;请求拦截</li>
+</ul>
+<p><strong>核心配置参数解析</strong></p>
+<p>(1) 基础代理设置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// webpack.config.js</span><br><span class="hljs-attr">devServer</span>: &#123;<br>  <span class="hljs-attr">proxy</span>: &#123;<br>    <span class="hljs-string">&#x27;/api&#x27;</span>: &#123;<br>      <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://api.example.com&#x27;</span>,<br>      <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span>,<br>      <span class="hljs-attr">pathRewrite</span>: &#123; <span class="hljs-string">&#x27;^/api&#x27;</span>: <span class="hljs-string">&#x27;&#x27;</span> &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 关键参数详解</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">类型</th>
+<th align="left">作用</th>
+<th align="left">默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">target</td>
+<td align="left">string</td>
+<td align="left">代理目标服务器地址</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">changeOrigin</td>
+<td align="left">boolean</td>
+<td align="left">修改请求头Host为目标域名</td>
+<td align="left">false</td>
+</tr>
+<tr>
+<td align="left">pathRewrite</td>
+<td align="left">object</td>
+<td align="left">URL路径重写规则</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">context</td>
+<td align="left">string[]</td>
+<td align="left">匹配多个路径前缀</td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left">secure</td>
+<td align="left">boolean</td>
+<td align="left">是否验证SSL证书</td>
+<td align="left">true</td>
+</tr>
+<tr>
+<td align="left">ws</td>
+<td align="left">boolean</td>
+<td align="left">是否代理WebSocket</td>
+<td align="left">true</td>
+</tr>
+<tr>
+<td align="left">headers</td>
+<td align="left">object</td>
+<td align="left">添加自定义请求头</td>
+<td align="left">-</td>
+</tr>
+</tbody></table>
+<p><strong>高级代理策略实战</strong></p>
+<p>(1) 多路径上下文代理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 匹配多个前缀</span><br><span class="hljs-attr">proxy</span>: [&#123;<br>  <span class="hljs-attr">context</span>: [<span class="hljs-string">&#x27;/auth&#x27;</span>, <span class="hljs-string">&#x27;/users&#x27;</span>],<br>  <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://user-service.com&#x27;</span>,<br>  <span class="hljs-attr">pathRewrite</span>: &#123; <span class="hljs-string">&#x27;^/auth&#x27;</span>: <span class="hljs-string">&#x27;/api/v1/auth&#x27;</span>, <span class="hljs-string">&#x27;^/users&#x27;</span>: <span class="hljs-string">&#x27;/api/v1/users&#x27;</span> &#125;<br>&#125;]<br></code></pre></td></tr></table></figure>
+
+<p>(2) 动态目标转发</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 根据请求动态选择目标</span><br><span class="hljs-attr">proxy</span>: &#123;<br>  <span class="hljs-string">&#x27;/services&#x27;</span>: &#123;<br>    <span class="hljs-attr">target</span>: <span class="hljs-function">(<span class="hljs-params">req</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">const</span> service = req.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;x-service-name&#x27;</span>];<br>      <span class="hljs-keyword">return</span> <span class="hljs-string">`http://<span class="hljs-subst">$&#123;service&#125;</span>.internal.com`</span>;<br>    &#125;,<br>    <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 请求拦截与修改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">proxy</span>: &#123;<br>  <span class="hljs-string">&#x27;/api&#x27;</span>: &#123;<br>    <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://api.example.com&#x27;</span>,<br>    <span class="hljs-attr">bypass</span>: <span class="hljs-function">(<span class="hljs-params">req, res, proxyOptions</span>) =&gt;</span> &#123;<br>      <span class="hljs-comment">// 拦截特定请求</span><br>      <span class="hljs-keyword">if</span> (req.<span class="hljs-property">path</span>.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&#x27;/test&#x27;</span>)) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;/mock/test.json&#x27;</span>; <span class="hljs-comment">// 返回本地mock数据</span><br>      &#125;<br>      <span class="hljs-comment">// 添加认证头</span><br>      req.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;Authorization&#x27;</span>] = <span class="hljs-string">&#x27;Bearer token&#x27;</span>;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(4) HTTPS证书代理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);<br><br><span class="hljs-attr">proxy</span>: &#123;<br>  <span class="hljs-string">&#x27;/secure&#x27;</span>: &#123;<br>    <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;https://secure-api.com&#x27;</span>,<br>    <span class="hljs-attr">secure</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 禁用证书验证</span><br>    <span class="hljs-attr">agent</span>: <span class="hljs-keyword">new</span> https.<span class="hljs-title class_">Agent</span>(&#123;<br>      <span class="hljs-attr">ca</span>: fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&#x27;internal-ca.pem&#x27;</span>) <span class="hljs-comment">// 自签名证书</span><br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>安全防护策略</strong></p>
+<p>(1) 请求头过滤</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">proxy</span>: &#123;<br>  <span class="hljs-string">&#x27;/api&#x27;</span>: &#123;<br>    <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://api.example.com&#x27;</span>,<br>    <span class="hljs-attr">headers</span>: &#123;<br>      <span class="hljs-comment">// 阻止敏感头转发</span><br>      <span class="hljs-string">&#x27;Cookie&#x27;</span>: <span class="hljs-literal">null</span>,<br>      <span class="hljs-string">&#x27;Authorization&#x27;</span>: <span class="hljs-literal">null</span><br>    &#125;,<br>    <span class="hljs-attr">onProxyReq</span>: <span class="hljs-function">(<span class="hljs-params">proxyReq</span>) =&gt;</span> &#123;<br>      <span class="hljs-comment">// 添加自定义头</span><br>      proxyReq.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;X-Proxy-Source&#x27;</span>, <span class="hljs-string">&#x27;webpack-dev-server&#x27;</span>);<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) IP白名单控制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">proxy</span>: &#123;<br>  <span class="hljs-string">&#x27;/admin&#x27;</span>: &#123;<br>    <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://admin-api.com&#x27;</span>,<br>    <span class="hljs-attr">onProxyReq</span>: <span class="hljs-function">(<span class="hljs-params">proxyReq, req</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">const</span> clientIP = req.<span class="hljs-property">connection</span>.<span class="hljs-property">remoteAddress</span>;<br>      <span class="hljs-keyword">if</span> (!allowIPs.<span class="hljs-title function_">includes</span>(clientIP)) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;IP not allowed&#x27;</span>);<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 敏感路径拦截</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">bypass</span>: <span class="hljs-function">(<span class="hljs-params">req</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// 禁止访问内部接口</span><br>  <span class="hljs-keyword">if</span> (req.<span class="hljs-property">path</span>.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;/internal&#x27;</span>)) &#123;<br>    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">error</span>: <span class="hljs-string">&#x27;Access denied&#x27;</span> &#125;;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>高级应用技巧</strong></p>
+<p>(1) GraphQL请求代理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">proxy</span>: &#123;<br>  <span class="hljs-string">&#x27;/graphql&#x27;</span>: &#123;<br>    <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://api.example.com/graphql&#x27;</span>,<br>    <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">ws</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 支持subscriptions</span><br>    <span class="hljs-attr">onProxyReq</span>: <span class="hljs-function">(<span class="hljs-params">proxyReq</span>) =&gt;</span> &#123;<br>      <span class="hljs-comment">// 修改GraphQL请求体</span><br>      <span class="hljs-keyword">if</span> (proxyReq.<span class="hljs-property">body</span>) &#123;<br>        <span class="hljs-keyword">const</span> body = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(proxyReq.<span class="hljs-property">body</span>);<br>        body.<span class="hljs-property">variables</span> = <span class="hljs-title function_">sanitizeVariables</span>(body.<span class="hljs-property">variables</span>);<br>        proxyReq.<span class="hljs-property">body</span> = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(body);<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 文件上传代理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">proxy</span>: &#123;<br>  <span class="hljs-string">&#x27;/upload&#x27;</span>: &#123;<br>    <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://file-service.com&#x27;</span>,<br>    <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-comment">// 解决大文件上传超时</span><br>    <span class="hljs-attr">proxyTimeout</span>: <span class="hljs-number">300000</span>,<br>    <span class="hljs-attr">onProxyReq</span>: <span class="hljs-function">(<span class="hljs-params">proxyReq, req</span>) =&gt;</span> &#123;<br>      <span class="hljs-comment">// 流式传输避免内存溢出</span><br>      <span class="hljs-keyword">if</span> (req.<span class="hljs-property">body</span>) &#123;<br>        req.<span class="hljs-title function_">pipe</span>(proxyReq);<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(3) SSR请求直通</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// next.config.js</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-keyword">async</span> <span class="hljs-title function_">rewrites</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> [<br>      &#123;<br>        <span class="hljs-attr">source</span>: <span class="hljs-string">&#x27;/api/:path*&#x27;</span>,<br>        <span class="hljs-attr">destination</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">PROXY_TARGET</span> + <span class="hljs-string">&#x27;/api/:path*&#x27;</span><br>      &#125;<br>    ]<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5-2-3-中间件扩展（before-after钩子）"><a href="#5-2-3-中间件扩展（before-after钩子）" class="headerlink" title="5.2.3 中间件扩展（before&#x2F;after钩子）"></a>5.2.3 中间件扩展（<code>before</code>&#x2F;<code>after</code>钩子）</h3><p>Webpack DevServer 的中间件扩展能力是开发环境定制的核心，通过 before 和 after 钩子实现全链路请求拦截与增强</p>
+<p><strong>中间件扩展架构全景</strong></p>
+<pre class="mermaid">graph LR
+  A[客户端请求] --> B[DevServer]
+  B --> C[before 中间件]
+  C --> D[静态资源处理]
+  D --> E[Webpack编译]
+  E --> F[after 中间件]
+  F --> G[响应客户端]</pre>
+
+<p>核心能力：</p>
+<ul>
+<li>请求拦截与修改</li>
+<li>自定义路由处理</li>
+<li>Mock数据注入</li>
+<li>安全防护增强</li>
+</ul>
+<p><strong>基础配置与执行顺序</strong></p>
+<p>(1) 钩子函数定义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// webpack.config.js</span><br><span class="hljs-attr">devServer</span>: &#123;<br>  <span class="hljs-attr">before</span>: <span class="hljs-function">(<span class="hljs-params">app, server, compiler</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">// 请求到达Webpack前的处理</span><br>  &#125;,<br>  <span class="hljs-attr">after</span>: <span class="hljs-function">(<span class="hljs-params">app, server, compiler</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">// 响应返回前的处理</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 典型执行顺序</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Text">1. before 中间件<br>   ├── 自定义中间件A<br>   ├── 自定义中间件B<br>2. Webpack内置中间件（静态服务/HMR）<br>3. after 中间件<br>   ├── 日志记录<br>   └── 响应修改<br></code></pre></td></tr></table></figure>
+
+<p><strong>before 钩子高级应用</strong></p>
+<p>(1) 动态Mock数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">before</span>: <span class="hljs-function">(<span class="hljs-params">app</span>) =&gt;</span> &#123;<br>  app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/api/user&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">// 根据参数返回不同数据</span><br>    <span class="hljs-keyword">const</span> role = req.<span class="hljs-property">query</span>.<span class="hljs-property">role</span> || <span class="hljs-string">&#x27;user&#x27;</span>;<br>    res.<span class="hljs-title function_">json</span>(&#123;<br>      <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">`Mock <span class="hljs-subst">$&#123;role&#125;</span>`</span>,<br>      <span class="hljs-attr">permissions</span>: role === <span class="hljs-string">&#x27;admin&#x27;</span> ? [<span class="hljs-string">&#x27;read&#x27;</span>, <span class="hljs-string">&#x27;write&#x27;</span>] : [<span class="hljs-string">&#x27;read&#x27;</span>]<br>    &#125;);<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 请求拦截与重定向</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">before</span>: <span class="hljs-function">(<span class="hljs-params">app</span>) =&gt;</span> &#123;<br>  app.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">// 禁止访问敏感路径</span><br>    <span class="hljs-keyword">if</span> (req.<span class="hljs-property">path</span>.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&#x27;/internal&#x27;</span>)) &#123;<br>      <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">403</span>).<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Access denied&#x27;</span>);<br>    &#125;<br>    <br>    <span class="hljs-comment">// 重定向旧路径</span><br>    <span class="hljs-keyword">if</span> (req.<span class="hljs-property">path</span> === <span class="hljs-string">&#x27;/old-api&#x27;</span>) &#123;<br>      <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">redirect</span>(<span class="hljs-number">301</span>, <span class="hljs-string">&#x27;/new-api&#x27;</span>);<br>    &#125;<br>    <br>    <span class="hljs-title function_">next</span>();<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 接口聚合（BFF层）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">before</span>: <span class="hljs-function">(<span class="hljs-params">app</span>) =&gt;</span> &#123;<br>  app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/page-data&#x27;</span>, <span class="hljs-title function_">async</span> (req, res) =&gt; &#123;<br>    <span class="hljs-comment">// 并行请求多个接口</span><br>    <span class="hljs-keyword">const</span> [user, products] = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([<br>      <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://user-service/user&#x27;</span>),<br>      <span class="hljs-title function_">fetch</span>(<span class="hljs-string">&#x27;http://product-service/products&#x27;</span>)<br>    ]);<br>    <br>    res.<span class="hljs-title function_">json</span>(&#123; <span class="hljs-attr">user</span>: <span class="hljs-keyword">await</span> user.<span class="hljs-title function_">json</span>(), <span class="hljs-attr">products</span>: <span class="hljs-keyword">await</span> products.<span class="hljs-title function_">json</span>() &#125;);<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>after 钩子高阶用法</strong></p>
+<p>(1) 全局响应包装</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">after</span>: <span class="hljs-function">(<span class="hljs-params">app</span>) =&gt;</span> &#123;<br>  app.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> originalSend = res.<span class="hljs-property">send</span>;<br>    <br>    <span class="hljs-comment">// 拦截所有响应</span><br>    res.<span class="hljs-property">send</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>      <span class="hljs-comment">// 统一包装格式</span><br>      <span class="hljs-keyword">const</span> wrappedData = &#123;<br>        <span class="hljs-attr">code</span>: <span class="hljs-number">200</span>,<br>        <span class="hljs-attr">data</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(data),<br>        <span class="hljs-attr">timestamp</span>: <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>()<br>      &#125;;<br>      originalSend.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(wrappedData));<br>    &#125;;<br>    <br>    <span class="hljs-title function_">next</span>();<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 性能监控埋点</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">after</span>: <span class="hljs-function">(<span class="hljs-params">app</span>) =&gt;</span> &#123;<br>  app.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> start = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();<br>    <br>    res.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;finish&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-keyword">const</span> duration = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>() - start;<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`[<span class="hljs-subst">$&#123;req.method&#125;</span>] <span class="hljs-subst">$&#123;req.url&#125;</span> - <span class="hljs-subst">$&#123;duration&#125;</span>ms`</span>);<br>      <br>      <span class="hljs-comment">// 上报到监控系统</span><br>      perfMonitor.<span class="hljs-title function_">track</span>(&#123;<br>        <span class="hljs-attr">path</span>: req.<span class="hljs-property">path</span>,<br>        <span class="hljs-attr">method</span>: req.<span class="hljs-property">method</span>,<br>        duration<br>      &#125;);<br>    &#125;);<br>    <br>    <span class="hljs-title function_">next</span>();<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 安全响应头注入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">after</span>: <span class="hljs-function">(<span class="hljs-params">app</span>) =&gt;</span> &#123;<br>  app.<span class="hljs-title function_">use</span>(<span class="hljs-function">(<span class="hljs-params">req, res, next</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">// 添加安全头</span><br>    res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;X-Content-Type-Options&#x27;</span>, <span class="hljs-string">&#x27;nosniff&#x27;</span>);<br>    res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Content-Security-Policy&#x27;</span>, <span class="hljs-string">&quot;default-src &#x27;self&#x27;&quot;</span>);<br>    res.<span class="hljs-title function_">setHeader</span>(<span class="hljs-string">&#x27;Strict-Transport-Security&#x27;</span>, <span class="hljs-string">&#x27;max-age=31536000&#x27;</span>);<br>    <br>    <span class="hljs-title function_">next</span>();<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="六、原理与源码层"><a href="#六、原理与源码层" class="headerlink" title="六、原理与源码层"></a>六、原理与源码层</h1><h2 id="6-1-Tapable事件流机制"><a href="#6-1-Tapable事件流机制" class="headerlink" title="6.1 Tapable事件流机制"></a>6.1 Tapable事件流机制</h2><h3 id="6-1-1-同步-异步钩子调用流程"><a href="#6-1-1-同步-异步钩子调用流程" class="headerlink" title="6.1.1 同步&#x2F;异步钩子调用流程"></a>6.1.1 同步&#x2F;异步钩子调用流程</h3><h3 id="6-1-2-插件注册与触发原理"><a href="#6-1-2-插件注册与触发原理" class="headerlink" title="6.1.2 插件注册与触发原理"></a>6.1.2 插件注册与触发原理</h3><h2 id="6-2-AST应用"><a href="#6-2-AST应用" class="headerlink" title="6.2 AST应用"></a>6.2 AST应用</h2><h3 id="6-2-1-Loader中的AST操作（Babel-Parser案例）"><a href="#6-2-1-Loader中的AST操作（Babel-Parser案例）" class="headerlink" title="6.2.1 Loader中的AST操作（Babel Parser案例）"></a>6.2.1 Loader中的AST操作（Babel Parser案例）</h3><h3 id="6-2-2-依赖图（Dependency-Graph）生成过程"><a href="#6-2-2-依赖图（Dependency-Graph）生成过程" class="headerlink" title="6.2.2 依赖图（Dependency Graph）生成过程"></a>6.2.2 依赖图（Dependency Graph）生成过程</h3><h2 id="6-3-核心流程源码解析"><a href="#6-3-核心流程源码解析" class="headerlink" title="6.3 核心流程源码解析"></a>6.3 核心流程源码解析</h2><h3 id="6-3-1-编译阶段：Module-→-Chunk-→-Asset-转换"><a href="#6-3-1-编译阶段：Module-→-Chunk-→-Asset-转换" class="headerlink" title="6.3.1 编译阶段：Module → Chunk → Asset 转换"></a>6.3.1 编译阶段：Module → Chunk → Asset 转换</h3><h3 id="6-3-2-输出阶段：Template渲染与文件生成"><a href="#6-3-2-输出阶段：Template渲染与文件生成" class="headerlink" title="6.3.2 输出阶段：Template渲染与文件生成"></a>6.3.2 输出阶段：Template渲染与文件生成</h3><h1 id="七、生态与未来趋势"><a href="#七、生态与未来趋势" class="headerlink" title="七、生态与未来趋势"></a>七、生态与未来趋势</h1><h2 id="7-1-Webpack-5-新特性"><a href="#7-1-Webpack-5-新特性" class="headerlink" title="7.1 Webpack 5 新特性"></a>7.1 Webpack 5 新特性</h2><h3 id="7-1-1-持久化缓存（persistentCache）"><a href="#7-1-1-持久化缓存（persistentCache）" class="headerlink" title="7.1.1 持久化缓存（persistentCache）"></a>7.1.1 持久化缓存（<code>persistentCache</code>）</h3><h3 id="7-1-2-模块联邦（Module-Federation）"><a href="#7-1-2-模块联邦（Module-Federation）" class="headerlink" title="7.1.2 模块联邦（Module Federation）"></a>7.1.2 模块联邦（Module Federation）</h3><h3 id="7-1-3-Asset-Modules资源处理"><a href="#7-1-3-Asset-Modules资源处理" class="headerlink" title="7.1.3 Asset Modules资源处理"></a>7.1.3 Asset Modules资源处理</h3><h2 id="7-2-与新兴工具协作"><a href="#7-2-与新兴工具协作" class="headerlink" title="7.2 与新兴工具协作"></a>7.2 与新兴工具协作</h2><h3 id="7-2-1-Webpack-Vite-混合开发模式"><a href="#7-2-1-Webpack-Vite-混合开发模式" class="headerlink" title="7.2.1 Webpack + Vite 混合开发模式"></a>7.2.1 Webpack + Vite 混合开发模式</h3><h3 id="7-2-2-Rust工具链集成（swc-loader替代Babel）"><a href="#7-2-2-Rust工具链集成（swc-loader替代Babel）" class="headerlink" title="7.2.2 Rust工具链集成（swc-loader替代Babel）"></a>7.2.2 Rust工具链集成（<code>swc-loader</code>替代Babel）</h3><hr>
+<h1 id="八、面试专项准备建议"><a href="#八、面试专项准备建议" class="headerlink" title="八、面试专项准备建议"></a>八、面试专项准备建议</h1><h2 id="8-1-高频考点"><a href="#8-1-高频考点" class="headerlink" title="8.1 高频考点"></a>8.1 高频考点</h2><h3 id="8-1-1-Tree-Shaking条件与副作用处理"><a href="#8-1-1-Tree-Shaking条件与副作用处理" class="headerlink" title="8.1.1 Tree Shaking条件与副作用处理"></a>8.1.1 Tree Shaking条件与副作用处理</h3><p><strong>Tree Shaking 生效的四大核心条件</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">条件</th>
+<th align="left">原理说明</th>
+<th align="left">验证方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1. ES Module 语法</td>
+<td align="left">静态分析依赖关系（import&#x2F;export）</td>
+<td align="left">检查是否使用 require</td>
+</tr>
+<tr>
+<td align="left">2. 生产模式（mode: ‘production’）</td>
+<td align="left">Webpack 自动启用压缩与无副作用优化</td>
+<td align="left">查看 optimization.usedExports</td>
+</tr>
+<tr>
+<td align="left">3. 无副作用标记</td>
+<td align="left">通过 package.json 的 sideEffects 声明</td>
+<td align="left">分析构建输出未使用导出</td>
+</tr>
+<tr>
+<td align="left">4. 工具链支持</td>
+<td align="left">Babel 不转换 ES Module（preset-env 需设 modules: false）</td>
+<td align="left">检查编译后代码是否保留 import</td>
+</tr>
+</tbody></table>
+<p><strong>副作用（Side Effects）处理机制</strong></p>
+<p>(1) 全局副作用声明</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JSON"><span class="hljs-comment">// package.json</span><br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;sideEffects&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">false</span></span><span class="hljs-punctuation">,</span>  <span class="hljs-comment">// 所有文件均无副作用</span><br>  <span class="hljs-attr">&quot;sideEffects&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>       <span class="hljs-comment">// 指定有副作用的文件</span><br>    <span class="hljs-string">&quot;*.css&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-string">&quot;src/polyfill.js&quot;</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>(2) 模块级标记</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 在模块内标记</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> utils = <span class="hljs-comment">/*#__PURE__*/</span> <span class="hljs-function">() =&gt;</span> &#123; ... &#125;; <span class="hljs-comment">// 标记纯函数</span><br><br><span class="hljs-comment">// 或使用 magic comment</span><br><span class="hljs-keyword">import</span>(<span class="hljs-comment">/* webpackIgnore: true */</span> <span class="hljs-string">&#x27;analytics.js&#x27;</span>); <span class="hljs-comment">// 强制保留</span><br></code></pre></td></tr></table></figure>
+
+<p>(3) Webpack 配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">optimization</span>: &#123;<br>  <span class="hljs-attr">sideEffects</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 启用全局副作用分析</span><br>  <span class="hljs-attr">providedExports</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 导出分析</span><br>  <span class="hljs-attr">usedExports</span>: <span class="hljs-literal">true</span>   <span class="hljs-comment">// 标记未使用导出</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>Tree Shaking 失效的六大场景与解决方案</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">失效场景</th>
+<th align="left">原因分析</th>
+<th align="left">解决方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1. Babel 转换 ESM</td>
+<td align="left"><code>@babel/preset-env</code> 默认转换 ES6 模块为 CommonJS</td>
+<td align="left">配置 <code>presets: [[&#39;@babel/preset-env&#39;, &#123; modules: false &#125;]]</code></td>
+</tr>
+<tr>
+<td align="left">2. 第三方库未声明副作用</td>
+<td align="left">Lodash 未标记 <code>sideEffects: false</code></td>
+<td align="left">手动添加配置：package.json 或使用 lodash-es</td>
+</tr>
+<tr>
+<td align="left">3. CSS 导入被误删</td>
+<td align="left"><code>import &#39;./styles.css&#39;</code> 被视为无导出语句</td>
+<td align="left">在 sideEffects 添加 [“*.css”]</td>
+</tr>
+<tr>
+<td align="left">4. 动态访问导出属性</td>
+<td align="left"><code>obj[dynamicKey]</code> 使工具无法静态分析</td>
+<td align="left">改为静态访问：<code>import &#123; named &#125; from &#39;lib&#39;</code></td>
+</tr>
+<tr>
+<td align="left">5. 立即执行函数副作用</td>
+<td align="left">IIFE 中包含 DOM 操作等副作用</td>
+<td align="left">使用 <code>/*#__PURE__*/</code> 标记或重构为声明式函数</td>
+</tr>
+<tr>
+<td align="left">6. 模块重导出链条断裂</td>
+<td align="left">中间模块未正确转发导出</td>
+<td align="left">使用统一出口文件：<code>export * from &#39;./module&#39;</code></td>
+</tr>
+</tbody></table>
+<h3 id="8-1-2-SplitChunks配置项优先级"><a href="#8-1-2-SplitChunks配置项优先级" class="headerlink" title="8.1.2 SplitChunks配置项优先级"></a>8.1.2 SplitChunks配置项优先级</h3><p><strong>配置项优先级总览</strong></p>
+<pre class="mermaid">graph TD
+  A[全局splitChunks配置] --> B[cacheGroups默认组]
+  A --> C[cacheGroups自定义组]
+  C --> D[组内priority属性]
+  D --> E[模块匹配test/type]
+  E --> F[模块体积minSize等]</pre>
+
+<p>优先级核心原则：</p>
+<ul>
+<li>cacheGroups 优先级 &gt; 全局配置</li>
+<li>priority 数值越大优先级越高</li>
+<li>同一优先级下匹配顺序决定</li>
+</ul>
+<p><strong>配置继承关系详解</strong></p>
+<p>(1) 全局配置 vs 缓存组配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 全局配置（低优先级）</span><br><span class="hljs-attr">optimization</span>: &#123;<br>  <span class="hljs-attr">splitChunks</span>: &#123;<br>    <span class="hljs-attr">chunks</span>: <span class="hljs-string">&#x27;all&#x27;</span>,<br>    <span class="hljs-attr">minSize</span>: <span class="hljs-number">20000</span>,<br>    <span class="hljs-attr">cacheGroups</span>: &#123;<br>      <span class="hljs-attr">vendors</span>: &#123;<br>        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/[\\/]node_modules[\\/]/</span>, <span class="hljs-comment">// 高优先级</span><br>        <span class="hljs-attr">priority</span>: -<span class="hljs-number">10</span>                   <span class="hljs-comment">// 优先级数值</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(2) 参数继承规则</p>
+<table>
+<thead>
+<tr>
+<th align="left">配置项</th>
+<th align="left">继承逻辑</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">chunks</td>
+<td align="left">缓存组可覆盖全局设置</td>
+</tr>
+<tr>
+<td align="left">minSize</td>
+<td align="left">缓存组未设置时继承全局，设置后覆盖</td>
+</tr>
+<tr>
+<td align="left">maxAsyncRequests</td>
+<td align="left">独立生效（不继承），需在每组显式设置</td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left">缓存组未设置时使用全局 filename 模板</td>
+</tr>
+</tbody></table>
+<p><strong>缓存组（cacheGroups）竞争机制</strong></p>
+<p>(1) 模块匹配流程</p>
+<pre class="mermaid">graph LR
+  模块 --> 匹配组A{test规则} 
+  匹配组A -- 是 --> 优先级A[priority:10]
+  匹配组A -- 否 --> 匹配组B{test规则}
+  匹配组B -- 是 --> 优先级B[priority:20]
+  优先级B -- 更高 --> 选定组B
+  优先级A -- 更高 --> 选定组A
+  匹配组B -- 否 --> 默认组[vendors/default]</pre>
+
+<p>(2) 同优先级竞争</p>
+<p>当两个组 priority 相同且都匹配模块时：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">cacheGroups</span>: &#123;<br>  <span class="hljs-attr">reactVendor</span>: &#123;<br>    <span class="hljs-attr">test</span>: <span class="hljs-regexp">/[\\/]node_modules[\\/](react|react-dom)[\\/]/</span>,<br>    <span class="hljs-attr">priority</span>: <span class="hljs-number">20</span><br>  &#125;,<br>  <span class="hljs-attr">utilsVendor</span>: &#123;<br>    <span class="hljs-attr">test</span>: <span class="hljs-regexp">/[\\/]node_modules[\\/](lodash|moment)[\\/]/</span>,<br>    <span class="hljs-attr">priority</span>: <span class="hljs-number">20</span> <span class="hljs-comment">// 相同优先级</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>决策逻辑：</p>
+<ul>
+<li>先检查 reactVendor（配置顺序在前）</li>
+<li>若匹配则归入该组，不再检查后续组</li>
+</ul>
+<h3 id="8-1-3-HMR工作流程（WebSocket-→-HotModuleReplacementPlugin）"><a href="#8-1-3-HMR工作流程（WebSocket-→-HotModuleReplacementPlugin）" class="headerlink" title="8.1.3 HMR工作流程（WebSocket → HotModuleReplacementPlugin）"></a>8.1.3 HMR工作流程（WebSocket → HotModuleReplacementPlugin）</h3><pre class="mermaid">sequenceDiagram
+  Browser->>DevServer: 1. 建立 WebSocket 连接
+  Note over DevServer: 文件修改
+  DevServer->>Compiler: 2. 触发增量编译
+  Compiler->>DevServer: 3. 生成 Hash 和 Manifest
+  DevServer->>Browser: 4. 推送 hash 消息 (socket.send)
+  Browser->>Runtime: 5. 发起 JSONP 请求更新模块
+  Runtime->>Browser: 6. 执行模块替换 (applyUpdate)
+  Browser->>HMR API: 7. 触发 module.hot.accept 回调</pre>
+
+<h2 id="8-2-场景设计题"><a href="#8-2-场景设计题" class="headerlink" title="8.2 场景设计题"></a>8.2 场景设计题</h2><h3 id="8-2-1-“如何实现秒级构建的微前端项目？”"><a href="#8-2-1-“如何实现秒级构建的微前端项目？”" class="headerlink" title="8.2.1 “如何实现秒级构建的微前端项目？”"></a>8.2.1 “如何实现秒级构建的微前端项目？”</h3><p><strong>持久化缓存优化</strong></p>
+<p>(1) Webpack 5 文件系统缓存</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// webpack.config.js</span><br><span class="hljs-attr">cache</span>: &#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;filesystem&#x27;</span>, <span class="hljs-comment">// 启用持久化缓存</span><br>  <span class="hljs-attr">cacheDirectory</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;.cache/webpack&#x27;</span>),<br>  <span class="hljs-attr">buildDependencies</span>: &#123; <span class="hljs-attr">config</span>: [__filename] &#125; <span class="hljs-comment">// 配置文件变更时自动失效缓存</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>效果：二次构建时间减少70%以上（首屏构建从12s→3s）。</li>
+<li>原理：将编译结果（模块AST、依赖图）写入磁盘，跳过重复解析。</li>
+</ul>
+<p>(2) 内容哈希精准缓存</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">output</span>: &#123;<br>  <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;[name].[contenthash:8].js&#x27;</span>, <span class="hljs-comment">// 基于内容变化的哈希</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>仅修改的文件触发重新构建，未变更模块直接复用缓存。</li>
+</ul>
+<p><strong>增量编译与按需加载</strong></p>
+<p>(1) 动态入口（Dynamic Entry）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 根据路由动态生成Entry</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">dynamicEntries</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> pages = <span class="hljs-title function_">detectUserRoutes</span>(); <span class="hljs-comment">// 动态扫描路由文件</span><br>  <span class="hljs-keyword">return</span> pages.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">entries, page</span>) =&gt;</span> &#123;<br>    entries[page.<span class="hljs-property">name</span>] = <span class="hljs-string">`./src/pages/<span class="hljs-subst">$&#123;page.path&#125;</span>.js`</span>;<br>    <span class="hljs-keyword">return</span> entries;<br>  &#125;, &#123;&#125;);<br>&#125;;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123; <span class="hljs-attr">entry</span>: dynamicEntries &#125;;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>优势：仅编译当前开发涉及的路由模块，降低80%编译量。</li>
+</ul>
+<p>(2) 按需加载子应用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 主应用动态加载子应用</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">loadApp</span> = (<span class="hljs-params">appName</span>) =&gt; &#123;<br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">`remoteApps/<span class="hljs-subst">$&#123;appName&#125;</span>/remoteEntry.js`</span>)<br>    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">remote</span> =&gt;</span> remote.<span class="hljs-title function_">init</span>(sharedScope));<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>模块联邦（Module Federation）深度优化</strong></p>
+<p>(1) 共享依赖策略</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 子应用配置</span><br><span class="hljs-keyword">new</span> <span class="hljs-title class_">ModuleFederationPlugin</span>(&#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;productApp&#x27;</span>,<br>  <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;remoteEntry.js&#x27;</span>,<br>  <span class="hljs-attr">exposes</span>: &#123; <span class="hljs-string">&#x27;./ProductList&#x27;</span>: <span class="hljs-string">&#x27;./src/components/ProductList.jsx&#x27;</span> &#125;,<br>  <span class="hljs-attr">shared</span>: &#123;<br>    <span class="hljs-attr">react</span>: &#123; <span class="hljs-attr">singleton</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">eager</span>: <span class="hljs-literal">true</span> &#125;,<br>    <span class="hljs-string">&#x27;react-dom&#x27;</span>: &#123; <span class="hljs-attr">singleton</span>: <span class="hljs-literal">true</span> &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>关键参数：</p>
+<ul>
+<li>singleton: true：强制单例，避免重复加载。</li>
+<li>eager: true：主应用启动时预加载，减少运行时延迟。</li>
+</ul>
+<p>(2) 并行加载远程模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 使用Promise.all并行加载</span><br><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([<br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;app1/Button&#x27;</span>),<br>  <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;app2/Table&#x27;</span>)<br>]).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">[Button, Table]</span>) =&gt;</span> <span class="hljs-title function_">renderApp</span>(<span class="hljs-title class_">Button</span>, <span class="hljs-title class_">Table</span>));<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>结合HTTP&#x2F;2多路复用，提升模块加载效率。</li>
+</ul>
+<p><strong>构建流程加速策略</strong></p>
+<p>(1) 缩小Loader处理范围</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">rules</span>: [&#123;<br>  <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.jsx?$/</span>,<br>  <span class="hljs-attr">include</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;src&#x27;</span>), <span class="hljs-comment">// 限定src目录</span><br>  <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>, <span class="hljs-comment">// 排除node_modules</span><br>  <span class="hljs-attr">use</span>: [<span class="hljs-string">&#x27;babel-loader&#x27;</span>]<br>&#125;]<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>效果：减少50%文件编译量。</li>
+</ul>
+<p>(2) 多进程编译</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">use</span>: [<br>  &#123; <span class="hljs-attr">loader</span>: <span class="hljs-string">&#x27;thread-loader&#x27;</span>, <span class="hljs-attr">options</span>: &#123; <span class="hljs-attr">workers</span>: <span class="hljs-number">4</span> &#125; &#125;, <span class="hljs-comment">// 多进程</span><br>  <span class="hljs-string">&#x27;babel-loader?cacheDirectory=true&#x27;</span> <span class="hljs-comment">// 启用Babel缓存</span><br>]<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>推荐工具：thread-loader + cache-loader。</li>
+</ul>
+<p>(3) 优化模块搜索路径</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-attr">resolve</span>: &#123;<br>  <span class="hljs-attr">modules</span>: [path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;node_modules&#x27;</span>)], <span class="hljs-comment">// 锁定node_modules位置</span><br>  <span class="hljs-attr">alias</span>: &#123; <span class="hljs-string">&#x27;react&#x27;</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;./vendor/react.min.js&#x27;</span>) &#125; <span class="hljs-comment">// 别名缩短路径</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="8-2-2-“首屏加载慢，从哪些维度优化？”"><a href="#8-2-2-“首屏加载慢，从哪些维度优化？”" class="headerlink" title="8.2.2 “首屏加载慢，从哪些维度优化？”"></a>8.2.2 “首屏加载慢，从哪些维度优化？”</h3><p><strong>诊断瓶颈点</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">指标</th>
+<th align="left">分析工具</th>
+<th align="left">优化方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">FCP (首次内容绘制)</td>
+<td align="left">Lighthouse、WebPageTest</td>
+<td align="left">资源加载、阻塞渲染</td>
+</tr>
+<tr>
+<td align="left">LCP (最大内容绘制)</td>
+<td align="left">Chrome DevTools</td>
+<td align="left">图片&#x2F;字体、渲染阻塞</td>
+</tr>
+<tr>
+<td align="left">TTI (可交互时间)</td>
+<td align="left">SpeedCurve</td>
+<td align="left">JS执行效率、代码分割</td>
+</tr>
+<tr>
+<td align="left">Bundle体积</td>
+<td align="left">Webpack Bundle Analyzer</td>
+<td align="left">Tree Shaking、代码分割</td>
+</tr>
+</tbody></table>
+<p><strong>资源加载层优化</strong></p>
+<p>(1) 代码分割与懒加载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 路由级分割 (React示例)</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Home</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">lazy</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-comment">/* webpackPrefetch: true */</span> <span class="hljs-string">&#x27;./Home&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>策略：</p>
+<ul>
+<li>主包仅保留核心框架（React&#x2F;Vue）</li>
+<li>路由组件动态加载 + prefetch</li>
+<li>非核心库（如图表库）按需加载</li>
+</ul>
+<p>(2) 资源预加载优化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs HTML">&lt;!-- 关键资源预加载 --&gt;<br>&lt;link rel=&quot;preload&quot; href=&quot;main.css&quot; as=&quot;style&quot;&gt;<br>&lt;link rel=&quot;preload&quot; href=&quot;core.js&quot; as=&quot;script&quot;&gt;<br>&lt;!-- 字体预加载 --&gt;<br>&lt;link rel=&quot;preload&quot; href=&quot;font.woff2&quot; as=&quot;font&quot; crossorigin&gt;<br></code></pre></td></tr></table></figure>
+
+<p>(3) HTTP&#x2F;2推送 (Server Push)</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># Nginx 配置</span><br><span class="hljs-attribute">http2_push</span> /static/core.js; <br><span class="hljs-attribute">http2_push</span> /static/main.css;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>适用场景：关键静态资源免握手请求</li>
+</ul>
+<p><strong>构建输出优化</strong></p>
+<p>(1) Tree Shaking深度强化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// package.json 标记副作用</span><br>&#123;<br>  <span class="hljs-string">&quot;sideEffects&quot;</span>: [<span class="hljs-string">&quot;*.css&quot;</span>, <span class="hljs-string">&quot;src/polyfill.js&quot;</span>]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>避坑：</p>
+<ul>
+<li>Babel需设 modules: false 保留ESM</li>
+<li>第三方库替换为ESM版本（如 lodash-es）</li>
+</ul>
+<p>(2) 代码分割策略</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 精细化SplitChunks配置</span><br><span class="hljs-attr">optimization</span>: &#123;<br>  <span class="hljs-attr">splitChunks</span>: &#123;<br>    <span class="hljs-attr">cacheGroups</span>: &#123;<br>      <span class="hljs-attr">core</span>: &#123; <br>        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/[\\/]node_modules[\\/](react|vue)/</span>, <br>        <span class="hljs-attr">priority</span>: <span class="hljs-number">100</span> <br>      &#125;,<br>      <span class="hljs-attr">commons</span>: &#123; <br>        <span class="hljs-attr">minChunks</span>: <span class="hljs-number">2</span>, <br>        <span class="hljs-attr">reuseExistingChunk</span>: <span class="hljs-literal">true</span> <br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>(3) 资源压缩进阶</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// Terser多进程压缩</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">TerserPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;terser-webpack-plugin&#x27;</span>);<br><span class="hljs-attr">optimization</span>: &#123;<br>  <span class="hljs-attr">minimizer</span>: [<br>    <span class="hljs-keyword">new</span> <span class="hljs-title class_">TerserPlugin</span>(&#123; <span class="hljs-attr">parallel</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">terserOptions</span>: &#123; <span class="hljs-attr">compress</span>: &#123; <span class="hljs-attr">drop_console</span>: <span class="hljs-literal">true</span> &#125; &#125; &#125;)<br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>运行时性能优化</strong></p>
+<p>(1) 预渲染静态内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 使用PrerenderSpaPlugin生成静态HTML</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">PrerenderSPAPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;prerender-spa-plugin&#x27;</span>);<br><span class="hljs-attr">plugins</span>: [<br>  <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrerenderSPAPlugin</span>(&#123; <span class="hljs-attr">routes</span>: [<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-string">&#x27;/about&#x27;</span>] &#125;)<br>]<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>效果：静态页FCP≤1s</li>
+</ul>
+<p>(2) 服务端渲染(SSR)关键路径</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// Next.js/Nuxt.js 数据预取</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getServerSideProps</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchAPI</span>();<br>  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">props</span>: &#123; data &#125; &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>优势：首屏直出 + CSR无缝切换</li>
+</ul>
+<p>(3) 浏览器缓存策略</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># 永久缓存静态资源</span><br><span class="hljs-section">location</span> /static &#123;<br>  <span class="hljs-attribute">expires</span> <span class="hljs-number">1y</span>;<br>  <span class="hljs-attribute">add_header</span> Cache-Control <span class="hljs-string">&quot;public, immutable&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>渲染层专项优化</strong></p>
+<p>(1) CSS关键路径优化</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 提取关键CSS + 异步加载剩余</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Critters</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;critters-webpack-plugin&#x27;</span>);<br><span class="hljs-attr">plugins</span>: [<span class="hljs-keyword">new</span> <span class="hljs-title class_">Critters</span>(&#123; <span class="hljs-attr">preload</span>: <span class="hljs-string">&#x27;swap&#x27;</span> &#125;)]<br></code></pre></td></tr></table></figure>
+
+<p>(2) 图片加载策略</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">方案</th>
+<th align="left">工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">首屏图片</td>
+<td align="left"><code>&lt;img loading=&quot;eager&quot;&gt;</code></td>
+<td align="left">原生LazyLoad</td>
+</tr>
+<tr>
+<td align="left">非首屏图片</td>
+<td align="left"><code>&lt;img loading=&quot;lazy&quot;&gt;</code></td>
+<td align="left">Lazysizes</td>
+</tr>
+<tr>
+<td align="left">响应式图片</td>
+<td align="left"><code>srcset</code> + <code>sizes</code></td>
+<td align="left">Sharp图像处理</td>
+</tr>
+</tbody></table>
+<p>(3) 字体加载防阻塞</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs CSS"><span class="hljs-comment">/* 异步加载字体 */</span><br><span class="hljs-keyword">@font-face</span> &#123;<br>  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&#x27;CustomFont&#x27;</span>;<br>  <span class="hljs-attribute">src</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;font.woff2&#x27;</span>) <span class="hljs-built_in">format</span>(<span class="hljs-string">&#x27;woff2&#x27;</span>);<br>  <span class="hljs-attribute">font-display</span>: swap; <span class="hljs-comment">/* 文本先用系统字体渲染 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>总结应答框架</strong></p>
+<p>分层解析：</p>
+<ul>
+<li>加载层：<ul>
+<li>代码分割 + 预加载</li>
+<li>HTTP&#x2F;2推送 + 资源预加载</li>
+<li>CDN静态资源缓存</li>
+</ul>
+</li>
+<li>构建层：<ul>
+<li>Tree Shaking深度配置</li>
+<li>SplitChunks精细拆包</li>
+<li>持久化缓存 (Webpack 5)</li>
+</ul>
+</li>
+<li>渲染层：<ul>
+<li>关键CSS内联</li>
+<li>图片懒加载 + 字体异步加载</li>
+<li>服务端渲染直出</li>
+</ul>
+</li>
+<li>数据层：<ul>
+<li>接口数据裁剪</li>
+<li>客户端数据缓存</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-3-原理深挖"><a href="#8-3-原理深挖" class="headerlink" title="8.3 原理深挖"></a>8.3 原理深挖</h2><h3 id="8-3-1-手写简易Webpack核心流程（解析依赖→生成Chunk）"><a href="#8-3-1-手写简易Webpack核心流程（解析依赖→生成Chunk）" class="headerlink" title="8.3.1 手写简易Webpack核心流程（解析依赖→生成Chunk）"></a>8.3.1 手写简易Webpack核心流程（解析依赖→生成Chunk）</h3><h3 id="8-3-2-对比Webpack与Vite的Bundleless设计差异"><a href="#8-3-2-对比Webpack与Vite的Bundleless设计差异" class="headerlink" title="8.3.2 对比Webpack与Vite的Bundleless设计差异"></a>8.3.2 对比Webpack与Vite的Bundleless设计差异</h3><hr>
 
                 
               </div>
