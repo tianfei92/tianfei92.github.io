@@ -27,7 +27,7 @@
 <meta property="og:description" content="一、核心概念与基础1.1 Webpack 定位与核心价值1.1.1 模块化打包的本质需求前端开发的核心演变 原始阶段：全局变量污染 1234&lt;!-- 传统开发方式 --&gt;&lt;script src&#x3D;&quot;jquery.js&quot;&gt;&lt;&#x2F;script&gt;&lt;script src&#x3D;&quot;plugin1.js&quot;&gt;&lt;&#x2F;script&amp;g">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-03T01:11:35.000Z">
-<meta property="article:modified_time" content="2025-07-04T06:05:50.399Z">
+<meta property="article:modified_time" content="2025-07-04T07:40:40.511Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="Webpack">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          27k 字
+          29k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          228 分钟
+          243 分钟
         
       </span>
     
@@ -3852,7 +3852,163 @@ C --> D[原始代码位置: 第42行第8列]</pre>
 </ul>
 </li>
 </ul>
-<h2 id="8-3-原理深挖"><a href="#8-3-原理深挖" class="headerlink" title="8.3 原理深挖"></a>8.3 原理深挖</h2><h3 id="8-3-1-手写简易Webpack核心流程（解析依赖→生成Chunk）"><a href="#8-3-1-手写简易Webpack核心流程（解析依赖→生成Chunk）" class="headerlink" title="8.3.1 手写简易Webpack核心流程（解析依赖→生成Chunk）"></a>8.3.1 手写简易Webpack核心流程（解析依赖→生成Chunk）</h3><h3 id="8-3-2-对比Webpack与Vite的Bundleless设计差异"><a href="#8-3-2-对比Webpack与Vite的Bundleless设计差异" class="headerlink" title="8.3.2 对比Webpack与Vite的Bundleless设计差异"></a>8.3.2 对比Webpack与Vite的Bundleless设计差异</h3><hr>
+<h2 id="8-3-原理深挖"><a href="#8-3-原理深挖" class="headerlink" title="8.3 原理深挖"></a>8.3 原理深挖</h2><h3 id="8-3-1-手写简易Webpack核心流程（解析依赖→生成Chunk）"><a href="#8-3-1-手写简易Webpack核心流程（解析依赖→生成Chunk）" class="headerlink" title="8.3.1 手写简易Webpack核心流程（解析依赖→生成Chunk）"></a>8.3.1 手写简易Webpack核心流程（解析依赖→生成Chunk）</h3><p>**核心流程架构</p>
+<pre class="mermaid">graph TD
+  A[入口文件] --> B[AST解析依赖]
+  B --> C[递归构建依赖图]
+  C --> D[生成模块ID]
+  D --> E[封装模块闭包]
+  E --> F[生成Chunk]
+  F --> G[输出Bundle文件]</pre>
+
+<p><strong>依赖图构建算法</strong></p>
+<pre class="mermaid">graph TB
+  A[入口文件] --> B[解析直接依赖]
+  B --> C[模块入队列]
+  C --> D{队列是否为空?}
+  D -->|否| E[出队列模块]
+  E --> F[解析新依赖]
+  F --> G[新模块入队列]
+  G --> D
+  D -->|是| H[生成依赖图]</pre>
+
+<p><strong>核心流程代码实现</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);<br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);<br><span class="hljs-keyword">const</span> parser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@babel/parser&#x27;</span>);<br><span class="hljs-keyword">const</span> traverse = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@babel/traverse&#x27;</span>).<span class="hljs-property">default</span>;<br><span class="hljs-keyword">const</span> &#123; transformFromAst &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;@babel/core&#x27;</span>);<br><br><span class="hljs-comment">// 1. 定义Compiler类 - Webpack的核心编译器</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Compiler</span> &#123;<br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">options</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span> = options;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">modules</span> = []; <span class="hljs-comment">// 存储所有模块</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">chunks</span> = []; <span class="hljs-comment">// 存储所有chunk</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">assets</span> = &#123;&#125;; <span class="hljs-comment">// 存储输出资源</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">fileDependencies</span> = []; <span class="hljs-comment">// 存储文件依赖</span><br>  &#125;<br><br>  <span class="hljs-comment">// 2. 运行编译器</span><br>  <span class="hljs-title function_">run</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 从入口文件开始编译</span><br>    <span class="hljs-keyword">const</span> entryModule = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">buildModule</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span>.<span class="hljs-property">entry</span>, <span class="hljs-literal">true</span>);<br>    <br>    <span class="hljs-comment">// 构建依赖图</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">buildDependencyGraph</span>(entryModule);<br>    <br>    <span class="hljs-comment">// 生成chunks</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">generateChunks</span>();<br>    <br>    <span class="hljs-comment">// 输出文件</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">emitFiles</span>();<br>    <br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;打包完成!&#x27;</span>);<br>  &#125;<br><br>  <span class="hljs-comment">// 3. 构建单个模块</span><br>  <span class="hljs-title function_">buildModule</span>(<span class="hljs-params">filename, isEntry</span>) &#123;<br>    <span class="hljs-comment">// 获取文件绝对路径</span><br>    <span class="hljs-keyword">let</span> filePath = path.<span class="hljs-title function_">isAbsolute</span>(filename) <br>      ? filename <br>      : path.<span class="hljs-title function_">join</span>(process.<span class="hljs-title function_">cwd</span>(), filename);<br>    <br>    <span class="hljs-comment">// 检查文件是否存在</span><br>    <span class="hljs-keyword">if</span> (!fs.<span class="hljs-title function_">existsSync</span>(filePath)) &#123;<br>      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`文件不存在: <span class="hljs-subst">$&#123;filePath&#125;</span>`</span>);<br>    &#125;<br>    <br>    <span class="hljs-comment">// 读取文件内容</span><br>    <span class="hljs-keyword">const</span> fileContent = fs.<span class="hljs-title function_">readFileSync</span>(filePath, <span class="hljs-string">&#x27;utf-8&#x27;</span>);<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">fileDependencies</span>.<span class="hljs-title function_">push</span>(filePath);<br>    <br>    <span class="hljs-comment">// 使用Babel解析代码为AST</span><br>    <span class="hljs-keyword">const</span> ast = parser.<span class="hljs-title function_">parse</span>(fileContent, &#123;<br>      <span class="hljs-attr">sourceType</span>: <span class="hljs-string">&#x27;module&#x27;</span><br>    &#125;);<br>    <br>    <span class="hljs-comment">// 收集依赖</span><br>    <span class="hljs-keyword">const</span> dependencies = [];<br>    <span class="hljs-title function_">traverse</span>(ast, &#123;<br>      <span class="hljs-title class_">ImportDeclaration</span>: <span class="hljs-function">(<span class="hljs-params">&#123; node &#125;</span>) =&gt;</span> &#123;<br>        dependencies.<span class="hljs-title function_">push</span>(node.<span class="hljs-property">source</span>.<span class="hljs-property">value</span>);<br>      &#125;,<br>      <span class="hljs-title class_">CallExpression</span>: <span class="hljs-function">(<span class="hljs-params">&#123; node &#125;</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (node.<span class="hljs-property">callee</span>.<span class="hljs-property">name</span> === <span class="hljs-string">&#x27;require&#x27;</span>) &#123;<br>          dependencies.<span class="hljs-title function_">push</span>(node.<span class="hljs-property">arguments</span>[<span class="hljs-number">0</span>].<span class="hljs-property">value</span>);<br>        &#125;<br>      &#125;<br>    &#125;);<br>    <br>    <span class="hljs-comment">// 将ES6代码转换为ES5</span><br>    <span class="hljs-keyword">const</span> &#123; code &#125; = <span class="hljs-title function_">transformFromAst</span>(ast, <span class="hljs-literal">null</span>, &#123;<br>      <span class="hljs-attr">presets</span>: [<span class="hljs-string">&#x27;@babel/preset-env&#x27;</span>]<br>    &#125;);<br>    <br>    <span class="hljs-comment">// 创建模块对象</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-variable language_">module</span> = &#123;<br>      <span class="hljs-attr">id</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">modules</span>.<span class="hljs-property">length</span>,<br>      <span class="hljs-attr">filename</span>: filePath,<br>      dependencies,<br>      code,<br>      isEntry<br>    &#125;;<br>    <br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">modules</span>.<span class="hljs-title function_">push</span>(<span class="hljs-variable language_">module</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">module</span>;<br>  &#125;<br><br>  <span class="hljs-comment">// 4. 构建完整依赖图</span><br>  <span class="hljs-title function_">buildDependencyGraph</span>(<span class="hljs-params">entryModule</span>) &#123;<br>    <span class="hljs-keyword">const</span> queue = [entryModule];<br>    <br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-variable language_">module</span> <span class="hljs-keyword">of</span> queue) &#123;<br>      <span class="hljs-variable language_">module</span>.<span class="hljs-property">dependencies</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">dep</span> =&gt;</span> &#123;<br>        <span class="hljs-comment">// 转换路径为绝对路径</span><br>        <span class="hljs-keyword">const</span> dirname = path.<span class="hljs-title function_">dirname</span>(<span class="hljs-variable language_">module</span>.<span class="hljs-property">filename</span>);<br>        <span class="hljs-keyword">const</span> absolutePath = path.<span class="hljs-title function_">resolve</span>(dirname, dep);<br>        <br>        <span class="hljs-comment">// 检查是否已处理过该模块</span><br>        <span class="hljs-keyword">const</span> alreadyProcessed = <span class="hljs-variable language_">this</span>.<span class="hljs-property">modules</span>.<span class="hljs-title function_">some</span>(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.<span class="hljs-property">filename</span> === absolutePath);<br>        <br>        <span class="hljs-keyword">if</span> (!alreadyProcessed) &#123;<br>          <span class="hljs-keyword">const</span> childModule = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">buildModule</span>(absolutePath, <span class="hljs-literal">false</span>);<br>          queue.<span class="hljs-title function_">push</span>(childModule);<br>        &#125;<br>      &#125;);<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// 5. 生成Chunks</span><br>  <span class="hljs-title function_">generateChunks</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 简单打包策略：所有模块打包到一个chunk中</span><br>    <span class="hljs-comment">// 实际Webpack会根据配置分割chunk</span><br>    <span class="hljs-keyword">const</span> chunk = &#123;<br>      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;main&#x27;</span>,<br>      <span class="hljs-attr">modules</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">modules</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> m.<span class="hljs-property">id</span>)<br>    &#125;;<br>    <br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">chunks</span>.<span class="hljs-title function_">push</span>(chunk);<br>  &#125;<br><br>  <span class="hljs-comment">// 6. 生成bundle文件</span><br>  <span class="hljs-title function_">generateBundleCode</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 创建模块映射对象</span><br>    <span class="hljs-keyword">const</span> modulesMap = <span class="hljs-variable language_">this</span>.<span class="hljs-property">modules</span>.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">map, mod</span>) =&gt;</span> &#123;<br>      map[mod.<span class="hljs-property">id</span>] = &#123;<br>        <span class="hljs-attr">fn</span>: mod.<span class="hljs-property">code</span>,<br>        <span class="hljs-attr">deps</span>: mod.<span class="hljs-property">dependencies</span>.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">deps, dep</span>) =&gt;</span> &#123;<br>          <span class="hljs-keyword">const</span> depModule = <span class="hljs-variable language_">this</span>.<span class="hljs-property">modules</span>.<span class="hljs-title function_">find</span>(<span class="hljs-function"><span class="hljs-params">m</span> =&gt;</span> <br>            m.<span class="hljs-property">filename</span> === path.<span class="hljs-title function_">resolve</span>(path.<span class="hljs-title function_">dirname</span>(mod.<span class="hljs-property">filename</span>), dep)<br>          );<br>          <span class="hljs-keyword">if</span> (depModule) deps[dep] = depModule.<span class="hljs-property">id</span>;<br>          <span class="hljs-keyword">return</span> deps;<br>        &#125;, &#123;&#125;)<br>      &#125;;<br>      <span class="hljs-keyword">return</span> map;<br>    &#125;, &#123;&#125;);<br>    <br>    <span class="hljs-comment">// 生成bundle代码</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`(function(modules) &#123;</span><br><span class="hljs-string">      // 缓存已加载的模块</span><br><span class="hljs-string">      var installedModules = &#123;&#125;;</span><br><span class="hljs-string">      </span><br><span class="hljs-string">      // 实现require函数</span><br><span class="hljs-string">      function require(moduleId) &#123;</span><br><span class="hljs-string">        // 检查是否已缓存</span><br><span class="hljs-string">        if (installedModules[moduleId]) &#123;</span><br><span class="hljs-string">          return installedModules[moduleId].exports;</span><br><span class="hljs-string">        &#125;</span><br><span class="hljs-string">        </span><br><span class="hljs-string">        // 创建新模块</span><br><span class="hljs-string">        var module = installedModules[moduleId] = &#123;</span><br><span class="hljs-string">          exports: &#123;&#125;</span><br><span class="hljs-string">        &#125;;</span><br><span class="hljs-string">        </span><br><span class="hljs-string">        // 执行模块函数</span><br><span class="hljs-string">        modules[moduleId].fn.call(</span><br><span class="hljs-string">          module.exports, </span><br><span class="hljs-string">          module, </span><br><span class="hljs-string">          module.exports, </span><br><span class="hljs-string">          require</span><br><span class="hljs-string">        );</span><br><span class="hljs-string">        </span><br><span class="hljs-string">        // 返回模块导出</span><br><span class="hljs-string">        return module.exports;</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">      </span><br><span class="hljs-string">      // 加载入口模块</span><br><span class="hljs-string">      require(<span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.modules.find(m =&gt; m.isEntry).id&#125;</span>);</span><br><span class="hljs-string">    &#125;)(<span class="hljs-subst">$&#123;<span class="hljs-built_in">JSON</span>.stringify(modulesMap, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>)&#125;</span>);`</span>;<br>  &#125;<br><br>  <span class="hljs-comment">// 7. 输出文件</span><br>  <span class="hljs-title function_">emitFiles</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">const</span> outputPath = path.<span class="hljs-title function_">join</span>(<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span>.<span class="hljs-property">output</span>.<span class="hljs-property">path</span>, <br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span>.<span class="hljs-property">output</span>.<span class="hljs-property">filename</span><br>    );<br>    <br>    <span class="hljs-comment">// 确保输出目录存在</span><br>    <span class="hljs-keyword">if</span> (!fs.<span class="hljs-title function_">existsSync</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span>.<span class="hljs-property">output</span>.<span class="hljs-property">path</span>)) &#123;<br>      fs.<span class="hljs-title function_">mkdirSync</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span>.<span class="hljs-property">output</span>.<span class="hljs-property">path</span>, &#123; <span class="hljs-attr">recursive</span>: <span class="hljs-literal">true</span> &#125;);<br>    &#125;<br>    <br>    <span class="hljs-comment">// 生成bundle代码</span><br>    <span class="hljs-keyword">const</span> bundleCode = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">generateBundleCode</span>();<br>    <br>    <span class="hljs-comment">// 写入文件</span><br>    fs.<span class="hljs-title function_">writeFileSync</span>(outputPath, bundleCode);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`已生成bundle文件: <span class="hljs-subst">$&#123;outputPath&#125;</span>`</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 8. 使用示例</span><br><span class="hljs-keyword">const</span> webpackConfig = &#123;<br>  <span class="hljs-attr">entry</span>: <span class="hljs-string">&#x27;./src/index.js&#x27;</span>,<br>  <span class="hljs-attr">output</span>: &#123;<br>    <span class="hljs-attr">path</span>: path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>),<br>    <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;bundle.js&#x27;</span><br>  &#125;<br>&#125;;<br><br><span class="hljs-comment">// 创建Compiler实例并运行</span><br><span class="hljs-keyword">const</span> compiler = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Compiler</span>(webpackConfig);<br>compiler.<span class="hljs-title function_">run</span>();<br></code></pre></td></tr></table></figure>
+
+<p><strong>核心流程详解</strong></p>
+<ul>
+<li>初始化阶段<ul>
+<li>创建Compiler实例，接收配置参数</li>
+<li>准备modules、chunks和assets等数据结构</li>
+</ul>
+</li>
+<li>编译阶段<ul>
+<li>入口解析：从配置的entry开始解析</li>
+<li>模块构建：<ul>
+<li>读取文件内容</li>
+<li>使用Babel解析为AST</li>
+<li>遍历AST收集依赖</li>
+<li>使用Babel转换代码</li>
+</ul>
+</li>
+<li>构建依赖图：递归解析所有依赖模块</li>
+</ul>
+</li>
+<li>生成阶段<ul>
+<li>生成Chunks：根据入口和依赖关系生成代码块</li>
+<li>创建模块映射：为每个模块创建ID和依赖映射</li>
+<li>生成运行时代码：实现require函数和模块缓存</li>
+</ul>
+</li>
+<li>输出阶段<ul>
+<li>生成bundle代码：将所有模块打包到一个文件中</li>
+<li>写入文件系统：输出到配置的output目录</li>
+</ul>
+</li>
+</ul>
+<p><strong>使用示例</strong></p>
+<p>创建一个简单的项目结构测试我们的Webpack实现：</p>
+<p>项目结构：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Text">my-project/<br>  ├── src/<br>  │   ├── index.js<br>  │   ├── message.js<br>  │   └── name.js<br>  ├── dist/<br>  ├── my-webpack.js (上面的代码)<br>  └── package.json<br></code></pre></td></tr></table></figure>
+
+<p>src&#x2F;index.js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">import</span> &#123; message &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./message.js&#x27;</span>;<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message);<br></code></pre></td></tr></table></figure>
+
+<p>src&#x2F;message.js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">import</span> &#123; name &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./name.js&#x27;</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> message = <span class="hljs-string">`Hello, <span class="hljs-subst">$&#123;name&#125;</span>!`</span>;<br></code></pre></td></tr></table></figure>
+
+<p>src&#x2F;name.js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> name = <span class="hljs-string">&#x27;Webpack Developer&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>运行我们的Webpack实现：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">node my-webpack.js<br></code></pre></td></tr></table></figure>
+
+<p>输出结果 (dist&#x2F;bundle.js):</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">(<span class="hljs-keyword">function</span>(<span class="hljs-params">modules</span>) &#123;<br>  <span class="hljs-comment">// 缓存已加载的模块</span><br>  <span class="hljs-keyword">var</span> installedModules = &#123;&#125;;<br>  <br>  <span class="hljs-comment">// 实现require函数</span><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">require</span>(<span class="hljs-params">moduleId</span>) &#123;<br>    <span class="hljs-comment">// 检查是否已缓存</span><br>    <span class="hljs-keyword">if</span> (installedModules[moduleId]) &#123;<br>      <span class="hljs-keyword">return</span> installedModules[moduleId].<span class="hljs-property">exports</span>;<br>    &#125;<br>    <br>    <span class="hljs-comment">// 创建新模块</span><br>    <span class="hljs-keyword">var</span> <span class="hljs-variable language_">module</span> = installedModules[moduleId] = &#123;<br>      <span class="hljs-attr">exports</span>: &#123;&#125;<br>    &#125;;<br>    <br>    <span class="hljs-comment">// 执行模块函数</span><br>    modules[moduleId].<span class="hljs-property">fn</span>.<span class="hljs-title function_">call</span>(<br>      <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>, <br>      <span class="hljs-variable language_">module</span>, <br>      <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>, <br>      <span class="hljs-built_in">require</span><br>    );<br>    <br>    <span class="hljs-comment">// 返回模块导出</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>;<br>  &#125;<br>  <br>  <span class="hljs-comment">// 加载入口模块</span><br>  <span class="hljs-built_in">require</span>(<span class="hljs-number">0</span>);<br>&#125;)(&#123;<br>  <span class="hljs-string">&quot;0&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;fn&quot;</span>: <span class="hljs-string">&quot;\&quot;use strict\&quot;;\n\nvar _message = require(\&quot;./message.js\&quot;);\n\nconsole.log(_message.message);&quot;</span>,<br>    <span class="hljs-string">&quot;deps&quot;</span>: &#123;<br>      <span class="hljs-string">&quot;./message.js&quot;</span>: <span class="hljs-number">1</span><br>    &#125;<br>  &#125;,<br>  <span class="hljs-string">&quot;1&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;fn&quot;</span>: <span class="hljs-string">&quot;\&quot;use strict\&quot;;\n\nObject.defineProperty(exports, \&quot;__esModule\&quot;, &#123;\n  value: true\n&#125;);\nexports.message = void 0;\n\nvar _name = require(\&quot;./name.js\&quot;);\n\nvar message = \&quot;Hello, \&quot;.concat(_name.name, \&quot;!\&quot;);\nexports.message = message;&quot;</span>,<br>    <span class="hljs-string">&quot;deps&quot;</span>: &#123;<br>      <span class="hljs-string">&quot;./name.js&quot;</span>: <span class="hljs-number">2</span><br>    &#125;<br>  &#125;,<br>  <span class="hljs-string">&quot;2&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;fn&quot;</span>: <span class="hljs-string">&quot;\&quot;use strict\&quot;;\n\nObject.defineProperty(exports, \&quot;__esModule\&quot;, &#123;\n  value: true\n&#125;);\nexports.name = void 0;\nvar name = &#x27;Webpack Developer&#x27;;\nexports.name = name;&quot;</span>,<br>    <span class="hljs-string">&quot;deps&quot;</span>: &#123;&#125;<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h3 id="8-3-2-对比Webpack与Vite的Bundleless设计差异"><a href="#8-3-2-对比Webpack与Vite的Bundleless设计差异" class="headerlink" title="8.3.2 对比Webpack与Vite的Bundleless设计差异"></a>8.3.2 对比Webpack与Vite的Bundleless设计差异</h3><p><strong>核心架构差异全景</strong></p>
+<pre class="mermaid">graph LR
+  W[Webpack] -->|基于Bundle| A[开发/生产统一打包]
+  V[Vite] -->|Bundleless| B[开发：ESM按需加载<br>生产：Rollup打包]
+  
+  subgraph 开发模式
+    A --> C[启动时全量打包]
+    B --> D[启动时无打包]
+  end
+  
+  subgraph 生产模式
+    A --> E[Webpack打包]
+    B --> F[Rollup打包]
+  end</pre>
+
+<p><strong>五大核心维度对比</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">维度</th>
+<th align="left">Webpack</th>
+<th align="left">Vite</th>
+<th align="left">本质差异</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">开发启动</td>
+<td align="left">全量打包后启动（O(n)）</td>
+<td align="left">仅启动Server（O(1)）</td>
+<td align="left">项目越大差异越显著</td>
+</tr>
+<tr>
+<td align="left">HMR更新</td>
+<td align="left">重新构建受影响Chunk</td>
+<td align="left">边界模块按需更新（毫秒级）</td>
+<td align="left">依赖图遍历 vs ESM动态加载</td>
+</tr>
+<tr>
+<td align="left">生态兼容</td>
+<td align="left">⭐⭐⭐⭐⭐ 支持所有Loader&#x2F;Plugin</td>
+<td align="left">⭐⭐⭐ 依赖Rollup插件体系</td>
+<td align="left">历史包袱 vs 轻量设计</td>
+</tr>
+<tr>
+<td align="left">构建输出</td>
+<td align="left">自定义Chunk分割</td>
+<td align="left">原生ESM输出 + 异步Chunk</td>
+<td align="left">人工优化 vs 原生并行加载</td>
+</tr>
+<tr>
+<td align="left">调试支持</td>
+<td align="left">SourceMap映射打包后代码</td>
+<td align="left">直接映射源码（未编译状态）</td>
+<td align="left">转换后调试 vs 源码级调试</td>
+</tr>
+</tbody></table>
+<p><strong>开发模式原理剖析</strong></p>
+<p>(1) Webpack 传统打包流程</p>
+<pre class="mermaid">sequenceDiagram
+  浏览器->>DevServer: 请求入口HTML
+  DevServer->>Webpack: 触发全量打包
+  Webpack->>浏览器: 返回bundle.js(包含所有模块)
+  浏览器->>DevServer: HMR更新请求
+  Webpack->>Webpack: 重新构建受影响Chunk
+  Webpack->>浏览器: 发送更新补丁</pre>
+
+<p>(2) Vite Bundleless 流程</p>
+<pre class="mermaid">sequenceDiagram
+  浏览器->>ViteServer: 请求入口HTML
+  ViteServer->>浏览器: 返回基础HTML
+  浏览器->>ViteServer: 请求main.js(ESM)
+  ViteServer->>浏览器: 返回原生ESM模块
+  浏览器->>ViteServer: 按需请求依赖模块
+  浏览器->>ViteServer: HMR边界模块更新
+  ViteServer->>浏览器: 仅更新单个模块</pre>
+
+<p>关键创新：</p>
+<ul>
+<li>利用浏览器原生 ESM 能力</li>
+<li>依赖预构建（esbuild 转换 CJS 模块）</li>
+<li>基于路由的代码分割（自然代码分割）</li>
+</ul>
+<hr>
 
                 
               </div>
@@ -3942,6 +4098,12 @@ C --> D[原始代码位置: 第42行第8列]</pre>
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/07/05/NodeJS%20Study%20Notes/" title="NodeJS 专题知识学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">NodeJS 专题知识学习</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
@@ -4229,5 +4391,20 @@ C --> D[原始代码位置: 第42行第8列]</pre>
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

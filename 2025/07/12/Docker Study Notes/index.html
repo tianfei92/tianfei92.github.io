@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Ariel">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、Docker 基础与核心概念1.1 架构设计与工作原理1.1.1 Client-Server 架构（Docker Client&#x2F;Daemon&#x2F;REST API）1.1.2 镜像分层存储机制（UnionFS）与写时复制（Copy-on-Write）1.1.3 Linux Namespace 隔离机制（PID&#x2F;Network&#x2F;Mount&#x2F;IPC&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 专题知识学习">
+<meta property="og:url" content="https://tianfei92.github.io/2025/07/12/Docker%20Study%20Notes/index.html">
+<meta property="og:site_name" content="Ariel&#39;s Blog">
+<meta property="og:description" content="一、Docker 基础与核心概念1.1 架构设计与工作原理1.1.1 Client-Server 架构（Docker Client&#x2F;Daemon&#x2F;REST API）1.1.2 镜像分层存储机制（UnionFS）与写时复制（Copy-on-Write）1.1.3 Linux Namespace 隔离机制（PID&#x2F;Network&#x2F;Mount&#x2F;IPC&amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-12T09:30:22.000Z">
+<meta property="article:modified_time" content="2025-07-04T08:34:53.065Z">
+<meta property="article:author" content="Ariel">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Docker 专题知识学习 - Ariel&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"tianfei92.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Ariel</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Docker 专题知识学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-12 17:30" pubdate>
+          2025年7月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          909 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Docker 专题知识学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="一、Docker-基础与核心概念"><a href="#一、Docker-基础与核心概念" class="headerlink" title="一、Docker 基础与核心概念"></a>一、Docker 基础与核心概念</h1><h2 id="1-1-架构设计与工作原理"><a href="#1-1-架构设计与工作原理" class="headerlink" title="1.1 架构设计与工作原理"></a>1.1 架构设计与工作原理</h2><h3 id="1-1-1-Client-Server-架构（Docker-Client-Daemon-REST-API）"><a href="#1-1-1-Client-Server-架构（Docker-Client-Daemon-REST-API）" class="headerlink" title="1.1.1 Client-Server 架构（Docker Client&#x2F;Daemon&#x2F;REST API）"></a>1.1.1 Client-Server 架构（Docker Client&#x2F;Daemon&#x2F;REST API）</h3><h3 id="1-1-2-镜像分层存储机制（UnionFS）与写时复制（Copy-on-Write）"><a href="#1-1-2-镜像分层存储机制（UnionFS）与写时复制（Copy-on-Write）" class="headerlink" title="1.1.2 镜像分层存储机制（UnionFS）与写时复制（Copy-on-Write）"></a>1.1.2 镜像分层存储机制（UnionFS）与写时复制（Copy-on-Write）</h3><h3 id="1-1-3-Linux-Namespace-隔离机制（PID-Network-Mount-IPC-UTS-User）"><a href="#1-1-3-Linux-Namespace-隔离机制（PID-Network-Mount-IPC-UTS-User）" class="headerlink" title="1.1.3 Linux Namespace 隔离机制（PID&#x2F;Network&#x2F;Mount&#x2F;IPC&#x2F;UTS&#x2F;User）"></a>1.1.3 Linux Namespace 隔离机制（PID&#x2F;Network&#x2F;Mount&#x2F;IPC&#x2F;UTS&#x2F;User）</h3><h3 id="1-1-4-Cgroups-资源控制（CPU-内存-磁盘I-O-网络）"><a href="#1-1-4-Cgroups-资源控制（CPU-内存-磁盘I-O-网络）" class="headerlink" title="1.1.4 Cgroups 资源控制（CPU&#x2F;内存&#x2F;磁盘I&#x2F;O&#x2F;网络）"></a>1.1.4 Cgroups 资源控制（CPU&#x2F;内存&#x2F;磁盘I&#x2F;O&#x2F;网络）</h3><h2 id="1-2-镜像管理"><a href="#1-2-镜像管理" class="headerlink" title="1.2 镜像管理"></a>1.2 镜像管理</h2><h3 id="1-2-1-Dockerfile-指令详解（FROM-COPY-RUN-CMD-ENTRYPOINT）"><a href="#1-2-1-Dockerfile-指令详解（FROM-COPY-RUN-CMD-ENTRYPOINT）" class="headerlink" title="1.2.1 Dockerfile 指令详解（FROM&#x2F;COPY&#x2F;RUN&#x2F;CMD&#x2F;ENTRYPOINT）"></a>1.2.1 Dockerfile 指令详解（FROM&#x2F;COPY&#x2F;RUN&#x2F;CMD&#x2F;ENTRYPOINT）</h3><h3 id="1-2-2-镜像构建优化策略（多阶段构建-层缓存）"><a href="#1-2-2-镜像构建优化策略（多阶段构建-层缓存）" class="headerlink" title="1.2.2 镜像构建优化策略（多阶段构建&#x2F;层缓存）"></a>1.2.2 镜像构建优化策略（多阶段构建&#x2F;层缓存）</h3><h3 id="1-2-3-镜像仓库管理（Docker-Hub-私有Registry-镜像安全扫描）"><a href="#1-2-3-镜像仓库管理（Docker-Hub-私有Registry-镜像安全扫描）" class="headerlink" title="1.2.3 镜像仓库管理（Docker Hub&#x2F;私有Registry&#x2F;镜像安全扫描）"></a>1.2.3 镜像仓库管理（Docker Hub&#x2F;私有Registry&#x2F;镜像安全扫描）</h3><h2 id="1-3-容器生命周期管理"><a href="#1-3-容器生命周期管理" class="headerlink" title="1.3 容器生命周期管理"></a>1.3 容器生命周期管理</h2><h3 id="1-3-1-容器操作命令（run-exec-stop-rm-logs）"><a href="#1-3-1-容器操作命令（run-exec-stop-rm-logs）" class="headerlink" title="1.3.1 容器操作命令（run&#x2F;exec&#x2F;stop&#x2F;rm&#x2F;logs）"></a>1.3.1 容器操作命令（run&#x2F;exec&#x2F;stop&#x2F;rm&#x2F;logs）</h3><h3 id="1-3-2-资源限制配置（CPU-内存-磁盘IO）"><a href="#1-3-2-资源限制配置（CPU-内存-磁盘IO）" class="headerlink" title="1.3.2 资源限制配置（CPU&#x2F;内存&#x2F;磁盘IO）"></a>1.3.2 资源限制配置（CPU&#x2F;内存&#x2F;磁盘IO）</h3><h3 id="1-3-3-容器健康检查与自愈机制"><a href="#1-3-3-容器健康检查与自愈机制" class="headerlink" title="1.3.3 容器健康检查与自愈机制"></a>1.3.3 容器健康检查与自愈机制</h3><h1 id="二、Docker-高级特性"><a href="#二、Docker-高级特性" class="headerlink" title="二、Docker 高级特性"></a>二、Docker 高级特性</h1><h2 id="2-1-网络模型"><a href="#2-1-网络模型" class="headerlink" title="2.1 网络模型"></a>2.1 网络模型</h2><h3 id="2-1-1-五种网络模式（none-host-bridge-container-overlay）"><a href="#2-1-1-五种网络模式（none-host-bridge-container-overlay）" class="headerlink" title="2.1.1 五种网络模式（none&#x2F;host&#x2F;bridge&#x2F;container&#x2F;overlay）"></a>2.1.1 五种网络模式（none&#x2F;host&#x2F;bridge&#x2F;container&#x2F;overlay）</h3><h3 id="2-1-2-自定义网络与DNS服务发现"><a href="#2-1-2-自定义网络与DNS服务发现" class="headerlink" title="2.1.2 自定义网络与DNS服务发现"></a>2.1.2 自定义网络与DNS服务发现</h3><h3 id="2-1-3-容器网络互通与跨主机通信"><a href="#2-1-3-容器网络互通与跨主机通信" class="headerlink" title="2.1.3 容器网络互通与跨主机通信"></a>2.1.3 容器网络互通与跨主机通信</h3><h2 id="2-2-存储管理"><a href="#2-2-存储管理" class="headerlink" title="2.2 存储管理"></a>2.2 存储管理</h2><h3 id="2-2-1-数据卷（Volume）与绑定挂载（Bind-Mount）"><a href="#2-2-1-数据卷（Volume）与绑定挂载（Bind-Mount）" class="headerlink" title="2.2.1 数据卷（Volume）与绑定挂载（Bind Mount）"></a>2.2.1 数据卷（Volume）与绑定挂载（Bind Mount）</h3><h3 id="2-2-2-持久化存储方案（NFS-云存储插件）"><a href="#2-2-2-持久化存储方案（NFS-云存储插件）" class="headerlink" title="2.2.2 持久化存储方案（NFS&#x2F;云存储插件）"></a>2.2.2 持久化存储方案（NFS&#x2F;云存储插件）</h3><h3 id="2-2-3-存储驱动选择与性能优化"><a href="#2-2-3-存储驱动选择与性能优化" class="headerlink" title="2.2.3 存储驱动选择与性能优化"></a>2.2.3 存储驱动选择与性能优化</h3><h2 id="2-3-安全机制"><a href="#2-3-安全机制" class="headerlink" title="2.3 安全机制"></a>2.3 安全机制</h2><h3 id="2-3-1-能力控制（Capabilities）与Seccomp配置文件"><a href="#2-3-1-能力控制（Capabilities）与Seccomp配置文件" class="headerlink" title="2.3.1 能力控制（Capabilities）与Seccomp配置文件"></a>2.3.1 能力控制（Capabilities）与Seccomp配置文件</h3><h3 id="2-3-2-镜像签名验证（Docker-Content-Trust）"><a href="#2-3-2-镜像签名验证（Docker-Content-Trust）" class="headerlink" title="2.3.2 镜像签名验证（Docker Content Trust）"></a>2.3.2 镜像签名验证（Docker Content Trust）</h3><h3 id="2-3-3-容器安全最佳实践（非root用户-只读文件系统）"><a href="#2-3-3-容器安全最佳实践（非root用户-只读文件系统）" class="headerlink" title="2.3.3 容器安全最佳实践（非root用户&#x2F;只读文件系统）"></a>2.3.3 容器安全最佳实践（非root用户&#x2F;只读文件系统）</h3><h1 id="三、Docker-实战与工程化"><a href="#三、Docker-实战与工程化" class="headerlink" title="三、Docker 实战与工程化"></a>三、Docker 实战与工程化</h1><h2 id="3-1-生产环境优化"><a href="#3-1-生产环境优化" class="headerlink" title="3.1 生产环境优化"></a>3.1 生产环境优化</h2><h3 id="3-1-1-多阶段构建实战（Go-Node-js-Python项目）"><a href="#3-1-1-多阶段构建实战（Go-Node-js-Python项目）" class="headerlink" title="3.1.1 多阶段构建实战（Go&#x2F;Node.js&#x2F;Python项目）"></a>3.1.1 多阶段构建实战（Go&#x2F;Node.js&#x2F;Python项目）</h3><h3 id="3-1-2-最小化镜像构建（Alpine-Distroless）"><a href="#3-1-2-最小化镜像构建（Alpine-Distroless）" class="headerlink" title="3.1.2 最小化镜像构建（Alpine&#x2F;Distroless）"></a>3.1.2 最小化镜像构建（Alpine&#x2F;Distroless）</h3><h3 id="3-1-3-容器资源监控方案（cAdvisor-Prometheus）"><a href="#3-1-3-容器资源监控方案（cAdvisor-Prometheus）" class="headerlink" title="3.1.3 容器资源监控方案（cAdvisor&#x2F;Prometheus）"></a>3.1.3 容器资源监控方案（cAdvisor&#x2F;Prometheus）</h3><h2 id="3-2-CI-CD-集成"><a href="#3-2-CI-CD-集成" class="headerlink" title="3.2 CI&#x2F;CD 集成"></a>3.2 CI&#x2F;CD 集成</h2><h3 id="3-2-1-Jenkins-容器化流水线设计"><a href="#3-2-1-Jenkins-容器化流水线设计" class="headerlink" title="3.2.1 Jenkins 容器化流水线设计"></a>3.2.1 Jenkins 容器化流水线设计</h3><h3 id="3-2-2-GitLab-CI-CD-容器集成"><a href="#3-2-2-GitLab-CI-CD-容器集成" class="headerlink" title="3.2.2 GitLab CI&#x2F;CD 容器集成"></a>3.2.2 GitLab CI&#x2F;CD 容器集成</h3><h3 id="3-2-3-镜像仓库与部署自动化策略"><a href="#3-2-3-镜像仓库与部署自动化策略" class="headerlink" title="3.2.3 镜像仓库与部署自动化策略"></a>3.2.3 镜像仓库与部署自动化策略</h3><h1 id="四、Kubernetes-基础架构"><a href="#四、Kubernetes-基础架构" class="headerlink" title="四、Kubernetes 基础架构"></a>四、Kubernetes 基础架构</h1><h2 id="4-1-核心组件架构"><a href="#4-1-核心组件架构" class="headerlink" title="4.1 核心组件架构"></a>4.1 核心组件架构</h2><h3 id="4-1-1-控制平面组件（API-Server-etcd-Scheduler）"><a href="#4-1-1-控制平面组件（API-Server-etcd-Scheduler）" class="headerlink" title="4.1.1 控制平面组件（API Server&#x2F;etcd&#x2F;Scheduler）"></a>4.1.1 控制平面组件（API Server&#x2F;etcd&#x2F;Scheduler）</h3><h3 id="4-1-2-工作节点组件（Kubelet-kube-proxy-容器运行时）"><a href="#4-1-2-工作节点组件（Kubelet-kube-proxy-容器运行时）" class="headerlink" title="4.1.2 工作节点组件（Kubelet&#x2F;kube-proxy&#x2F;容器运行时）"></a>4.1.2 工作节点组件（Kubelet&#x2F;kube-proxy&#x2F;容器运行时）</h3><h3 id="4-1-3-集群通信机制（API-聚合-CRI-CNI-CSI）"><a href="#4-1-3-集群通信机制（API-聚合-CRI-CNI-CSI）" class="headerlink" title="4.1.3 集群通信机制（API 聚合&#x2F;CRI&#x2F;CNI&#x2F;CSI）"></a>4.1.3 集群通信机制（API 聚合&#x2F;CRI&#x2F;CNI&#x2F;CSI）</h3><h2 id="4-2-核心对象模型"><a href="#4-2-核心对象模型" class="headerlink" title="4.2 核心对象模型"></a>4.2 核心对象模型</h2><h3 id="4-2-1-Pod-工作原理与生命周期"><a href="#4-2-1-Pod-工作原理与生命周期" class="headerlink" title="4.2.1 Pod 工作原理与生命周期"></a>4.2.1 Pod 工作原理与生命周期</h3><h3 id="4-2-2-Deployment-无状态应用管理"><a href="#4-2-2-Deployment-无状态应用管理" class="headerlink" title="4.2.2 Deployment 无状态应用管理"></a>4.2.2 Deployment 无状态应用管理</h3><h3 id="4-2-3-Service-服务发现与负载均衡"><a href="#4-2-3-Service-服务发现与负载均衡" class="headerlink" title="4.2.3 Service 服务发现与负载均衡"></a>4.2.3 Service 服务发现与负载均衡</h3><h1 id="五、Kubernetes-进阶实践"><a href="#五、Kubernetes-进阶实践" class="headerlink" title="五、Kubernetes 进阶实践"></a>五、Kubernetes 进阶实践</h1><h2 id="5-1-网络与存储"><a href="#5-1-网络与存储" class="headerlink" title="5.1 网络与存储"></a>5.1 网络与存储</h2><h3 id="5-1-1-Ingress-控制器（Nginx-Traefik）配置"><a href="#5-1-1-Ingress-控制器（Nginx-Traefik）配置" class="headerlink" title="5.1.1 Ingress 控制器（Nginx&#x2F;Traefik）配置"></a>5.1.1 Ingress 控制器（Nginx&#x2F;Traefik）配置</h3><h3 id="5-1-2-CNI-网络插件（Calico-Flannel-Cilium）"><a href="#5-1-2-CNI-网络插件（Calico-Flannel-Cilium）" class="headerlink" title="5.1.2 CNI 网络插件（Calico&#x2F;Flannel&#x2F;Cilium）"></a>5.1.2 CNI 网络插件（Calico&#x2F;Flannel&#x2F;Cilium）</h3><h3 id="5-1-3-PV-PVC-存储管理（Local-NFS-云存储）"><a href="#5-1-3-PV-PVC-存储管理（Local-NFS-云存储）" class="headerlink" title="5.1.3 PV&#x2F;PVC 存储管理（Local&#x2F;NFS&#x2F;云存储）"></a>5.1.3 PV&#x2F;PVC 存储管理（Local&#x2F;NFS&#x2F;云存储）</h3><h2 id="5-2-配置与安全管理"><a href="#5-2-配置与安全管理" class="headerlink" title="5.2 配置与安全管理"></a>5.2 配置与安全管理</h2><h3 id="5-2-1-ConfigMap-与-Secret-管理"><a href="#5-2-1-ConfigMap-与-Secret-管理" class="headerlink" title="5.2.1 ConfigMap 与 Secret 管理"></a>5.2.1 ConfigMap 与 Secret 管理</h3><h3 id="5-2-2-RBAC-权限控制系统"><a href="#5-2-2-RBAC-权限控制系统" class="headerlink" title="5.2.2 RBAC 权限控制系统"></a>5.2.2 RBAC 权限控制系统</h3><h3 id="5-2-3-网络策略（NetworkPolicy）实施"><a href="#5-2-3-网络策略（NetworkPolicy）实施" class="headerlink" title="5.2.3 网络策略（NetworkPolicy）实施"></a>5.2.3 网络策略（NetworkPolicy）实施</h3><h2 id="5-3-运维与监控"><a href="#5-3-运维与监控" class="headerlink" title="5.3 运维与监控"></a>5.3 运维与监控</h2><h3 id="5-3-1-HPA-自动扩缩容机制"><a href="#5-3-1-HPA-自动扩缩容机制" class="headerlink" title="5.3.1 HPA 自动扩缩容机制"></a>5.3.1 HPA 自动扩缩容机制</h3><h3 id="5-3-2-日志收集架构（EFK-Loki）"><a href="#5-3-2-日志收集架构（EFK-Loki）" class="headerlink" title="5.3.2 日志收集架构（EFK&#x2F;Loki）"></a>5.3.2 日志收集架构（EFK&#x2F;Loki）</h3><h3 id="5-3-3-监控体系（Prometheus-Grafana）"><a href="#5-3-3-监控体系（Prometheus-Grafana）" class="headerlink" title="5.3.3 监控体系（Prometheus+Grafana）"></a>5.3.3 监控体系（Prometheus+Grafana）</h3><h1 id="六、云原生技术栈"><a href="#六、云原生技术栈" class="headerlink" title="六、云原生技术栈"></a>六、云原生技术栈</h1><h2 id="6-1-高级编排模式"><a href="#6-1-高级编排模式" class="headerlink" title="6.1 高级编排模式"></a>6.1 高级编排模式</h2><h3 id="6-1-1-StatefulSet-有状态应用管理"><a href="#6-1-1-StatefulSet-有状态应用管理" class="headerlink" title="6.1.1 StatefulSet 有状态应用管理"></a>6.1.1 StatefulSet 有状态应用管理</h3><h3 id="6-1-2-DaemonSet-节点守护服务"><a href="#6-1-2-DaemonSet-节点守护服务" class="headerlink" title="6.1.2 DaemonSet 节点守护服务"></a>6.1.2 DaemonSet 节点守护服务</h3><h3 id="6-1-3-Operator-开发框架（KubeBuilder-Operator-SDK）"><a href="#6-1-3-Operator-开发框架（KubeBuilder-Operator-SDK）" class="headerlink" title="6.1.3 Operator 开发框架（KubeBuilder&#x2F;Operator SDK）"></a>6.1.3 Operator 开发框架（KubeBuilder&#x2F;Operator SDK）</h3><h2 id="6-2-服务网格"><a href="#6-2-服务网格" class="headerlink" title="6.2 服务网格"></a>6.2 服务网格</h2><h3 id="6-2-1-Istio-核心架构（Pilot-Envoy-Mixer）"><a href="#6-2-1-Istio-核心架构（Pilot-Envoy-Mixer）" class="headerlink" title="6.2.1 Istio 核心架构（Pilot&#x2F;Envoy&#x2F;Mixer）"></a>6.2.1 Istio 核心架构（Pilot&#x2F;Envoy&#x2F;Mixer）</h3><h3 id="6-2-2-流量管理（金丝雀发布-故障注入）"><a href="#6-2-2-流量管理（金丝雀发布-故障注入）" class="headerlink" title="6.2.2 流量管理（金丝雀发布&#x2F;故障注入）"></a>6.2.2 流量管理（金丝雀发布&#x2F;故障注入）</h3><h3 id="6-2-3-安全通信（mTLS-认证授权）"><a href="#6-2-3-安全通信（mTLS-认证授权）" class="headerlink" title="6.2.3 安全通信（mTLS&#x2F;认证授权）"></a>6.2.3 安全通信（mTLS&#x2F;认证授权）</h3><h2 id="6-3-生态系统工具"><a href="#6-3-生态系统工具" class="headerlink" title="6.3 生态系统工具"></a>6.3 生态系统工具</h2><h3 id="6-3-1-Helm-包管理机制"><a href="#6-3-1-Helm-包管理机制" class="headerlink" title="6.3.1 Helm 包管理机制"></a>6.3.1 Helm 包管理机制</h3><h3 id="6-3-2-GitOps-实践（Argo-CD-Flux）"><a href="#6-3-2-GitOps-实践（Argo-CD-Flux）" class="headerlink" title="6.3.2 GitOps 实践（Argo CD&#x2F;Flux）"></a>6.3.2 GitOps 实践（Argo CD&#x2F;Flux）</h3><h3 id="6-3-3-集群管理工具（Rancher-kubespray）"><a href="#6-3-3-集群管理工具（Rancher-kubespray）" class="headerlink" title="6.3.3 集群管理工具（Rancher&#x2F;kubespray）"></a>6.3.3 集群管理工具（Rancher&#x2F;kubespray）</h3><h1 id="七、面试专项"><a href="#七、面试专项" class="headerlink" title="七、面试专项"></a>七、面试专项</h1><h2 id="7-1-核心原理"><a href="#7-1-核心原理" class="headerlink" title="7.1 核心原理"></a>7.1 核心原理</h2><h3 id="7-1-1-Docker-与虚拟机本质区别"><a href="#7-1-1-Docker-与虚拟机本质区别" class="headerlink" title="7.1.1 Docker 与虚拟机本质区别"></a>7.1.1 Docker 与虚拟机本质区别</h3><h3 id="7-1-2-Kubernetes-调度器工作原理"><a href="#7-1-2-Kubernetes-调度器工作原理" class="headerlink" title="7.1.2 Kubernetes 调度器工作原理"></a>7.1.2 Kubernetes 调度器工作原理</h3><h3 id="7-1-3-etcd-分布式一致性实现"><a href="#7-1-3-etcd-分布式一致性实现" class="headerlink" title="7.1.3 etcd 分布式一致性实现"></a>7.1.3 etcd 分布式一致性实现</h3><h2 id="7-2-故障排查"><a href="#7-2-故障排查" class="headerlink" title="7.2 故障排查"></a>7.2 故障排查</h2><h3 id="7-2-1-Pod-启动失败诊断流程"><a href="#7-2-1-Pod-启动失败诊断流程" class="headerlink" title="7.2.1 Pod 启动失败诊断流程"></a>7.2.1 Pod 启动失败诊断流程</h3><h3 id="7-2-2-网络不通问题排查方法"><a href="#7-2-2-网络不通问题排查方法" class="headerlink" title="7.2.2 网络不通问题排查方法"></a>7.2.2 网络不通问题排查方法</h3><h3 id="7-2-3-存储卷挂载问题处理"><a href="#7-2-3-存储卷挂载问题处理" class="headerlink" title="7.2.3 存储卷挂载问题处理"></a>7.2.3 存储卷挂载问题处理</h3><h2 id="7-3-设计场景"><a href="#7-3-设计场景" class="headerlink" title="7.3 设计场景"></a>7.3 设计场景</h2><h3 id="7-3-1-高可用集群架构设计"><a href="#7-3-1-高可用集群架构设计" class="headerlink" title="7.3.1 高可用集群架构设计"></a>7.3.1 高可用集群架构设计</h3><h3 id="7-3-2-零停机部署方案"><a href="#7-3-2-零停机部署方案" class="headerlink" title="7.3.2 零停机部署方案"></a>7.3.2 零停机部署方案</h3><h3 id="7-3-3-多集群管理实践"><a href="#7-3-3-多集群管理实践" class="headerlink" title="7.3.3 多集群管理实践"></a>7.3.3 多集群管理实践</h3>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Docker/" class="category-chain-item">Docker</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Docker/" class="print-no-link">#Docker</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Docker 专题知识学习</div>
+      <div>https://tianfei92.github.io/2025/07/12/Docker Study Notes/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Ariel</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/09/TypeScript%20Study%20Notes/" title="TypeScript 专题知识学习">
+                        <span class="hidden-mobile">TypeScript 专题知识学习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
