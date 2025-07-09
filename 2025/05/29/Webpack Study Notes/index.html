@@ -1,284 +1,318 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#000" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
 
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#000">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Ariel">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="入口起点（entry point）用法语法：entry: string | [string] | {  string | [string] } | {} webpack.config.js 1234567891011121314module.exports &#x3D; &#123;  entry: &#123;    app: &#x27;.&#x2F;src&#x2F;app.js&#x27;,    file: [&amp;#x">
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tianfei92.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"atom-one-dark","dark":"atom-one-dark"},"prism":{"light":"prism-okaidia","dark":"prism-okaidia"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="入口起点（entry point）用法语法：entry: string | [string] | {  string | [string] } | {} webpack.config.js module.exports &#x3D; &#123;   entry: &#123;     app: &#39;.&#x2F;src&#x2F;app.js&#39;,     file: [&#39;.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webpack 学习笔记">
 <meta property="og:url" content="https://tianfei92.github.io/2025/05/29/Webpack%20Study%20Notes/index.html">
 <meta property="og:site_name" content="Ariel&#39;s Blog">
-<meta property="og:description" content="入口起点（entry point）用法语法：entry: string | [string] | {  string | [string] } | {} webpack.config.js 1234567891011121314module.exports &#x3D; &#123;  entry: &#123;    app: &#x27;.&#x2F;src&#x2F;app.js&#x27;,    file: [&amp;#x">
+<meta property="og:description" content="入口起点（entry point）用法语法：entry: string | [string] | {  string | [string] } | {} webpack.config.js module.exports &#x3D; &#123;   entry: &#123;     app: &#39;.&#x2F;src&#x2F;app.js&#39;,     file: [&#39;.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-05-29T09:01:26.000Z">
-<meta property="article:modified_time" content="2025-06-27T09:24:54.254Z">
+<meta property="article:modified_time" content="2025-07-09T15:00:39.442Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="Webpack">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>Webpack 学习笔记 - Ariel&#39;s Blog</title>
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+<meta name="twitter:card" content="summary">
 
 
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+<link rel="canonical" href="https://tianfei92.github.io/2025/05/29/Webpack%20Study%20Notes/">
 
 
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tianfei92.github.io/2025/05/29/Webpack%20Study%20Notes/","path":"2025/05/29/Webpack Study Notes/","title":"Webpack 学习笔记"}</script>
 
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Webpack 学习笔记 | Ariel's Blog</title>
   
 
 
 
 
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"tianfei92.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
+
 
 
   
-<meta name="generator" content="Hexo 7.3.0"></head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
 
 
-<body>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.7.0/mermaid.min.js","integrity":"sha256-4+IKDqhZ/sXjc8Wtl2/MsxI4e0s1KpEVdbEP7V/Lz8U="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+
+
   
 
-  <header>
-    
 
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Ariel</strong>
-    </a>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ariel's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">我本地没问题啊</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
 </nav>
 
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A5%E5%8F%A3%E8%B5%B7%E7%82%B9%EF%BC%88entry-point%EF%BC%89"><span class="nav-text">入口起点（entry point）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%8F%E9%AA%8C%E4%B9%8B%E8%B0%88"><span class="nav-text">经验之谈</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#loader"><span class="nav-text">loader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-text">知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AAloader"><span class="nav-text">编写一个loader</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plugin"><span class="nav-text">plugin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-1"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F-1"><span class="nav-text">使用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AAplugin"><span class="nav-text">编写一个plugin</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E8%A7%A3%E6%9E%90"><span class="nav-text">模块解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E8%A7%84%E5%88%99"><span class="nav-text">解析规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#runtime%E5%92%8Cmainfest"><span class="nav-text">runtime和mainfest</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#runtime"><span class="nav-text">runtime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mainfest"><span class="nav-text">mainfest</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%88%86%E7%A6%BB"><span class="nav-text">代码分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%93%E5%AD%98-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-text">缓存&#x2F;性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98"><span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-text">性能优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-text">兼容性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-text">浏览器兼容性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-text">配置兼容性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86"><span class="nav-text">零碎知识</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ariel"
+      src="/uploads/avatar.JPG">
+  <p class="site-author-name" itemprop="name">Ariel</p>
+  <div class="site-description" itemprop="description">神游在初见的午后</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/tianfei92" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tianfei92" rel="noopener me" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tian.fi@outlook.com" title="E-Mail → mailto:tian.fi@outlook.com" rel="noopener me" target="_blank">E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://juejin.cn/user/3913917124325127" title="Juejin → https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;3913917124325127" rel="noopener me" target="_blank">Juejin</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
   
 
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="Webpack 学习笔记"></span>
-          
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tianfei92.github.io/2025/05/29/Webpack%20Study%20Notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.JPG">
+      <meta itemprop="name" content="Ariel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ariel's Blog">
+      <meta itemprop="description" content="神游在初见的午后">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Webpack 学习笔记 | Ariel's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Webpack 学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-29 17:01:26" itemprop="dateCreated datePublished" datetime="2025-05-29T17:01:26+08:00">2025-05-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-09 23:00:39" itemprop="dateModified" datetime="2025-07-09T23:00:39+08:00">2025-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Webpack/" itemprop="url" rel="index"><span itemprop="name">Webpack</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>12 分钟</span>
+    </span>
+</div>
+
         </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-29 17:01" pubdate>
-          2025年5月29日 下午
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          3.4k 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          29 分钟
-        
-      </span>
-    
+      </header>
 
     
     
-  </div>
-
-
-        
-      </div>
-
-      
-    </div>
-  </div>
-</div>
-
-</div>
-
-  </header>
-
-  <main>
     
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">Webpack 学习笔记</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <h2 id="入口起点（entry-point）"><a href="#入口起点（entry-point）" class="headerlink" title="入口起点（entry point）"></a>入口起点（entry point）</h2><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>语法：entry: string | [string] | { <entryChunkName> string | [string] } | {}</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="入口起点（entry-point）"><a href="#入口起点（entry-point）" class="headerlink" title="入口起点（entry point）"></a>入口起点（entry point）</h2><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>语法：entry: string | [string] | { <entryChunkName> string | [string] } | {}</p>
 <p><strong>webpack.config.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-attr">entry</span>: &#123;<br>    <span class="hljs-attr">app</span>: <span class="hljs-string">&#x27;./src/app.js&#x27;</span>,<br>    <span class="hljs-attr">file</span>: [<span class="hljs-string">&#x27;./src/file_1.js&#x27;</span>, <span class="hljs-string">&#x27;./src/file_2.js&#x27;</span>],<br>    <span class="hljs-attr">a1</span>: &#123;<br>      <span class="hljs-attr">dependOn</span>: <span class="hljs-string">&#x27;app&#x27;</span>, <span class="hljs-comment">// 当前入口所依赖的入口。它们必须在该入口被加载前被加载。</span><br>      <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 指定要输出的文件名称</span><br>      <span class="hljs-attr">import</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 启动时需加载的模块</span><br>      <span class="hljs-attr">library</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 指定 library 选项，为当前 entry 构建一个 library</span><br>      <span class="hljs-attr">runtime</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 运行时 chunk 的名字。如果设置了，就会创建一个新的运行时 chunk。在 webpack 5.43.0 之后可将其设为 false 以避免一个新的运行时 chunk</span><br>      <span class="hljs-attr">publicPath</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-comment">// 当该入口的输出文件在浏览器中被引用时，为它们指定一个公共 URL 地址</span><br>    &#125;,<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-Javascript" data-language="Javascript"><code class="language-Javascript">module.exports &#x3D; &#123;
+  entry: &#123;
+    app: &#39;.&#x2F;src&#x2F;app.js&#39;,
+    file: [&#39;.&#x2F;src&#x2F;file_1.js&#39;, &#39;.&#x2F;src&#x2F;file_2.js&#39;],
+    a1: &#123;
+      dependOn: &#39;app&#39;, &#x2F;&#x2F; 当前入口所依赖的入口。它们必须在该入口被加载前被加载。
+      filename: &#39;&#39;, &#x2F;&#x2F; 指定要输出的文件名称
+      import: &#39;&#39;, &#x2F;&#x2F; 启动时需加载的模块
+      library: &#39;&#39;, &#x2F;&#x2F; 指定 library 选项，为当前 entry 构建一个 library
+      runtime: &#39;&#39;, &#x2F;&#x2F; 运行时 chunk 的名字。如果设置了，就会创建一个新的运行时 chunk。在 webpack 5.43.0 之后可将其设为 false 以避免一个新的运行时 chunk
+      publicPath: &#39;&#39;, &#x2F;&#x2F; 当该入口的输出文件在浏览器中被引用时，为它们指定一个公共 URL 地址
+    &#125;,
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <span id="more"></span>
 
@@ -296,7 +330,20 @@
 <li>配置方式：在 webpack.config.js 文件中指定 loader</li>
 <li>内联方式：在每个 import 语句中显式指定 loader，通过为内联 import 语句添加前缀，可以覆盖配置文件中的所有 loader, preLoader 和 postLoader</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 传递参数（类似 webpack 配置中的 options）</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;style-loader!css-loader?modules=true!./styles.css&#x27;</span><br><br><span class="hljs-comment">// 多个参数用 &amp; 分隔</span><br><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;url-loader?limit=1024&amp;name=images/[hash].[ext]!./image.png&#x27;</span><br><br><span class="hljs-comment">// 使用 ! 前缀，将禁用所有已配置的 normal loader(普通 loader)</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Styles</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;!style-loader!css-loader?modules!./styles.css&#x27;</span><br><br><span class="hljs-comment">// 使用 !! 前缀，将禁用所有已配置的 loader（preLoader, loader, postLoader）</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Styles</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;!!style-loader!css-loader?modules!./styles.css&#x27;</span><br><br><span class="hljs-comment">// 使用 -! 前缀，将禁用所有已配置的 preLoader 和 loader，但是不禁用 postLoaders</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Styles</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;-!style-loader!css-loader?modules!./styles.css&#x27;</span><br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 传递参数（类似 webpack 配置中的 options）</span>
+<span class="token keyword">import</span> <span class="token string">'style-loader!css-loader?modules=true!./styles.css'</span>
+
+<span class="token comment">// 多个参数用 &amp; 分隔</span>
+<span class="token keyword">import</span> <span class="token string">'url-loader?limit=1024&amp;name=images/[hash].[ext]!./image.png'</span>
+
+<span class="token comment">// 使用 ! 前缀，将禁用所有已配置的 normal loader(普通 loader)</span>
+<span class="token keyword">import</span> Styles <span class="token keyword">from</span> <span class="token string">'!style-loader!css-loader?modules!./styles.css'</span>
+
+<span class="token comment">// 使用 !! 前缀，将禁用所有已配置的 loader（preLoader, loader, postLoader）</span>
+<span class="token keyword">import</span> Styles <span class="token keyword">from</span> <span class="token string">'!!style-loader!css-loader?modules!./styles.css'</span>
+
+<span class="token comment">// 使用 -! 前缀，将禁用所有已配置的 preLoader 和 loader，但是不禁用 postLoaders</span>
+<span class="token keyword">import</span> Styles <span class="token keyword">from</span> <span class="token string">'-!style-loader!css-loader?modules!./styles.css'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
 <li>loader本质上是<strong>导出为函数的JavaScript模块</strong>，webpack内部的loader runner会调用该函数，并将上一个loader的输出结果作为参数传给该函数</li>
@@ -306,7 +353,26 @@
 <li>loader内部的this上可访问的属性和方法都通过loader context上下文绑定</li>
 </ul>
 <h3 id="编写一个loader"><a href="#编写一个loader" class="headerlink" title="编写一个loader"></a>编写一个loader</h3><p><strong>my-loader.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 同步loader</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">source, map, meta</span>) &#123;<br>  <span class="hljs-comment">// 单个处理结果可以直接return</span><br>  <span class="hljs-comment">// return doSomething(source)</span><br>  <span class="hljs-comment">// 多个处理结果则必须调用this.callback()</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>, <span class="hljs-title function_">doSomething</span>(source), map, meta)<br>  <span class="hljs-keyword">return</span><br>&#125;<br><br><span class="hljs-comment">// 异步loader，必须调用this.async()来告知loader runner等待异步输出结果</span><br><span class="hljs-comment">// 它会返回 this.callback() 回调函数。随后 loader 必须返回 undefined 并且调用该回调函数</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">source, map, meta</span>) &#123;<br>  <span class="hljs-keyword">var</span> callback = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">async</span>()<br>  <span class="hljs-title function_">doSomeAsyncthing</span>(source, <span class="hljs-keyword">function</span>(<span class="hljs-params">err, res</span>) &#123;<br>    <span class="hljs-keyword">if</span> (err) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-title function_">callback</span>(err)<br>    &#125;<br>    <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>, res, map, meta)<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 同步loader</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">source<span class="token punctuation">,</span> map<span class="token punctuation">,</span> meta</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 单个处理结果可以直接return</span>
+  <span class="token comment">// return doSomething(source)</span>
+  <span class="token comment">// 多个处理结果则必须调用this.callback()</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token function">doSomething</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span><span class="token punctuation">,</span> map<span class="token punctuation">,</span> meta<span class="token punctuation">)</span>
+  <span class="token keyword">return</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 异步loader，必须调用this.async()来告知loader runner等待异步输出结果</span>
+<span class="token comment">// 它会返回 this.callback() 回调函数。随后 loader 必须返回 undefined 并且调用该回调函数</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">source<span class="token punctuation">,</span> map<span class="token punctuation">,</span> meta</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> callback <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">async</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token function">doSomeAsyncthing</span><span class="token punctuation">(</span>source<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">return</span> <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> res<span class="token punctuation">,</span> map<span class="token punctuation">,</span> meta<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -317,11 +383,51 @@
 <li>配置方式：在webpack.config.js文件中，向 plugins 属性传入一个 new 实例</li>
 <li>Node API方式：</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;webpack&#x27;</span>) <span class="hljs-comment">// 访问 webpack 运行时(runtime)</span><br><span class="hljs-keyword">const</span> configuration = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./webpack.config.js&#x27;</span>)<br><br><span class="hljs-keyword">let</span> compiler = <span class="hljs-title function_">webpack</span>(configuration)<br><br><span class="hljs-keyword">new</span> webpack.<span class="hljs-title class_">ProgressPlugin</span>().<span class="hljs-title function_">apply</span>(compiler)<br><br>compiler.<span class="hljs-title function_">run</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">err, stats</span>) &#123;<br>  <span class="hljs-comment">// ...</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> webpack <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpack'</span><span class="token punctuation">)</span> <span class="token comment">// 访问 webpack 运行时(runtime)</span>
+<span class="token keyword">const</span> configuration <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./webpack.config.js'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">let</span> compiler <span class="token operator">=</span> <span class="token function">webpack</span><span class="token punctuation">(</span>configuration<span class="token punctuation">)</span>
+
+<span class="token keyword">new</span> <span class="token class-name">webpack<span class="token punctuation">.</span>ProgressPlugin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>compiler<span class="token punctuation">)</span>
+
+compiler<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> stats</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="编写一个plugin"><a href="#编写一个plugin" class="headerlink" title="编写一个plugin"></a>编写一个plugin</h3><p>一个生成构建文件清单的插件：</p>
 <p><strong>fileListPlugin.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">FileListPlugin</span> &#123;<br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">options</span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(&#123;<br>      <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>      <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;&#x27;</span>,<br>    &#125;, options)<br>  &#125;<br>  <br>  <span class="hljs-title function_">apply</span>(<span class="hljs-params">compiler</span>) &#123;<br>    <span class="hljs-keyword">const</span> &#123; filename, title &#125; = <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span><br>    <br>    compiler.<span class="hljs-property">hooks</span>.<span class="hljs-property">emit</span>.<span class="hljs-title function_">tapAsync</span>(<span class="hljs-string">&#x27;FileListPlugin&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">compilation, callback</span>) &#123;<br>      <span class="hljs-comment">// 创建文件内容</span><br>      <span class="hljs-keyword">let</span> fileList = title<br>      <br>      <span class="hljs-comment">// 遍历所有编译资源</span><br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> asset <span class="hljs-keyword">in</span> compilation.<span class="hljs-property">assets</span>) &#123;<br>        <span class="hljs-keyword">const</span> size = compilation.<span class="hljs-property">assets</span>[asset].<span class="hljs-title function_">size</span>()<br>        fileList += <span class="hljs-string">`- <span class="hljs-subst">$&#123;asset&#125;</span> (<span class="hljs-subst">$&#123;size&#125;</span> bytes)\n`</span><br>      &#125;<br>      <br>      <span class="hljs-comment">// 将清单作为新资源添加到编译中</span><br>      compilation.<span class="hljs-property">assets</span>[filename] = &#123;<br>        <span class="hljs-attr">source</span>: <span class="hljs-function">() =&gt;</span> fileList,<br>        <span class="hljs-attr">size</span>: <span class="hljs-function">() =&gt;</span> fileList.<span class="hljs-property">length</span><br>      &#125;<br>      <br>      <span class="hljs-title function_">callback</span>()<br>    &#125;)<br>  &#125;<br>&#125;<br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title class_">FileListPlugin</span><br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">FileListPlugin</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>options <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token function">apply</span><span class="token punctuation">(</span><span class="token parameter">compiler</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> filename<span class="token punctuation">,</span> title <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options
+    
+    compiler<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span>emit<span class="token punctuation">.</span><span class="token function">tapAsync</span><span class="token punctuation">(</span><span class="token string">'FileListPlugin'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">compilation<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// 创建文件内容</span>
+      <span class="token keyword">let</span> fileList <span class="token operator">=</span> title
+      
+      <span class="token comment">// 遍历所有编译资源</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> asset <span class="token keyword">in</span> compilation<span class="token punctuation">.</span>assets<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">const</span> size <span class="token operator">=</span> compilation<span class="token punctuation">.</span>assets<span class="token punctuation">[</span>asset<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        fileList <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">- </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>asset<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> (</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>size<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> bytes)\n</span><span class="token template-punctuation string">`</span></span>
+      <span class="token punctuation">&#125;</span>
+      
+      <span class="token comment">// 将清单作为新资源添加到编译中</span>
+      compilation<span class="token punctuation">.</span>assets<span class="token punctuation">[</span>filename<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+        <span class="token function-variable function">source</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> fileList<span class="token punctuation">,</span>
+        <span class="token function-variable function">size</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> fileList<span class="token punctuation">.</span>length
+      <span class="token punctuation">&#125;</span>
+      
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> FileListPlugin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -338,22 +444,53 @@
 <li>基于webpack.config.js中配置的resolve.modules中指定的目录（默认是<code>[&#39;node_modules&#39;]</code>）进行检索，如果添加一个目录到模块搜索目录，此目录优先于 node_modules&#x2F; 搜索</li>
 </ul>
 <p><strong>webpack.config.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-comment">//...</span><br>  <span class="hljs-attr">resolve</span>: &#123;<br>    <span class="hljs-attr">modules</span>: [path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;src&#x27;</span>), <span class="hljs-string">&#x27;node_modules&#x27;</span>],<br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">//...</span>
+  <span class="token literal-property property">resolve</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">modules</span><span class="token operator">:</span> <span class="token punctuation">[</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'node_modules'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>src&#x2F;index.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 将优先从src目录下开始检索</span><br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Tabs</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;antd&#x27;</span><br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 将优先从src目录下开始检索</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> Tabs <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'antd'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>如果模块（package）中有package.json文件，则在resolve.exportsFields配置项中指定的字段会被依次查找，优先级高于package.json中的main&#x2F;module字段</li>
 </ul>
 <p><strong>webpack.config.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-comment">//...</span><br>  <span class="hljs-attr">resolve</span>: &#123;<br>    <span class="hljs-attr">exportsFields</span>: [<span class="hljs-string">&#x27;exports&#x27;</span>, <span class="hljs-string">&#x27;myCompanyExports&#x27;</span>],<br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">//...</span>
+  <span class="token literal-property property">resolve</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">exportsFields</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'exports'</span><span class="token punctuation">,</span> <span class="token string">'myCompanyExports'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>myPkg中的package.json</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;myPkg&#x27;</span>,<br>  <span class="hljs-attr">scripts</span>: &#123;&#125;,<br>  <span class="hljs-attr">exports</span>: &#123;<br>    <span class="hljs-string">&#x27;.&#x27;</span>: &#123;<br>      <span class="hljs-string">&quot;require&quot;</span>: <span class="hljs-string">&quot;./index.cjs&quot;</span>,<br>      <span class="hljs-string">&quot;import&quot;</span>: <span class="hljs-string">&quot;./index.mjs&quot;</span>,<br>    &#125;,<br>  &#125;,<br>  <span class="hljs-attr">myCompanyExports</span>: &#123;<br>    <span class="hljs-string">&#x27;.&#x27;</span>: &#123;<br>      <span class="hljs-string">&quot;require&quot;</span>: <span class="hljs-string">&quot;./index.cjs&quot;</span>,<br>      <span class="hljs-string">&quot;import&quot;</span>: <span class="hljs-string">&quot;./index.mjs&quot;</span>,<br>    &#125;,<br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'myPkg'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">scripts</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">exports</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string-property property">'.'</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token string-property property">"require"</span><span class="token operator">:</span> <span class="token string">"./index.cjs"</span><span class="token punctuation">,</span>
+      <span class="token string-property property">"import"</span><span class="token operator">:</span> <span class="token string">"./index.mjs"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">myCompanyExports</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string-property property">'.'</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token string-property property">"require"</span><span class="token operator">:</span> <span class="token string">"./index.cjs"</span><span class="token punctuation">,</span>
+      <span class="token string-property property">"import"</span><span class="token operator">:</span> <span class="token string">"./index.mjs"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>src&#x2F;index.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// ES模块导入</span><br><span class="hljs-keyword">import</span> myPkg <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;myPkg&#x27;</span><br><span class="hljs-comment">// CommonJS模块导入</span><br><span class="hljs-keyword">const</span> myPkg = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;myPkg&#x27;</span>)<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// ES模块导入</span>
+<span class="token keyword">import</span> myPkg <span class="token keyword">from</span> <span class="token string">'myPkg'</span>
+<span class="token comment">// CommonJS模块导入</span>
+<span class="token keyword">const</span> myPkg <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'myPkg'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>一旦根据上述规则解析路径后，enhanced-resolve 将会检查路径是指向文件还是文件夹。</p>
 <p>如果路径指向文件：</p>
@@ -366,13 +503,23 @@
 <li>如果文件夹中包含 package.json 文件，则会根据 resolve.mainFields 配置中的字段顺序查找，并根据 package.json 中的符合配置要求的第一个字段来确定文件路径。</li>
 </ul>
 <p><strong>webpack.config.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>  <span class="hljs-comment">//...</span><br>  <span class="hljs-attr">resolve</span>: &#123;<br>    <span class="hljs-attr">mainFields</span>: [<span class="hljs-string">&#x27;browser&#x27;</span>, <span class="hljs-string">&#x27;module&#x27;</span>, <span class="hljs-string">&#x27;main&#x27;</span>],<br>  &#125;,<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">//...</span>
+  <span class="token literal-property property">resolve</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">mainFields</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'browser'</span><span class="token punctuation">,</span> <span class="token string">'module'</span><span class="token punctuation">,</span> <span class="token string">'main'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>myPkg中的package.json</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&#123;<br>  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&#x27;myPkg&#x27;</span>,<br>  <span class="hljs-string">&quot;browser&quot;</span>: <span class="hljs-string">&quot;build/myPkg.js&quot;</span>,<br>  <span class="hljs-string">&quot;module&quot;</span>: <span class="hljs-string">&quot;index&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">&#123;</span>
+  <span class="token string-property property">"name"</span><span class="token operator">:</span> <span class="token string">'myPkg'</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"browser"</span><span class="token operator">:</span> <span class="token string">"build/myPkg.js"</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"module"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>src&#x2F;index.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-comment">// 从build/myPkg.js中查找</span><br><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> myPkg <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;myPkg&#x27;</span><br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 从build/myPkg.js中查找</span>
+<span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> myPkg <span class="token keyword">from</span> <span class="token string">'myPkg'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <ul>
 <li>如果不存在 package.json 文件或 resolve.mainFields 没有返回有效路径，则会根据 resolve.mainFiles 配置选项中指定的文件名顺序查找，看是否能在 import&#x2F;require 的目录下匹配到一个存在的文件名</li>
@@ -393,7 +540,23 @@
 <li>缓存优化：通过内容哈希实现持久缓存</li>
 </ul>
 <p>典型的mainfest内容如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript">&#123;<br>  <span class="hljs-string">&quot;modules&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;./src/index.js&quot;</span>: <span class="hljs-number">0</span>,          <span class="hljs-comment">// 模块路径 → 模块ID</span><br>    <span class="hljs-string">&quot;./src/utils.js&quot;</span>: <span class="hljs-number">1</span><br>  &#125;,<br>  <span class="hljs-string">&quot;chunks&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;main&quot;</span>: &#123;                     <span class="hljs-comment">// 入口代码块</span><br>      <span class="hljs-string">&quot;js&quot;</span>: <span class="hljs-string">&quot;main.abc123.js&quot;</span>,     <span class="hljs-comment">// 生成的文件名</span><br>      <span class="hljs-string">&quot;contains&quot;</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]          <span class="hljs-comment">// 包含的模块ID</span><br>    &#125;,<br>    <span class="hljs-string">&quot;async-chunk&quot;</span>: &#123;              <span class="hljs-comment">// 异步代码块</span><br>      <span class="hljs-string">&quot;js&quot;</span>: <span class="hljs-string">&quot;async.def456.js&quot;</span>,<br>      <span class="hljs-string">&quot;loaded&quot;</span>: <span class="hljs-literal">false</span>             <span class="hljs-comment">// 标记是否已加载</span><br>    &#125;<br>  &#125;,<br>  <span class="hljs-string">&quot;runtime&quot;</span>: <span class="hljs-string">&quot;runtime.xyz789.js&quot;</span>  <span class="hljs-comment">// Webpack 运行时代码</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">&#123;</span>
+  <span class="token string-property property">"modules"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string-property property">"./src/index.js"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>          <span class="token comment">// 模块路径 → 模块ID</span>
+    <span class="token string-property property">"./src/utils.js"</span><span class="token operator">:</span> <span class="token number">1</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"chunks"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string-property property">"main"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>                     <span class="token comment">// 入口代码块</span>
+      <span class="token string-property property">"js"</span><span class="token operator">:</span> <span class="token string">"main.abc123.js"</span><span class="token punctuation">,</span>     <span class="token comment">// 生成的文件名</span>
+      <span class="token string-property property">"contains"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>          <span class="token comment">// 包含的模块ID</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token string-property property">"async-chunk"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>              <span class="token comment">// 异步代码块</span>
+      <span class="token string-property property">"js"</span><span class="token operator">:</span> <span class="token string">"async.def456.js"</span><span class="token punctuation">,</span>
+      <span class="token string-property property">"loaded"</span><span class="token operator">:</span> <span class="token boolean">false</span>             <span class="token comment">// 标记是否已加载</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token string-property property">"runtime"</span><span class="token operator">:</span> <span class="token string">"runtime.xyz789.js"</span>  <span class="token comment">// Webpack 运行时代码</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
@@ -438,7 +601,9 @@
 <h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><p>webpack运行环境和webpack构建出来的项目的运行环境不是一个概念，webpack基于Node.js运行，webpack构建出来的项目一般基于浏览器环境运行</p>
 <h3 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h3><p>webpack支持所有符合ES5标准的浏览器（不支持IE8及以下版本），如果想兼容旧版本浏览器，需要加载polyfill：</p>
 <p><strong>src&#x2F;index.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;babel-polyfill&#x27;</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Component</span>(<span class="hljs-params"></span>) &#123;&#125;<br></code></pre></td></tr></table></figure>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token string">'babel-polyfill'</span>
+
+<span class="token keyword">function</span> <span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="配置兼容性"><a href="#配置兼容性" class="headerlink" title="配置兼容性"></a>配置兼容性</h3><p>webpack.config.js配置文件是webpack运行过程中本身需要的文件，应避免ES6语法编写代码：</p>
 <ul>
@@ -457,395 +622,99 @@
 <li>可以结合mainfest和stats data分析数据，优化构建性能，mainfest存在于运行时（浏览器环境），stats data存在于构建后（本地json，不影响运行时）</li>
 </ul>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Webpack/" class="category-chain-item">Webpack</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
     </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Webpack/" class="print-no-link">#Webpack</a>
-      
-    </div>
-  
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+
+  </div>
 </div>
 
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>Webpack 学习笔记</div>
-      <div>https://tianfei92.github.io/2025/05/29/Webpack Study Notes/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>Ariel</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2025年5月29日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-cc-by"></i>
-                  </span>
-                </a>
-              
-            
+          <div class="post-tags">
+              <a href="/tags/Webpack/" rel="tag"><i class="fa fa-tag"></i> Webpack</a>
           </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
 
+        
 
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2025/06/05/React%20Fiber/" title="React Fiber 专题知识学习">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">React Fiber 专题知识学习</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                  </article>
-                </div>
-              
+          <div class="post-nav">
+            <div class="post-nav-item">
             </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
-    </div>
-  </div>
+            <div class="post-nav-item">
+                <a href="/2025/06/05/React%20Fiber/" rel="next" title="React Fiber 专题知识学习">
+                  React Fiber 专题知识学习 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
 </div>
 
 
 
 
 
-  
 
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
-    mermaid.initialize({"theme":"default"});
-
-    Fluid.utils.listenDOMLoaded(function() {
-      Fluid.events.registerRefreshCallback(function() {
-        if ('mermaid' in window) {
-          mermaid.init();
-        }
-      });
-    });
-  });
-</script>
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
 </div>
-
-    
-
-    
   </main>
 
-  <footer>
+  <footer class="footer">
     <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-</div>
 
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ariel</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">210k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">12:45</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
   </footer>
 
-  <!-- Scripts -->
   
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
 
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
+  <a href="https://github.com/tianfei92" class="github-corner" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
