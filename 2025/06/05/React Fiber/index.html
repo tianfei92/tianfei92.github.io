@@ -28,7 +28,7 @@
 <meta property="og:description" content="第一章：React Fiber 的诞生背景1.1 React15 及之前版本的渲染瓶颈递归不可中断的协调过程（stack reconciler栈协调器）stack reconciler 是什么？ stack reconciler 是 React15 及之前版本中使用的虚拟 dom 协调算法，负责计算组件树的变化并更新真实 dom。其核心特点是基于递归遍历、不可中断的同步更新流程。 递归遍历虚拟 d">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-05T06:07:11.000Z">
-<meta property="article:modified_time" content="2025-07-09T15:00:39.463Z">
+<meta property="article:modified_time" content="2025-07-10T00:39:59.217Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-09 23:00:39" itemprop="dateModified" datetime="2025-07-09T23:00:39+08:00">2025-07-09</time>
+      <time title="修改时间：2025-07-10 08:39:59" itemprop="dateModified" datetime="2025-07-10T08:39:59+08:00">2025-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -762,13 +762,13 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 </tbody></table>
 <p><strong>链表结构图解</strong></p>
 <p>假设有如下组件树：</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;App&gt;
-  &lt;Header &#x2F;&gt;
-  &lt;Content&gt;
-    &lt;Sidebar &#x2F;&gt;
-    &lt;Main &#x2F;&gt;
-  &lt;&#x2F;Content&gt;
-&lt;&#x2F;App&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>App</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Header</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Content</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Sidebar</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Main</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Content</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>App</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>那该组件树对应的 Fiber 链表结构如下：</p>
 <pre><code class="mermaid">graph TD
@@ -1237,13 +1237,13 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 </ul>
 <p><strong>遍历过程图解</strong></p>
 <p>还是以之前的组件树为例：</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;App&gt;
-  &lt;Header &#x2F;&gt;
-  &lt;Content&gt;
-    &lt;Sidebar &#x2F;&gt;
-    &lt;Main &#x2F;&gt;
-  &lt;&#x2F;Content&gt;
-&lt;&#x2F;App&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>App</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Header</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Content</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Sidebar</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Main</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Content</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>App</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>其链表遍历顺序图：</p>
 <pre><code class="mermaid">graph LR

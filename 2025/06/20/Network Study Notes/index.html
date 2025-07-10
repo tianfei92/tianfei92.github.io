@@ -28,7 +28,7 @@
 <meta property="og:description" content="一、基础网络协议1.1 HTTP&#x2F;HTTPS协议核心HTTP协议定义 HTTP（HyperText Transfer Protocol）是应用层协议，基于 请求-响应 模型，用于客户端（浏览器）与服务器之间的数据传输，默认端口 80 核心特性  无状态：每个请求独立，服务器不保留客户端上下文（状态管理依赖 Cookie 和 Session） 明文传输：请求与响应内容以未加密的文本形式传输">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-20T07:50:13.000Z">
-<meta property="article:modified_time" content="2025-07-09T15:00:39.445Z">
+<meta property="article:modified_time" content="2025-07-10T00:42:12.639Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary">
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-09 23:00:39" itemprop="dateModified" datetime="2025-07-09T23:00:39+08:00">2025-07-09</time>
+      <time title="修改时间：2025-07-10 08:42:12" itemprop="dateModified" datetime="2025-07-10T08:42:12+08:00">2025-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -315,14 +315,14 @@
 
 <p><strong>报文结构</strong></p>
 <p>请求报文：</p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">GET &#x2F;index.html HTTP&#x2F;1.1
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">GET /index.html HTTP/1.1
 Host: www.example.com
-User-Agent: Mozilla&#x2F;5.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+User-Agent: Mozilla/5.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>响应报文：</p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">HTTP&#x2F;1.1 200 OK
-Content-Type: text&#x2F;html
-&lt;html&gt;...&lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">HTTP/1.1 200 OK
+Content-Type: text/html
+&lt;html>...&lt;/html><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="HTTPS协议"><a href="#HTTPS协议" class="headerlink" title="HTTPS协议"></a>HTTPS协议</h3><p><strong>定义</strong></p>
 <p>HTTPS（HTTP secure）&#x3D; HTTP + TSL&#x2F;SSL 加密层，在传输层对 HTTP 数据进行加密，默认端口 443</p>
@@ -427,7 +427,7 @@ Content-Type: text&#x2F;html
 </tr>
 </tbody></table>
 <h3 id="HTTP报文结构（请求行、请求头、请求体）"><a href="#HTTP报文结构（请求行、请求头、请求体）" class="headerlink" title="HTTP报文结构（请求行、请求头、请求体）"></a>HTTP报文结构（请求行、请求头、请求体）</h3><p><strong>请求报文结构</strong></p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">[请求行]
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">[请求行]
 [请求头]
 [空行]
 [请求体]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -460,11 +460,11 @@ Content-Type: text&#x2F;html
 <li>GET 请求通常无请求体</li>
 <li>POST&#x2F;PUT 请求包含数据</li>
 </ul>
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#123;&quot;username&quot;: &quot;admin&quot;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"username"</span><span class="token operator">:</span> <span class="token string">"admin"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li>格式依赖：由 <code>Content-Type</code> 请求头指定</li>
 </ul>
 <p><strong>响应报文结构</strong></p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">[状态行]
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">[状态行]
 [响应头]
 [空行]
 [响应体]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -487,13 +487,13 @@ Content-Type: text&#x2F;html
 <ul>
 <li>内容：</li>
 </ul>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;html&gt;...&lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#123;&quot;data&quot;: &quot;value&quot;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"data"</span><span class="token operator">:</span> <span class="token string">"value"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="请求-响应头结构（Content-Type-Cache-Control-Authorization）"><a href="#请求-响应头结构（Content-Type-Cache-Control-Authorization）" class="headerlink" title="请求&#x2F;响应头结构（Content-Type&#x2F;Cache-Control&#x2F;Authorization）"></a>请求&#x2F;响应头结构（Content-Type&#x2F;Cache-Control&#x2F;Authorization）</h3><p><strong>HTTP 头部核心结构</strong></p>
 <p>HTTP 头是键值对集合（不区分大小写），位于请求&#x2F;响应报文起始行之后，空行之前，格式如下：</p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">Header-Name: value1, value2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Header-Name: value1, value2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><strong>核心请求&#x2F;响应头详解</strong></p>
 <p>（1）content-Type</p>
@@ -553,8 +553,8 @@ Content-Type: text&#x2F;html
 <ul>
 <li>前端优化实践：</li>
 </ul>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text"># 静态资源长期缓存
-Cache-Control: public, max-age&#x3D;31536000, immutable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text"># 静态资源长期缓存
+Cache-Control: public, max-age=31536000, immutable<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>（3）Authorization</p>
 <ul>
@@ -775,8 +775,8 @@ Cache-Control: public, max-age&#x3D;31536000, immutable<span aria-hidden="true" 
 <li>HTTP&#x2F;1.1：默认启用Connection: keep-alive，允许复用连接。</li>
 <li>HTTP头部控制：</li>
 </ul>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Connection: keep-alive  &#x2F;&#x2F; 启用复用
-Keep-Alive: timeout&#x3D;5, max&#x3D;100  &#x2F;&#x2F; 空闲超时5秒，最多复用100次请求<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">keep-alive  // 启用复用</span></span>
+<span class="token header"><span class="token header-name keyword">Keep-Alive</span><span class="token punctuation">:</span> <span class="token header-value">timeout=5, max=100  // 空闲超时5秒，最多复用100次请求</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>优势：</p>
 <ul>
@@ -807,8 +807,8 @@ Keep-Alive: timeout&#x3D;5, max&#x3D;100  &#x2F;&#x2F; 空闲超时5秒，最多
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">GET &#x2F;resource1  &#x2F;&#x2F; 慢请求
-GET &#x2F;resource2  &#x2F;&#x2F; 被阻塞直到resource1完成<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http">GET /resource1  // 慢请求
+GET /resource2  // 被阻塞直到resource1完成<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>解决方案：</p>
 <ul>
@@ -955,9 +955,9 @@ GET &#x2F;resource2  &#x2F;&#x2F; 被阻塞直到resource1完成<span aria-hidde
 <h3 id="DNS预取（dns-prefetch）与缓存优化"><a href="#DNS预取（dns-prefetch）与缓存优化" class="headerlink" title="DNS预取（dns-prefetch）与缓存优化"></a>DNS预取（dns-prefetch）与缓存优化</h3><p><strong>DNS预取（dns-prefetch）</strong></p>
 <p>定义：浏览器提前解析后续页面可能访问的域名，将 DNS 查询与页面渲染并行执行，减少用户感知延迟。</p>
 <p>实现方式：</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 在HTML头部声明需预取的域名 --&gt;
-&lt;link rel&#x3D;&quot;dns-prefetch&quot; href&#x3D;&quot;&#x2F;&#x2F;cdn.example.com&quot;&gt;
-&lt;link rel&#x3D;&quot;dns-prefetch&quot; href&#x3D;&quot;&#x2F;&#x2F;api.example.com&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 在HTML头部声明需预取的域名 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dns-prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//cdn.example.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dns-prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//api.example.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>工作流程：</p>
 <ol>
@@ -1024,11 +1024,11 @@ GET &#x2F;resource2  &#x2F;&#x2F; 被阻塞直到resource1完成<span aria-hidde
 </li>
 </ul>
 <p><strong>联合优化实践</strong></p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 步骤1: 预取关键域名 --&gt;
-&lt;link rel&#x3D;&quot;dns-prefetch&quot; href&#x3D;&quot;&#x2F;&#x2F;static.example.com&quot;&gt;
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 步骤1: 预取关键域名 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dns-prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//static.example.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
-&lt;!-- 步骤2: 预连接（DNS+TCP+TLS三合一优化） --&gt;
-&lt;link rel&#x3D;&quot;preconnect&quot; href&#x3D;&quot;&#x2F;&#x2F;api.example.com&quot; crossorigin&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">&lt;!-- 步骤2: 预连接（DNS+TCP+TLS三合一优化） --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//api.example.com<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <blockquote>
 <p>preconnect：提前完成DNS+TCP握手+TLS协商（节省3-4次RTT）</p>
@@ -1341,29 +1341,29 @@ xhr<span class="token punctuation">.</span><span class="token function-variable 
 <li>条件：GET&#x2F;HEAD&#x2F;POST + 特定头部（如Accept&#x2F;Content-Type: text&#x2F;plain）</li>
 <li>浏览器直接发送请求，服务器响应：</li>
 </ul>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Access-Control-Allow-Origin: https:&#x2F;&#x2F;client.com  &#x2F;&#x2F; 必须指定具体域名或*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Access-Control-Allow-Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com  // 必须指定具体域名或*</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li>预检请求（Preflight Request）：<ul>
 <li>触发条件：复杂操作（如PUT&#x2F;自定义头部&#x2F;Content-Type: application&#x2F;json）</li>
 <li>浏览器先发OPTIONS请求：</li>
 </ul>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">OPTIONS &#x2F;api&#x2F;data HTTP&#x2F;1.1
-Origin: https:&#x2F;&#x2F;client.com
-Access-Control-Request-Method: PUT
-Access-Control-Request-Headers: X-Custom-Header<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token request-line"><span class="token method property">OPTIONS</span> <span class="token request-target url">/api/data</span> <span class="token http-version property">HTTP/1.1</span></span>
+<span class="token header"><span class="token header-name keyword">Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com</span></span>
+<span class="token header"><span class="token header-name keyword">Access-Control-Request-Method</span><span class="token punctuation">:</span> <span class="token header-value">PUT</span></span>
+<span class="token header"><span class="token header-name keyword">Access-Control-Request-Headers</span><span class="token punctuation">:</span> <span class="token header-value">X-Custom-Header</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>服务器响应策略：</li>
 </ul>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">HTTP&#x2F;1.1 204 No Content
-Access-Control-Allow-Origin: https:&#x2F;&#x2F;client.com
-Access-Control-Allow-Methods: GET, POST, PUT
-Access-Control-Allow-Headers: X-Custom-Header
-Access-Control-Max-Age: 86400  &#x2F;&#x2F; 缓存预检结果（秒）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token response-status"><span class="token http-version property">HTTP/1.1</span> <span class="token status-code number">204</span> <span class="token reason-phrase string">No Content</span></span>
+<span class="token header"><span class="token header-name keyword">Access-Control-Allow-Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com</span></span>
+<span class="token header"><span class="token header-name keyword">Access-Control-Allow-Methods</span><span class="token punctuation">:</span> <span class="token header-value">GET, POST, PUT</span></span>
+<span class="token header"><span class="token header-name keyword">Access-Control-Allow-Headers</span><span class="token punctuation">:</span> <span class="token header-value">X-Custom-Header</span></span>
+<span class="token header"><span class="token header-name keyword">Access-Control-Max-Age</span><span class="token punctuation">:</span> <span class="token header-value">86400  // 缓存预检结果（秒）</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>带凭证的请求：<ul>
 <li>前端设置：fetch(url, { credentials: ‘include’ })</li>
 <li>服务器响应：</li>
 </ul>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Access-Control-Allow-Origin: https:&#x2F;&#x2F;client.com  &#x2F;&#x2F; 不可用*
-Access-Control-Allow-Credentials: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Access-Control-Allow-Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com  // 不可用*</span></span>
+<span class="token header"><span class="token header-name keyword">Access-Control-Allow-Credentials</span><span class="token punctuation">:</span> <span class="token header-value">true</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
 <p>前端代码示例：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 允许跨域的服务器响应头</span>
@@ -1500,16 +1500,16 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 <p>基础原理：在单个TCP连接上建立全双工通信通道，实现客户端与服务器之间的持续双向数据流。</p>
 <p>链接建立流程：</p>
 <p>（1）HTTP握手升级：</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">GET &#x2F;chat HTTP&#x2F;1.1
-Host: example.com
-Upgrade: websocket          &#x2F;&#x2F; 协议升级头
-Connection: Upgrade
-Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ&#x3D;&#x3D;  &#x2F;&#x2F; 客户端随机密钥<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token request-line"><span class="token method property">GET</span> <span class="token request-target url">/chat</span> <span class="token http-version property">HTTP/1.1</span></span>
+<span class="token header"><span class="token header-name keyword">Host</span><span class="token punctuation">:</span> <span class="token header-value">example.com</span></span>
+<span class="token header"><span class="token header-name keyword">Upgrade</span><span class="token punctuation">:</span> <span class="token header-value">websocket          // 协议升级头</span></span>
+<span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">Upgrade</span></span>
+<span class="token header"><span class="token header-name keyword">Sec-WebSocket-Key</span><span class="token punctuation">:</span> <span class="token header-value">dGhlIHNhbXBsZSBub25jZQ==  // 客户端随机密钥</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">HTTP&#x2F;1.1 101 Switching Protocols
-Upgrade: websocket
-Connection: Upgrade
-Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo&#x3D;  &#x2F;&#x2F; 服务端验证响应<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token response-status"><span class="token http-version property">HTTP/1.1</span> <span class="token status-code number">101</span> <span class="token reason-phrase string">Switching Protocols</span></span>
+<span class="token header"><span class="token header-name keyword">Upgrade</span><span class="token punctuation">:</span> <span class="token header-value">websocket</span></span>
+<span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">Upgrade</span></span>
+<span class="token header"><span class="token header-name keyword">Sec-WebSocket-Accept</span><span class="token punctuation">:</span> <span class="token header-value">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=  // 服务端验证响应</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>（2）协议转换</p>
 <ul>
@@ -1758,18 +1758,18 @@ es<span class="token punctuation">.</span><span class="token function-variable f
 <ul>
 <li>响应头设置：</li>
 </ul>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Content-Type: text&#x2F;event-stream
-Cache-Control: no-cache
-Connection: keep-alive<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Content-Type</span><span class="token punctuation">:</span> <span class="token header-value">text/event-stream</span></span>
+<span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">no-cache</span></span>
+<span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">keep-alive</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <ul>
 <li>数据格式规范：</li>
 </ul>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">event: notification  &#x2F;&#x2F; 事件类型
-id: 1678901234       &#x2F;&#x2F; 消息ID（用于断线续传）
-data: &#123;&quot;msg&quot;:&quot;Hello&quot;&#125;&#x2F;&#x2F; 数据内容（可多行）
-retry: 10000         &#x2F;&#x2F; 重连间隔（毫秒）
-\n\n                 &#x2F;&#x2F; 消息结束符（两个换行）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">event: notification  // 事件类型
+id: 1678901234       // 消息ID（用于断线续传）
+data: &#123;"msg":"Hello"&#125;// 数据内容（可多行）
+retry: 10000         // 重连间隔（毫秒）
+\n\n                 // 消息结束符（两个换行）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>不适用场景</strong></p>
 <ul>
@@ -1863,14 +1863,14 @@ retry: 10000         &#x2F;&#x2F; 重连间隔（毫秒）
 <p>(2) 内容安全策略（CSP）</p>
 <p>原理：通过HTTP头定义可信资源白名单，阻止非法脚本执行。</p>
 <p>关键指令：</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Content-Security-Policy: 
-  default-src &#39;self&#39;;       &#x2F;&#x2F; 默认仅允许同源
-  script-src &#39;self&#39; https:&#x2F;&#x2F;trusted.cdn.com;  &#x2F;&#x2F; 脚本来源
-  style-src &#39;self&#39; &#39;nonce-abc123&#39;;  &#x2F;&#x2F; 样式来源
-  img-src *;                &#x2F;&#x2F; 图片允许任意源
-  connect-src https:&#x2F;&#x2F;api.example.com;  &#x2F;&#x2F; 限制AJAX请求
-  frame-ancestors &#39;none&#39;;   &#x2F;&#x2F; 禁止嵌套
-  report-uri &#x2F;csp-report;   &#x2F;&#x2F; 违规上报<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Content-Security-Policy</span><span class="token punctuation">:</span> <span class="token header-value csp languages-csp">
+  default-src 'self';       // 默认仅允许同源
+  script-src 'self' https://trusted.cdn.com;  // 脚本来源
+  style-src 'self' 'nonce-abc123';  // 样式来源
+  img-src *;                // 图片允许任意源
+  connect-src https://api.example.com;  // 限制AJAX请求
+  frame-ancestors 'none';   // 禁止嵌套
+  report-uri /csp-report;   // 违规上报</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>安全增强策略：</p>
 <table>
@@ -1972,13 +1972,13 @@ retry: 10000         &#x2F;&#x2F; 重连间隔（毫秒）
 <li>用户主动访问恶意页面（含自动提交表单&#x2F;脚本）</li>
 </ol>
 <p>伪造请求示例：</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 钓鱼页面隐藏表单 --&gt;
-&lt;body onload&#x3D;&quot;document.forms[0].submit()&quot;&gt;
-  &lt;form action&#x3D;&quot;https:&#x2F;&#x2F;bank.com&#x2F;transfer&quot; method&#x3D;&quot;POST&quot;&gt;
-    &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;amount&quot; value&#x3D;&quot;10000&quot;&gt;
-    &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;to&quot; value&#x3D;&quot;hacker_account&quot;&gt;
-  &lt;&#x2F;form&gt;
-&lt;&#x2F;body&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 钓鱼页面隐藏表单 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token special-attr"><span class="token attr-name">onload</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript">document<span class="token punctuation">.</span>forms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://bank.com/transfer<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>amount<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10000<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>to<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hacker_account<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>Token验证防御机制</strong></p>
 <p>核心原理：在请求中嵌入服务端生成的随机Token，验证请求是否来自真实页面（恶意网站无法获取Token）。</p>
@@ -2015,11 +2015,11 @@ retry: 10000         &#x2F;&#x2F; 重连间隔（毫秒）
 </tr>
 </tbody></table>
 <p>前端集成示例：</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 表单内嵌Token --&gt;
-&lt;form action&#x3D;&quot;&#x2F;transfer&quot; method&#x3D;&quot;POST&quot;&gt;
-  &lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;_csrf&quot; value&#x3D;&quot;token_value&quot;&gt; 
-  &lt;!-- 其他字段 --&gt;
-&lt;&#x2F;form&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 表单内嵌Token --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/transfer<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>_csrf<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>token_value<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> 
+  <span class="token comment">&lt;!-- 其他字段 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token constant">AJAX</span>请求携带Token <span class="token operator">--</span><span class="token operator">></span>
 <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'/api/action'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
@@ -2161,10 +2161,10 @@ res<span class="token punctuation">.</span><span class="token function">cookie</
     浏览器-&gt;&gt;网站服务器: 后续所有请求自动HTTPS（即使输入http:&#x2F;&#x2F;）</code></pre>
 
 <p>关键响应头指令：</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Strict-Transport-Security: 
-  max-age&#x3D;31536000;           &#x2F;&#x2F; 有效期1年（秒）
-  includeSubDomains;          &#x2F;&#x2F; 保护所有子域名
-  preload                    &#x2F;&#x2F; 申请加入浏览器预加载列表<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Strict-Transport-Security</span><span class="token punctuation">:</span> <span class="token header-value hsts languages-hsts">
+  max-age=31536000;           // 有效期1年（秒）
+  includeSubDomains;          // 保护所有子域名
+  preload                    // 申请加入浏览器预加载列表</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>防御效果对比:</p>
 <table>
@@ -2231,7 +2231,7 @@ res<span class="token punctuation">.</span><span class="token function">cookie</
 <h2 id="3-2-安全实践"><a href="#3-2-安全实践" class="headerlink" title="3.2 安全实践"></a>3.2 安全实践</h2><h3 id="Cookie-安全属性（Secure-HttpOnly-SameSite）"><a href="#Cookie-安全属性（Secure-HttpOnly-SameSite）" class="headerlink" title="Cookie 安全属性（Secure&#x2F;HttpOnly&#x2F;SameSite）"></a>Cookie 安全属性（Secure&#x2F;HttpOnly&#x2F;SameSite）</h3><p><strong>Secure 属性</strong></p>
 <p>作用：确保Cookie仅通过HTTPS加密连接传输，防止中间人窃听。</p>
 <p>配置方式：</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Set-Cookie: sessionId&#x3D;abc123; Secure;  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Set-Cookie</span><span class="token punctuation">:</span> <span class="token header-value">sessionId=abc123; Secure;  </span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>安全影响：</p>
 <table>
@@ -2259,7 +2259,7 @@ res<span class="token punctuation">.</span><span class="token function">cookie</
 <p><strong>HttpOnly 属性</strong></p>
 <p>作用：阻止JavaScript通过document.cookie访问Cookie，防范XSS攻击窃取。</p>
 <p>配置方式：</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Set-Cookie: sessionId&#x3D;abc123; HttpOnly;  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Set-Cookie</span><span class="token punctuation">:</span> <span class="token header-value">sessionId=abc123; HttpOnly;  </span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>安全影响：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 恶意脚本尝试窃取Cookie</span>
@@ -2300,7 +2300,7 @@ res<span class="token punctuation">.</span><span class="token function">cookie</
 </tr>
 </tbody></table>
 <p>配置方式：</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Set-Cookie: sessionId&#x3D;abc123; SameSite&#x3D;Lax;  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Set-Cookie</span><span class="token punctuation">:</span> <span class="token header-value">sessionId=abc123; SameSite=Lax;  </span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>跨站请求场景对比：</p>
 <table>
@@ -2339,20 +2339,20 @@ res<span class="token punctuation">.</span><span class="token function">cookie</
 </tbody></table>
 <p><strong>综合防御配置示例</strong></p>
 <p>(1) 安全会话 Cookie 设置</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Set-Cookie: 
-  sessionId&#x3D;abc123; 
-  Secure;          &#x2F;&#x2F; 仅HTTPS传输
-  HttpOnly;        &#x2F;&#x2F; 阻止JS访问
-  SameSite&#x3D;Lax;    &#x2F;&#x2F; 防御CSRF
-  Path&#x3D;&#x2F;;          &#x2F;&#x2F; 作用路径
-  Max-Age&#x3D;3600;    &#x2F;&#x2F; 有效期（秒）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Set-Cookie</span><span class="token punctuation">:</span> <span class="token header-value">
+  sessionId=abc123; 
+  Secure;          // 仅HTTPS传输
+  HttpOnly;        // 阻止JS访问
+  SameSite=Lax;    // 防御CSRF
+  Path=/;          // 作用路径
+  Max-Age=3600;    // 有效期（秒）</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(2) 跨域认证 Cookie（OAuth）</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Set-Cookie: 
-  oauth_token&#x3D;xyz789; 
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Set-Cookie</span><span class="token punctuation">:</span> <span class="token header-value">
+  oauth_token=xyz789; 
   Secure; 
   HttpOnly; 
-  SameSite&#x3D;None;   &#x2F;&#x2F; 允许跨站发送<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  SameSite=None;   // 允许跨站发送</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="OAuth-2-0授权流程"><a href="#OAuth-2-0授权流程" class="headerlink" title="OAuth 2.0授权流程"></a>OAuth 2.0授权流程</h3><pre><code class="mermaid">sequenceDiagram
     participant User as 资源所有者 (用户)
@@ -2401,12 +2401,12 @@ res<span class="token punctuation">.</span><span class="token function">cookie</
 </tr>
 </tbody></table>
 <p>常见指令：</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Cache-Control: 
-  max-age&#x3D;3600,          &#x2F;&#x2F; 缓存有效期（秒）
-  public,               &#x2F;&#x2F; 允许代理&#x2F;CDN缓存
-  immutable,            &#x2F;&#x2F; 资源永不更新（适用于版本化文件）
-  no-store,             &#x2F;&#x2F; 禁止缓存（最高优先级）
-  no-cache              &#x2F;&#x2F; 需协商验证（非字面意思）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">
+  max-age=3600,          // 缓存有效期（秒）
+  public,               // 允许代理/CDN缓存
+  immutable,            // 资源永不更新（适用于版本化文件）
+  no-store,             // 禁止缓存（最高优先级）
+  no-cache              // 需协商验证（非字面意思）</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>工作流程：</p>
 <pre><code class="mermaid">graph LR
@@ -2502,7 +2502,7 @@ res<span class="token punctuation">.</span><span class="token function">cookie</
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(3) 混合策略</p>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Cache-Control: max-age&#x3D;600, must-revalidate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">max-age=600, must-revalidate</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <blockquote>
 <p>600秒内强缓存 → 过期后必须验证（转为协商缓存）</p>
@@ -2623,7 +2623,7 @@ caches<span class="token punctuation">.</span><span class="token function">open<
 <span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>完整示例架构</strong></p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">&#x2F;public
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">/public
   ├── index.html
   ├── styles.css
   ├── app.js
@@ -2864,7 +2864,7 @@ self<span class="token punctuation">.</span><span class="token function">addEven
 <span class="token directive"><span class="token keyword">brotli_static</span> <span class="token boolean">on</span></span><span class="token punctuation">;</span>      <span class="token comment"># 优先使用预压缩文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>前端收益：</p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">原始文件： 200KB
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">原始文件： 200KB
 Gzip后：  60KB（节省140KB）
 Brotli后：30KB（节省170KB） → 3G网络下加载时间减少40%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
@@ -2978,13 +2978,13 @@ Brotli后：30KB（节省170KB） → 3G网络下加载时间减少40%<span aria
   D --&gt; E[页面渲染直接使用]</code></pre>
 
 <p>实现方式：</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 基本用法 --&gt;
-&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;font.woff2&quot; as&#x3D;&quot;font&quot; type&#x3D;&quot;font&#x2F;woff2&quot; crossorigin&gt;
-&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;critical.css&quot; as&#x3D;&quot;style&quot;&gt;
-&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;main.js&quot; as&#x3D;&quot;script&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 基本用法 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>font.woff2<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>font<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>font/woff2<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>critical.css<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>style<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main.js<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>script<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">&lt;!-- HTTP响应头方式（优先级更高） --&gt;
-Link: &lt;&#x2F;critical.css&gt;; rel&#x3D;preload; as&#x3D;style<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http">&lt;!-- HTTP响应头方式（优先级更高） -->
+<span class="token header"><span class="token header-name keyword">Link</span><span class="token punctuation">:</span> <span class="token header-value">&lt;/critical.css>; rel=preload; as=style</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>关键特性：</p>
 <table>
@@ -3042,12 +3042,12 @@ Link: &lt;&#x2F;critical.css&gt;; rel&#x3D;preload; as&#x3D;style<span aria-hidd
     Browser-&gt;&gt;CDN: 实际资源请求（立即发送）</code></pre>
 
 <p>实现方式：</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 预连接第三方源 --&gt;
-&lt;link rel&#x3D;&quot;preconnect&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdn.example.com&quot;&gt;
-&lt;link rel&#x3D;&quot;preconnect&quot; href&#x3D;&quot;https:&#x2F;&#x2F;api.example.com&quot; crossorigin&gt;
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 预连接第三方源 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.example.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://api.example.com<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token punctuation">></span></span>
 
-&lt;!-- DNS预取（更轻量） --&gt;
-&lt;link rel&#x3D;&quot;dns-prefetch&quot; href&#x3D;&quot;&#x2F;&#x2F;cdn.example.com&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">&lt;!-- DNS预取（更轻量） --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dns-prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>//cdn.example.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>关键属性：</p>
 <table>
@@ -3169,8 +3169,8 @@ Link: &lt;&#x2F;critical.css&gt;; rel&#x3D;preload; as&#x3D;style<span aria-hidd
 <ul>
 <li>隐式触发（需启用<code>http2_push_preload</code>）</li>
 </ul>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP"># 响应头声明需推送资源
-Link: &lt;&#x2F;static&#x2F;script.js&gt;; rel&#x3D;preload; as&#x3D;script<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 响应头声明需推送资源
+<span class="token header"><span class="token header-name keyword">Link</span><span class="token punctuation">:</span> <span class="token header-value">&lt;/static/script.js>; rel=preload; as=script</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>(2) 推送协议流程</p>
 <ul>
@@ -3395,7 +3395,7 @@ performance<span class="token punctuation">.</span><span class="token function">
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-HTTP" data-language="HTTP"><code class="language-HTTP">Alt-Svc: h3&#x3D;&quot;:443&quot;; ma&#x3D;2592000; v&#x3D;&quot;46,43&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Alt-Svc</span><span class="token punctuation">:</span> <span class="token header-value">h3=":443"; ma=2592000; v="46,43"</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h1 id="五、高级网络技术"><a href="#五、高级网络技术" class="headerlink" title="五、高级网络技术"></a>五、高级网络技术</h1><h2 id="5-1-API设计规范"><a href="#5-1-API设计规范" class="headerlink" title="5.1 API设计规范"></a>5.1 API设计规范</h2><h3 id="RESTful架构原则（资源化-状态转移）"><a href="#RESTful架构原则（资源化-状态转移）" class="headerlink" title="RESTful架构原则（资源化&#x2F;状态转移）"></a>RESTful架构原则（资源化&#x2F;状态转移）</h3><h3 id="GraphQL查询与REST对比"><a href="#GraphQL查询与REST对比" class="headerlink" title="GraphQL查询与REST对比"></a>GraphQL查询与REST对比</h3><h2 id="5-2-调试与监控"><a href="#5-2-调试与监控" class="headerlink" title="5.2 调试与监控"></a>5.2 调试与监控</h2><h3 id="浏览器Network面板分析（Waterfall-Timing）"><a href="#浏览器Network面板分析（Waterfall-Timing）" class="headerlink" title="浏览器Network面板分析（Waterfall&#x2F;Timing）"></a>浏览器Network面板分析（Waterfall&#x2F;Timing）</h3><h3 id="性能指标（TTFB-LCP-FCP）监控"><a href="#性能指标（TTFB-LCP-FCP）监控" class="headerlink" title="性能指标（TTFB&#x2F;LCP&#x2F;FCP）监控"></a>性能指标（TTFB&#x2F;LCP&#x2F;FCP）监控</h3><h2 id="5-3-新兴技术"><a href="#5-3-新兴技术" class="headerlink" title="5.3 新兴技术"></a>5.3 新兴技术</h2><h3 id="WebRTC基础（P2P通信-信令服务）"><a href="#WebRTC基础（P2P通信-信令服务）" class="headerlink" title="WebRTC基础（P2P通信&#x2F;信令服务）"></a>WebRTC基础（P2P通信&#x2F;信令服务）</h3><h3 id="WebTransport协议探索"><a href="#WebTransport协议探索" class="headerlink" title="WebTransport协议探索"></a>WebTransport协议探索</h3>
     </div>

@@ -28,7 +28,7 @@
 <meta property="og:description" content="一、核心概念与基础1.1 Webpack 定位与核心价值1.1.1 模块化打包的本质需求前端开发的核心演变 原始阶段：全局变量污染 &lt;!-- 传统开发方式 --&gt; &lt;script src&#x3D;&quot;jquery.js&quot;&gt;&lt;&#x2F;script&gt; &lt;script src&#x3D;&quot;plugin1.js&quot;&gt;&lt;&#x2F;script&gt; &lt;!-- 可能覆盖全局变量 --&gt; &lt;script sr">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-03T01:11:35.000Z">
-<meta property="article:modified_time" content="2025-07-09T15:00:39.524Z">
+<meta property="article:modified_time" content="2025-07-10T00:42:12.674Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="Webpack">
 <meta name="twitter:card" content="summary">
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-09 23:00:39" itemprop="dateModified" datetime="2025-07-09T23:00:39+08:00">2025-07-09</time>
+      <time title="修改时间：2025-07-10 08:42:12" itemprop="dateModified" datetime="2025-07-10T08:42:12+08:00">2025-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1073,19 +1073,19 @@ B --&gt; C[Source Map文件]
 C --&gt; D[原始代码位置: 第42行第8列]</code></pre>
 
 <p>Source Map 文件结构：</p>
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#123;
-  &quot;version&quot;: 3,                   &#x2F;&#x2F; Source Map版本
-  &quot;sources&quot;: [&quot;app.js&quot;],           &#x2F;&#x2F; 源文件列表
-  &quot;names&quot;: [&quot;add&quot;, &quot;multiply&quot;],    &#x2F;&#x2F; 变量名映射
-  &quot;mappings&quot;: &quot;AAAA;ACDE;&quot;,        &#x2F;&#x2F; 位置映射编码
-  &quot;file&quot;: &quot;app.min.js&quot;,            &#x2F;&#x2F; 生成的文件名
-  &quot;sourcesContent&quot;: [&quot;原始代码&quot;],  &#x2F;&#x2F; 原始源代码（可选）
-  &quot;sourceRoot&quot;: &quot;&#x2F;src&quot;             &#x2F;&#x2F; 源文件根路径
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  <span class="token property">"version"</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>                   <span class="token comment">// Source Map版本</span>
+  <span class="token property">"sources"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"app.js"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>           <span class="token comment">// 源文件列表</span>
+  <span class="token property">"names"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"add"</span><span class="token punctuation">,</span> <span class="token string">"multiply"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>    <span class="token comment">// 变量名映射</span>
+  <span class="token property">"mappings"</span><span class="token operator">:</span> <span class="token string">"AAAA;ACDE;"</span><span class="token punctuation">,</span>        <span class="token comment">// 位置映射编码</span>
+  <span class="token property">"file"</span><span class="token operator">:</span> <span class="token string">"app.min.js"</span><span class="token punctuation">,</span>            <span class="token comment">// 生成的文件名</span>
+  <span class="token property">"sourcesContent"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"原始代码"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment">// 原始源代码（可选）</span>
+  <span class="token property">"sourceRoot"</span><span class="token operator">:</span> <span class="token string">"/src"</span>             <span class="token comment">// 源文件根路径</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>映射编码解析（VLQ 原理）</strong></p>
 <p>(1) VLQ 编码示例</p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">原始位置 → 生成位置
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">原始位置 → 生成位置
 第2行第5列 → 第1行第10列
 
 VLQ编码：CAC1F<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -1437,18 +1437,18 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#x2F;&#x2F; .eslintrc
-&#123;
-  &quot;rules&quot;: &#123;
-    &quot;no-restricted-syntax&quot;: [
-      &quot;error&quot;,
-      &#123;
-        &quot;selector&quot;: &quot;CallExpression[callee.name&#x3D;&#39;require&#39;]&quot;,
-        &quot;message&quot;: &quot;请使用import语法&quot;
-      &#125;
-    ]
-  &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">// .eslintrc</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token property">"rules"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"no-restricted-syntax"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token string">"error"</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token property">"selector"</span><span class="token operator">:</span> <span class="token string">"CallExpression[callee.name='require']"</span><span class="token punctuation">,</span>
+        <span class="token property">"message"</span><span class="token operator">:</span> <span class="token string">"请使用import语法"</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="1-3-2-Tree-Shaking深层原理（sideEffects标志）"><a href="#1-3-2-Tree-Shaking深层原理（sideEffects标志）" class="headerlink" title="1.3.2 Tree Shaking深层原理（sideEffects标志）"></a>1.3.2 Tree Shaking深层原理（<code>sideEffects</code>标志）</h3><p><strong>Tree Shaking 的本质与限制</strong></p>
 <p>核心原理图解：</p>
@@ -1533,15 +1533,15 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </ul>
 <p><strong>sideEffects 实战配置指南</strong></p>
 <p>(1) 库开发者配置</p>
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#x2F;&#x2F; 组件库的package.json
-&#123;
-  &quot;sideEffects&quot;: [
-    &quot;**&#x2F;*.css&quot;,
-    &quot;**&#x2F;*.scss&quot;,
-    &quot;esm&#x2F;index.js&quot;,    &#x2F;&#x2F; 入口文件可能有副作用
-    &quot;src&#x2F;setupTests.js&quot;
-  ]
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">// 组件库的package.json</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token property">"sideEffects"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"**/*.css"</span><span class="token punctuation">,</span>
+    <span class="token string">"**/*.scss"</span><span class="token punctuation">,</span>
+    <span class="token string">"esm/index.js"</span><span class="token punctuation">,</span>    <span class="token comment">// 入口文件可能有副作用</span>
+    <span class="token string">"src/setupTests.js"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(2) 应用开发者配置</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// webpack.config.js</span>
@@ -3311,18 +3311,18 @@ console<span class="token punctuation">.</span><span class="token function">log<
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 2. 模板内容示例 --&gt;
-&lt;!-- src&#x2F;index.ejs --&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;title&gt;&lt;%&#x3D; htmlWebpackPlugin.options.title %&gt;&lt;&#x2F;title&gt;
-  &lt;%&#x3D; htmlWebpackPlugin.tags.headTags %&gt;
-&lt;&#x2F;head&gt;
-&lt;body&gt;
-  &lt;div id&#x3D;&quot;root&quot;&gt;&lt;&#x2F;div&gt;
-  &lt;%&#x3D; htmlWebpackPlugin.tags.bodyTags %&gt;
-&lt;&#x2F;body&gt;
-&lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 2. 模板内容示例 --></span>
+<span class="token comment">&lt;!-- src/index.ejs --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>&lt;%= htmlWebpackPlugin.options.title %><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+  &lt;%= htmlWebpackPlugin.tags.headTags %>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>root<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  &lt;%= htmlWebpackPlugin.tags.bodyTags %>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="三、性能优化专项"><a href="#三、性能优化专项" class="headerlink" title="三、性能优化专项"></a>三、性能优化专项</h1><h2 id="3-1-构建速度优化"><a href="#3-1-构建速度优化" class="headerlink" title="3.1 构建速度优化"></a>3.1 构建速度优化</h2><h3 id="3-1-1-缓存策略：cache-loader-hard-source-webpack-plugin"><a href="#3-1-1-缓存策略：cache-loader-hard-source-webpack-plugin" class="headerlink" title="3.1.1 缓存策略：cache-loader&#x2F;hard-source-webpack-plugin"></a>3.1.1 缓存策略：<code>cache-loader</code>&#x2F;<code>hard-source-webpack-plugin</code></h3><p><strong>构建缓存核心原理</strong></p>
 <p>缓存机制对比：</p>
@@ -3990,15 +3990,15 @@ _<span class="token punctuation">.</span><span class="token function">debounce</
 <td align="left">批量标记</td>
 </tr>
 </tbody></table>
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#x2F;&#x2F; 典型配置示例
-&#123;
-  &quot;name&quot;: &quot;my-library&quot;,
-  &quot;sideEffects&quot;: [
-    &quot;**&#x2F;*.css&quot;,
-    &quot;**&#x2F;*.scss&quot;,
-    &quot;src&#x2F;polyfill.js&quot;
-  ]
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">// 典型配置示例</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"my-library"</span><span class="token punctuation">,</span>
+  <span class="token property">"sideEffects"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"**/*.css"</span><span class="token punctuation">,</span>
+    <span class="token string">"**/*.scss"</span><span class="token punctuation">,</span>
+    <span class="token string">"src/polyfill.js"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(2) 函数级副作用标记</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 明确标记无副作用</span>
@@ -4516,10 +4516,10 @@ module<span class="token punctuation">.</span><span class="token function-variab
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 安装体积分析插件</span>
 <span class="token function">npm</span> <span class="token function">install</span> --save-dev size-limit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON"># package.json
-&quot;scripts&quot;: &#123;
-  &quot;size&quot;: &quot;size-limit&quot;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"># package.json
+<span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+  <span class="token property">"size"</span><span class="token operator">:</span> <span class="token string">"size-limit"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>面试要点</strong></p>
 <p>Q1：Terser与UglifyJS核心区别</p>
@@ -4631,13 +4631,13 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">(</span>common<span class="token punctuation">,</span> devConfig<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(3) TypeScript类型支持</p>
-<pre class="line-numbers language-TypeScript" data-language="TypeScript"><code class="language-TypeScript">import &#123; Configuration &#125; from &#39;webpack&#39;;
-import &#123; merge &#125; from &#39;webpack-merge&#39;;
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> Configuration <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'webpack'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> merge <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'webpack-merge'</span><span class="token punctuation">;</span>
 
-const common: Configuration &#x3D; &#123; ... &#125;;
-const dev: Configuration &#x3D; &#123; ... &#125;;
+<span class="token keyword">const</span> common<span class="token operator">:</span> Configuration <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> dev<span class="token operator">:</span> Configuration <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
 
-export default merge(common, dev); &#x2F;&#x2F; 自动推导完整类型<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">merge</span><span class="token punctuation">(</span>common<span class="token punctuation">,</span> dev<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 自动推导完整类型</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>面试核心要点</strong></p>
 <p>Q：为何不用 Object.assign 合并配置？</p>
@@ -4732,16 +4732,16 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 
 <p><strong>企业级实践技巧</strong></p>
 <p>(1) 类型支持 (TypeScript)</p>
-<pre class="line-numbers language-TypeScript" data-language="TypeScript"><code class="language-TypeScript">&#x2F;&#x2F; env.d.ts
-declare namespace NodeJS &#123;
-  interface ProcessEnv &#123;
-    readonly API_BASE_URL: string;
-    readonly DEBUG_MODE?: &#39;true&#39; | &#39;false&#39;;
-  &#125;
-&#125;
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token comment">// env.d.ts</span>
+<span class="token keyword">declare</span> <span class="token keyword">namespace</span> NodeJS <span class="token punctuation">&#123;</span>
+  <span class="token keyword">interface</span> <span class="token class-name">ProcessEnv</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">readonly</span> <span class="token constant">API_BASE_URL</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    <span class="token keyword">readonly</span> <span class="token constant">DEBUG_MODE</span><span class="token operator">?</span><span class="token operator">:</span> <span class="token string">'true'</span> <span class="token operator">|</span> <span class="token string">'false'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-&#x2F;&#x2F; 业务代码
-const apiUrl: string &#x3D; process.env.API_BASE_URL;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">// 业务代码</span>
+<span class="token keyword">const</span> apiUrl<span class="token operator">:</span> <span class="token builtin">string</span> <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">API_BASE_URL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(2) 环境变量校验</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 启动时验证必要变量</span>
@@ -4934,8 +4934,8 @@ window<span class="token punctuation">.</span><span class="token function-variab
 
 <p><strong>性能优化策略</strong></p>
 <p>(1) 共享依赖预加载</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 主应用HTML中预加载 --&gt;
-&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdn.com&#x2F;shared-react.js&quot; as&#x3D;&quot;script&quot;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 主应用HTML中预加载 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.com/shared-react.js<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>script<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>(2) 按需加载暴露模块</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 使用import()动态加载</span>
@@ -5049,9 +5049,9 @@ window<span class="token punctuation">.</span><span class="token function-variab
   SubAppB --&gt;|私有共享| UtilsB[工具库B]</code></pre>
 
 <p>(2) 共享模块预加载</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 主应用HTML --&gt;
-&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdn.com&#x2F;shared-react.js&quot; as&#x3D;&quot;script&quot; crossorigin&gt;
-&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;https:&#x2F;&#x2F;cdn.com&#x2F;antd.js&quot; as&#x3D;&quot;script&quot; crossorigin&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 主应用HTML --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.com/shared-react.js<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>script<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.com/antd.js<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>script<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// Webpack配置</span>
 <span class="token literal-property property">shared</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
@@ -5306,13 +5306,13 @@ compiler<span class="token punctuation">.</span><span class="token function">run
 
 <p><strong>发布与集成</strong></p>
 <p>(1) 全局安装</p>
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#x2F;&#x2F; package.json
-&#123;
-  &quot;name&quot;: &quot;my-webpack-cli&quot;,
-  &quot;bin&quot;: &#123;
-    &quot;mwpack&quot;: &quot;.&#x2F;bin&#x2F;cli.js&quot;
-  &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">// package.json</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"my-webpack-cli"</span><span class="token punctuation">,</span>
+  <span class="token property">"bin"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"mwpack"</span><span class="token operator">:</span> <span class="token string">"./bin/cli.js"</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> my-webpack-cli
 mwpack build <span class="token parameter variable">--env</span><span class="token operator">=</span>test<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -6091,10 +6091,10 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(2) 典型执行顺序</p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">1. before 中间件
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">1. before 中间件
    ├── 自定义中间件A
    ├── 自定义中间件B
-2. Webpack内置中间件（静态服务&#x2F;HMR）
+2. Webpack内置中间件（静态服务/HMR）
 3. after 中间件
    ├── 日志记录
    └── 响应修改<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -6230,14 +6230,14 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </tbody></table>
 <p><strong>副作用（Side Effects）处理机制</strong></p>
 <p>(1) 全局副作用声明</p>
-<pre class="line-numbers language-JSON" data-language="JSON"><code class="language-JSON">&#x2F;&#x2F; package.json
-&#123;
-  &quot;sideEffects&quot;: false,  &#x2F;&#x2F; 所有文件均无副作用
-  &quot;sideEffects&quot;: [       &#x2F;&#x2F; 指定有副作用的文件
-    &quot;*.css&quot;,
-    &quot;src&#x2F;polyfill.js&quot;
-  ]
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">// package.json</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token property">"sideEffects"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>  <span class="token comment">// 所有文件均无副作用</span>
+  <span class="token property">"sideEffects"</span><span class="token operator">:</span> <span class="token punctuation">[</span>       <span class="token comment">// 指定有副作用的文件</span>
+    <span class="token string">"*.css"</span><span class="token punctuation">,</span>
+    <span class="token string">"src/polyfill.js"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(2) 模块级标记</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 在模块内标记</span>
@@ -6527,11 +6527,11 @@ Promise<span class="token punctuation">.</span><span class="token function">all<
 <li>非核心库（如图表库）按需加载</li>
 </ul>
 <p>(2) 资源预加载优化</p>
-<pre class="line-numbers language-HTML" data-language="HTML"><code class="language-HTML">&lt;!-- 关键资源预加载 --&gt;
-&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;main.css&quot; as&#x3D;&quot;style&quot;&gt;
-&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;core.js&quot; as&#x3D;&quot;script&quot;&gt;
-&lt;!-- 字体预加载 --&gt;
-&lt;link rel&#x3D;&quot;preload&quot; href&#x3D;&quot;font.woff2&quot; as&#x3D;&quot;font&quot; crossorigin&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 关键资源预加载 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main.css<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>style<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>core.js<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>script<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token comment">&lt;!-- 字体预加载 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>font.woff2<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>font<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>(3) HTTP&#x2F;2推送 (Server Push)</p>
 <pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token comment"># Nginx 配置</span>
@@ -6639,12 +6639,12 @@ Promise<span class="token punctuation">.</span><span class="token function">all<
 </tr>
 </tbody></table>
 <p>(3) 字体加载防阻塞</p>
-<pre class="line-numbers language-CSS" data-language="CSS"><code class="language-CSS">&#x2F;* 异步加载字体 *&#x2F;
-@font-face &#123;
-  font-family: &#39;CustomFont&#39;;
-  src: url(&#39;font.woff2&#39;) format(&#39;woff2&#39;);
-  font-display: swap; &#x2F;* 文本先用系统字体渲染 *&#x2F;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 异步加载字体 */</span>
+<span class="token atrule"><span class="token rule">@font-face</span></span> <span class="token punctuation">&#123;</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">'CustomFont'</span><span class="token punctuation">;</span>
+  <span class="token property">src</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">'font.woff2'</span><span class="token punctuation">)</span></span> <span class="token function">format</span><span class="token punctuation">(</span><span class="token string">'woff2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">font-display</span><span class="token punctuation">:</span> swap<span class="token punctuation">;</span> <span class="token comment">/* 文本先用系统字体渲染 */</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>总结应答框架</strong></p>
 <p>分层解析：</p>
@@ -6931,12 +6931,12 @@ compiler<span class="token punctuation">.</span><span class="token function">run
 <p><strong>使用示例</strong></p>
 <p>创建一个简单的项目结构测试我们的Webpack实现：</p>
 <p>项目结构：</p>
-<pre class="line-numbers language-Text" data-language="Text"><code class="language-Text">my-project&#x2F;
-  ├── src&#x2F;
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">my-project/
+  ├── src/
   │   ├── index.js
   │   ├── message.js
   │   └── name.js
-  ├── dist&#x2F;
+  ├── dist/
   ├── my-webpack.js (上面的代码)
   └── package.json<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
