@@ -238,7 +238,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/06/05/React%20Fiber/" class="post-title-link" itemprop="url">React Fiber 专题知识学习</a>
+          <a href="/2025/06/05/React%20Fiber/" class="post-title-link" itemprop="url">专题知识学习：React Fiber</a>
         </h2>
 
         <div class="post-meta-container">
@@ -256,7 +256,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-10 08:39:59" itemprop="dateModified" datetime="2025-07-10T08:39:59+08:00">2025-07-10</time>
+      <time title="修改时间：2025-07-11 09:33:17" itemprop="dateModified" datetime="2025-07-11T09:33:17+08:00">2025-07-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,19 +297,6 @@
 <p>stack reconciler 是 React15 及之前版本中使用的虚拟 dom 协调算法，负责计算组件树的变化并更新真实 dom。其核心特点是基于递归遍历、不可中断的同步更新流程。</p>
 <p><strong>递归遍历虚拟 dom</strong></p>
 <p>采用深度优先遍历策略（FDS），从组件树根节点开始，递归调用组件的 render 方法，生成完整的虚拟 dom 树。递归遍历依赖于 JavaScript 调用栈（call stack），一旦开始就必须执行到底，无法中途暂停。</p>
-<p><strong>同步更新机制</strong></p>
-<p>所有更新（比如 setState）都会立即触发完整的 diff 计算，无法合并和延迟。当一个应用的组件树过于庞大时，一次递归 diff 计算是十分耗时的。stack reconciler 的工作流程分为两个阶段：</p>
-<ul>
-<li>协调（reconciliation）：该阶段中采用递归 diff 算法，对比新旧虚拟 dom 树的差异，找到需要进行更新的树节点，标记需要更新的节点的增删改</li>
-<li>提交（commit）：根据 diff 计算的结果，一次性同步执行所有的 dom 操作，并触发生命周期钩子（componentDidMount、componentDidUpdate等）</li>
-</ul>
-<p><strong>局限性</strong></p>
-<p>在了解上述知识后，我们可以很清晰的感知到 stack reconciler 的局限性：</p>
-<ul>
-<li>无法中断长任务：递归遍历一旦开始就无法中断，这会占用 js 主线程，导致无法响应其他高优先级任务</li>
-<li>缺乏任务优先级调度：所有的更新任务同步执行，享有同等优先级</li>
-<li>内存泄漏风险：当组件树十分庞大时，深度递归可能会引起栈内存泄漏</li>
-</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/06/05/React%20Fiber/#more" rel="contents">
@@ -379,7 +366,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-09 23:00:39" itemprop="dateModified" datetime="2025-07-09T23:00:39+08:00">2025-07-09</time>
+      <time title="修改时间：2025-07-10 08:59:44" itemprop="dateModified" datetime="2025-07-10T08:59:44+08:00">2025-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -418,20 +405,20 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="入口起点（entry-point）"><a href="#入口起点（entry-point）" class="headerlink" title="入口起点（entry point）"></a>入口起点（entry point）</h2><h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>语法：entry: string | [string] | { <entryChunkName> string | [string] } | {}</p>
 <p><strong>webpack.config.js</strong></p>
-<pre class="line-numbers language-Javascript" data-language="Javascript"><code class="language-Javascript">module.exports &#x3D; &#123;
-  entry: &#123;
-    app: &#39;.&#x2F;src&#x2F;app.js&#39;,
-    file: [&#39;.&#x2F;src&#x2F;file_1.js&#39;, &#39;.&#x2F;src&#x2F;file_2.js&#39;],
-    a1: &#123;
-      dependOn: &#39;app&#39;, &#x2F;&#x2F; 当前入口所依赖的入口。它们必须在该入口被加载前被加载。
-      filename: &#39;&#39;, &#x2F;&#x2F; 指定要输出的文件名称
-      import: &#39;&#39;, &#x2F;&#x2F; 启动时需加载的模块
-      library: &#39;&#39;, &#x2F;&#x2F; 指定 library 选项，为当前 entry 构建一个 library
-      runtime: &#39;&#39;, &#x2F;&#x2F; 运行时 chunk 的名字。如果设置了，就会创建一个新的运行时 chunk。在 webpack 5.43.0 之后可将其设为 false 以避免一个新的运行时 chunk
-      publicPath: &#39;&#39;, &#x2F;&#x2F; 当该入口的输出文件在浏览器中被引用时，为它们指定一个公共 URL 地址
-    &#125;,
-  &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">app</span><span class="token operator">:</span> <span class="token string">'./src/app.js'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">file</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'./src/file_1.js'</span><span class="token punctuation">,</span> <span class="token string">'./src/file_2.js'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">a1</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">dependOn</span><span class="token operator">:</span> <span class="token string">'app'</span><span class="token punctuation">,</span> <span class="token comment">// 当前入口所依赖的入口。它们必须在该入口被加载前被加载。</span>
+      <span class="token literal-property property">filename</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment">// 指定要输出的文件名称</span>
+      <span class="token keyword">import</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment">// 启动时需加载的模块</span>
+      <span class="token literal-property property">library</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment">// 指定 library 选项，为当前 entry 构建一个 library</span>
+      <span class="token literal-property property">runtime</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment">// 运行时 chunk 的名字。如果设置了，就会创建一个新的运行时 chunk。在 webpack 5.43.0 之后可将其设为 false 以避免一个新的运行时 chunk</span>
+      <span class="token literal-property property">publicPath</span><span class="token operator">:</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token comment">// 当该入口的输出文件在浏览器中被引用时，为它们指定一个公共 URL 地址</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/05/29/Webpack%20Study%20Notes/#more" rel="contents">
