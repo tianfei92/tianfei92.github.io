@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tianfei92.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"atom-one-dark","dark":"atom-one-dark"},"prism":{"light":"prism-okaidia","dark":"prism-okaidia"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="第一章：CSS 基础与核心概念1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）基础语法结构&#x2F;* 标准规则 *&#x2F; selector &#123;   property: value; &#x2F;* 声明块 *&#x2F; &#125;  基础选择器元素选择器 div &#123; color: red; &#125;   权重：0,0,1 适用场景：全局样式覆盖  类选择器 .active &amp;#12">
+    <meta name="description" content="第一章：CSS 基础与核心概念1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）基础语法结构&#x2F;* 标准规则 *&#x2F; selector &#123;   property: value; &#x2F;* 声明块 *&#x2F; &#125;  基础选择器元素选择器 div &#123; color: red; &#125;   权重：0,0,0,1 适用场景：全局样式覆盖  类选择器 .active &amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="专题知识学习：CSS">
 <meta property="og:url" content="https://tianfei92.github.io/2025/06/22/CSS%20Study%20Notes/index.html">
 <meta property="og:site_name" content="Ariel&#39;s Blog">
-<meta property="og:description" content="第一章：CSS 基础与核心概念1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）基础语法结构&#x2F;* 标准规则 *&#x2F; selector &#123;   property: value; &#x2F;* 声明块 *&#x2F; &#125;  基础选择器元素选择器 div &#123; color: red; &#125;   权重：0,0,1 适用场景：全局样式覆盖  类选择器 .active &amp;#12">
+<meta property="og:description" content="第一章：CSS 基础与核心概念1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）基础语法结构&#x2F;* 标准规则 *&#x2F; selector &#123;   property: value; &#x2F;* 声明块 *&#x2F; &#125;  基础选择器元素选择器 div &#123; color: red; &#125;   权重：0,0,0,1 适用场景：全局样式覆盖  类选择器 .active &amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-22T08:47:01.000Z">
-<meta property="article:modified_time" content="2025-07-11T01:37:46.330Z">
+<meta property="article:modified_time" content="2025-07-11T09:31:55.782Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-11 09:37:46" itemprop="dateModified" datetime="2025-07-11T09:37:46+08:00">2025-07-11</time>
+      <time title="修改时间：2025-07-11 17:31:55" itemprop="dateModified" datetime="2025-07-11T17:31:55+08:00">2025-07-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -280,14 +280,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>11k</span>
+      <span>12k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>41 分钟</span>
+      <span>43 分钟</span>
     </span>
 </div>
 
@@ -306,14 +306,14 @@
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">div</span> <span class="token punctuation">&#123;</span> <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
-<li>权重：0,0,1</li>
+<li>权重：0,0,0,1</li>
 <li>适用场景：全局样式覆盖</li>
 </ul>
 <p><strong>类选择器</strong></p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.active</span> <span class="token punctuation">&#123;</span> <span class="token property">background</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
-<li>权重：0,1,0</li>
+<li>权重：0,0,1,0</li>
 <li>实践：BEM命名规范（block__element–modifier）</li>
 </ul>
 <span id="more"></span>
@@ -322,14 +322,14 @@
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">#header</span> <span class="token punctuation">&#123;</span> <span class="token property">height</span><span class="token punctuation">:</span> 60px<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
-<li>权重：1,0,0</li>
+<li>权重：0,1,0,0</li>
 <li>禁用场景：React&#x2F;Vue中易导致样式污染（组件化开发慎用）</li>
 </ul>
 <p><strong>通配选择器</strong></p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">*</span> <span class="token punctuation">&#123;</span> <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
-<li>权重：0,0,0</li>
+<li>权重：0,0,0,0</li>
 <li>性能影响：大型项目避免过度使用</li>
 </ul>
 <h3 id="组合选择器"><a href="#组合选择器" class="headerlink" title="组合选择器"></a>组合选择器</h3><p><strong>后代选择器</strong></p>
@@ -370,47 +370,47 @@
 <td align="left">[attr]</td>
 <td align="left">[target]</td>
 <td align="left">存在该属性即可</td>
-<td align="left">0,1,0</td>
+<td align="left">0,0,1,0</td>
 </tr>
 <tr>
 <td align="left">[attr&#x3D;value]</td>
 <td align="left">[lang&#x3D;”en”]</td>
 <td align="left">属性值完全匹配</td>
-<td align="left">0,1,0</td>
+<td align="left">0,0,1,0</td>
 </tr>
 <tr>
 <td align="left">[attr~&#x3D;value]</td>
 <td align="left">[class~&#x3D;”logo”]</td>
 <td align="left">属性值包含该词（空格分隔）</td>
-<td align="left">0,1,0</td>
+<td align="left">0,0,1,0</td>
 </tr>
 <tr>
 <td align="left">[attr&#x3D;value]</td>
 <td align="left">[lang&#x3D;”zh”]</td>
 <td align="left">属性值为zh或以zh-开头</td>
-<td align="left">0,1,0</td>
+<td align="left">0,0,1,0</td>
 </tr>
 <tr>
 <td align="left">[attr^&#x3D;value]</td>
 <td align="left">[href^&#x3D;”https”]</td>
 <td align="left">属性值以指定字符串开头</td>
-<td align="left">0,1,0</td>
+<td align="left">0,0,1,0</td>
 </tr>
 <tr>
 <td align="left">[attr$&#x3D;value]</td>
 <td align="left">[src$&#x3D;”.png”]</td>
 <td align="left">属性值以指定字符串结尾</td>
-<td align="left">0,1,0</td>
+<td align="left">0,0,1,0</td>
 </tr>
 <tr>
 <td align="left">[attr*&#x3D;value]</td>
 <td align="left">[data*&#x3D;”error”]</td>
 <td align="left">属性值包含子字符串</td>
-<td align="left">0,1,0</td>
+<td align="left">0,0,1,0</td>
 </tr>
 </tbody></table>
 <h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p><strong>Q：<code>.nav li &gt; a</code> 和 <code>.nav &gt; li &gt; a</code> 的权重与作用域差异？</strong></p>
-<p>权重相同（0,2,1），但后者限制 <code>li</code> 必须为 <code>.nav</code> 的直接子元素</p>
+<p>权重相同（0,0,1,2），但后者限制 <code>li</code> 必须为 <code>.nav</code> 的直接子元素</p>
 <p><strong>Q：<code>div:not([class])</code> 会匹配哪些元素？</strong></p>
 <p>所有没有 class 属性的 div 元素</p>
 <h2 id="1-2-盒模型（标准盒模型-vs-怪异盒模型）"><a href="#1-2-盒模型（标准盒模型-vs-怪异盒模型）" class="headerlink" title="1.2 盒模型（标准盒模型 vs. 怪异盒模型）"></a>1.2 盒模型（标准盒模型 vs. 怪异盒模型）</h2><h3 id="核心概念对比"><a href="#核心概念对比" class="headerlink" title="核心概念对比"></a>核心概念对比</h3><table>
@@ -629,6 +629,16 @@
 <li>每个层叠上下文自成体系（内部 z-index 仅在该上下文中比较）</li>
 <li>兄弟元素按 z-index 数值排序</li>
 <li>不同上下文的比较取决于父级层叠上下文的层级</li>
+<li>7层堆叠顺序（从底到顶）：<ul>
+<li>层叠上下文的背景&#x2F;边框</li>
+<li>z-index &lt; 0 的子元素</li>
+<li>块级元素（非定位）</li>
+<li>浮动元素</li>
+<li>行内元素（非定位）</li>
+<li>z-index: auto 的定位元素</li>
+<li>z-index ≥ 1 的子元素</li>
+</ul>
+</li>
 </ul>
 <p><strong>示例</strong></p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span> <span class="token property">z-index</span><span class="token punctuation">:</span> 1<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
@@ -684,18 +694,35 @@
 <span class="token comment">/* 解决方案2：JavaScript修改内联样式 */</span>
 element.style.<span class="token function">setProperty</span><span class="token punctuation">(</span><span class="token string">'color'</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">,</span> <span class="token string">'important'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="继承规则"><a href="#继承规则" class="headerlink" title="继承规则"></a>继承规则</h3><p><strong>可继承属性清单</strong></p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">- 文本相关：`font-family`, `color`, `line-height`
-- 列表相关：`list-style-type`
-- 表格相关：`border-collapse`
+<h3 id="继承规则"><a href="#继承规则" class="headerlink" title="继承规则"></a>继承规则</h3><p><strong>核心继承机制</strong></p>
+<ol>
+<li>文本相关属性默认继承<ul>
+<li>字体属性：font-family, font-size, font-weight, font-style</li>
+<li>文本属性：color, line-height, text-align, text-indent</li>
+<li>其他：letter-spacing, word-spacing, text-transform</li>
+</ul>
+</li>
+<li>布局相关属性默认不继承<ul>
+<li>盒模型：width, height, margin, padding, border</li>
+<li>定位：position, top, left, z-index</li>
+<li>显示：display, float, overflow</li>
+</ul>
+</li>
+</ol>
+<p><strong>可继承属性清单</strong></p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">- 文本相关：`font-family`, `color`, `line-height`, `letter-spacing`等
+- 列表相关：`list-style-type`, `list-style-position`等
+- 表格相关：`border-collapse`, `border-spacing`等
 - 可见性：`visibility`
 - 光标：`cursor`<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>显式继承技巧</strong></p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.ant-input</span> <span class="token punctuation">&#123;</span>
   <span class="token property">font</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>  <span class="token comment">/* 强制继承父元素字体设置 */</span>
-  <span class="token property">color</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token property">color</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span> <span class="token comment">/* 使用浏览器默认颜色 */</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span> <span class="token comment">/* 如果是继承属性则继承，否则用初始值 */</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span> <span class="token comment">/* 使用浏览器默认的 display 值 */</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>继承链中断场景</strong></p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">font-size</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
@@ -822,12 +849,12 @@ element.style.<span class="token function">setProperty</span><span class="token 
 </tr>
 <tr>
 <td align="left">column</td>
-<td align="left">↓</td>
+<td align="left">↓<br>↓<br>↓<br>↓</td>
 <td align="left">移动端垂直菜单&#x2F;瀑布流</td>
 </tr>
 <tr>
 <td align="left">column-reverse</td>
-<td align="left">↑</td>
+<td align="left">↑<br>↑<br>↑<br>↑</td>
 <td align="left">聊天消息时间倒序展示</td>
 </tr>
 </tbody></table>
@@ -2147,6 +2174,18 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
 </tr>
 </tbody></table>
 <h3 id="BFC-详解（块级格式化上下文）"><a href="#BFC-详解（块级格式化上下文）" class="headerlink" title="BFC 详解（块级格式化上下文）"></a>BFC 详解（块级格式化上下文）</h3><p><strong>触发条件</strong></p>
+<p>满足任意一条即可：</p>
+<ol>
+<li>根元素（<code>&lt;html&gt;</code>）</li>
+<li>浮动元素（float不为none）</li>
+<li>绝对定位元素（position为absolute或fixed）</li>
+<li>display为inline-block、table-cell、table-caption、flex、inline-flex、grid、inline-grid等</li>
+<li>overflow不为visible的块元素（hidden、auto、scroll）</li>
+<li>弹性项目（display: flex或inline-flex的直接子元素）</li>
+<li>网格项目（display: grid或inline-grid的直接子元素）</li>
+<li>多列容器（column-count或column-width不为auto，且column-count:1也属于）</li>
+<li>contain值为layout、content或paint的元素</li>
+</ol>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 任一条件即可触发 */</span>
 <span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flow-root<span class="token punctuation">;</span> <span class="token comment">/* 最纯净的BFC */</span>
@@ -2158,9 +2197,29 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
 
 <p><strong>核心特性</strong></p>
 <ul>
-<li>隔离的布局环境：内部元素不会影响外部元素布局，外部浮动不会侵入 BFC 区域</li>
-<li>边距折叠解决：外部元素不再发生边距合并</li>
-<li>包含浮动元素</li>
+<li>独立的渲染区域<ul>
+<li>BFC 内部的元素不会影响外部元素</li>
+<li>外部元素也不会影响 BFC 内部</li>
+</ul>
+</li>
+<li>垂直方向排列<ul>
+<li>内部块级盒子垂直排列（一个接一个）</li>
+</ul>
+</li>
+<li>边距折叠解决<ul>
+<li>同一个 BFC 内相邻块级元素的垂直外边距会折叠</li>
+<li>不同 BFC 之间不会发生边距折叠</li>
+</ul>
+</li>
+<li>清除浮动<ul>
+<li>BFC 会计算内部所有浮动元素的高度</li>
+<li>解决父元素高度塌陷问题</li>
+</ul>
+</li>
+<li>避免环绕<ul>
+<li>BFC 区域不会与浮动元素重叠</li>
+</ul>
+</li>
 </ul>
 <p><strong>示例</strong></p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bfc-container<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- 触发BFC --></span>
@@ -2242,11 +2301,12 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
 <p><strong>正确使用姿势</strong></p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.optimize</span> <span class="token punctuation">&#123;</span>
   <span class="token property">will-change</span><span class="token punctuation">:</span> transform<span class="token punctuation">,</span> opacity<span class="token punctuation">;</span> <span class="token comment">/* 明确指定要变化的属性 */</span>
-  <span class="token property">transition</span><span class="token punctuation">:</span> transform 0.3s<span class="token punctuation">;</span>
+  <span class="token property">transition</span><span class="token punctuation">:</span> transform 0.3s<span class="token punctuation">,</span> opacity 0.3s<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>
 <span class="token selector">.optimize:hover</span> <span class="token punctuation">&#123;</span>
   <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">scale</span><span class="token punctuation">(</span>1.1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token property">opacity</span><span class="token punctuation">:</span> 0.8<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>最佳实践</strong></p>
 <p>（1）适用场景</p>
@@ -2302,6 +2362,22 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
 
 <h3 id="GPU加速：复合层优化策略"><a href="#GPU加速：复合层优化策略" class="headerlink" title="GPU加速：复合层优化策略"></a>GPU加速：复合层优化策略</h3><p><strong>GPU 加速的本质</strong></p>
 <p>浏览器将特定元素的渲染工作从 CPU 转移到 GPU 处理，利用图形硬件的并行计算能力。这种优化通过创建独立的复合层实现。</p>
+<p><strong>GPU 加速的工作原理</strong></p>
+<pre><code class="mermaid">graph TD
+    A[浏览器解析CSS] --&gt; B&#123;检测GPU加速属性&#125;
+    B --&gt;|是| C[创建独立图层]
+    B --&gt;|否| D[使用CPU渲染]
+    C --&gt; E[上传图层到GPU]
+    E --&gt; F[GPU处理变换&#x2F;动画]
+    F --&gt; G[图层合成]
+    G --&gt; H[最终渲染]</code></pre>
+
+<ol>
+<li>图层创建：当浏览器检测到 GPU 加速属性时，会将元素提升到独立的合成图层</li>
+<li>纹理上传：图层内容作为纹理上传到 GPU 显存</li>
+<li>GPU 处理：GPU 执行变换、动画和合成操作</li>
+<li>图层合成：浏览器将多个图层合成为最终图像</li>
+</ol>
 <p><strong>核心触发条件（chromium 内核为例）</strong></p>
 <p>（1）3D 变换属性</p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.transform-3d</span> <span class="token punctuation">&#123;</span>
@@ -2397,6 +2473,20 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
   <span class="token property">will-change</span><span class="token punctuation">:</span> transform<span class="token punctuation">,</span> box-shadow<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p><strong>总结</strong></p>
+<ul>
+<li>硬件（GPU）加速的关键是使用GPU友好的CSS属性：<ul>
+<li>当使用transform属性时，无论是CSS还是JavaScript实现的动画，都能达到60FPS的流畅效果；而使用传统CSS属性（如width&#x2F;height）实现的动画则性能明显下降</li>
+</ul>
+</li>
+<li>GPU友好的CSS属性：<ul>
+<li>transform（translate, scale, rotate等）</li>
+<li>opacity</li>
+<li>filter（部分效果）</li>
+<li>will-change（提前声明优化）</li>
+</ul>
+</li>
+</ul>
 <h3 id="组合优化方案"><a href="#组合优化方案" class="headerlink" title="组合优化方案"></a>组合优化方案</h3><p>（1）虚拟列表优化</p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.list-item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">contain</span><span class="token punctuation">:</span> strict<span class="token punctuation">;</span>
@@ -3071,13 +3161,13 @@ penthouse http://example.com critical.css<span aria-hidden="true" class="line-nu
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">210k</span>
+    <span title="站点总字数">211k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:45</span>
+    <span title="站点阅读时长">12:48</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
