@@ -28,7 +28,7 @@
 <meta property="og:description" content="第一章：React Fiber 的诞生背景1.1 React15 及之前版本的渲染瓶颈递归不可中断的协调过程（stack reconciler栈协调器）stack reconciler 是什么？ stack reconciler 是 React15 及之前版本中使用的虚拟 dom 协调算法，负责计算组件树的变化并更新真实 dom。其核心特点是基于递归遍历、不可中断的同步更新流程。 递归遍历虚拟 d">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-05T06:07:11.000Z">
-<meta property="article:modified_time" content="2025-07-11T01:33:17.584Z">
+<meta property="article:modified_time" content="2025-07-18T09:23:11.409Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="React">
 <meta name="twitter:card" content="summary">
@@ -97,7 +97,7 @@
       <p class="site-title">Ariel's Blog</p>
       <i class="logo-line"></i>
     </a>
-      <p class="site-subtitle" itemprop="description">我本地没问题啊</p>
+      <p class="site-subtitle" itemprop="description">简单是可靠的前提</p>
   </div>
 
   <div class="site-nav-right">
@@ -170,7 +170,7 @@
     <img class="site-author-image" itemprop="image" alt="Ariel"
       src="/uploads/avatar.JPG">
   <p class="site-author-name" itemprop="name">Ariel</p>
-  <div class="site-description" itemprop="description">神游在初见的午后</div>
+  <div class="site-description" itemprop="description">持而盈之，不如其已；<br/>揣而锐之，不可长保。</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
@@ -234,7 +234,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Ariel's Blog">
-      <meta itemprop="description" content="神游在初见的午后">
+      <meta itemprop="description" content="持而盈之，不如其已；<br/>揣而锐之，不可长保。">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-11 09:33:17" itemprop="dateModified" datetime="2025-07-11T09:33:17+08:00">2025-07-11</time>
+      <time title="修改时间：2025-07-18 17:23:11" itemprop="dateModified" datetime="2025-07-18T17:23:11+08:00">2025-07-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -585,9 +585,7 @@
 
 <p><strong>实现原理</strong></p>
 <ol>
-<li>渲染阶段可中断，核心代码如下：</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">let</span> nextUnitOfWork <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// 全局工作指针</span>
+<li>渲染阶段可中断，核心代码如下： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">let</span> nextUnitOfWork <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span> <span class="token comment">// 全局工作指针</span>
 
 <span class="token comment">// 主工作循环</span>
 
@@ -603,14 +601,14 @@
 <span class="token comment">// 检查是否需要中断</span>
 <span class="token keyword">function</span> <span class="token function">shouldYield</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> deadline<span class="token punctuation">.</span><span class="token function">timeRemaining</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">1</span> <span class="token operator">||</span> 
-         <span class="token function">hasHigherPriorityWork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 高优先级任务到达</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="2">
+        <span class="token function">hasHigherPriorityWork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 高优先级任务到达</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>进度保存和恢复：中断时保留 <code>nextUnitOfWork</code> 指针指向未完成的 Fiber 节点，恢复时从上次中断的节点继续遍历，采用深度优先遍历策略，优先处理子节点（<code>child</code>），无子节点时处理兄弟节点（<code>sibling</code>），无兄弟节点时回溯父节点（<code>return</code>）</li>
 <li>双缓存保证一致性：current tree 展示当前界面，中断时保持不变，work-in-progress tree 构建新的 Fiber 树，构建完成后一次性替换 current tree 变成新的 current tree</li>
 </ol>
-<p>React Fiber 架构通过可中断、可恢复的渲染流程拥有类似于操作系统的“多任务处理”能力，最终实现渲染不阻塞交互的用户体验</p>
+<blockquote>
+<p><em>React Fiber 架构通过可中断、可恢复的渲染流程拥有类似于操作系统的“多任务处理”能力，最终实现渲染不阻塞交互的用户体验</em></p>
+</blockquote>
 <h3 id="时间切片（Time-Slicing）与增量渲染"><a href="#时间切片（Time-Slicing）与增量渲染" class="headerlink" title="时间切片（Time Slicing）与增量渲染"></a>时间切片（Time Slicing）与增量渲染</h3><p>在 React Fiber 中，时间切片和增量渲染是两个紧密相关的核心概念，共同解决了渲染过程中主线程阻塞的问题，但他们的关注点不同</p>
 <p><strong>时间切片 - 时间维度的解决方案</strong></p>
 <p>时间切片是将连续长任务切割成多个微小任务，并分散在浏览器的多个渲染帧中去执行的技术</p>
@@ -647,8 +645,8 @@ G --&gt;|否| I[继续处理]</code></pre>
 </ol>
 <h3 id="基于优先级的任务调度"><a href="#基于优先级的任务调度" class="headerlink" title="基于优先级的任务调度"></a>基于优先级的任务调度</h3><p>React 使用 Lane 模型定义优先级，每个优先级对应一个二进制位</p>
 <p><strong>调度流程</strong></p>
-<p>任务标记阶段：当触发更新时，React 根据场景分配优先级</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">requestUpdateLane</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<ul>
+<li>任务标记阶段：当触发更新时，React 根据场景分配优先级<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">requestUpdateLane</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>isTransition<span class="token punctuation">)</span> <span class="token keyword">return</span> TransitionLane<span class="token punctuation">;</span>       <span class="token comment">// useTransition 更新</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>isUserBlockingEvent<span class="token punctuation">)</span> <span class="token keyword">return</span> InputLane<span class="token punctuation">;</span>    <span class="token comment">// 用户交互事件</span>
   <span class="token keyword">return</span> DefaultLane<span class="token punctuation">;</span>                          <span class="token comment">// 默认更新</span>
@@ -658,37 +656,33 @@ G --&gt;|否| I[继续处理]</code></pre>
 button<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">const</span> updateLane <span class="token operator">=</span> <span class="token function">getEventPriority</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 返回 InputContinuousLane</span>
   <span class="token function">scheduleUpdate</span><span class="token punctuation">(</span>fiber<span class="token punctuation">,</span> updateLane<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>任务调度阶段：根据优先级和剩余时间控制执行顺序</p>
-<pre><code class="mermaid">sequenceDiagram
-    participant Browser as 浏览器
-    participant Scheduler as React调度器
-    participant Renderer as 渲染器
-    
-    Browser-&gt;&gt;Scheduler: 新帧开始（16.6ms）
-    Scheduler-&gt;&gt;Renderer: 获取待处理任务
-    Renderer-&gt;&gt;Renderer: 按优先级排序任务
-    loop 时间切片执行
-        Renderer-&gt;&gt;Renderer: 执行最高优先级任务
-        Renderer--&gt;&gt;Scheduler: 检查剩余时间
-        Scheduler-&gt;&gt;Browser: 时间用尽则归还控制
-    end
-    Browser-&gt;&gt;Browser: 执行绘制&#x2F;用户输入
-    Browser-&gt;&gt;Scheduler: 下一帧继续</code></pre>
-
-<p>中断与抢占机制：</p>
-<ul>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>任务调度阶段：根据优先级和剩余时间控制执行顺序<pre><code class="mermaid">  sequenceDiagram
+      participant Browser as 浏览器
+      participant Scheduler as React调度器
+      participant Renderer as 渲染器
+      
+      Browser-&gt;&gt;Scheduler: 新帧开始（16.6ms）
+      Scheduler-&gt;&gt;Renderer: 获取待处理任务
+      Renderer-&gt;&gt;Renderer: 按优先级排序任务
+      loop 时间切片执行
+          Renderer-&gt;&gt;Renderer: 执行最高优先级任务
+          Renderer--&gt;&gt;Scheduler: 检查剩余时间
+          Scheduler-&gt;&gt;Browser: 时间用尽则归还控制
+      end
+      Browser-&gt;&gt;Browser: 执行绘制&#x2F;用户输入
+      Browser-&gt;&gt;Scheduler: 下一帧继续</code></pre></li>
+<li>中断与抢占机制：<ul>
 <li>高优先级任务可直接中断正在执行的低优先级任务</li>
 <li>被中断的任务可保存进度到 nextUnitOfWork 指针中，后续恢复</li>
 </ul>
-<p>饥饿问题处理：长时间未执行的低优先级任务会被逐步提升优先级</p>
+</li>
+<li>饥饿问题处理：长时间未执行的低优先级任务会被逐步提升优先级</li>
+</ul>
 <p><strong>关键调度策略</strong></p>
 <ol>
 <li>批量更新合并：比如相同优先级的多个 setState 会被合并</li>
-<li>优先级反转预防：</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">ensureRootIsScheduled</span><span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<li>优先级反转预防： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">ensureRootIsScheduled</span><span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">const</span> nextLanes <span class="token operator">=</span> <span class="token function">getNextLanes</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> root<span class="token punctuation">.</span>pendingLanes<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">const</span> highestPriorityLane <span class="token operator">=</span> <span class="token function">getHighestPriorityLane</span><span class="token punctuation">(</span>nextLanes<span class="token punctuation">)</span><span class="token punctuation">;</span>
   
@@ -697,11 +691,8 @@ button<span class="token punctuation">.</span><span class="token function">addEv
     <span class="token function">cancelCallback</span><span class="token punctuation">(</span>existingCallbackNode<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 取消旧任务</span>
     <span class="token function">scheduleNewCallback</span><span class="token punctuation">(</span>highestPriorityLane<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 调度新任务</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ol start="3">
-<li>时间切片分配：不同优先级的任务获得的时间片不同</li>
-</ol>
-<table>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>时间切片分配：不同优先级的任务获得的时间片不同<table>
 <thead>
 <tr>
 <th align="left">优先级</th>
@@ -730,6 +721,8 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 <td align="left">是</td>
 </tr>
 </tbody></table>
+</li>
+</ol>
 <h1 id="第三章：Fiber的数据结构与算法实现"><a href="#第三章：Fiber的数据结构与算法实现" class="headerlink" title="第三章：Fiber的数据结构与算法实现"></a>第三章：Fiber的数据结构与算法实现</h1><h2 id="3-1-Fiber节点的详细结构解析"><a href="#3-1-Fiber节点的详细结构解析" class="headerlink" title="3.1 Fiber节点的详细结构解析"></a>3.1 Fiber节点的详细结构解析</h2><h3 id="child、sibling、return指针的链表关系"><a href="#child、sibling、return指针的链表关系" class="headerlink" title="child、sibling、return指针的链表关系"></a>child、sibling、return指针的链表关系</h3><p>Fiber 架构的设计哲学在于将树形结构转化为单向链表+树形回溯的混合结构，在保持父子关系的同时获得链表的高效遍历能力。实现该混合结构的关键点就是 child、sibling、return 这三个指针。</p>
 <p><strong>三个指针的作用与关系</strong></p>
 <table>
@@ -871,7 +864,16 @@ button<span class="token punctuation">.</span><span class="token function">addEv
     R-&gt;&gt;C: 提交完成后交换两棵树</code></pre>
 
 <h3 id="effectTag与副作用链表（Effect-List）"><a href="#effectTag与副作用链表（Effect-List）" class="headerlink" title="effectTag与副作用链表（Effect List）"></a>effectTag与副作用链表（Effect List）</h3><p>在了解 effectTag 之前，我们先了解下什么是 side effects（副作用）。</p>
-<p>在 React 中，副作用是指那些在组件渲染过程中与外部世界交互或影响外部状态的操作（不能在 render 阶段完成）。它们超出了纯函数式渲染的范畴，是 React 组件中需要特殊处理的行为。</p>
+<p>在 React 中，副作用（Side Effects）是指那些在组件渲染过程中无法完成的操作，因为它们会影响到组件外部或渲染周期之外的事物。简单来说，任何与 React 的纯渲染逻辑无关的操作都属于副作用。</p>
+<p>为什么需要管理副作用？</p>
+<ul>
+<li>React 组件应该是纯函数（在相同输入下返回相同输出），但副作用打破了这种纯度。因此，React 提供了专门的机制来处理副作用，以确保它们不会干扰组件的渲染过程，同时避免内存泄漏和不一致。</li>
+</ul>
+<p>副作用的执行时机：</p>
+<ul>
+<li>React 将副作用延迟到浏览器完成绘制之后执行，以避免阻塞屏幕更新。因此，副作用函数在组件渲染完成后运行（相当于类组件的 <code>componentDidMount</code> 和 <code>componentDidUpdate</code>）。</li>
+</ul>
+<p>React 管理副作用的钩子：<code>useEffect</code>、<code>useLayoutEffect</code>或自定义 Hooks</p>
 <p><strong>副作用的本质特征</strong></p>
 <table>
 <thead>
@@ -938,9 +940,9 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 <li>明确声明依赖项（useEffect dependencies）</li>
 <li>副作用清理机制（useEffect return）</li>
 </ol>
-<p>effectTag则是<code>副作用标记系统</code>。</p>
 <p><strong>effectTag 的本质与作用</strong></p>
 <ul>
+<li>effectTag是副作用标记系统。</li>
 <li>二进制位掩码：每个 effectTag 是一个二进制数，表示需要执行的副作用类型</li>
 <li>高效内存管理：通过位运算组合多个标记（如 Placement | Update）</li>
 <li>精确追踪：标记哪些 Fiber 节点需要进行 DOM 操作或其他副作用</li>
@@ -2318,13 +2320,13 @@ type Node <span class="token operator">=</span> <span class="token punctuation">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">226k</span>
+    <span title="站点总字数">227k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:42</span>
+    <span title="站点阅读时长">13:47</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
