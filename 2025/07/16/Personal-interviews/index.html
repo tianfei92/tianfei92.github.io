@@ -28,7 +28,7 @@
 <meta property="og:description" content="第一题：架构设计（结合@hz&#x2F;node-server项目）Q1：您将单实例QPS从1200提升至6500的核心手段是「流式代理+cluster集群」，流式代理如何解决高并发下的内存瓶颈？请对比描述传统缓冲模式（buffer）与流式处理（stream）的内存差异   A： 流式代理 vs 传统缓冲模式的内存差异：  内存占用高：高并发场景下，传统缓冲模式（Buffer）会先将完整请求&amp;#x">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-16T01:11:29.000Z">
-<meta property="article:modified_time" content="2025-07-16T08:29:39.653Z">
+<meta property="article:modified_time" content="2025-07-22T02:33:31.728Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -253,9 +253,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-07-16 09:11:29 / 修改时间：16:29:39" itemprop="dateCreated datePublished" datetime="2025-07-16T09:11:29+08:00">2025-07-16</time>
+      <time title="创建时间：2025-07-16 09:11:29" itemprop="dateCreated datePublished" datetime="2025-07-16T09:11:29+08:00">2025-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-22 10:33:31" itemprop="dateModified" datetime="2025-07-22T10:33:31+08:00">2025-07-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -417,7 +423,7 @@ node <span class="token operator">--</span>inspect<span class="token operator">=
 <span class="token comment">// 使用autocannon模拟200并发持续压测</span>
 
 <span class="token comment">/**
-1. 捕获堆快照
+2. 捕获堆快照
   操作前：初始状态生成Snapshot 1
   操作后：压测30分钟生成Snapshot 2
 */</span>
@@ -425,7 +431,7 @@ node <span class="token operator">--</span>inspect<span class="token operator">=
 <span class="token comment">/**
 3. 定位泄漏点
   对比快照：筛选Size Delta > 0的对象
-  关键发现：未释放的closure中缓存了请求上下文（Request Context）
+  关键发现：响应拦截中对大数据响应体错误序列化导致内存飙升
 */</span>
 
 <span class="token comment">// 泄漏代码示例</span>
@@ -447,7 +453,7 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">/**
-4. 修复代码：改用WeakMap自动释放引用
+4. 修复代码：对响应数据进行条件拦截处理
 */</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token function">proxy</span><span class="token punctuation">(</span><span class="token string">'http://backend.com'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
   <span class="token function-variable function">userResDecorator</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">proxyRes<span class="token punctuation">,</span> proxyResData</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
@@ -834,7 +840,7 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:48</span>
+    <span title="站点阅读时长">13:50</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
