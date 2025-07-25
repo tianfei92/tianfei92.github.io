@@ -28,7 +28,7 @@
 <meta property="og:description" content="一、性能指标体系与监控1.1 核心性能指标 (Web Vitals)LCP (最大内容渲染时间)LCP 核心定义  官方标准： 测量 视口内最大文本&#x2F;图片元素 从页面开始加载到其渲染完成的时间 反映用户感知的主要内容可见性速度   性能阈值（Chrome官方）: Good（优）：≤ 2.5 秒 Needs Improvement（需优化）：2.6 - 4.0 秒 Poor（差）：&gt;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-29T08:56:27.000Z">
-<meta property="article:modified_time" content="2025-07-11T01:38:22.743Z">
+<meta property="article:modified_time" content="2025-07-23T08:44:55.953Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="性能优化">
 <meta name="twitter:card" content="summary">
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-11 09:38:22" itemprop="dateModified" datetime="2025-07-11T09:38:22+08:00">2025-07-11</time>
+      <time title="修改时间：2025-07-23 16:44:55" itemprop="dateModified" datetime="2025-07-23T16:44:55+08:00">2025-07-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -287,7 +287,7 @@
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1:22</span>
+      <span>1:21</span>
     </span>
 </div>
 
@@ -1191,8 +1191,9 @@ E --&gt; F[像素绘制]</code></pre>
 <li>特性：层叠规则导致 CSS 解析不可增量（底部样式可覆盖顶部）</li>
 </ul>
 </li>
-<li>渲染树（Render Tree）:合并 DOM + CSSOM，排除不可见元素（如 display:none）</li>
-<li>布局（Layout&#x2F;Reflow）:计算所有元素的几何位置（视口尺寸影响结果）<br>*绘制（Paint）:将布局结果转为屏幕像素（可能分多层绘制）</li>
+<li>渲染树（Render Tree）：合并 DOM + CSSOM，排除不可见元素（如 display:none）</li>
+<li>布局（Layout&#x2F;Reflow）：计算所有元素的几何位置（视口尺寸影响结果）</li>
+<li>绘制（Paint）：将布局结果转为屏幕像素（可能分多层绘制）</li>
 </ul>
 <p><strong>阻塞行为深度解析</strong></p>
 <table>
@@ -1260,10 +1261,8 @@ E --&gt; F[像素绘制]</code></pre>
 <p>(5) 并行化资源加载</p>
 <ul>
 <li>使用 HTTP&#x2F;2 多路复用避免队头阻塞</li>
-<li>预建立连接：</li>
+<li>预建立连接：<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.example.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.example.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p><strong>CRP 优化检查清单</strong></p>
 <ol>
 <li>首屏内容所需 CSS 内联到 <code>&lt;style&gt;</code> 标签</li>
@@ -1519,20 +1518,14 @@ D --&gt; E[保持连接池]</code></pre>
 <p>智能推送触发条件:</p>
 <ul>
 <li>基于HTML依赖分析: 解析HTML中的 <code>&lt;link&gt;, &lt;script&gt;</code> 标签自动推送</li>
-<li>配置白名单：</li>
-</ul>
-<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token comment"># Nginx 配置示例</span>
+<li>配置白名单：<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token comment"># Nginx 配置示例</span>
 <span class="token directive"><span class="token keyword">http2_push</span> /static/css/core.css</span><span class="token punctuation">;</span> 
-<span class="token directive"><span class="token keyword">http2_push</span> /static/js/main.js</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>动态决策（需编程实现）</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// Node.js 动态推送</span>
+<span class="token directive"><span class="token keyword">http2_push</span> /static/js/main.js</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>动态决策（需编程实现）<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// Node.js 动态推送</span>
 res<span class="token punctuation">.</span>stream<span class="token punctuation">.</span><span class="token function">pushStream</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token string-property property">':path'</span><span class="token operator">:</span> <span class="token string">'/critical.css'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> pushStream</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   pushStream<span class="token punctuation">.</span><span class="token function">respondWithFile</span><span class="token punctuation">(</span><span class="token string">'/path/to/critical.css'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>风险规避策略</strong></p>
 <table>
 <thead>
@@ -2021,16 +2014,14 @@ self<span class="token punctuation">.</span><span class="token function">addEven
 <ul>
 <li>event.waitUntil：延迟安装直到缓存完成</li>
 <li>版本控制：每次更新使用新缓存名（v2, v3）</li>
-<li>缓存清理：激活阶段删除旧缓存：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'activate'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<li>缓存清理：激活阶段删除旧缓存：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'activate'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>
     caches<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">keys</span> <span class="token operator">=></span> 
       Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>keys<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">key</span> <span class="token operator">=></span> key <span class="token operator">!==</span> <span class="token string">'v2'</span> <span class="token operator">&amp;&amp;</span> caches<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token punctuation">)</span>
   <span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>动态缓存策略（运行时）</strong></p>
 <p>按需缓存：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'fetch'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
@@ -2110,12 +2101,10 @@ caches<span class="token punctuation">.</span><span class="token function">open<
 <li>缓存敏感数据：避免缓存私密内容（如 Cache-Control: private）</li>
 <li>跨域资源限制：<ul>
 <li>缓存跨域资源需设置 CORS 响应头</li>
-<li>fetch 模式需为 cors</li>
+<li>fetch 模式需为 cors<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">cache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'https://api.example.com/data'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'cors'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">cache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'https://api.example.com/data'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'cors'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p><strong>浏览器兼容性</strong></p>
 <table>
 <thead>
@@ -2271,8 +2260,8 @@ caches<span class="token punctuation">.</span><span class="token function">open<
 </tr>
 </tbody></table>
 <p><strong>预压缩实践</strong></p>
-<p>(1) webpack 配置</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 同时生成gzip和br预压缩文件</span>
+<ul>
+<li>webpack 配置<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 同时生成gzip和br预压缩文件</span>
 <span class="token keyword">const</span> CompressionPlugin <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'compression-webpack-plugin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
@@ -2290,10 +2279,8 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <span class="token literal-property property">compressionOptions</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">level</span><span class="token operator">:</span> <span class="token number">11</span> <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
   <span class="token punctuation">]</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>(2) nginx 配置</p>
-<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>nginx 配置<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">&#123;</span>
   <span class="token comment"># 优先返回预压缩的br文件</span>
   <span class="token directive"><span class="token keyword">brotli_static</span> <span class="token boolean">on</span></span><span class="token punctuation">;</span>
   
@@ -2303,16 +2290,14 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   <span class="token comment"># 动态压缩回退</span>
   <span class="token directive"><span class="token keyword">brotli</span> <span class="token boolean">on</span></span><span class="token punctuation">;</span>
   <span class="token directive"><span class="token keyword">gzip</span> <span class="token boolean">on</span></span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>请求头协商机制</strong></p>
-<p>(1) 客户端声明支持</p>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token request-line"><span class="token method property">GET</span> <span class="token request-target url">/main.js</span> <span class="token http-version property">HTTP/1.1</span></span>
+<ul>
+<li>客户端声明支持<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token request-line"><span class="token method property">GET</span> <span class="token request-target url">/main.js</span> <span class="token http-version property">HTTP/1.1</span></span>
 <span class="token header"><span class="token header-name keyword">Host</span><span class="token punctuation">:</span> <span class="token header-value">example.com</span></span>
-<span class="token header"><span class="token header-name keyword">Accept-Encoding</span><span class="token punctuation">:</span> <span class="token header-value">gzip, deflate, br  # 声明支持br</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>(2) 服务端响应</p>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 返回Brotli压缩
+<span class="token header"><span class="token header-name keyword">Accept-Encoding</span><span class="token punctuation">:</span> <span class="token header-value">gzip, deflate, br  # 声明支持br</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>服务端响应<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 返回Brotli压缩
 <span class="token response-status"><span class="token http-version property">HTTP/1.1</span> <span class="token status-code number">200</span> <span class="token reason-phrase string">OK</span></span>
 <span class="token header"><span class="token header-name keyword">Content-Encoding</span><span class="token punctuation">:</span> <span class="token header-value">br</span></span>
 <span class="token header"><span class="token header-name keyword">Vary</span><span class="token punctuation">:</span> <span class="token header-value">Accept-Encoding</span></span>
@@ -2320,8 +2305,8 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 # 返回Gzip压缩
 <span class="token response-status"><span class="token http-version property">HTTP/1.1</span> <span class="token status-code number">200</span> <span class="token reason-phrase string">OK</span></span>
 <span class="token header"><span class="token header-name keyword">Content-Encoding</span><span class="token punctuation">:</span> <span class="token header-value">gzip</span></span>
-<span class="token header"><span class="token header-name keyword">Vary</span><span class="token punctuation">:</span> <span class="token header-value">Accept-Encoding</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token header"><span class="token header-name keyword">Vary</span><span class="token punctuation">:</span> <span class="token header-value">Accept-Encoding</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>特殊注意事项</strong></p>
 <ul>
 <li>动态内容压缩：避免对已压缩格式（JPEG&#x2F;PNG&#x2F;WOFF2）二次压缩</li>
@@ -2369,8 +2354,8 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </tr>
 </tbody></table>
 <p><strong>WebP 实施策略</strong></p>
-<p>(1) 兼容性处理</p>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>picture</span><span class="token punctuation">></span></span>
+<ul>
+<li>兼容性处理<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>picture</span><span class="token punctuation">></span></span>
   <span class="token comment">&lt;!-- 优先AVIF --></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image.avif<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image/avif<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
   
@@ -2379,15 +2364,13 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   
   <span class="token comment">&lt;!-- 兜底方案 --></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>示例图片<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>picture</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>(2) 转换工具</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># WebP转换（质量80）</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>picture</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>转换工具<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># WebP转换（质量80）</span>
 cwebp <span class="token parameter variable">-q</span> <span class="token number">80</span> input.jpg <span class="token parameter variable">-o</span> output.webp
 
 <span class="token comment"># 批量转换（imagemagick）</span>
-magick mogrify <span class="token parameter variable">-format</span> webp <span class="token parameter variable">-quality</span> <span class="token number">85</span> *.jpg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+magick mogrify <span class="token parameter variable">-format</span> webp <span class="token parameter variable">-quality</span> <span class="token number">85</span> *.jpg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>AVIF 进阶特性</strong></p>
 <p>核心优势：</p>
 <ul>
@@ -3868,42 +3851,36 @@ self<span class="token punctuation">.</span><span class="token function-variable
 <li>最终触发 Out of Memory 崩溃</li>
 </ul>
 <p><strong>Chrome Memory 面板三剑客</strong></p>
-<p>(1) Heap Snapshot（堆快照）</p>
-<p>(2) Allocation Instrumentation（分配分析）</p>
-<pre><code class="mermaid">graph TB
-    A[开始记录] --&gt; B[执行用户操作]
-    B --&gt; C[停止记录]
-    C --&gt; D[定位未释放内存]</code></pre>
-
-<p>(3) Allocation Timeline（分配时间线）</p>
-<p><strong>排查流程五步法</strong></p>
-<p>步骤1：复现泄漏</p>
 <ul>
+<li>Heap Snapshot（堆快照）</li>
+<li>Allocation Instrumentation（分配分析）<pre><code class="mermaid">  graph TB
+      A[开始记录] --&gt; B[执行用户操作]
+      B --&gt; C[停止记录]
+      C --&gt; D[定位未释放内存]</code></pre></li>
+<li>Allocation Timeline（分配时间线）</li>
+</ul>
+<p><strong>排查流程五步法</strong></p>
+<ol>
+<li>复现泄漏<ul>
 <li>打开 Chrome DevTools → Memory 面板</li>
 <li>执行可疑操作（如打开&#x2F;关闭弹窗）</li>
 <li>手动触发GC（点击垃圾桶图标）</li>
 </ul>
-<p>步骤2：创建基准快照</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">// 操作前：初始状态
-1. 点击 "Take snapshot" → 保存为 "Snapshot 1"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>步骤3：执行泄漏操作</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 模拟用户行为</span>
+</li>
+<li>创建基准快照 <pre class="line-numbers language-text" data-language="text"><code class="language-text">// 操作前：初始状态
+1. 点击 "Take snapshot" → 保存为 "Snapshot 1"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li>执行泄漏操作 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 模拟用户行为</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token function">openModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 打开弹窗</span>
   <span class="token function">closeModal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 关闭弹窗</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>步骤4：创建对比快照</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">// 操作后：理想状态应回到初始内存
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>创建对比快照 <pre class="line-numbers language-text" data-language="text"><code class="language-text">// 操作后：理想状态应回到初始内存
 1. 手动触发GC
-2. 点击 "Take snapshot" → 保存为 "Snapshot 2"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>步骤5：分析差异</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">1. 选择 "Snapshot 2"
+2. 点击 "Take snapshot" → 保存为 "Snapshot 2"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>分析差异 <pre class="line-numbers language-text" data-language="text"><code class="language-text">1. 选择 "Snapshot 2"
 2. 切换比较模式为 "Snapshot 1"
-3. 筛选 "All objects" 查看 #Delta 正增长项<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+3. 筛选 "All objects" 查看 #Delta 正增长项<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 <p><strong>泄漏模式诊断表</strong></p>
 <table>
 <thead>
@@ -5077,12 +5054,10 @@ function addItem(newItem) &#123;
 <li>Webpack 每次构建默认会重新处理所有模块（解析、加载、转换），导致重复构建开销，尤其影响大型项目的开发迭代和 CI&#x2F;CD 效率。</li>
 </ul>
 <p>核心机制（Webpack 5+）：</p>
-<p>(1) 缓存存储：</p>
-<ul>
+<ol>
+<li>缓存存储：<ul>
 <li>将模块构建结果（AST、转换后代码、依赖关系等）序列化存储到本地文件系统（默认路径：node_modules&#x2F;.cache&#x2F;webpack）</li>
-<li>配置示例：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// webpack.config.js</span>
+<li>配置示例： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// webpack.config.js</span>
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">cache</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'filesystem'</span><span class="token punctuation">,</span>  <span class="token comment">// 启用文件系统缓存</span>
@@ -5091,18 +5066,20 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <span class="token literal-property property">config</span><span class="token operator">:</span> <span class="token punctuation">[</span>__filename<span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment">// 配置文件变更时使缓存失效</span>
     <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>(2) 增量构建：</p>
-<ul>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li>增量构建：<ul>
 <li>二次构建时仅处理变更文件及其依赖链</li>
 <li>未变更模块直接从缓存读取，跳过解析&#x2F;转换流程</li>
 </ul>
-<p>(3) 智能失效：</p>
-<ul>
+</li>
+<li>智能失效：<ul>
 <li>自动追踪配置、loader、依赖包版本等关键因素</li>
 <li>相关变更时自动失效对应缓存</li>
 </ul>
+</li>
+</ol>
 <p><strong>并行压缩 (Parallel Compression with Terser)</strong></p>
 <p>解决的问题：</p>
 <ul>
@@ -5587,13 +5564,13 @@ wrangler publish src/index.js<span aria-hidden="true" class="line-numbers-rows">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">236k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:50</span>
+    <span title="站点阅读时长">14:18</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

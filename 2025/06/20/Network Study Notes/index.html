@@ -28,7 +28,7 @@
 <meta property="og:description" content="一、基础网络协议1.1 HTTP&#x2F;HTTPS协议核心HTTP协议定义 HTTP（HyperText Transfer Protocol）是应用层协议，基于 请求-响应 模型，用于客户端（浏览器）与服务器之间的数据传输，默认端口 80 核心特性  无状态：每个请求独立，服务器不保留客户端上下文（状态管理依赖 Cookie 和 Session） 明文传输：请求与响应内容以未加密的文本形式传输">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-20T07:50:13.000Z">
-<meta property="article:modified_time" content="2025-07-18T07:04:01.312Z">
+<meta property="article:modified_time" content="2025-07-23T06:25:12.183Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary">
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-18 15:04:01" itemprop="dateModified" datetime="2025-07-18T15:04:01+08:00">2025-07-18</time>
+      <time title="修改时间：2025-07-23 14:25:12" itemprop="dateModified" datetime="2025-07-23T14:25:12+08:00">2025-07-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1433,69 +1433,68 @@ xhr<span class="token punctuation">.</span><span class="token function-variable 
 </ul>
 </li>
 <li>补充工具：<ul>
-<li>超时处理和中断请求：</li>
+<li>超时处理和中断请求：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> controller <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AbortController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> controller<span class="token punctuation">.</span><span class="token function">abort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">signal</span><span class="token operator">:</span> controller<span class="token punctuation">.</span>signal <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> controller <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AbortController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> controller<span class="token punctuation">.</span><span class="token function">abort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">signal</span><span class="token operator">:</span> controller<span class="token punctuation">.</span>signal <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
 <h3 id="跨域解决方案（CORS机制-JSONP-代理服务器）"><a href="#跨域解决方案（CORS机制-JSONP-代理服务器）" class="headerlink" title="跨域解决方案（CORS机制&#x2F;JSONP&#x2F;代理服务器）"></a>跨域解决方案（CORS机制&#x2F;JSONP&#x2F;代理服务器）</h3><p><strong>CORS（跨域资源共享）</strong></p>
 <p>核心原理：</p>
-<p>浏览器通过 HTTP头部协商 决定是否允许跨域请求，由服务器声明哪些外部域可访问资源。</p>
+<ul>
+<li>浏览器通过 HTTP头部协商 决定是否允许跨域请求，由服务器声明哪些外部域可访问资源。</li>
+</ul>
 <p>关键流程：</p>
 <ul>
 <li>简单请求（Simple Request）：<ul>
 <li>条件：GET&#x2F;HEAD&#x2F;POST + 特定头部（如Accept&#x2F;Content-Type: text&#x2F;plain）</li>
-<li>浏览器直接发送请求，服务器响应：</li>
+<li>浏览器直接发送请求，服务器响应：<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Access-Control-Allow-Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com  // 必须指定具体域名或*</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Access-Control-Allow-Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com  // 必须指定具体域名或*</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</li>
 <li>预检请求（Preflight Request）：<ul>
 <li>触发条件：复杂操作（如PUT&#x2F;自定义头部&#x2F;Content-Type: application&#x2F;json）</li>
-<li>浏览器先发OPTIONS请求：</li>
-</ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token request-line"><span class="token method property">OPTIONS</span> <span class="token request-target url">/api/data</span> <span class="token http-version property">HTTP/1.1</span></span>
+<li>浏览器先发OPTIONS请求：<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token request-line"><span class="token method property">OPTIONS</span> <span class="token request-target url">/api/data</span> <span class="token http-version property">HTTP/1.1</span></span>
 <span class="token header"><span class="token header-name keyword">Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com</span></span>
 <span class="token header"><span class="token header-name keyword">Access-Control-Request-Method</span><span class="token punctuation">:</span> <span class="token header-value">PUT</span></span>
-<span class="token header"><span class="token header-name keyword">Access-Control-Request-Headers</span><span class="token punctuation">:</span> <span class="token header-value">X-Custom-Header</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>服务器响应策略：</li>
-</ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token response-status"><span class="token http-version property">HTTP/1.1</span> <span class="token status-code number">204</span> <span class="token reason-phrase string">No Content</span></span>
+<span class="token header"><span class="token header-name keyword">Access-Control-Request-Headers</span><span class="token punctuation">:</span> <span class="token header-value">X-Custom-Header</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>服务器响应策略：<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token response-status"><span class="token http-version property">HTTP/1.1</span> <span class="token status-code number">204</span> <span class="token reason-phrase string">No Content</span></span>
 <span class="token header"><span class="token header-name keyword">Access-Control-Allow-Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com</span></span>
 <span class="token header"><span class="token header-name keyword">Access-Control-Allow-Methods</span><span class="token punctuation">:</span> <span class="token header-value">GET, POST, PUT</span></span>
 <span class="token header"><span class="token header-name keyword">Access-Control-Allow-Headers</span><span class="token punctuation">:</span> <span class="token header-value">X-Custom-Header</span></span>
 <span class="token header"><span class="token header-name keyword">Access-Control-Max-Age</span><span class="token punctuation">:</span> <span class="token header-value">86400  // 缓存预检结果（秒）</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
 <li>带凭证的请求：<ul>
 <li>前端设置：fetch(url, { credentials: ‘include’ })</li>
-<li>服务器响应：</li>
-</ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Access-Control-Allow-Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com  // 不可用*</span></span>
+<li>服务器响应：<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Access-Control-Allow-Origin</span><span class="token punctuation">:</span> <span class="token header-value">https://client.com  // 不可用*</span></span>
 <span class="token header"><span class="token header-name keyword">Access-Control-Allow-Credentials</span><span class="token punctuation">:</span> <span class="token header-value">true</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
 </ul>
 <p>前端代码示例：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 允许跨域的服务器响应头</span>
 res<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">'Access-Control-Allow-Origin'</span><span class="token punctuation">,</span> <span class="token string">'https://client.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 res<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">'Access-Control-Allow-Methods'</span><span class="token punctuation">,</span> <span class="token string">'GET, POST'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p><strong>SONP（JSON with Padding）</strong></p>
+<p><strong>JSONP（JSON with Padding）</strong></p>
 <p>原理：</p>
-<p>利用 <code>&lt;script&gt;</code> 标签不受同源策略限制的特性，通过回调函数接收跨域数据。</p>
+<ul>
+<li>利用 <code>&lt;script&gt;</code> 标签不受同源策略限制的特性，通过回调函数接收跨域数据。</li>
+</ul>
 <p>实现步骤：</p>
-<p>（1）前端定义全局回调函数</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">handleResponse</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<ol>
+<li><p>前端定义全局回调函数</p>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">handleResponse</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Received:'</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>（2）动态创建 <code>&lt;script&gt;</code> 标签</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</li>
+<li><p>动态创建 <code>&lt;script&gt;</code> 标签</p>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 script<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'https://api.example.com/data?callback=handleResponse'</span><span class="token punctuation">;</span>
-document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<p>（3）服务器返回函数调用包裹的 JSON</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">handleResponse</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">status</span><span class="token operator">:</span> <span class="token string">'success'</span><span class="token punctuation">,</span> <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>服务器返回函数调用包裹的 JSON</p>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">handleResponse</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">status</span><span class="token operator">:</span> <span class="token string">'success'</span><span class="token punctuation">,</span> <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">]</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
 <p>局限性：</p>
 <ul>
 <li>仅支持 GET 请求</li>
@@ -1504,12 +1503,14 @@ document<span class="token punctuation">.</span>body<span class="token punctuati
 </ul>
 <p><strong>代理服务器（Proxy Server）</strong></p>
 <p>原理：</p>
-<p>将跨域请求转发到同源代理服务器，由代理访问目标服务，避开浏览器同源策略。</p>
+<ul>
+<li>将跨域请求转发到同源代理服务器，由代理访问目标服务，避开浏览器同源策略。</li>
+</ul>
 <p>实现方式：</p>
-<p>（1）开发环境代理</p>
-<p>适用场景：前端本地开发调试</p>
-<p>实现工具：webpack.devServer</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// webpack.config.js</span>
+<ol>
+<li>开发环境代理<ul>
+<li>适用场景：前端本地开发调试</li>
+<li>实现工具：webpack.devServer <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// webpack.config.js</span>
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">devServer</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token literal-property property">proxy</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
@@ -1520,12 +1521,12 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>（2）生产环境反向代理</p>
-<p>适用场景：线上部署</p>
-<p>主流方案：nginx 配置</p>
-<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li>生产环境反向代理<ul>
+<li>适用场景：线上部署</li>
+<li>主流方案：nginx 配置 <pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">&#123;</span>
   <span class="token directive"><span class="token keyword">listen</span> <span class="token number">80</span></span><span class="token punctuation">;</span>
   <span class="token directive"><span class="token keyword">server_name</span> my-domain.com</span><span class="token punctuation">;</span>
 
@@ -1534,12 +1535,12 @@ module<span class="token punctuation">.</span>exports <span class="token operato
     <span class="token directive"><span class="token keyword">proxy_set_header</span> Host <span class="token variable">$host</span></span><span class="token punctuation">;</span>
     <span class="token directive"><span class="token keyword">proxy_set_header</span> X-Real-IP <span class="token variable">$remote_addr</span></span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>（3）无服务器代理</p>
-<p>适用场景：无需维护基础设施</p>
-<p>实现方案：Cloudflare Workers</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'fetch'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li>无服务器代理<ul>
+<li>适用场景：无需维护基础设施</li>
+<li>实现方案：Cloudflare Workers <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'fetch'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   event<span class="token punctuation">.</span><span class="token function">respondWith</span><span class="token punctuation">(</span><span class="token function">handleRequest</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
 
@@ -1547,12 +1548,12 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   <span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
   url<span class="token punctuation">.</span>hostname <span class="token operator">=</span> <span class="token string">'api.example.com'</span><span class="token punctuation">;</span>  <span class="token comment">// 替换目标域名</span>
   <span class="token keyword">return</span> <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> request<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>（4）编程式中间件代理</p>
-<p>适用场景：自定义代理逻辑</p>
-<p>实现方式：Node.js</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li>编程式中间件代理<ul>
+<li>适用场景：自定义代理逻辑</li>
+<li>实现方式：Node.js <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'express'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> createProxyMiddleware <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'http-proxy-middleware'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1563,8 +1564,10 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
     <span class="token comment">// 添加自定义请求头</span>
     proxyReq<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">'X-Proxy-Source'</span><span class="token punctuation">,</span> <span class="token string">'my-server'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+</ol>
 <p><strong>方案对比与选型</strong></p>
 <table>
 <thead>
@@ -1608,23 +1611,23 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 <h2 id="2-2-实时通信"><a href="#2-2-实时通信" class="headerlink" title="2.2 实时通信"></a>2.2 实时通信</h2><h3 id="WebSocket协议（双向通信-心跳检测）"><a href="#WebSocket协议（双向通信-心跳检测）" class="headerlink" title="WebSocket协议（双向通信&#x2F;心跳检测）"></a>WebSocket协议（双向通信&#x2F;心跳检测）</h3><p><strong>双向通信机制</strong></p>
 <p>基础原理：在单个TCP连接上建立全双工通信通道，实现客户端与服务器之间的持续双向数据流。</p>
 <p>链接建立流程：</p>
-<p>（1）HTTP握手升级：</p>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token request-line"><span class="token method property">GET</span> <span class="token request-target url">/chat</span> <span class="token http-version property">HTTP/1.1</span></span>
+<ol>
+<li>HTTP握手升级： <pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token request-line"><span class="token method property">GET</span> <span class="token request-target url">/chat</span> <span class="token http-version property">HTTP/1.1</span></span>
 <span class="token header"><span class="token header-name keyword">Host</span><span class="token punctuation">:</span> <span class="token header-value">example.com</span></span>
 <span class="token header"><span class="token header-name keyword">Upgrade</span><span class="token punctuation">:</span> <span class="token header-value">websocket          // 协议升级头</span></span>
 <span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">Upgrade</span></span>
 <span class="token header"><span class="token header-name keyword">Sec-WebSocket-Key</span><span class="token punctuation">:</span> <span class="token header-value">dGhlIHNhbXBsZSBub25jZQ==  // 客户端随机密钥</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token response-status"><span class="token http-version property">HTTP/1.1</span> <span class="token status-code number">101</span> <span class="token reason-phrase string">Switching Protocols</span></span>
+ <pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token response-status"><span class="token http-version property">HTTP/1.1</span> <span class="token status-code number">101</span> <span class="token reason-phrase string">Switching Protocols</span></span>
 <span class="token header"><span class="token header-name keyword">Upgrade</span><span class="token punctuation">:</span> <span class="token header-value">websocket</span></span>
 <span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">Upgrade</span></span>
-<span class="token header"><span class="token header-name keyword">Sec-WebSocket-Accept</span><span class="token punctuation">:</span> <span class="token header-value">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=  // 服务端验证响应</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>（2）协议转换</p>
-<ul>
+<span class="token header"><span class="token header-name keyword">Sec-WebSocket-Accept</span><span class="token punctuation">:</span> <span class="token header-value">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=  // 服务端验证响应</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>协议转换<ul>
 <li>TCP连接保持打开状态</li>
 <li>通信协议从HTTP切换为WebSocket（端口不变，默认80&#x2F;443）</li>
 </ul>
+</li>
+</ol>
 <p>数据帧结构：</p>
 <pre class="line-numbers language-none"><code class="language-none">0                   1                   2                   3
 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -1658,18 +1661,12 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 </ul>
 <p>实现机制：</p>
 <ul>
-<li>心跳包：定时发送特殊控制帧（Ping&#x2F;Pong）</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 浏览器端发送Ping</span>
+<li>心跳包：定时发送特殊控制帧（Ping&#x2F;Pong）<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 浏览器端发送Ping</span>
 websocket<span class="token punctuation">.</span><span class="token function">ping</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// 服务端响应Pong（自动回复）</span>
-websocket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'ping'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> websocket<span class="token punctuation">.</span><span class="token function">pong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>帧类型：</li>
-</ul>
-<table>
+websocket<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'ping'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> websocket<span class="token punctuation">.</span><span class="token function">pong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>帧类型：<table>
 <thead>
 <tr>
 <th align="left">类型</th>
@@ -1688,6 +1685,8 @@ websocket<span class="token punctuation">.</span><span class="token function">on
 <td align="left">同Ping</td>
 </tr>
 </tbody></table>
+</li>
+</ul>
 <p>配置参数：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> ws <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebSocket</span><span class="token punctuation">(</span><span class="token string">'wss://example.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 心跳间隔（建议25-30秒，小于NAT超时时间）</span>
@@ -1753,18 +1752,10 @@ ws<span class="token punctuation">.</span><span class="token function-variable f
 
 <p>（2）关键优化</p>
 <ul>
-<li>二进制传输</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 发送ArrayBuffer提升性能</span>
+<li>二进制传输<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 发送ArrayBuffer提升性能</span>
 <span class="token keyword">const</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayBuffer</span><span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-ws<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>自动重连</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ws<span class="token punctuation">.</span><span class="token function-variable function">onclose</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>connect<span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ul>
+ws<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>自动重连<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ws<span class="token punctuation">.</span><span class="token function-variable function">onclose</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>connect<span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li>流量控制：监控ws.bufferedAmount避免内存溢出</li>
 </ul>
 <p><strong>协议限制</strong></p>
@@ -1865,21 +1856,15 @@ es<span class="token punctuation">.</span><span class="token function-variable f
 
 <p>（2）服务端要求</p>
 <ul>
-<li>响应头设置：</li>
-</ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Content-Type</span><span class="token punctuation">:</span> <span class="token header-value">text/event-stream</span></span>
+<li>响应头设置：<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Content-Type</span><span class="token punctuation">:</span> <span class="token header-value">text/event-stream</span></span>
 <span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">no-cache</span></span>
-<span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">keep-alive</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>数据格式规范：</li>
-</ul>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">event: notification  // 事件类型
+<span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">keep-alive</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>数据格式规范：<pre class="line-numbers language-text" data-language="text"><code class="language-text">event: notification  // 事件类型
 id: 1678901234       // 消息ID（用于断线续传）
 data: &#123;"msg":"Hello"&#125;// 数据内容（可多行）
 retry: 10000         // 重连间隔（毫秒）
-\n\n                 // 消息结束符（两个换行）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+\n\n                 // 消息结束符（两个换行）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>不适用场景</strong></p>
 <ul>
 <li>需要客户端频繁上传数据（如实时游戏）→ 选 WebSocket</li>
@@ -1930,10 +1915,10 @@ retry: 10000         // 重连间隔（毫秒）
 <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>核心防御方案</strong></p>
-<p>(1) 内容编码（输出转义）</p>
-<p>原则：所有不可信数据输出前必须转义！</p>
-<p>转义规则：</p>
-<table>
+<ol>
+<li>内容编码（输出转义）<ul>
+<li>原则：所有不可信数据输出前必须转义！</li>
+<li>转义规则：<table>
 <thead>
 <tr>
 <th align="left">输出位置</th>
@@ -1962,27 +1947,25 @@ retry: 10000         // 重连间隔（毫秒）
 <td align="left">href&#x3D;”&#x2F;search?q&#x3D;${encodeURIComponent(input)}”</td>
 </tr>
 </tbody></table>
-<p>现代框架自定义转义：</p>
-<pre class="line-numbers language-JSX" data-language="JSX"><code class="language-JSX">&#x2F;&#x2F; React自动转义
+</li>
+<li>现代框架自定义转义： <pre class="line-numbers language-JSX" data-language="JSX"><code class="language-JSX">&#x2F;&#x2F; React自动转义
 &lt;div&gt;&#123;userInput&#125;&lt;&#x2F;div&gt;
 
 &#x2F;&#x2F; Vue自动转义
-&lt;template&gt;&#123;&#123; userInput &#125;&#125;&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>(2) 内容安全策略（CSP）</p>
-<p>原理：通过HTTP头定义可信资源白名单，阻止非法脚本执行。</p>
-<p>关键指令：</p>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Content-Security-Policy</span><span class="token punctuation">:</span> <span class="token header-value csp languages-csp">
+&lt;template&gt;&#123;&#123; userInput &#125;&#125;&lt;&#x2F;template&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li>内容安全策略（CSP）<ul>
+<li>原理：通过HTTP头定义可信资源白名单，阻止非法脚本执行。</li>
+<li>关键指令： <pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Content-Security-Policy</span><span class="token punctuation">:</span> <span class="token header-value csp languages-csp">
   default-src 'self';       // 默认仅允许同源
   script-src 'self' https://trusted.cdn.com;  // 脚本来源
   style-src 'self' 'nonce-abc123';  // 样式来源
   img-src *;                // 图片允许任意源
   connect-src https://api.example.com;  // 限制AJAX请求
   frame-ancestors 'none';   // 禁止嵌套
-  report-uri /csp-report;   // 违规上报</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>安全增强策略：</p>
-<table>
+  report-uri /csp-report;   // 违规上报</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>安全增强策略：<table>
 <thead>
 <tr>
 <th align="left">策略</th>
@@ -2006,6 +1989,10 @@ retry: 10000         // 重连间隔（毫秒）
 <td align="left">‘strict-dynamic’</td>
 </tr>
 </tbody></table>
+</li>
+</ul>
+</li>
+</ol>
 <p><strong>防御体系分层设计</strong></p>
 <table>
 <thead>
@@ -2312,11 +2299,9 @@ res<span class="token punctuation">.</span><span class="token function">cookie</
 <li>终极方案：申请浏览器HSTS预加载列表（Chrome&#x2F;Firefox内置）</li>
 </ul>
 </li>
-<li>测试环境规避:</li>
+<li>测试环境规避:<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token comment"># 开发环境禁用HSTS</span>
+<span class="token directive"><span class="token keyword">add_header</span> Strict-Transport-Security <span class="token string">"max-age=0;"</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token comment"># 开发环境禁用HSTS</span>
-<span class="token directive"><span class="token keyword">add_header</span> Strict-Transport-Security <span class="token string">"max-age=0;"</span></span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p><strong>完整安全配置示例</strong></p>
 <pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">&#123;</span>
   <span class="token directive"><span class="token keyword">listen</span> <span class="token number">443</span> ssl</span><span class="token punctuation">;</span>
@@ -3269,18 +3254,12 @@ Brotli后：30KB（节省170KB） → 3G网络下加载时间减少40%<span aria
 <p><strong>技术实现详解</strong></p>
 <p>(1) 推送触发条件</p>
 <ul>
-<li>显式配置（开发者指定）</li>
-</ul>
-<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token comment"># Nginx配置</span>
+<li>显式配置（开发者指定）<pre class="line-numbers language-nginx" data-language="nginx"><code class="language-nginx"><span class="token comment"># Nginx配置</span>
 <span class="token directive"><span class="token keyword">http2_push</span> /static/style.css</span><span class="token punctuation">;</span>
-<span class="token directive"><span class="token keyword">http2_push_preload</span> <span class="token boolean">on</span></span><span class="token punctuation">;</span>  <span class="token comment"># 解析Link头部</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>隐式触发（需启用<code>http2_push_preload</code>）</li>
+<span class="token directive"><span class="token keyword">http2_push_preload</span> <span class="token boolean">on</span></span><span class="token punctuation">;</span>  <span class="token comment"># 解析Link头部</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>隐式触发（需启用<code>http2_push_preload</code>）<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 响应头声明需推送资源
+<span class="token header"><span class="token header-name keyword">Link</span><span class="token punctuation">:</span> <span class="token header-value">&lt;/static/script.js>; rel=preload; as=script</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 响应头声明需推送资源
-<span class="token header"><span class="token header-name keyword">Link</span><span class="token punctuation">:</span> <span class="token header-value">&lt;/static/script.js>; rel=preload; as=script</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p>(2) 推送协议流程</p>
 <ul>
 <li>发送 PUSH_PROMISE帧<ul>
@@ -3492,20 +3471,15 @@ server<span class="token punctuation">.</span><span class="token function">on</s
 <li>静态资源设置长缓存 (Cache-Control: immutable)，匹配0-RTT快速加载 4。</li>
 </ul>
 </li>
-<li>监控协议升级：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 查看浏览器Network面板Protocol列</span>
+<li>监控协议升级：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 查看浏览器Network面板Protocol列</span>
 performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">"resource"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">res</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">.</span>nextHopProtocol <span class="token operator">===</span> <span class="token string">"h3"</span><span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"HTTP/3 used"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>降级兼容方案：<ul>
-<li>服务器同时监听HTTP&#x2F;2与HTTP&#x2F;3，Alt-Svc头自动协商协议：</li>
+<li>服务器同时监听HTTP&#x2F;2与HTTP&#x2F;3，Alt-Svc头自动协商协议：<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Alt-Svc</span><span class="token punctuation">:</span> <span class="token header-value">h3=":443"; ma=2592000; v="46,43"</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Alt-Svc</span><span class="token punctuation">:</span> <span class="token header-value">h3=":443"; ma=2592000; v="46,43"</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <h1 id="五、高级网络技术"><a href="#五、高级网络技术" class="headerlink" title="五、高级网络技术"></a>五、高级网络技术</h1><h2 id="5-1-API设计规范"><a href="#5-1-API设计规范" class="headerlink" title="5.1 API设计规范"></a>5.1 API设计规范</h2><h3 id="RESTful架构原则（资源化-状态转移）"><a href="#RESTful架构原则（资源化-状态转移）" class="headerlink" title="RESTful架构原则（资源化&#x2F;状态转移）"></a>RESTful架构原则（资源化&#x2F;状态转移）</h3><h3 id="GraphQL查询与REST对比"><a href="#GraphQL查询与REST对比" class="headerlink" title="GraphQL查询与REST对比"></a>GraphQL查询与REST对比</h3><h2 id="5-2-调试与监控"><a href="#5-2-调试与监控" class="headerlink" title="5.2 调试与监控"></a>5.2 调试与监控</h2><h3 id="浏览器Network面板分析（Waterfall-Timing）"><a href="#浏览器Network面板分析（Waterfall-Timing）" class="headerlink" title="浏览器Network面板分析（Waterfall&#x2F;Timing）"></a>浏览器Network面板分析（Waterfall&#x2F;Timing）</h3><h3 id="性能指标（TTFB-LCP-FCP）监控"><a href="#性能指标（TTFB-LCP-FCP）监控" class="headerlink" title="性能指标（TTFB&#x2F;LCP&#x2F;FCP）监控"></a>性能指标（TTFB&#x2F;LCP&#x2F;FCP）监控</h3><h2 id="5-3-新兴技术"><a href="#5-3-新兴技术" class="headerlink" title="5.3 新兴技术"></a>5.3 新兴技术</h2><h3 id="WebRTC基础（P2P通信-信令服务）"><a href="#WebRTC基础（P2P通信-信令服务）" class="headerlink" title="WebRTC基础（P2P通信&#x2F;信令服务）"></a>WebRTC基础（P2P通信&#x2F;信令服务）</h3><h3 id="WebTransport协议探索"><a href="#WebTransport协议探索" class="headerlink" title="WebTransport协议探索"></a>WebTransport协议探索</h3>
     </div>
 
@@ -3570,13 +3544,13 @@ performance<span class="token punctuation">.</span><span class="token function">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">236k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:50</span>
+    <span title="站点阅读时长">14:18</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

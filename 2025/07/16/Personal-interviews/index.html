@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tianfei92.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.23.2","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":false,"codeblock":{"theme":{"light":"atom-one-dark","dark":"atom-one-dark"},"prism":{"light":"prism-okaidia","dark":"prism-okaidia"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false,"highlight_theme":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="第一题：架构设计（结合@hz&#x2F;node-server项目）Q1：您将单实例QPS从1200提升至6500的核心手段是「流式代理+cluster集群」，流式代理如何解决高并发下的内存瓶颈？请对比描述传统缓冲模式（buffer）与流式处理（stream）的内存差异   A： 流式代理 vs 传统缓冲模式的内存差异：  内存占用高：高并发场景下，传统缓冲模式（Buffer）会先将完整请求&amp;#x">
+    <meta name="description" content="第一题：架构设计（结合@hz&#x2F;node-server项目）Q：您将单实例QPS从1200提升至6500的核心手段是「流式代理+cluster集群」，流式代理如何解决高并发下的内存瓶颈？请对比描述传统缓冲模式（buffer）与流式处理（stream）的内存差异   A： 流式代理 vs 传统缓冲模式的内存差异：  内存占用高：高并发场景下，传统缓冲模式（Buffer）会先将完整请求&amp;#x2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="个人面试模拟">
 <meta property="og:url" content="https://tianfei92.github.io/2025/07/16/Personal-interviews/index.html">
 <meta property="og:site_name" content="Ariel&#39;s Blog">
-<meta property="og:description" content="第一题：架构设计（结合@hz&#x2F;node-server项目）Q1：您将单实例QPS从1200提升至6500的核心手段是「流式代理+cluster集群」，流式代理如何解决高并发下的内存瓶颈？请对比描述传统缓冲模式（buffer）与流式处理（stream）的内存差异   A： 流式代理 vs 传统缓冲模式的内存差异：  内存占用高：高并发场景下，传统缓冲模式（Buffer）会先将完整请求&amp;#x">
+<meta property="og:description" content="第一题：架构设计（结合@hz&#x2F;node-server项目）Q：您将单实例QPS从1200提升至6500的核心手段是「流式代理+cluster集群」，流式代理如何解决高并发下的内存瓶颈？请对比描述传统缓冲模式（buffer）与流式处理（stream）的内存差异   A： 流式代理 vs 传统缓冲模式的内存差异：  内存占用高：高并发场景下，传统缓冲模式（Buffer）会先将完整请求&amp;#x2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-16T01:11:29.000Z">
-<meta property="article:modified_time" content="2025-07-22T02:33:31.728Z">
+<meta property="article:modified_time" content="2025-07-25T09:13:03.342Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -161,7 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98%EF%BC%9A%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%BB%93%E5%90%88-hz-node-server%E9%A1%B9%E7%9B%AE%EF%BC%89"><span class="nav-text">第一题：架构设计（结合@hz&#x2F;node-server项目）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%A2%98%EF%BC%9A%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%B7%B1%E5%BA%A6%EF%BC%88%E7%BB%93%E5%90%88DevOps%E4%BC%98%E5%8C%96%EF%BC%89"><span class="nav-text">第二题：工程化深度（结合DevOps优化）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%A2%98%EF%BC%9A%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E9%97%AD%E7%8E%AF"><span class="nav-text">第三题：性能优化闭环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%A2%98%EF%BC%9A%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF%E5%86%B3%E7%AD%96"><span class="nav-text">第四题：前沿技术决策</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%A2%98%EF%BC%9A%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%EF%BC%88%E5%AE%9E%E6%97%B6%E6%89%8B%E5%86%99%EF%BC%89"><span class="nav-text">第五题：编程能力（实时手写）</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%A2%98%EF%BC%9A%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%EF%BC%88%E7%BB%93%E5%90%88-hz-node-server%E9%A1%B9%E7%9B%AE%EF%BC%89"><span class="nav-text">第一题：架构设计（结合@hz&#x2F;node-server项目）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%A2%98%EF%BC%9A%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%B7%B1%E5%BA%A6%EF%BC%88%E7%BB%93%E5%90%88DevOps%E4%BC%98%E5%8C%96%EF%BC%89"><span class="nav-text">第二题：工程化深度（结合DevOps优化）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%A2%98%EF%BC%9A%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E9%97%AD%E7%8E%AF"><span class="nav-text">第三题：性能优化闭环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%A2%98%EF%BC%9A%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%EF%BC%88%E5%AE%9E%E6%97%B6%E6%89%8B%E5%86%99%EF%BC%89"><span class="nav-text">第四题：编程能力（实时手写）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E9%A2%98%EF%BC%9A%E6%9E%B6%E6%9E%84%E6%B7%B1%E5%BA%A6%E4%B8%8E%E5%86%B3%E7%AD%96%E8%83%BD%E5%8A%9B"><span class="nav-text">第五题：架构深度与决策能力</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E9%A2%98%EF%BC%9A%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98"><span class="nav-text">第六题：性能优化实战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E9%A2%98%EF%BC%9A%E5%B7%A5%E7%A8%8B%E5%8C%96%E4%BD%93%E7%B3%BB%E4%B8%8E%E5%88%9B%E6%96%B0"><span class="nav-text">第七题：工程化体系与创新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E9%A2%98%EF%BC%9A%E5%A4%8D%E6%9D%82%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%8E%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="nav-text">第八题：复杂问题解决与系统设计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B9%9D%E9%A2%98%EF%BC%9A%E6%8A%80%E6%9C%AF%E9%A2%86%E5%AF%BC%E5%8A%9B%E4%B8%8E%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C"><span class="nav-text">第九题：技术领导力与团队协作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E9%A2%98%EF%BC%9A%E6%8A%80%E6%9C%AF%E5%B9%BF%E5%BA%A6%E4%B8%8E%E5%89%8D%E6%B2%BF%E5%85%B3%E6%B3%A8"><span class="nav-text">第十题：技术广度与前沿关注</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E9%A2%98%EF%BC%9A%E9%A1%B9%E7%9B%AE%E5%9B%9E%E9%A1%BE%E4%B8%8E%E5%8F%8D%E6%80%9D"><span class="nav-text">第十一题：项目回顾与反思</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%BA%8C%E9%A2%98%EF%BC%9A%E6%B1%82%E8%81%8C%E5%8A%A8%E6%9C%BA%E4%B8%8E%E6%9C%9F%E6%9C%9B"><span class="nav-text">第十二题：求职动机与期望</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-22 10:33:31" itemprop="dateModified" datetime="2025-07-22T10:33:31+08:00">2025-07-22</time>
+      <time title="修改时间：2025-07-25 17:13:03" itemprop="dateModified" datetime="2025-07-25T17:13:03+08:00">2025-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -280,14 +280,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.2k</span>
+      <span>11k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>11 分钟</span>
+      <span>40 分钟</span>
     </span>
 </div>
 
@@ -297,8 +297,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="第一题：架构设计（结合-hz-node-server项目）"><a href="#第一题：架构设计（结合-hz-node-server项目）" class="headerlink" title="第一题：架构设计（结合@hz&#x2F;node-server项目）"></a>第一题：架构设计（结合@hz&#x2F;node-server项目）</h1><p><strong>Q1：您将单实例QPS从1200提升至6500的核心手段是「流式代理+cluster集群」，流式代理如何解决高并发下的内存瓶颈？请对比描述传统缓冲模式（buffer）与流式处理（stream）的内存差异</strong></p>
-<em>
+    <div class="post-body" itemprop="articleBody"><h1 id="第一题：架构设计（结合-hz-node-server项目）"><a href="#第一题：架构设计（结合-hz-node-server项目）" class="headerlink" title="第一题：架构设计（结合@hz&#x2F;node-server项目）"></a>第一题：架构设计（结合@hz&#x2F;node-server项目）</h1><p><strong>Q：您将单实例QPS从1200提升至6500的核心手段是「流式代理+cluster集群」，流式代理如何解决高并发下的内存瓶颈？请对比描述传统缓冲模式（buffer）与流式处理（stream）的内存差异</strong></p>
+<div style="color: #999">
 
 <p>A：</p>
 <p>流式代理 vs 传统缓冲模式的内存差异：</p>
@@ -314,11 +314,11 @@
 <ul>
 <li>采用流式处理（Stream）将数据分割为数据块（chunk） 逐段处理，配合背压机制控制处理速度。</li>
 </ul>
-</em>
+</div>
 
 <span id="more"></span>
 
-<em>
+<div style="color: #999">
 
 <p>实现细节：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 传统缓冲模式（伪代码）</span>
@@ -364,10 +364,10 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 <td align="left">自动通过.pipe()传递</td>
 </tr>
 </tbody></table>
-</em>
+</div>
 
-<p><strong>Q2：您提到“内存监控 + 堆快照分析优化”，具体如何识别内存泄漏点？请用Chrome DevTools的Memory面板实操逻辑说明</strong></p>
-<em>
+<p><strong>Q：您提到“内存监控 + 堆快照分析优化”，具体如何识别内存泄漏点？请用Chrome DevTools的Memory面板实操逻辑说明</strong></p>
+<div style="color: #999">
 
 <p>A：</p>
 <p>Chrome DevTools调试原理：</p>
@@ -386,7 +386,8 @@ E[调试命令] --&gt;|协议消息| D
 D --&gt;|执行控制| A</code></pre>
 
 <p>详细工作流程：</p>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">步骤 1：启动调试代理
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/**
+步骤 1：启动调试代理
 
 当执行 node --inspect your-script.js 时：
   - Node.js 启动一个 调试代理进程
@@ -404,7 +405,8 @@ D --&gt;|执行控制| A</code></pre>
 步骤 3：调试会话建立
 
   1. Chrome 通过 WebSocket 连接到 ws://127.0.0.1:9229
-  2. 双方开始交换 JSON-RPC 消息（遵循 DevTools Protocol）  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  2. 双方开始交换 JSON-RPC 消息（遵循 DevTools Protocol）
+ * /</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>关键技术 - 协议适配：</p>
 <pre><code class="mermaid">flowchart LR
@@ -522,10 +524,10 @@ module<span class="token punctuation">.</span><span class="token function-variab
 
 <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">metrics</span><span class="token punctuation">(</span>app<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 挂载 /metrics 端点</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</em>
+</div>
 
-<p><strong>Q3：流式代理的背压控制细节？</strong></p>
-<em>
+<p><strong>Q：流式代理的背压控制细节？</strong></p>
+<div style="color: #999">
 
 <p>A：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 手动背压控制示例</span>
@@ -537,26 +539,24 @@ readable<span class="token punctuation">.</span><span class="token function">on<
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-</em>
+</div>
 
-<p><strong>Q4：Cluster模式下Worker内存隔离方案？</strong></p>
-<em>
+<p><strong>Q：Cluster模式下Worker内存隔离方案？</strong></p>
+<div style="color: #999">
 
 <p>A：</p>
 <ul>
 <li>每个Worker独立V8实例，内存天然隔离</li>
-<li>Master进程监控Worker内存：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">cluster<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'fork'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">worker</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<li>Master进程监控Worker内存：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">cluster<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'fork'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">worker</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   worker<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">msg</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>msg<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'memory'</span><span class="token punctuation">)</span> <span class="token function">alertExceedThreshold</span><span class="token punctuation">(</span>worker<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</div>
 
-</em>
-
-<p><strong>Q5：微前端路由冲突解决方案中采用「menu path + menu id」作唯一标识：当子应用使用React Router的useParams()获取动态路由参数时，此方案如何避免参数冲突？</strong></p>
-<em>
+<p><strong>Q：微前端路由冲突解决方案中采用「menu path + menu id」作唯一标识：当子应用使用React Router的useParams()获取动态路由参数时，此方案如何避免参数冲突？</strong></p>
+<div style="color: #999">
 
 <p>A：</p>
 <p>通过命名空间隔离和代理层路径重写，可以完美避免参数冲突</p>
@@ -623,10 +623,10 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
     Router-&gt;&gt;Component: 渲染UserPage
     Component-&gt;&gt;Component: useParams() &#x3D; &#123;id: &quot;123&quot;&#125;</code></pre>
 
-</em>
+</div>
 
-<p><strong>Q6：如果某个子应用需要独占路由（如<code>/admin/*</code>），您的路由分发层如何实现优先级控制？</strong></p>
-<em>
+<p><strong>Q：如果某个子应用需要独占路由（如<code>/admin/*</code>），您的路由分发层如何实现优先级控制？</strong></p>
+<div style="color: #999">
 
 <p>A：</p>
 <p>设计分层路由匹配策略和精确匹配机制：</p>
@@ -750,26 +750,1288 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 </ul>
 </li>
 </ol>
-</em>
+</div>
 
-<h1 id="第二题：工程化深度（结合DevOps优化）"><a href="#第二题：工程化深度（结合DevOps优化）" class="headerlink" title="第二题：工程化深度（结合DevOps优化）"></a>第二题：工程化深度（结合DevOps优化）</h1><p><strong>Q7：您通过迁移Webpack5实现编译耗时从30min→8min：Webpack5的增量编译具体如何配置？请说明filesystem缓存与memory缓存的适用场景差异</strong></p>
-<p><strong>Q8：在Docker环境中，如何保证缓存持久化？请描述构建镜像的layer设计策略</strong></p>
-<p><strong>Q9：编写ESLint插件降低业务崩溃率1%：请举例一个您自定义的ESLint规则及其实现逻辑（如禁止直接修改props对象）</strong></p>
-<p><strong>Q10：如何确保规则在CI阶段强制生效？请描述与Git Hooks的集成方案</strong></p>
-<h1 id="第三题：性能优化闭环"><a href="#第三题：性能优化闭环" class="headerlink" title="第三题：性能优化闭环"></a>第三题：性能优化闭环</h1><p><strong>Q11：首屏耗时从6000ms+优化至1000ms：“资源传输压缩+静态缓存”方案中，您如何制定缓存失效策略？请对比ETag与max-age的更新灵敏度</strong></p>
-<p><strong>Q12：日志系统降低问题定位成本8人天&#x2F;月：在定制http-proxy-middleware时，您如何捕获微前端子应用的渲染错误栈？（提示：Error Boundary与日志打通）</strong></p>
-<p><strong>Q13：日志采样率如何设置？请说明高并发场景下的采样权衡（如10万QPS时全量日志的性能风险）</strong></p>
-<h1 id="第四题：前沿技术决策"><a href="#第四题：前沿技术决策" class="headerlink" title="第四题：前沿技术决策"></a>第四题：前沿技术决策</h1><p><strong>Q14：Kubernetes管理CAS配置 - 当server.config.js变更时，如何实现热更新而不重启Node进程？请描述fs.watch与K8s ConfigMap的联动机制</strong></p>
-<p><strong>Q15：动态插件化架构：如果某个子应用需要预加载资源，您的@hz&#x2F;loader如何实现优先级控制？</strong></p>
-<h1 id="第五题：编程能力（实时手写）"><a href="#第五题：编程能力（实时手写）" class="headerlink" title="第五题：编程能力（实时手写）"></a>第五题：编程能力（实时手写）</h1><strong>
+<h1 id="第二题：工程化深度（结合DevOps优化）"><a href="#第二题：工程化深度（结合DevOps优化）" class="headerlink" title="第二题：工程化深度（结合DevOps优化）"></a>第二题：工程化深度（结合DevOps优化）</h1><p><strong>Q：您通过迁移Webpack5实现编译耗时从30min→8min：Webpack5的增量编译具体如何配置？请说明filesystem缓存与memory缓存的适用场景差异</strong></p>
+<div style="color: #999">
 
-<p>Q16：请手写一个「带缓存的重试机制」请求工具：  </p>
+<p>A：</p>
+<p>Webpack 5 的增量编译主要通过持久化缓存（Persistent Caching）实现，它利用文件系统缓存编译结果，大幅提升后续构建速度。</p>
+<p>核心原理:</p>
+<ul>
+<li>缓存模块编译结果：将模块的编译结果（AST、依赖关系等）保存到文件系统</li>
+<li>智能失效机制：根据文件内容哈希值判断文件是否变更</li>
+<li>增量更新：只重新编译修改过的模块及其依赖</li>
+</ul>
+<p>配置方法：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 关键配置：启用文件系统缓存</span>
+  <span class="token literal-property property">cache</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'filesystem'</span><span class="token punctuation">,</span> <span class="token comment">// 使用文件系统缓存</span>
+    <span class="token literal-property property">cacheDirectory</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'.temp_cache'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// 缓存存放路径</span>
+    <span class="token literal-property property">buildDependencies</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// 当这些文件变更时，使整个缓存失效</span>
+      <span class="token literal-property property">config</span><span class="token operator">:</span> <span class="token punctuation">[</span>__filename<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// webpack配置文件</span>
+      <span class="token literal-property property">lockfiles</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token comment">// 依赖锁文件</span>
+        path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'package-lock.json'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'yarn.lock'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token comment">// 推荐配置（提升缓存稳定性）：</span>
+    <span class="token literal-property property">version</span><span class="token operator">:</span> <span class="token function">createEnvironmentHash</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// 环境变量变化时失效缓存</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>configName<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>env<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> <span class="token comment">// 多配置场景区分缓存</span>
+    <span class="token literal-property property">maxAge</span><span class="token operator">:</span> <span class="token number">72</span> <span class="token operator">*</span> <span class="token number">3600</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token comment">// 缓存有效期(72小时)</span>
+    <span class="token literal-property property">compression</span><span class="token operator">:</span> <span class="token string">'gzip'</span> <span class="token comment">// 压缩缓存文件</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  
+  <span class="token comment">// 其他优化配置（配合使用效果更佳）：</span>
+  <span class="token literal-property property">snapshot</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">managedPaths</span><span class="token operator">:</span> <span class="token punctuation">[</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'node_modules'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 排除node_modules变更检测</span>
+    <span class="token literal-property property">immutablePaths</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">optimization</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">moduleIds</span><span class="token operator">:</span> <span class="token string">'deterministic'</span><span class="token punctuation">,</span> <span class="token comment">// 稳定的模块ID生成策略</span>
+    <span class="token literal-property property">chunkIds</span><span class="token operator">:</span> <span class="token string">'deterministic'</span>  <span class="token comment">// 稳定的chunkID生成策略</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 生成环境哈希的示例函数</span>
+<span class="token keyword">function</span> <span class="token function">createEnvironmentHash</span><span class="token punctuation">(</span><span class="token parameter">env</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'crypto'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">createHash</span><span class="token punctuation">(</span><span class="token string">'md5'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>env<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span><span class="token string">'hex'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>关键配置说明：</p>
+<table>
+<thead>
+<tr>
+<th align="left">配置项</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">cache.type</td>
+<td align="left">必须设为 ‘filesystem’ 启用持久化缓存</td>
+</tr>
+<tr>
+<td align="left">cache.cacheDirectory</td>
+<td align="left">自定义缓存路径（默认在 node_modules&#x2F;.cache&#x2F;webpack）</td>
+</tr>
+<tr>
+<td align="left">buildDependencies.config</td>
+<td align="left">配置文件变更时自动失效缓存</td>
+</tr>
+<tr>
+<td align="left">snapshot.managedPaths</td>
+<td align="left">排除 node_modules 变更检查（提升构建速度）</td>
+</tr>
+<tr>
+<td align="left">moduleIds&#x2F;chunkIds</td>
+<td align="left">使用 ‘deterministic’ 防止文件未变更时ID变化</td>
+</tr>
+</tbody></table>
+<p>filesystem 缓存于 memory 缓存的核心区别：</p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">filesystem 缓存</th>
+<th align="left">memory 缓存</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">存储位置</td>
+<td align="left">硬盘文件系统</td>
+<td align="left">内存（RAM）</td>
+</tr>
+<tr>
+<td align="left">生命周期</td>
+<td align="left">持久化（跨进程&#x2F;重启）</td>
+<td align="left">临时性（随进程结束销毁）</td>
+</tr>
+<tr>
+<td align="left">读取速度</td>
+<td align="left">较慢（毫秒级，受I&#x2F;O限制）</td>
+<td align="left">极快（纳秒级）</td>
+</tr>
+<tr>
+<td align="left">容量限制</td>
+<td align="left">硬盘空间（GB~TB级）</td>
+<td align="left">进程内存限制（通常&lt;1.5GB）</td>
+</tr>
+<tr>
+<td align="left">共享能力</td>
+<td align="left">跨进程共享（CI&#x2F;CD）</td>
+<td align="left">仅限当前进程</td>
+</tr>
+<tr>
+<td align="left">持久性</td>
+<td align="left">高（需手动清除）</td>
+<td align="left">低（进程结束即消失）</td>
+</tr>
+<tr>
+<td align="left">适用构建类型</td>
+<td align="left">生产构建、CI&#x2F;CD环境</td>
+<td align="left">开发环境（watch模式）</td>
+</tr>
+<tr>
+<td align="left">内存消耗</td>
+<td align="left">低（仅索引在内存）</td>
+<td align="left">高（完整数据在内存）</td>
+</tr>
+<tr>
+<td align="left">典型配置</td>
+<td align="left">type: ‘filesystem’</td>
+<td align="left">type: ‘memory’（默认）</td>
+</tr>
+</tbody></table>
+<p>filesystem 缓存于 memory 缓存的适用场景差异：</p>
+<ul>
+<li>filesystem 缓存<ul>
+<li>生产环境构建：需要保证编译机器、三方依赖稳定</li>
+<li>CI&#x2F;CD流水线</li>
+<li>微前端架构：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 子应用独立缓存</span>
+<span class="token keyword">const</span> packageName <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./package.json'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">cache</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'filesystem'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">cacheDirectory</span><span class="token operator">:</span> path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">./cache/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>packageName<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>packageName<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">-prod-cache</span><span class="token template-punctuation string">`</span></span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li>memory 缓存<ul>
+<li>开发环境 watch 模式</li>
+<li>内存敏感环境：比如 Docker 容器、低配开发机器等低内存容器环境</li>
+</ul>
+</li>
+</ul>
+<p>清理特定缓存的方式：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 编程式清除</span>
+compiler<span class="token punctuation">.</span>cache<span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  fs<span class="token punctuation">.</span><span class="token function">rmSync</span><span class="token punctuation">(</span>cachePath<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">recursive</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 条件清除</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>needsFreshCache<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  compiler<span class="token punctuation">.</span>cache<span class="token punctuation">.</span><span class="token function">beginIdle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  compiler<span class="token punctuation">.</span>cache<span class="token punctuation">.</span><span class="token function">shutdown</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    compiler<span class="token punctuation">.</span>cache <span class="token operator">=</span> <span class="token function">createCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</div>
+
+<p><strong>Q：在Docker环境中，如何保证缓存持久化？请描述构建镜像的layer设计策略</strong></p>
+<div style="color: #999">
+
+<p>A：</p>
+<p>核心挑战分析：</p>
+<pre><code class="mermaid">graph TD
+    A[缓存持久化需求] --&gt; B[构建间缓存共享]
+    A --&gt; C[镜像层优化]
+    B --&gt; D[缓存目录挂载]
+    C --&gt; E[分层策略设计]
+    D --&gt; F[Volume&#x2F;Bind Mount]
+    E --&gt; G[缓存层分离]</code></pre>
+
+<p>解决方案概览：</p>
+<table>
+<thead>
+<tr>
+<th align="left">挑战</th>
+<th align="left">解决方案</th>
+<th align="left">技术实现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">缓存持久化</td>
+<td align="left">分离缓存目录与构建上下文</td>
+<td align="left">多阶段构建 + 独立缓存层</td>
+</tr>
+<tr>
+<td align="left">构建间共享</td>
+<td align="left">外部存储挂载</td>
+<td align="left">Docker Volume 或 Bind Mount</td>
+</tr>
+<tr>
+<td align="left">镜像层优化</td>
+<td align="left">缓存层最后添加</td>
+<td align="left">精细控制 Dockerfile 指令顺序</td>
+</tr>
+<tr>
+<td align="left">CI&#x2F;CD 集成</td>
+<td align="left">缓存目录作为构建产物</td>
+<td align="left">CI 缓存机制（如 GitHub Actions）</td>
+</tr>
+<tr>
+<td align="left">多环境一致性</td>
+<td align="left">参数化缓存路径</td>
+<td align="left">环境变量 + ARG 指令</td>
+</tr>
+</tbody></table>
+<p>Dockerfile 分层设计策略：</p>
+<pre class="line-numbers language-docker" data-language="docker"><code class="language-docker"><span class="token comment"># 阶段1: 基础依赖安装</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:18-alpine <span class="token keyword">as</span> deps</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+<span class="token instruction"><span class="token keyword">COPY</span> package.json yarn.lock ./</span>
+<span class="token instruction"><span class="token keyword">RUN</span> yarn install --frozen-lockfile</span>
+
+<span class="token comment"># 阶段2: 构建阶段（包含缓存持久化）</span>
+<span class="token instruction"><span class="token keyword">FROM</span> node:18-alpine <span class="token keyword">as</span> builder</span>
+<span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span>
+
+<span class="token comment"># 从deps阶段复制node_modules</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">deps</span></span> /app/node_modules ./node_modules</span>
+
+<span class="token comment"># 复制项目文件（注意排除node_modules）</span>
+<span class="token instruction"><span class="token keyword">COPY</span> . .</span>
+
+<span class="token comment"># 设置缓存环境变量（可通过构建参数覆盖）</span>
+<span class="token instruction"><span class="token keyword">ARG</span> WEBPACK_CACHE_DIR=.webpack_cache</span>
+<span class="token instruction"><span class="token keyword">ENV</span> WEBPACK_CACHE_DIR=<span class="token variable">$WEBPACK_CACHE_DIR</span></span>
+
+<span class="token comment"># 创建缓存目录（作为独立层）</span>
+<span class="token instruction"><span class="token keyword">RUN</span> mkdir -p <span class="token variable">$&#123;WEBPACK_CACHE_DIR&#125;</span></span>
+
+<span class="token comment"># 挂载点声明（实际挂载在构建时）</span>
+<span class="token instruction"><span class="token keyword">VOLUME</span> [ <span class="token string">"/app/$&#123;WEBPACK_CACHE_DIR&#125;"</span> ]</span>
+
+<span class="token comment"># 执行构建（缓存目录已存在）</span>
+<span class="token instruction"><span class="token keyword">RUN</span> yarn build</span>
+
+<span class="token comment"># 阶段3: 生产镜像</span>
+<span class="token instruction"><span class="token keyword">FROM</span> nginx:alpine <span class="token keyword">as</span> production</span>
+<span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /app/dist /usr/share/nginx/html</span>
+<span class="token instruction"><span class="token keyword">EXPOSE</span> 80</span>
+<span class="token instruction"><span class="token keyword">CMD</span> [<span class="token string">"nginx"</span>, <span class="token string">"-g"</span>, <span class="token string">"daemon off;"</span>]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>分层策略解析：</p>
+<pre><code class="mermaid">graph LR
+    A[基础镜像] --&gt; B[依赖安装层]
+    B --&gt; C[源码复制层]
+    C --&gt; D[缓存目录创建层]
+    D --&gt; E[构建执行层]
+    E --&gt; F[生产镜像层]
+    
+    style D stroke:#f66,stroke-width:2px
+    style E stroke:#f66,stroke-width:2px</code></pre>
+
+<ul>
+<li>依赖安装层：<ul>
+<li>仅依赖 package.json 和 lock 文件</li>
+<li>稳定层（变更频率低）</li>
+</ul>
+</li>
+<li>源码复制层：<ul>
+<li>排除 node_modules 和缓存目录</li>
+<li>通过 .dockerignore 优化：<pre class="line-numbers language-text" data-language="text"><code class="language-text">node_modules
+.webpack_cache
+dist<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li>缓存目录层：<ul>
+<li>显式创建缓存目录</li>
+<li>作为独立层存在</li>
+<li>声明为 VOLUME 供挂载</li>
+</ul>
+</li>
+<li>构建执行层：<ul>
+<li>实际运行 yarn build</li>
+<li>依赖缓存目录层</li>
+<li>变动最频繁的层</li>
+</ul>
+</li>
+</ul>
+<p>生产环境缓存持久化实现方案：Named Volume</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建专用volume</span>
+<span class="token function">docker</span> volume create webpack_cache
+
+<span class="token comment"># 构建命令</span>
+<span class="token function">docker</span> build <span class="token punctuation">\</span>
+  --build-arg <span class="token assign-left variable">WEBPACK_CACHE_DIR</span><span class="token operator">=</span>.webpack_cache <span class="token punctuation">\</span>
+  <span class="token parameter variable">--mount</span> <span class="token assign-left variable">type</span><span class="token operator">=</span>volume,source<span class="token operator">=</span>webpack_cache,target<span class="token operator">=</span>/app/.webpack_cache <span class="token punctuation">\</span>
+  <span class="token parameter variable">-t</span> my-app:latest <span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>CI&#x2F;CD 集成（GitHub Actions 示例）：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v3
+      
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Setup Docker cache
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/cache@v3
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+        <span class="token key atrule">path</span><span class="token punctuation">:</span> ./.webpack_cache
+        <span class="token key atrule">key</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> runner.os <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">-</span>webpack<span class="token punctuation">-</span>$<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> hashFiles('package<span class="token punctuation">-</span>lock.json') <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
+        
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build Docker image
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+        docker build \
+          --build-arg WEBPACK_CACHE_DIR=.webpack_cache \
+          --mount type=bind,source=./.webpack_cache,target=/app/.webpack_cache \
+          -t my-app:$GITHUB_SHA .</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>完整工作流程示例：</p>
+<pre><code class="mermaid">sequenceDiagram
+    participant Dev as 开发者
+    participant Docker as Docker引擎
+    participant Volume as 缓存Volume
+    
+    Dev-&gt;&gt;Docker: 启动构建 (挂载缓存)
+    Docker-&gt;&gt;Volume: 检查缓存存在?
+    alt 缓存存在
+        Volume--&gt;&gt;Docker: 提供缓存数据
+        Docker-&gt;&gt;Docker: 增量编译
+    else 缓存不存在
+        Docker-&gt;&gt;Docker: 完整编译
+        Docker-&gt;&gt;Volume: 写入新缓存
+    end
+    Docker--&gt;&gt;Dev: 返回构建结果
+    Dev-&gt;&gt;Dev: 开发迭代 (修改文件)
+    Dev-&gt;&gt;Docker: 再次构建
+    Docker-&gt;&gt;Volume: 获取变更文件相关缓存
+    Docker-&gt;&gt;Docker: 仅编译变更模块
+    Docker--&gt;&gt;Dev: 返回增量构建结果</code></pre>
+
+</div>
+
+<p><strong>Q：编写ESLint插件降低业务崩溃率1%：请举例一个您自定义的ESLint规则及其实现逻辑（如禁止直接修改props对象）</strong></p>
+<div style="color: #999">
+
+<p>A：</p>
+<p>问题背景:</p>
+<p>在 React&#x2F;Vue 中，props 应该是只读的。直接修改 props 会导致：</p>
+<ul>
+<li>数据流混乱，组件行为不可预测</li>
+<li>父组件状态被意外修改</li>
+<li>深度嵌套组件难以追踪的错误</li>
+<li>性能优化失效（如 React.memo）</li>
+</ul>
+<p>规则目标：</p>
+<ul>
+<li>检测并禁止对 props 的直接修改</li>
+<li>允许安全的操作（如展开运算符创建新对象）</li>
+<li>支持多种框架（React&#x2F;Vue）</li>
+<li>提供自动修复功能</li>
+</ul>
+<p>代码实现：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// eslint-plugin-no-direct-props-mutation.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token string-property property">'no-direct-props-mutation'</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">meta</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'problem'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">docs</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+          <span class="token literal-property property">description</span><span class="token operator">:</span> <span class="token string">'禁止直接修改 props 对象，防止数据流异常和崩溃'</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">category</span><span class="token operator">:</span> <span class="token string">'Possible Errors'</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">recommended</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token string">'https://your-docs-url.com'</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">fixable</span><span class="token operator">:</span> <span class="token string">'code'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">schema</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token comment">// 无配置选项</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token function">create</span><span class="token punctuation">(</span><span class="token parameter">context</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 检测是否是 props 对象</span>
+        <span class="token keyword">function</span> <span class="token function">isPropsObject</span><span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          <span class="token comment">// React 场景：props 作为函数参数或 this.props</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'Identifier'</span> <span class="token operator">&amp;&amp;</span> node<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">'props'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+          <span class="token punctuation">&#125;</span>
+          
+          <span class="token comment">// Vue 场景：this.$props</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'MemberExpression'</span> <span class="token operator">&amp;&amp;</span> 
+              node<span class="token punctuation">.</span>object<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'ThisExpression'</span> <span class="token operator">&amp;&amp;</span> 
+              node<span class="token punctuation">.</span>property<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">'$props'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+          <span class="token punctuation">&#125;</span>
+          
+          <span class="token comment">// Vue 组合式 API：defineProps 返回值</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'CallExpression'</span> <span class="token operator">&amp;&amp;</span>
+              node<span class="token punctuation">.</span>callee<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">'defineProps'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+          <span class="token punctuation">&#125;</span>
+          
+          <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        
+        <span class="token comment">// 检查是否在修改 props</span>
+        <span class="token keyword">function</span> <span class="token function">checkForMutation</span><span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          <span class="token comment">// 赋值表达式：props.foo = 'bar'</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'AssignmentExpression'</span> <span class="token operator">&amp;&amp;</span> 
+              node<span class="token punctuation">.</span>operator <span class="token operator">===</span> <span class="token string">'='</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">const</span> left <span class="token operator">=</span> node<span class="token punctuation">.</span>left<span class="token punctuation">;</span>
+            
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>left<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'MemberExpression'</span> <span class="token operator">&amp;&amp;</span> 
+                <span class="token function">isPropsObject</span><span class="token punctuation">(</span>left<span class="token punctuation">.</span>object<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+              <span class="token function">reportError</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+          <span class="token punctuation">&#125;</span>
+          
+          <span class="token comment">// 更新表达式：props.count++</span>
+          <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'UpdateExpression'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">const</span> argument <span class="token operator">=</span> node<span class="token punctuation">.</span>argument<span class="token punctuation">;</span>
+            
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>argument<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'MemberExpression'</span> <span class="token operator">&amp;&amp;</span> 
+                <span class="token function">isPropsObject</span><span class="token punctuation">(</span>argument<span class="token punctuation">.</span>object<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+              <span class="token function">reportError</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+          <span class="token punctuation">&#125;</span>
+          
+          <span class="token comment">// 函数调用：Object.assign(props, newData)</span>
+          <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'CallExpression'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">const</span> callee <span class="token operator">=</span> node<span class="token punctuation">.</span>callee<span class="token punctuation">;</span>
+            
+            <span class="token comment">// 检查 Object.assign/mutate 函数</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>callee<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'MemberExpression'</span> <span class="token operator">&amp;&amp;</span> 
+                 callee<span class="token punctuation">.</span>object<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">'Object'</span> <span class="token operator">&amp;&amp;</span> 
+                 callee<span class="token punctuation">.</span>property<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">'assign'</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+                <span class="token punctuation">(</span>callee<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'Identifier'</span> <span class="token operator">&amp;&amp;</span> 
+                 <span class="token punctuation">[</span><span class="token string">'mutate'</span><span class="token punctuation">,</span> <span class="token string">'merge'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>callee<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+              
+              <span class="token keyword">const</span> firstArg <span class="token operator">=</span> node<span class="token punctuation">.</span>arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span>firstArg <span class="token operator">&amp;&amp;</span> <span class="token function">isPropsObject</span><span class="token punctuation">(</span>firstArg<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">reportError</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+              <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+          <span class="token punctuation">&#125;</span>
+          
+          <span class="token comment">// 数组方法：props.items.push(newItem)</span>
+          <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'CallExpression'</span> <span class="token operator">&amp;&amp;</span> 
+                   node<span class="token punctuation">.</span>callee<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'MemberExpression'</span> <span class="token operator">&amp;&amp;</span> 
+                   <span class="token punctuation">[</span><span class="token string">'push'</span><span class="token punctuation">,</span> <span class="token string">'pop'</span><span class="token punctuation">,</span> <span class="token string">'splice'</span><span class="token punctuation">,</span> <span class="token string">'sort'</span><span class="token punctuation">,</span> <span class="token string">'reverse'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>callee<span class="token punctuation">.</span>property<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isPropsObject</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>callee<span class="token punctuation">.</span>object<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+              <span class="token function">reportError</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+          <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        
+        <span class="token comment">// 报告错误并提供修复建议</span>
+        <span class="token keyword">function</span> <span class="token function">reportError</span><span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          context<span class="token punctuation">.</span><span class="token function">report</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+            node<span class="token punctuation">,</span>
+            <span class="token literal-property property">message</span><span class="token operator">:</span> <span class="token string">'禁止直接修改 props 对象。这会导致不可预测的行为和潜在的崩溃风险。'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">suggest</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+              <span class="token punctuation">&#123;</span>
+                <span class="token literal-property property">desc</span><span class="token operator">:</span> <span class="token string">'改用状态管理或创建新对象'</span><span class="token punctuation">,</span>
+                <span class="token function">fix</span><span class="token punctuation">(</span><span class="token parameter">fixer</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                  <span class="token comment">// 根据场景提供不同修复方案</span>
+                  <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'AssignmentExpression'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">const</span> propName <span class="token operator">=</span> node<span class="token punctuation">.</span>left<span class="token punctuation">.</span>property<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+                    <span class="token keyword">return</span> <span class="token punctuation">[</span>
+                      fixer<span class="token punctuation">.</span><span class="token function">replaceText</span><span class="token punctuation">(</span>
+                        node<span class="token punctuation">,</span>
+                        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">// 警告：不要直接修改 props\n</span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span> 
+                        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">// 正确做法：使用状态管理更新数据\n</span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+                        <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">// const [value, setValue] = useState(props.</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>propName<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">);</span><span class="token template-punctuation string">`</span></span>
+                      <span class="token punctuation">)</span>
+                    <span class="token punctuation">]</span><span class="token punctuation">;</span>
+                  <span class="token punctuation">&#125;</span>
+                  
+                  <span class="token comment">// 为函数调用提供修复建议</span>
+                  <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'CallExpression'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">return</span> fixer<span class="token punctuation">.</span><span class="token function">insertTextBefore</span><span class="token punctuation">(</span>
+                      node<span class="token punctuation">,</span>
+                      <span class="token string">'// 警告：不要直接修改 props\n'</span> <span class="token operator">+</span>
+                      <span class="token string">'// 正确做法：创建新对象\n'</span> <span class="token operator">+</span>
+                      <span class="token string">'// const updatedProps = &#123; ...props, ...newData &#125;;\n'</span>
+                    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                  <span class="token punctuation">&#125;</span>
+                  
+                  <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+              <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">]</span>
+          <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        
+        <span class="token comment">// 检测所有可能修改对象的操作</span>
+        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
+          <span class="token literal-property property">AssignmentExpression</span><span class="token operator">:</span> checkForMutation<span class="token punctuation">,</span>
+          <span class="token literal-property property">UpdateExpression</span><span class="token operator">:</span> checkForMutation<span class="token punctuation">,</span>
+          <span class="token literal-property property">CallExpression</span><span class="token operator">:</span> checkForMutation<span class="token punctuation">,</span>
+          <span class="token function">UnaryExpression</span><span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 检测 delete props.key</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token punctuation">.</span>operator <span class="token operator">===</span> <span class="token string">'delete'</span> <span class="token operator">&amp;&amp;</span> 
+                node<span class="token punctuation">.</span>argument<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">'MemberExpression'</span> <span class="token operator">&amp;&amp;</span> 
+                <span class="token function">isPropsObject</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>argument<span class="token punctuation">.</span>object<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+              <span class="token function">reportError</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+          <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>实现关键技术点：AST 节点检测</p>
+<ul>
+<li>规则通过检测以下 AST 节点类型识别 props 修改：<ul>
+<li>AssignmentExpression：属性赋值 (props.foo &#x3D; ‘bar’)</li>
+<li>UpdateExpression：更新操作 (props.count++)</li>
+<li>CallExpression：函数调用 (props.items.push())</li>
+<li>UnaryExpression：删除操作 (delete props.key)</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h1 id="第三题：性能优化闭环"><a href="#第三题：性能优化闭环" class="headerlink" title="第三题：性能优化闭环"></a>第三题：性能优化闭环</h1><p><strong>Q：首屏耗时从6000ms+优化至1000ms：“资源传输压缩+静态缓存”方案中，您如何制定缓存失效策略？请对比ETag与max-age的更新灵敏度</strong></p>
+<div style="color: #999">
+
+<p>A：</p>
+<p>整体缓存策略：</p>
+<pre><code class="mermaid">graph TD
+    A[用户请求] --&gt; B&#123;缓存检查&#125;
+    B --&gt;|有缓存| C[ETag&#x2F;Last-Modified验证]
+    B --&gt;|无缓存| D[完整下载]
+    C --&gt;|未修改| E[304 使用缓存]
+    C --&gt;|已修改| F[200 新资源]
+    G[版本化资源] --&gt; H[永久缓存 max-age&#x3D;31536000]
+    I[非版本化资源] --&gt; J[协商缓存 ETag+max-age&#x3D;86400]</code></pre>
+
+<p>分层缓存失效策略：</p>
+<ol>
+<li>版本化静态资源（JS&#x2F;CSS&#x2F;图片）<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 响应头配置
+<span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">public, max-age=31536000, immutable</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>失效策略：<ul>
+<li>文件名包含内容哈希：app.3a7b9c.js</li>
+<li>内容变化 → 文件名变化 → 自动失效</li>
+<li>永不验证：浏览器直接使用本地缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>HTML入口文件<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 响应头配置
+<span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">no-cache</span></span>
+<span class="token header"><span class="token header-name keyword">ETag</span><span class="token punctuation">:</span> <span class="token header-value">"33a64df551425fcc55e4d42a148795d9"</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>失效策略：<ul>
+<li>no-cache：每次请求必须验证</li>
+<li>ETag验证：服务端计算最新哈希</li>
+<li>部署时清除CDN缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>API数据响应<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 响应头配置
+<span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">max-age=60, stale-while-revalidate=300</span></span>
+<span class="token header"><span class="token header-name keyword">ETag</span><span class="token punctuation">:</span> <span class="token header-value">W/"5f5b9f41-264"</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>失效策略：<ul>
+<li>60秒内：直接使用缓存</li>
+<li>60-300秒：返回旧数据 + 后台更新</li>
+<li>300秒后：同步获取新数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>敏感数据<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 响应头配置
+<span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">private, no-store</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>失效策略：<ul>
+<li>禁止缓存</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>ETag vs max-age 灵敏度深度对比：</p>
+<table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">ETag</th>
+<th align="left">max-age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">更新触发条件</td>
+<td align="left">内容变化（字节级修改）</td>
+<td align="left">时间到期（预设时间后）</td>
+</tr>
+<tr>
+<td align="left">灵敏度</td>
+<td align="left">⚡ 毫秒级（修改即失效）</td>
+<td align="left">⏱️ 秒级~小时级（固定时间后）</td>
+</tr>
+<tr>
+<td align="left">网络请求</td>
+<td align="left">条件请求（304 Not Modified）</td>
+<td align="left">无请求（缓存期内）</td>
+</tr>
+<tr>
+<td align="left">数据传输量</td>
+<td align="left">小（仅验证头）</td>
+<td align="left">零（缓存期内）</td>
+</tr>
+<tr>
+<td align="left">服务端计算开销</td>
+<td align="left">每次需计算哈希</td>
+<td align="left">无</td>
+</tr>
+<tr>
+<td align="left">内容更新传播速度</td>
+<td align="left">即时</td>
+<td align="left">延迟（直到max-age过期）</td>
+</tr>
+<tr>
+<td align="left">典型应用场景</td>
+<td align="left">动态内容（HTML&#x2F;API）</td>
+<td align="left">静态资源（JS&#x2F;CSS&#x2F;图片）</td>
+</tr>
+</tbody></table>
+<p>假设某CSS文件在10:00修改：</p>
+<ul>
+<li>ETag方案：<ul>
+<li>10:00:01 文件修改完成</li>
+<li>10:00:30 用户请求 → 服务端计算新ETag</li>
+<li>10:00:31 返回200新内容</li>
+</ul>
+</li>
+<li>max-age&#x3D;3600方案：<ul>
+<li>10:00:01 文件修改完成</li>
+<li>10:00:30 用户请求 → 仍在缓存期（max-age未到）</li>
+<li>10:59:59 用户仍使用旧缓存</li>
+<li>11:00:00 缓存过期 → 重新请求</li>
+</ul>
+</li>
+</ul>
+<p>缓存失效自动化方案：</p>
+<pre><code class="mermaid">sequenceDiagram
+    开发者-&gt;&gt;CI系统: 提交代码
+    CI系统-&gt;&gt;构建系统: 触发构建
+    构建系统-&gt;&gt;CDN服务: 清除&#x2F;html&#x2F;* 缓存
+    构建系统-&gt;&gt;版本仓库: 上传带哈希资源
+    CDN服务-&gt;&gt;边缘节点: 刷新缓存
+    用户-&gt;&gt;边缘节点: 请求index.html
+    边缘节点-&gt;&gt;源站: 验证ETag
+    源站--&gt;&gt;边缘节点: 返回新内容</code></pre>
+
+</div>
+
+<p><strong>Q：日志采样率如何设置？请说明高并发场景下的采样权衡（如10万QPS时全量日志的性能风险）</strong></p>
+<div style="color: #999">
+
+<p>A：</p>
+<p>核心挑战：10万QPS下的全量日志风险</p>
+<pre><code class="mermaid">graph TD
+    A[10万QPS] --&gt; B[日志写入]
+    B --&gt; C[磁盘IO瓶颈]
+    C --&gt; D[写入延迟增加]
+    D --&gt; E[应用线程阻塞]
+    E --&gt; F[请求堆积]
+    F --&gt; G[服务雪崩]
+    G --&gt; H[系统崩溃]
+    
+    B --&gt; I[网络带宽饱和]
+    I --&gt; J[日志丢失]
+    B --&gt; K[CPU资源竞争]
+    K --&gt; L[业务处理延迟]</code></pre>
+
+<p>采样率科学计算模型：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 采样率 = min( 基础采样率, 最大采样量 / 当前QPS, 1 - (当前错误率 / 目标错误率) ^ 敏感系数 )</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">示例值</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">基础采样率</td>
+<td align="left">0.1%</td>
+<td align="left">系统最低采样保障</td>
+</tr>
+<tr>
+<td align="left">最大采样量</td>
+<td align="left">1000&#x2F;s</td>
+<td align="left">保护下游系统</td>
+</tr>
+<tr>
+<td align="left">当前错误率</td>
+<td align="left">0.5%</td>
+<td align="left">实时监控数据</td>
+</tr>
+<tr>
+<td align="left">目标错误率</td>
+<td align="left">0.1%</td>
+<td align="left">SLA要求</td>
+</tr>
+<tr>
+<td align="left">敏感系数</td>
+<td align="left">2.0</td>
+<td align="left">错误率对采样的影响程度</td>
+</tr>
+</tbody></table>
+<p>分层采样策略设计：</p>
+<pre><code class="mermaid">graph TD
+    A[请求入口] --&gt; B&#123;采样决策&#125;
+    B --&gt;|用户ID| C[用户维度 10%]
+    B --&gt;|API路径| D[接口维度 5%]
+    B --&gt;|错误类型| E[错误全量 100%]
+    B --&gt;|时延分级| F[慢请求 50%]
+    C --&gt; G[聚合采样]
+    D --&gt; G
+    E --&gt; G
+    F --&gt; G
+    G --&gt; H[最终采样率 0.1%-10%]</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">采样维度</th>
+<th align="left">采样率</th>
+<th align="left">优先级</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">错误日志</td>
+<td align="left">100%</td>
+<td align="left">最高</td>
+<td align="left">保障所有错误可追踪</td>
+</tr>
+<tr>
+<td align="left">慢查询</td>
+<td align="left">50%</td>
+<td align="left">高</td>
+<td align="left">超过200ms的请求</td>
+</tr>
+<tr>
+<td align="left">核心业务</td>
+<td align="left">10%</td>
+<td align="left">中</td>
+<td align="left">支付&#x2F;下单等关键路径</td>
+</tr>
+<tr>
+<td align="left">基础框架</td>
+<td align="left">1%</td>
+<td align="left">低</td>
+<td align="left">中间件、网络层日志</td>
+</tr>
+<tr>
+<td align="left">调试日志</td>
+<td align="left">0.1%</td>
+<td align="left">最低</td>
+<td align="left">开发调试信息</td>
+</tr>
+</tbody></table>
+</div>
+
+<h1 id="第四题：编程能力（实时手写）"><a href="#第四题：编程能力（实时手写）" class="headerlink" title="第四题：编程能力（实时手写）"></a>第四题：编程能力（实时手写）</h1><strong>
+
+<p>Q：请手写一个「带缓存的重试机制」请求工具：  </p>
 <ul>
 <li>要求：<br>a. 支持<code>maxRetry</code>参数控制重试次数<br>b. 使用LocalStorage缓存成功响应（缓存键需含请求参数哈希）<br>c. 当网络错误时自动使用缓存数据并后台静默重试  </li>
 <li>示例场景：弱网环境下加载用户权限数据</li>
 </ul>
 </strong>
 
+<div style="color: #999">
+
+<p>A：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/**
+ * 带缓存的重试机制请求工具
+ * @param &#123;string&#125; url - 请求URL
+ * @param &#123;Object&#125; [options] - 请求选项
+ * @param &#123;number&#125; [maxRetry=3] - 最大重试次数
+ * @param &#123;number&#125; [cacheTTL=300000] - 缓存有效期（毫秒，默认5分钟）
+ * @returns &#123;Promise&#125; - 返回请求结果的Promise
+ */</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">cachedRetryFetch</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> options <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> maxRetry <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">,</span> cacheTTL <span class="token operator">=</span> <span class="token number">300000</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 生成唯一的缓存键（基于URL和请求参数）</span>
+  <span class="token keyword">const</span> cacheKey <span class="token operator">=</span> <span class="token function">generateCacheKey</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// 尝试从缓存获取数据</span>
+  <span class="token keyword">const</span> cachedData <span class="token operator">=</span> <span class="token function">getFromCache</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">,</span> cacheTTL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// 如果有有效缓存，先返回缓存数据并启动后台重试</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>cachedData<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 后台静默重试（不阻塞主流程）</span>
+    <span class="token function">backgroundRetry</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> options<span class="token punctuation">,</span> maxRetry<span class="token punctuation">,</span> cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> cachedData<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token comment">// 没有缓存，执行正常请求</span>
+  <span class="token keyword">return</span> <span class="token function">executeFetchWithRetry</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> options<span class="token punctuation">,</span> maxRetry<span class="token punctuation">,</span> cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * 执行带重试的请求
+ */</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">executeFetchWithRetry</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> options<span class="token punctuation">,</span> maxRetry<span class="token punctuation">,</span> cacheKey<span class="token punctuation">,</span> attempt <span class="token operator">=</span> <span class="token number">0</span></span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>response<span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">HTTP error! status: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>response<span class="token punctuation">.</span>status<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 请求成功，缓存数据</span>
+    <span class="token function">saveToCache</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 最后一次重试失败时处理</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>attempt <span class="token operator">>=</span> maxRetry<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">const</span> cachedData <span class="token operator">=</span> <span class="token function">getFromCache</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">,</span> cacheTTL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>cachedData<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">请求失败，使用缓存数据: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>error<span class="token punctuation">.</span>message<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> cachedData<span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+      
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">请求失败且无可用缓存: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>error<span class="token punctuation">.</span>message<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token comment">// 计算指数退避时间 (1000, 2000, 4000, ...)</span>
+    <span class="token keyword">const</span> delay <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> attempt<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+    
+    console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">请求失败，</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>delay<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">ms后重试 (</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>attempt <span class="token operator">+</span> <span class="token number">1</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>maxRetry<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">): </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>error<span class="token punctuation">.</span>message<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 等待后重试</span>
+    <span class="token keyword">await</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token parameter">resolve</span> <span class="token operator">=></span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> delay<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token function">executeFetchWithRetry</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> options<span class="token punctuation">,</span> maxRetry<span class="token punctuation">,</span> cacheKey<span class="token punctuation">,</span> attempt <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * 后台静默重试（不影响主流程）
+ */</span>
+<span class="token keyword">function</span> <span class="token function">backgroundRetry</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> options<span class="token punctuation">,</span> maxRetry<span class="token punctuation">,</span> cacheKey</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 使用非阻塞方式启动后台重试</span>
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">executeFetchWithRetry</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> options<span class="token punctuation">,</span> maxRetry<span class="token punctuation">,</span> cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      <span class="token comment">// 检查缓存是否已过期或数据是否变更</span>
+      <span class="token keyword">const</span> cachedData <span class="token operator">=</span> <span class="token function">getFromCache</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>cachedData <span class="token operator">||</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>cachedData<span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 更新缓存</span>
+        <span class="token function">saveToCache</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'后台重试成功，缓存已更新'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">'后台重试失败:'</span><span class="token punctuation">,</span> error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 使用setTimeout 0确保异步执行</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * 生成缓存键（基于URL和请求参数的哈希）
+ */</span>
+<span class="token keyword">function</span> <span class="token function">generateCacheKey</span><span class="token punctuation">(</span><span class="token parameter">url<span class="token punctuation">,</span> options</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 创建包含所有请求参数的字符串</span>
+  <span class="token keyword">const</span> requestParams <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    url<span class="token punctuation">,</span>
+    <span class="token literal-property property">method</span><span class="token operator">:</span> options<span class="token punctuation">.</span>method <span class="token operator">||</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">headers</span><span class="token operator">:</span> options<span class="token punctuation">.</span>headers <span class="token operator">?</span> <span class="token punctuation">&#123;</span><span class="token operator">...</span>options<span class="token punctuation">.</span>headers<span class="token punctuation">&#125;</span> <span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">body</span><span class="token operator">:</span> options<span class="token punctuation">.</span>body <span class="token operator">?</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// 移除可能变化的请求头（如Authorization）</span>
+  <span class="token keyword">delete</span> requestParams<span class="token punctuation">.</span>headers<span class="token punctuation">[</span><span class="token string">'Authorization'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// 生成简单哈希（生产环境应使用更健壮的哈希算法）</span>
+  <span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>requestParams<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> hash <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> str<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> char <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    hash <span class="token operator">=</span> <span class="token punctuation">(</span>hash <span class="token operator">&lt;&lt;</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">-</span> hash <span class="token operator">+</span> char<span class="token punctuation">;</span>
+    hash <span class="token operator">=</span> hash <span class="token operator">&amp;</span> hash<span class="token punctuation">;</span> <span class="token comment">// 转换为32位整数</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">cached_request_</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>hash<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * 从缓存获取数据
+ */</span>
+<span class="token keyword">function</span> <span class="token function">getFromCache</span><span class="token punctuation">(</span><span class="token parameter">cacheKey<span class="token punctuation">,</span> cacheTTL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> cachedItem <span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>cachedItem<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">const</span> <span class="token punctuation">&#123;</span> data<span class="token punctuation">,</span> timestamp <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>cachedItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 检查缓存是否过期</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cacheTTL <span class="token operator">&amp;&amp;</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> timestamp <span class="token operator">></span> cacheTTL<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">缓存已过期: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>cacheKey<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">使用缓存数据: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>cacheKey<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> data<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'缓存读取失败:'</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * 保存数据到缓存
+ */</span>
+<span class="token keyword">function</span> <span class="token function">saveToCache</span><span class="token punctuation">(</span><span class="token parameter">cacheKey<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> cacheItem <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+      data<span class="token punctuation">,</span>
+      <span class="token literal-property property">timestamp</span><span class="token operator">:</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">,</span> cacheItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">缓存已更新: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>cacheKey<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'缓存保存失败:'</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 使用示例</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">loadUserPermissions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 加载用户权限数据（弱网环境下使用）</span>
+    <span class="token keyword">const</span> permissions <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">cachedRetryFetch</span><span class="token punctuation">(</span>
+      <span class="token string">'/api/user/permissions'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">method</span><span class="token operator">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">headers</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+          <span class="token string-property property">'Content-Type'</span><span class="token operator">:</span> <span class="token string">'application/json'</span><span class="token punctuation">,</span>
+          <span class="token string-property property">'Authorization'</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Bearer </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token function">getAuthToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span>
+        <span class="token punctuation">&#125;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token number">4</span><span class="token punctuation">,</span> <span class="token comment">// 最大重试4次</span>
+      <span class="token number">600000</span> <span class="token comment">// 缓存10分钟</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'用户权限数据:'</span><span class="token punctuation">,</span> permissions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">renderPermissions</span><span class="token punctuation">(</span>permissions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'无法加载用户权限:'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">showError</span><span class="token punctuation">(</span><span class="token string">'无法加载权限数据，请检查网络连接'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 模拟渲染函数</span>
+<span class="token keyword">function</span> <span class="token function">renderPermissions</span><span class="token punctuation">(</span><span class="token parameter">permissions</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'渲染权限界面:'</span><span class="token punctuation">,</span> permissions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 模拟错误显示</span>
+<span class="token keyword">function</span> <span class="token function">showError</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'错误提示:'</span><span class="token punctuation">,</span> message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 模拟获取认证token</span>
+<span class="token keyword">function</span> <span class="token function">getAuthToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token string">'user_auth_token'</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>核心功能实现：</p>
+<ol>
+<li>缓存键生成<ul>
+<li>基于URL和请求参数生成唯一哈希键</li>
+<li>排除可能变化的请求头（如Authorization）</li>
+<li>确保相同请求总是使用相同缓存键</li>
+</ul>
+</li>
+<li>缓存管理<ul>
+<li>使用LocalStorage存储带时间戳的数据</li>
+<li>支持缓存有效期（TTL）控制</li>
+<li>安全处理缓存读取&#x2F;写入错误</li>
+</ul>
+</li>
+<li>重试机制<ul>
+<li>指数退避策略：重试间隔随次数增加（1s, 2s, 4s…）</li>
+<li>最大重试次数控制</li>
+<li>后台静默重试不影响主流程</li>
+</ul>
+</li>
+<li>错误处理<ul>
+<li>网络错误时自动使用缓存数据</li>
+<li>重试失败后如有缓存则返回缓存</li>
+<li>完全失败时提供清晰错误信息</li>
+</ul>
+</li>
+</ol>
+<p>弱网环境处理流程：</p>
+<pre><code class="mermaid">sequenceDiagram
+    participant User as 用户界面
+    participant Cache as 缓存系统
+    participant Network as 网络请求
+    participant Retry as 重试机制
+    
+    User-&gt;&gt;Cache: 请求权限数据
+    alt 有有效缓存
+        Cache--&gt;&gt;User: 立即返回缓存数据
+        Cache-&gt;&gt;Retry: 启动后台重试
+        Retry-&gt;&gt;Network: 尝试请求
+        alt 请求成功
+            Network-&gt;&gt;Cache: 更新缓存
+            Cache--&gt;&gt;User: 下次请求使用新数据
+        else 请求失败
+            Retry-&gt;&gt;Cache: 保持旧缓存
+        end
+    else 无缓存
+        User-&gt;&gt;Network: 执行请求
+        alt 请求成功
+            Network-&gt;&gt;Cache: 保存数据
+            Network--&gt;&gt;User: 返回数据
+        else 请求失败
+            Network-&gt;&gt;Retry: 启动重试
+            Retry-&gt;&gt;Network: 重试请求
+            alt 重试成功
+                Network-&gt;&gt;Cache: 保存数据
+                Network--&gt;&gt;User: 返回数据
+            else 重试失败
+                Retry--&gt;&gt;User: 返回错误
+            end
+        end
+    end</code></pre>
+
+<p>性能优化策略：</p>
+<ol>
+<li>缓存优先策略<ul>
+<li>优先返回缓存数据，后台更新</li>
+<li>减少用户等待时间</li>
+</ul>
+</li>
+<li>指数退避重试<ul>
+<li>避免网络拥塞时过度请求</li>
+<li>平衡响应速度和服务器压力</li>
+</ul>
+</li>
+<li>差异缓存更新<ul>
+<li>后台重试成功后检查数据变更</li>
+<li>避免不必要缓存写入</li>
+</ul>
+</li>
+<li>安全缓存管理<ul>
+<li>缓存键排除敏感信息</li>
+<li>缓存数据带时间戳</li>
+<li>错误处理防止缓存污染</li>
+</ul>
+</li>
+</ol>
+<p>关键优势：</p>
+<ol>
+<li>无缝用户体验<ul>
+<li>网络波动时立即返回缓存数据</li>
+<li>后台自动更新确保数据新鲜度</li>
+</ul>
+</li>
+<li>资源优化<ul>
+<li>减少不必要的网络请求</li>
+<li>指数退避降低服务器压力</li>
+</ul>
+</li>
+<li>弹性设计<ul>
+<li>应对各种网络异常场景</li>
+<li>自动降级保证核心功能可用</li>
+</ul>
+</li>
+<li>易于集成<ul>
+<li>兼容标准fetch API</li>
+<li>简单明了的参数配置</li>
+</ul>
+</li>
+</ol>
+</div>
+
+<h1 id="第五题：架构深度与决策能力"><a href="#第五题：架构深度与决策能力" class="headerlink" title="第五题：架构深度与决策能力"></a>第五题：架构深度与决策能力</h1><p><strong>Q：您在紫光华智主导了 @hz&#x2F;node-server 和 @hz&#x2F;layout 这两个核心框架项目，它们共同支撑了微前端架构。请详细阐述一下您设计这套微前端解决方案的核心目标和面临的最大挑战是什么？您是如何权衡和最终决定采用这种 Node.js 中间件层 + React Layout 集成层 的方案，而不是其他主流微前端方案（如 single-spa, qiankun, Module Federation）？这个决策的关键考量因素有哪些？</strong></p>
+<div style="color: #999">
+
+<p>A：</p>
+<p>核心目的：</p>
+<ul>
+<li>解决各个行业线的业务需要融合部署的问题，业务之间有依赖但又相互独立，支持任意业务产品作为融合产品的主平台</li>
+<li>融合部署后需要统一进行业务菜单管理和网关代理管理，且需要对融合部署后的产品进行必要的权限验证</li>
+<li>实现基础的单点登录功能</li>
+<li>以业务中台的角色对各个业务线进行支撑。</li>
+</ul>
+<p>挑战点：</p>
+<ol>
+<li>各业务线的产品可以融合部署成一个集成产品，但各个业务线都有自己的平台入口，从各平台入口进入都需要可以访问融合部署后的其他业务，因此需要统一的代理管理，包括页面资源代理和接口请求代理，以保证不同的平台有相同的基础资源</li>
+<li>单点登录需要遵循安防行业规范，且需要考虑到对接三方公司的登录认证系统的成本</li>
+<li>node-server 作为统一入口，需要考虑到并发性能问题和部分业务问题跟踪定位</li>
+<li>layout 作为统一菜单集成管理的基础，需要制定各业务线的菜单规范，需要解决融合部署时的各业务线菜单冲突和正确渲染</li>
+<li>各业务线产品作为主平台部署时需要差异化的基础功能（比如产品主题、头部导航等），需要支持个性化定制</li>
+</ol>
+<p>决策方案基于以下几点考虑：</p>
+<ol>
+<li>因为需要实现单点登录功能和统一的代理转发，需要一个服务端框架，对前端开发者来说最熟悉的服务端环境就是 NodeJS，NodeJS 恰好在高并发场景有良好的性能，它基于 libuv 实现的事件循环系统对高并发异步请求处理的效果很好。</li>
+<li>因为需要保证各个业务产品都能作为融合产品的主平台，考虑到统一维护问题，需要把主平台基础功能从各业务线剥离。qiankun 等微前端方案都需要业务线自己适配主平台改造，且不能解决融合部署后基础资源统一管理和调度的问题，因此采用 node-server + layout 的微前端方案， node-server 作为 web 容器，对融合代理网关配置、权限校验等基础资源进行统一调度，统一管理页面请求转发和资源响应、layout 负责集成菜单管理，保证各业务产品融合部署后有相同的菜单</li>
+</ol>
+</div>
+
+<p><strong>追问：您提到需要解决“不同平台入口访问融合部署业务”的问题，这要求统一的代理管理（页面资源+接口请求）。微前端架构中，当多个业务线的子应用同时运行时，如何确保它们的全局变量（如 window 对象）、CSS 样式和第三方库（如 React, Vue）不发生冲突？特别是在“部分业务使用 Vue，部分使用 React”的混合微前端场景下。</strong></p>
+<div style="color: #999">
+
+<p>A：</p>
+<p>可以从隔离机制、规范约束和工具链配置三个维度入手。</p>
+<p>全局变量（window 对象）冲突：沙箱隔离机制：</p>
+<ul>
+<li>全局变量冲突的本质是多个子应用共享同一个window对象，导致变量覆盖或污染。解决思路是通过代理沙箱（Sandbox） 为每个子应用创建独立的执行环境，限制其对全局对象的直接操作。<ul>
+<li>方案 1 - 代理沙箱：可以利用 ES6 的 Proxy 对 window 对象进行代理，子应用的所有全局操作都会被代理层拦截，仅在子应用的作用域内生效，不影响全局或其他子应用。<ul>
+<li>子应用激活时，创建window的代理对象，将子应用的全局变量存储在代理层的私有空间。</li>
+<li>子应用访问window.xxx时，优先读取私有空间；修改时仅更新私有空间，不污染真实window。</li>
+<li>子应用卸载时，销毁代理层，自动清理私有变量。<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">ProxySandbox</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>privateWindow <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">// 子应用私有变量空间</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>proxy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">get</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> prop<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 优先读取子应用私有变量，不存在则读全局</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>privateWindow<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">||</span> target<span class="token punctuation">[</span>prop<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token function">set</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> prop<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 子应用的全局变量写入私有空间</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>privateWindow<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// 激活沙箱：将子应用代码的执行上下文绑定到代理对象</span>
+  <span class="token function">active</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>originWindow <span class="token operator">=</span> window<span class="token punctuation">;</span>
+    window <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>proxy<span class="token punctuation">;</span> <span class="token comment">// 临时替换全局window为代理对象</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// 销毁沙箱：恢复全局window</span>
+  <span class="token function">inactive</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    window <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>originWindow<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li>方案 2：命名空间规范<ul>
+<li>通过强制约定子应用的全局变量前缀（如app1_xxx、app2_xxx）避免冲突，配合 ES 模块（ESM）的块级作用域减少全局变量暴露。</li>
+<li>注意：此方案依赖人工规范，需在开发文档中明确约束，适合小型团队或简单场景。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>CSS 样式冲突：隔离与作用域限制</p>
+<ul>
+<li>CSS 冲突的核心是类名 &#x2F; 选择器全局污染，解决思路是为每个子应用的样式添加唯一标识，或限制样式的作用域范围。</li>
+<li>实现方案 - CSS Scoping（样式作用域隔离）：通过工具链自动为子应用的 CSS 类名添加唯一前缀（如子应用 ID），确保类名全局唯一。<ul>
+<li>Webpack 配置：使用css-loader的localIdentName为类名添加哈希或子应用标识。<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 子应用webpack.config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">module</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">rules</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.css$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        <span class="token literal-property property">use</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token string">'style-loader'</span><span class="token punctuation">,</span>
+          <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">loader</span><span class="token operator">:</span> <span class="token string">'css-loader'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">options</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+              <span class="token literal-property property">modules</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+                <span class="token comment">// 生成格式：子应用ID + 原类名 + 哈希</span>
+                <span class="token literal-property property">localIdentName</span><span class="token operator">:</span> <span class="token string">'app1-[local]-[hash:base64:5]'</span>
+              <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+          <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>框架内置能力：Vue 的<code>&lt;style scoped&gt;</code>、React 的 CSS Modules（通过css-loader实现），本质是自动为类名添加哈希前缀。</li>
+</ul>
+</li>
+</ul>
+<p>第三方库：</p>
+<ul>
+<li>主应用统一提供 React、Vue、lodash 等基础库，子应用通过externals复用；</li>
+<li>版本冲突的库由子应用独立打包，依赖沙箱隔离全局变量。</li>
+</ul>
+</div>
+
+<strong>
+
+<p>追问：您强调 Node.js 层用于实现行业规范的单点登录 (CAS) 和权限校验。</p>
+<ul>
+<li>CAS 协议本身较标准，但您提到需对接“三方非标认证系统”。您的 server.config.js 如何抽象不同认证协议的差异（例如 OAuth2&#x2F;SAML）？是否设计了插件机制允许开发人员注入自定义认证逻辑？</li>
+<li>权限校验（如 JWT 验证、角色鉴权）作为每个请求的前置中间件，必然增加延迟。您如何优化校验逻辑（如缓存公钥&#x2F;策略）以最小化对 P99 延迟 ≤180ms 的影响？</li>
+</ul>
+</strong>
+
+<strong>
+
+<p>追问：您指出 @hz&#x2F;layout 需解决菜单冲突并支持主题&#x2F;导航定制。</p>
+<ul>
+<li>菜单冲突的根源： 为什么融合部署前各业务的菜单会冲突？是路由 Path 重复？还是状态管理互相覆盖？您的“菜单唯一识别码 (menu path + menu id)”方案如何映射到前端路由库（如 React Router）的实际配置？</li>
+<li>个性化定制的技术手段： 您提到“在 Layout 各模块注册 hooks 供业务线扩展”。能否举例说明一个典型扩展场景（例如更换头部导航栏）？Hooks 如何避免业务代码污染框架核心？是否支持运行时动态加载定制模块？</li>
+</ul>
+</strong>
+
+<h1 id="第六题：性能优化实战"><a href="#第六题：性能优化实战" class="headerlink" title="第六题：性能优化实战"></a>第六题：性能优化实战</h1><strong>
+
+<p>Q：您在简历中提到将 @hz&#x2F;node-server 的单实例 QPS 从 1200 提升到 6500，P99 延迟降低到 ≤180ms，内存波动控制在 ≤50MB（持续24小时）。这是非常显著的提升。请深入讲解一下：</p>
+<ul>
+<li>针对 “流式代理 + 背压处理 + Node.js cluster” 这个核心优化点，您是如何具体设计和实现的？背压处理在这里扮演了什么关键角色？</li>
+<li>在解决 “单实例长时间运行后内存增长 400+MB” 这个棘手的内存泄漏问题时，您的排查思路、使用的工具（提到堆快照分析）以及最终的根本原因和解决方案是什么？89%的内存稳定性提升具体是如何达成的？</li>
+<li>首屏加载从 6000ms+ 优化到 1000ms，您提到了 Gzip压缩、静态资源缓存、链接复用、非阻塞 I&#x2F;O。其中哪一项或哪几项带来的收益最大？在实施静态资源缓存策略时，您是如何处理缓存失效问题的？特别是在微前端这种多团队协作的场景下。</li>
+</ul>
+</strong>
+
+<h1 id="第七题：工程化体系与创新"><a href="#第七题：工程化体系与创新" class="headerlink" title="第七题：工程化体系与创新"></a>第七题：工程化体系与创新</h1><strong>
+
+<p>您主导重构了前端 DevOps 体系，将 Webpack 编译总耗时从 30min 优化到 8min（中台产品甚至到 6min），并节省了 2 台服务器。</p>
+<ul>
+<li>请详细说明 “制作 docker 基础镜像 + 迁移至 webpack5 + 增量编译策略” 这三步分别解决了哪些关键瓶颈？增量编译策略的具体配置和实践难点是什么？</li>
+<li>您提到编写了自定义的 Eslint 插件，将代码编译成功率提升至 95%，崩溃率降至 1%。这个插件主要拦截了哪些类型的“低质量代码”？它的规则设计思路是怎样的？如何确保规则既能有效拦截问题，又不会过度限制开发效率？</li>
+<li>“缩减流水线至 1 条” 节省了服务器资源。这个整合面临哪些技术或流程上的挑战？如何保证整合后流水线的效率和稳定性？</li>
+</ul>
+</strong>
+
+<h1 id="第八题：复杂问题解决与系统设计"><a href="#第八题：复杂问题解决与系统设计" class="headerlink" title="第八题：复杂问题解决与系统设计"></a>第八题：复杂问题解决与系统设计</h1><strong>
+
+<p>在 @hz&#x2F;node-server 项目中，您解决了两个关键的架构挑战：</p>
+<ul>
+<li>CAS 认证对接： 通过引入 log4js 和提取 server.config.js，将对接周期从平均 2人&#x2F;天以上缩短到 0.5人天。请描述一下之前的对接流程为什么如此耗时？您的配置文件 server.config.js 抽象了哪些关键变量和逻辑？log4js 是如何帮助实现 99% 的全链路日志覆盖率的？在支持“行业内三方认证系统”的灵活性方面，配置文件设计的关键点是什么？</li>
+<li>微前端路由冲突： 您提到通过 菜单管理系统 + 代理配置系统 + 唯一识别码 (menu path + menu id) + 命名空间约束 将渲染准确率提升到 100%。能具体解释一下这个方案是如何运作的吗？特别是“命名空间约束”是如何在代理配置中具体体现并解决冲突的？为什么之前的冲突率会高达 10%？</li>
+</ul>
+</strong>
+
+<h1 id="第九题：技术领导力与团队协作"><a href="#第九题：技术领导力与团队协作" class="headerlink" title="第九题：技术领导力与团队协作"></a>第九题：技术领导力与团队协作</h1><strong>
+
+<p>您在团队管理方面成果斐然（培养5名A+、白皮书缩短新人上手周期67%）。</p>
+<ul>
+<li>您提到建立了 “核心业务及 web 框架负责人轮值”机制。这个机制具体是如何运行的？它如何帮助成员竞争到 A+ 绩效？您在实施这个机制时遇到了哪些阻力？是如何克服的？</li>
+<li>《业务中台 web 业务技术白皮书》是缩短新人周期的关键。这份白皮书的核心内容结构是怎样的？您认为对于新人快速上手复杂的中台和框架，哪些信息是最关键、最需要优先掌握的？如何保证白皮书的持续更新和有效性？</li>
+<li>在任务评估上，您能做到“版本需求评估工作量与实际交付误差不超过 1人&#x2F;天”，这非常精准。您的评估方法论是什么？特别是在面对技术不确定性较高的任务时，如何保证评估的准确性？</li>
+</ul>
+</strong>
+
+<h1 id="第十题：技术广度与前沿关注"><a href="#第十题：技术广度与前沿关注" class="headerlink" title="第十题：技术广度与前沿关注"></a>第十题：技术广度与前沿关注</h1><strong>
+
+<p>您的技能清单显示 React (★★★★☆) 和 TypeScript (★★★☆☆) 是您的主要技术栈。</p>
+<ul>
+<li>在您主导的较新项目（如2023-2024的视觉中枢业务中台）中，是否全面采用了 TypeScript？在将大型 JavaScript 项目迁移到 TypeScript 或推动团队采用 TS 的过程中，您遇到过哪些挑战？如何说服团队或克服这些挑战？</li>
+<li>您对 React 18+ 的新特性（如 Concurrent Features, Server Components - RSC）有了解或实践吗？您如何看待这些特性对未来大型应用（尤其是您构建的这类中台&#x2F;微前端应用）架构的影响？RSC 与您现有的 Node.js 中间件层如何协同或可能产生冲突？</li>
+<li>您在简历中提到了 Kubernetes 持久化配置。能简单谈谈您对容器化（Docker）和 Kubernetes 在前端部署和运维中价值的理解吗？您亲自实践到了什么程度？</li>
+</ul>
+</strong>
+
+<h1 id="第十一题：项目回顾与反思"><a href="#第十一题：项目回顾与反思" class="headerlink" title="第十一题：项目回顾与反思"></a>第十一题：项目回顾与反思</h1><p><strong>回顾您在紫光华智主导的这些核心框架和大型项目（@hz&#x2F;node-server, @hz&#x2F;layout, 视觉中枢业务中台），如果现在让您重新设计或重构，您会在哪些方面做出不同的技术决策或架构选择？为什么？（请结合您现在的认知和技术发展来谈）</strong></p>
+<h1 id="第十二题：求职动机与期望"><a href="#第十二题：求职动机与期望" class="headerlink" title="第十二题：求职动机与期望"></a>第十二题：求职动机与期望</h1><p><strong>您拥有10年扎实且成果显著的经验，尤其是在安防领域的中台和基建建设上。您对下一份工作的核心期望是什么？您希望在新平台解决什么样规模或挑战性的问题？您如何看待自己从技术专家&#x2F;PL 向更资深角色（如架构师、技术经理）的发展？</strong></p>
 
     </div>
 
@@ -834,13 +2096,13 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">236k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:50</span>
+    <span title="站点阅读时长">14:18</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
