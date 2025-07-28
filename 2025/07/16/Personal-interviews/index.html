@@ -28,7 +28,7 @@
 <meta property="og:description" content="第一题：架构设计（结合@hz&#x2F;node-server项目）Q：您将单实例QPS从1200提升至6500的核心手段是「流式代理+cluster集群」，流式代理如何解决高并发下的内存瓶颈？请对比描述传统缓冲模式（buffer）与流式处理（stream）的内存差异   A： 流式代理 vs 传统缓冲模式的内存差异：  内存占用高：高并发场景下，传统缓冲模式（Buffer）会先将完整请求&amp;#x2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-16T01:11:29.000Z">
-<meta property="article:modified_time" content="2025-07-25T09:13:03.342Z">
+<meta property="article:modified_time" content="2025-07-27T13:56:25.860Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-25 17:13:03" itemprop="dateModified" datetime="2025-07-25T17:13:03+08:00">2025-07-25</time>
+      <time title="修改时间：2025-07-27 21:56:25" itemprop="dateModified" datetime="2025-07-27T21:56:25+08:00">2025-07-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -280,14 +280,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>11k</span>
+      <span>13k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>40 分钟</span>
+      <span>48 分钟</span>
     </span>
 </div>
 
@@ -1856,16 +1856,17 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <div style="color: #999">
 
 <p>A：</p>
-<p>核心目的：</p>
+<p>核心目标：</p>
 <ul>
-<li>解决各个行业线的业务需要融合部署的问题，业务之间有依赖但又相互独立，支持任意业务产品作为融合产品的主平台</li>
-<li>融合部署后需要统一进行业务菜单管理和网关代理管理，且需要对融合部署后的产品进行必要的权限验证</li>
+<li>解决各业务线产品需要融合部署的问题，支持任意业务产品作为融合产品的主平台</li>
+<li>为融合部署产品提供统一的资源管理和调度（比如代理网关、菜单管理等）</li>
+<li>为各业务线产品提供统一的页面框架、规范产品 UI 设计</li>
+<li>为各业务线产品提供通用基础功能（用户中心、系统设置等）</li>
 <li>实现基础的单点登录功能</li>
-<li>以业务中台的角色对各个业务线进行支撑。</li>
 </ul>
-<p>挑战点：</p>
+<p>核心挑战：</p>
 <ol>
-<li>各业务线的产品可以融合部署成一个集成产品，但各个业务线都有自己的平台入口，从各平台入口进入都需要可以访问融合部署后的其他业务，因此需要统一的代理管理，包括页面资源代理和接口请求代理，以保证不同的平台有相同的基础资源</li>
+<li>各业务线产品都有自己独立的业务入口，不同的业务产品可以组合部署为一个融合产品，且任何业务产品都可以作为融合产品的主平台入口。因此需要统一的资源管理（统一菜单、统一代理网关等）</li>
 <li>单点登录需要遵循安防行业规范，且需要考虑到对接三方公司的登录认证系统的成本</li>
 <li>node-server 作为统一入口，需要考虑到并发性能问题和部分业务问题跟踪定位</li>
 <li>layout 作为统一菜单集成管理的基础，需要制定各业务线的菜单规范，需要解决融合部署时的各业务线菜单冲突和正确渲染</li>
@@ -1889,33 +1890,68 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <li>方案 1 - 代理沙箱：可以利用 ES6 的 Proxy 对 window 对象进行代理，子应用的所有全局操作都会被代理层拦截，仅在子应用的作用域内生效，不影响全局或其他子应用。<ul>
 <li>子应用激活时，创建window的代理对象，将子应用的全局变量存储在代理层的私有空间。</li>
 <li>子应用访问window.xxx时，优先读取私有空间；修改时仅更新私有空间，不污染真实window。</li>
-<li>子应用卸载时，销毁代理层，自动清理私有变量。<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">ProxySandbox</span> <span class="token punctuation">&#123;</span>
-  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>privateWindow <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">// 子应用私有变量空间</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>proxy <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
-      <span class="token function">get</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> prop<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 优先读取子应用私有变量，不存在则读全局</span>
-        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>privateWindow<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">||</span> target<span class="token punctuation">[</span>prop<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<li>子应用卸载时，销毁代理层，自动清理私有变量。<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 基于 Proxy 的沙箱实现</span>
+<span class="token keyword">class</span> <span class="token class-name">JSSandbox</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">appName</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>appName <span class="token operator">=</span> appName<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>sandbox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+      <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> key</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 优先从子应用沙箱获取</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>sandboxProps<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sandboxProps<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token comment">// 安全访问全局属性</span>
+        <span class="token keyword">const</span> globalValue <span class="token operator">=</span> target<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token keyword">typeof</span> globalValue <span class="token operator">===</span> <span class="token string">'function'</span> 
+          <span class="token operator">?</span> <span class="token function">globalValue</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>target<span class="token punctuation">)</span>
+          <span class="token operator">:</span> globalValue<span class="token punctuation">;</span>
       <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-      <span class="token function">set</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> prop<span class="token punctuation">,</span> value<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 子应用的全局变量写入私有空间</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>privateWindow<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+      <span class="token function-variable function">set</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 隔离写入</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>sandboxProps<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">has</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> key</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> key <span class="token keyword">in</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sandboxProps <span class="token operator">||</span> key <span class="token keyword">in</span> target<span class="token punctuation">;</span>
       <span class="token punctuation">&#125;</span>
     <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">this</span><span class="token punctuation">.</span>sandboxProps <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>modifiedProps <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
+  
+  <span class="token function">activate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 记录变更的全局属性</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> prop <span class="token keyword">in</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sandboxProps<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>modifiedProps<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>prop<span class="token punctuation">,</span> window<span class="token punctuation">[</span>prop<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      window<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sandboxProps<span class="token punctuation">[</span>prop<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token function">deactivate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 恢复全局状态</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token punctuation">[</span>prop<span class="token punctuation">,</span> value<span class="token punctuation">]</span> <span class="token keyword">of</span> <span class="token keyword">this</span><span class="token punctuation">.</span>modifiedProps<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      window<span class="token punctuation">[</span>prop<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>modifiedProps<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token function">getSandbox</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sandbox<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
 
-  <span class="token comment">// 激活沙箱：将子应用代码的执行上下文绑定到代理对象</span>
-  <span class="token function">active</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>originWindow <span class="token operator">=</span> window<span class="token punctuation">;</span>
-    window <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>proxy<span class="token punctuation">;</span> <span class="token comment">// 临时替换全局window为代理对象</span>
-  <span class="token punctuation">&#125;</span>
+<span class="token comment">// 在子应用加载时</span>
+<span class="token keyword">const</span> vueAppSandbox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JSSandbox</span><span class="token punctuation">(</span><span class="token string">'vue-app'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> vueWindow <span class="token operator">=</span> vueAppSandbox<span class="token punctuation">.</span><span class="token function">getSandbox</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="token comment">// 销毁沙箱：恢复全局window</span>
-  <span class="token function">inactive</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    window <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>originWindow<span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<span class="token comment">// 在子应用中使用隔离的全局对象</span>
+vueWindow<span class="token punctuation">.</span><span class="token constant">APP_CONFIG</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token comment">/* ... */</span> <span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token comment">// 不会污染真实window</span>
+
+<span class="token comment">// 激活/停用沙箱</span>
+vueAppSandbox<span class="token punctuation">.</span><span class="token function">activate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 挂载前</span>
+<span class="token comment">// ...运行子应用代码</span>
+vueAppSandbox<span class="token punctuation">.</span><span class="token function">deactivate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 卸载后</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 <li>方案 2：命名空间规范<ul>
@@ -1961,6 +1997,120 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <li>主应用统一提供 React、Vue、lodash 等基础库，子应用通过externals复用；</li>
 <li>版本冲突的库由子应用独立打包，依赖沙箱隔离全局变量。</li>
 </ul>
+<p>混合框架协调方案：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">FrameworkCoordinator</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>apps <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>sharedLibraries <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token function">registerApp</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> config</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>apps<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+      <span class="token operator">...</span>config<span class="token punctuation">,</span>
+      <span class="token literal-property property">status</span><span class="token operator">:</span> <span class="token string">'inactive'</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">container</span><span class="token operator">:</span> <span class="token keyword">null</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token keyword">async</span> <span class="token function">mountApp</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>apps<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>app<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token string">'active'</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 1. 创建容器</span>
+    <span class="token keyword">const</span> container <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    container<span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>name<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">-container</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 2. 加载共享库</span>
+    <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">loadSharedDependencies</span><span class="token punctuation">(</span>app<span class="token punctuation">.</span>requires<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 3. 初始化沙箱</span>
+    <span class="token keyword">const</span> sandbox <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JSSandbox</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sandbox<span class="token punctuation">.</span><span class="token function">activate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 4. 执行挂载</span>
+    app<span class="token punctuation">.</span><span class="token function">mount</span><span class="token punctuation">(</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    app<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token string">'active'</span><span class="token punctuation">;</span>
+    app<span class="token punctuation">.</span>container <span class="token operator">=</span> container<span class="token punctuation">;</span>
+    app<span class="token punctuation">.</span>sandbox <span class="token operator">=</span> sandbox<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token keyword">async</span> <span class="token function">unmountApp</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>apps<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>app<span class="token punctuation">.</span>status <span class="token operator">!==</span> <span class="token string">'active'</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 1. 执行卸载</span>
+    app<span class="token punctuation">.</span><span class="token function">unmount</span><span class="token punctuation">(</span>app<span class="token punctuation">.</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 2. 清理DOM</span>
+    app<span class="token punctuation">.</span>container<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">removeChild</span><span class="token punctuation">(</span>app<span class="token punctuation">.</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 3. 停用沙箱</span>
+    app<span class="token punctuation">.</span>sandbox<span class="token punctuation">.</span><span class="token function">deactivate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// 4. 清理资源</span>
+    app<span class="token punctuation">.</span>status <span class="token operator">=</span> <span class="token string">'inactive'</span><span class="token punctuation">;</span>
+    app<span class="token punctuation">.</span>container <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    app<span class="token punctuation">.</span>sandbox <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token keyword">async</span> <span class="token function">loadSharedDependencies</span><span class="token punctuation">(</span><span class="token parameter">libraries</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">const</span> loadPromises <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> lib <span class="token keyword">of</span> libraries<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>sharedLibraries<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>lib<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        loadPromises<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">loadLibrary</span><span class="token punctuation">(</span>lib<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">module</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>sharedLibraries<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>lib<span class="token punctuation">,</span> module<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    
+    <span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>loadPromises<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  
+  <span class="token function">loadLibrary</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// 实际加载逻辑</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>name <span class="token operator">===</span> <span class="token string">'react'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>React<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>name <span class="token operator">===</span> <span class="token string">'vue'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>Vue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+      <span class="token comment">// ...</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 注册应用</span>
+<span class="token keyword">const</span> coordinator <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FrameworkCoordinator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+coordinator<span class="token punctuation">.</span><span class="token function">registerApp</span><span class="token punctuation">(</span><span class="token string">'vue-checkout'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+  <span class="token function-variable function">mount</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">container</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Vue应用挂载逻辑</span>
+    <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">$mount</span><span class="token punctuation">(</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">unmount</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">container</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Vue应用卸载</span>
+    container<span class="token punctuation">.</span>__vue_app__<span class="token punctuation">.</span><span class="token function">unmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">requires</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'vue'</span><span class="token punctuation">,</span> <span class="token string">'vue-router'</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+coordinator<span class="token punctuation">.</span><span class="token function">registerApp</span><span class="token punctuation">(</span><span class="token string">'react-dashboard'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+  <span class="token function-variable function">mount</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">container</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// React应用挂载</span>
+    ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token operator">&lt;</span>App <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">,</span> container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">unmount</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">container</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+    ReactDOM<span class="token punctuation">.</span><span class="token function">unmountComponentAtNode</span><span class="token punctuation">(</span>container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">requires</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'react'</span><span class="token punctuation">,</span> <span class="token string">'react-dom'</span><span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 </div>
 
 <strong>
@@ -1981,6 +2131,63 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </ul>
 </strong>
 
+<div style="color: #999">
+
+<p>A：</p>
+<p>菜单冲突根源：融合部署前各业务线产品的路由 path 重复。</p>
+<ul>
+<li>解决方案：<ul>
+<li>数据库中，菜单数据的 menu id 唯一，当数据库中有跨子应用的 path 重复的路由时，通过给 path 指定其实际所属子应用的其他任意非重复的菜单的 menu id 参数（&#x2F;path?key&#x3D;menuId）来保证菜单的唯一渲染 Component 即可</li>
+<li>由于各子应用都集成了@hz&#x2F;layout，@hz&#x2F;layout 在生成页面菜单 DOM 时会拉取数据库的全量菜单配置数据，并和自身的 router.config.js 配置文件求交集 render component，数据库中有重复 path 时根据 path 指定的 menuId 来判断 path 属于哪个子应用。每个子应用都有自己的路由系统结构（树形结构）</li>
+<li>layout 在生成菜单 DOM 时绑定了菜单的点击事件，触发点击事件时可以拿到该菜单的全量属性数据（包括 path、id、菜单所属子系统 等），可以根据菜单的全量属性数据判断当前路由变更属于子系统内部路由变化还是跨应用路由变化（当重复 path 触发点击事件时根据 key&#x3D;menuId 来判断是内部跳转还是跨应用跳转）</li>
+<li>当路由变化属于子系统内部变化时，由子系统自己保障路由唯一性</li>
+<li>当路由变化属于跨应用路由变化时，由触发路由变化的当前子应用通过 postMessage 通知主应用路由发生变化，主应用通过 node-server 代理重新请求变化后的路由资源</li>
+</ul>
+</li>
+</ul>
+<p>典型个性化定制扩展场景：产品使用指南</p>
+<ul>
+<li>技术手段：通过 updateUserCenter 钩子显式返回业务 DOM 实现<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// layout 注册并监听 updateUserCenter 事件</span>
+hooks<span class="token punctuation">.</span><span class="token function">publish</span><span class="token punctuation">(</span><span class="token string">'updateUserCenter'</span><span class="token punctuation">)</span>
+hooks<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'updateUserCenter'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">doms</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 处理 DOM 渲染</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 子应用通知 layout 更新 DOM</span>
+hooks<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'updateUserCenter'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">defaultDoms</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span>defaultDoms<span class="token punctuation">,</span> customDoms<span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>避免污染的手段：只开放指定区域的扩展 hooks，并检查业务调用时的出参类型（HTML&#x2F;DOM）</li>
+<li>支持运行时动态加载定制模块</div></li>
+</ul>
+<p><strong>追问：您在紫光华智主导设计 @hz&#x2F;node-server 容器服务框架时，选择了 Node.js + Express 作为技术栈，而当时行业内也有 Koa、NestJS 等框架可选。能否具体说说这个技术栈选型的决策依据？比如从性能、团队适配、业务场景等维度，您是如何权衡的？</strong></p>
+<div style="color: #999">
+
+<p>A：</p>
+<p>决策依据主要有以下几点：</p>
+<ul>
+<li>社区生态：express 的社区生态非常成熟，中间件数量庞大，文档和教材比较丰富，问题解决方案更容易查找</li>
+<li>内置功能：express 大而全，内置路由、静态文件服务、模板引擎等功能，开箱即用，刚好匹配 node-server 作为 web 容器的核心需求，不用像 Koa 一样引入第三方中间件来实现这些功能</li>
+<li>开发与运维成本：团队成员已有 express 相关基础，可快速上手</li>
+</ul>
+</div>
+
+<p><strong>追问：在微前端架构中，您解决了子服务路由冲突导致 10% 渲染错误的问题，最终通过 “menu path + menu id 唯一识别码 + 命名空间约束” 实现了 100% 准确率。这里的 “命名空间约束” 具体是如何落地的？比如子服务注册路由时必须遵循什么规则？主框架如何校验和拦截不符合规则的路由？</strong></p>
+<p><strong>在处理微前端子服务间的问题定位时，您通过 “定制 http-proxy-middleware 源码 + 全链路日志” 将定位成本缩减 8 人天 &#x2F; 月。这里定制源码主要修改了哪些部分？全链路日志的关键节点是如何设计的？比如代理请求的哪些阶段必须打日志，才能高效定位问题？</strong></p>
+<div style="color: #999">
+
+<p>A：</p>
+<p>源码定制方案：</p>
+<ul>
+<li>增加了 http.request 处的日志，在请求实际发起和响应处分别对 request 和 response添加了请求 Id（基于时间戳生成的唯一 Id），方便抓包分析时定位请求链路（特别是高并发时请求 Id 尤为重要）</li>
+</ul>
+<p>关键节点：</p>
+<ul>
+<li>在代理发送前和响应后添加基于代理转发 target 的链路日志，方便快速定位请求是否正确转发到代理目标，以及代理目标是否正确响应资源（页面代理、接口代理等）。主要用于快速定位融合产品主平台入口访问子应用时子应用未正确响应（页面白屏、页面操作报错等）</li>
+</ul>
+</div>
+
+<p><strong>您在设计 @hz&#x2F;layout 框架时，通过 “动态插件化架构” 实现跨团队模块热插拔，迭代冲突率下降 90%。这个架构的核心设计是什么？比如插件的注册 &#x2F; 卸载机制、模块间通信方式是怎样的？如何保证插件加载的安全性（比如避免恶意插件影响主框架）？</strong></p>
 <h1 id="第六题：性能优化实战"><a href="#第六题：性能优化实战" class="headerlink" title="第六题：性能优化实战"></a>第六题：性能优化实战</h1><strong>
 
 <p>Q：您在简历中提到将 @hz&#x2F;node-server 的单实例 QPS 从 1200 提升到 6500，P99 延迟降低到 ≤180ms，内存波动控制在 ≤50MB（持续24小时）。这是非常显著的提升。请深入讲解一下：</p>
@@ -1991,6 +2198,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </ul>
 </strong>
 
+<p><strong>简历中提到您解决了单实例内存泄漏问题，内存波动从 400+MB 降到≤50MB（持续 24 小时）。想了解下您当时是通过哪些工具定位泄漏点的？比如 Heap Snapshot 的分析重点是什么？有没有遇到过 “误判泄漏源” 的情况，最后是如何排除的？</strong></p>
 <h1 id="第七题：工程化体系与创新"><a href="#第七题：工程化体系与创新" class="headerlink" title="第七题：工程化体系与创新"></a>第七题：工程化体系与创新</h1><strong>
 
 <p>您主导重构了前端 DevOps 体系，将 Webpack 编译总耗时从 30min 优化到 8min（中台产品甚至到 6min），并节省了 2 台服务器。</p>
@@ -2001,6 +2209,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </ul>
 </strong>
 
+<p><strong>您在工程化体系中，将 Webpack 编译时间从 30min 降到 8min，提到了 “Webpack5 增量编译策略”。能否具体说说这个策略在您的项目中是如何实现的？比如如何配置 cache 选项？是否遇到过缓存失效或缓存污染的问题，如何解决的？</strong></p>
 <h1 id="第八题：复杂问题解决与系统设计"><a href="#第八题：复杂问题解决与系统设计" class="headerlink" title="第八题：复杂问题解决与系统设计"></a>第八题：复杂问题解决与系统设计</h1><strong>
 
 <p>在 @hz&#x2F;node-server 项目中，您解决了两个关键的架构挑战：</p>
@@ -2010,6 +2219,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </ul>
 </strong>
 
+<p><strong>您有丰富的高性能 Web 架构设计经验，假设现在团队要开发一个高并发的实时数据监控平台（QPS 预期 8000+，支持 10 万级设备实时数据推送），前端架构上您会优先考虑哪些设计原则？比如技术栈选型、性能优化、扩展性设计等方面，您的初步思路是什么？</strong></p>
 <h1 id="第九题：技术领导力与团队协作"><a href="#第九题：技术领导力与团队协作" class="headerlink" title="第九题：技术领导力与团队协作"></a>第九题：技术领导力与团队协作</h1><strong>
 
 <p>您在团队管理方面成果斐然（培养5名A+、白皮书缩短新人上手周期67%）。</p>
@@ -2020,6 +2230,8 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </ul>
 </strong>
 
+<p><strong>您带领团队培养了 5 名 A + 工程师，且涨薪率 100%。想了解下您在 “骨干培养” 中，“核心业务及 web 框架负责人轮值” 机制的具体运作方式？比如轮值周期、负责人需要承担的核心任务是什么？如何通过这个机制帮助成员提升技术深度和业务理解？</strong></p>
+<p><strong>简历中提到 “新人上手周期从 3 周降到 1 周”，技术白皮书是关键因素之一。能否举例说明白皮书里包含哪些核心内容模块？比如除了架构文档，是否有 “常见坑点解决方案”“业务场景与技术方案映射表” 等实战性内容？</strong></p>
 <h1 id="第十题：技术广度与前沿关注"><a href="#第十题：技术广度与前沿关注" class="headerlink" title="第十题：技术广度与前沿关注"></a>第十题：技术广度与前沿关注</h1><strong>
 
 <p>您的技能清单显示 React (★★★★☆) 和 TypeScript (★★★☆☆) 是您的主要技术栈。</p>
@@ -2031,6 +2243,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </strong>
 
 <h1 id="第十一题：项目回顾与反思"><a href="#第十一题：项目回顾与反思" class="headerlink" title="第十一题：项目回顾与反思"></a>第十一题：项目回顾与反思</h1><p><strong>回顾您在紫光华智主导的这些核心框架和大型项目（@hz&#x2F;node-server, @hz&#x2F;layout, 视觉中枢业务中台），如果现在让您重新设计或重构，您会在哪些方面做出不同的技术决策或架构选择？为什么？（请结合您现在的认知和技术发展来谈）</strong></p>
+<p><strong>视觉中枢视图数据运维平台的运维地图 web 应用 PK 海康、华为中标，您提到这是技术优势带来的结果。能否具体说说当时你们的技术方案相比友商，在前端层面有哪些核心竞争力？比如性能、交互体验、扩展性等维度的差异化优势。</strong></p>
 <h1 id="第十二题：求职动机与期望"><a href="#第十二题：求职动机与期望" class="headerlink" title="第十二题：求职动机与期望"></a>第十二题：求职动机与期望</h1><p><strong>您拥有10年扎实且成果显著的经验，尤其是在安防领域的中台和基建建设上。您对下一份工作的核心期望是什么？您希望在新平台解决什么样规模或挑战性的问题？您如何看待自己从技术专家&#x2F;PL 向更资深角色（如架构师、技术经理）的发展？</strong></p>
 
     </div>
@@ -2096,13 +2309,13 @@ module<span class="token punctuation">.</span>exports <span class="token operato
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">236k</span>
+    <span title="站点总字数">238k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">14:18</span>
+    <span title="站点阅读时长">14:26</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
