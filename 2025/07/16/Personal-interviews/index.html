@@ -28,7 +28,7 @@
 <meta property="og:description" content="第一题：架构设计（结合@hz&#x2F;node-server项目）Q：您将单实例QPS从1200提升至6500的核心手段是「流式代理+cluster集群」，流式代理如何解决高并发下的内存瓶颈？请对比描述传统缓冲模式（buffer）与流式处理（stream）的内存差异   A： 流式代理 vs 传统缓冲模式的内存差异：  内存占用高：高并发场景下，传统缓冲模式（Buffer）会先将完整请求&amp;#x2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-16T01:11:29.000Z">
-<meta property="article:modified_time" content="2025-07-27T13:56:25.860Z">
+<meta property="article:modified_time" content="2025-07-30T01:42:07.040Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
@@ -176,18 +176,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -261,7 +261,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-27 21:56:25" itemprop="dateModified" datetime="2025-07-27T21:56:25+08:00">2025-07-27</time>
+      <time title="修改时间：2025-07-30 09:42:07" itemprop="dateModified" datetime="2025-07-30T09:42:07+08:00">2025-07-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -280,14 +280,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>13k</span>
+      <span>14k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>48 分钟</span>
+      <span>53 分钟</span>
     </span>
 </div>
 
@@ -887,7 +887,7 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 <td align="left">type: ‘memory’（默认）</td>
 </tr>
 </tbody></table>
-<p>filesystem 缓存于 memory 缓存的适用场景差异：</p>
+<p>filesystem 缓存与 memory 缓存的适用场景差异：</p>
 <ul>
 <li>filesystem 缓存<ul>
 <li>生产环境构建：需要保证编译机器、三方依赖稳定</li>
@@ -2173,6 +2173,33 @@ hooks<span class="token punctuation">.</span><span class="token function">emit</
 </div>
 
 <p><strong>追问：在微前端架构中，您解决了子服务路由冲突导致 10% 渲染错误的问题，最终通过 “menu path + menu id 唯一识别码 + 命名空间约束” 实现了 100% 准确率。这里的 “命名空间约束” 具体是如何落地的？比如子服务注册路由时必须遵循什么规则？主框架如何校验和拦截不符合规则的路由？</strong></p>
+<div style="color: #999">
+
+<p>命名空间约束落地方案：</p>
+<ul>
+<li>这里的“命名空间约束”主要用于代理配置管理。当跨子应用路由跳转时，本质上是由主应用重新发起来 HTTP 请求，HTTP 请求经过主应用的 node-server 进行代理转发，此时需要保证代理转发的目标 node-server 是唯一且确定的</li>
+<li>代理路径和命名空间在代理配置属性中为必填项</li>
+<li>命名空间要求与代理路径的前缀保持一致，由前端进行校验</li>
+<li>命名空间存储于代理配置的数据库中，由服务端校验命名空间的唯一性</li>
+<li>同一命名空间不允许应用于多个代理目标，由服务端进行校验</li>
+</ul>
+<p>子服务注册路由时需要遵循以下规则：</p>
+<ul>
+<li>必须提供完整的路由表，不允许运行时动态添加未声明的路由</li>
+<li>子应用注册的所有路由必须以自身命名空间为前缀</li>
+</ul>
+<p>当子服务自身的路由配置（hz-config.js）不符合规则时：</p>
+<ul>
+<li>通过页面菜单访问子应用会匹配不到实际路由对应的资源（子应用内部 router change），主应用返回 404 页面</li>
+</ul>
+<p>menu path + menu id 组成的唯一识别码主要用于解决以下问题：</p>
+<ul>
+<li>融合产品可能将子应用的同一 path 配置到不同的菜单目录</li>
+<li>该需求场景下可能导致菜单跳转后左侧菜单栏高亮选中有误</li>
+<li>通过 &#x2F;path?key&#x3D;menuId 解决高亮选中问题，menuId 为需要正确高亮的菜单所属的上一级菜单目录的 menuId</li>
+</ul>
+</div>
+
 <p><strong>在处理微前端子服务间的问题定位时，您通过 “定制 http-proxy-middleware 源码 + 全链路日志” 将定位成本缩减 8 人天 &#x2F; 月。这里定制源码主要修改了哪些部分？全链路日志的关键节点是如何设计的？比如代理请求的哪些阶段必须打日志，才能高效定位问题？</strong></p>
 <div style="color: #999">
 
@@ -2188,17 +2215,239 @@ hooks<span class="token punctuation">.</span><span class="token function">emit</
 </div>
 
 <p><strong>您在设计 @hz&#x2F;layout 框架时，通过 “动态插件化架构” 实现跨团队模块热插拔，迭代冲突率下降 90%。这个架构的核心设计是什么？比如插件的注册 &#x2F; 卸载机制、模块间通信方式是怎样的？如何保证插件加载的安全性（比如避免恶意插件影响主框架）？</strong></p>
-<h1 id="第六题：性能优化实战"><a href="#第六题：性能优化实战" class="headerlink" title="第六题：性能优化实战"></a>第六题：性能优化实战</h1><strong>
+<div style="color: #999">
 
-<p>Q：您在简历中提到将 @hz&#x2F;node-server 的单实例 QPS 从 1200 提升到 6500，P99 延迟降低到 ≤180ms，内存波动控制在 ≤50MB（持续24小时）。这是非常显著的提升。请深入讲解一下：</p>
+<p>核心设计：</p>
 <ul>
-<li>针对 “流式代理 + 背压处理 + Node.js cluster” 这个核心优化点，您是如何具体设计和实现的？背压处理在这里扮演了什么关键角色？</li>
-<li>在解决 “单实例长时间运行后内存增长 400+MB” 这个棘手的内存泄漏问题时，您的排查思路、使用的工具（提到堆快照分析）以及最终的根本原因和解决方案是什么？89%的内存稳定性提升具体是如何达成的？</li>
-<li>首屏加载从 6000ms+ 优化到 1000ms，您提到了 Gzip压缩、静态资源缓存、链接复用、非阻塞 I&#x2F;O。其中哪一项或哪几项带来的收益最大？在实施静态资源缓存策略时，您是如何处理缓存失效问题的？特别是在微前端这种多团队协作的场景下。</li>
+<li>模块化设计：只对外暴露特定区域的页面内容更新 hook</li>
+<li>类型校验和内容安全：会对 hook 提交的内容进行 DOM 类型校验和安全编码（HTML 转义）</li>
+<li>动态注册&#x2F;卸载机制：子应用可在任意阶段通过 hooks.updateUserCenter 钩子注册和卸载扩展模块，主应用 layout 会监听该 hook 并实时更新 DOM 节点</li>
 </ul>
-</strong>
+<p>扩展模块通信机制：</p>
+<ul>
+<li>子应用自行抉择跨模块通信方式，包括但不限于以下方式：<ul>
+<li>postMessage</li>
+<li>localStorage</li>
+<li>Cookie 长轮询</li>
+<li>IndexedDB 轮询</li>
+<li>Broadcast Channel API</li>
+</ul>
+</li>
+</ul>
+</div>
 
-<p><strong>简历中提到您解决了单实例内存泄漏问题，内存波动从 400+MB 降到≤50MB（持续 24 小时）。想了解下您当时是通过哪些工具定位泄漏点的？比如 Heap Snapshot 的分析重点是什么？有没有遇到过 “误判泄漏源” 的情况，最后是如何排除的？</strong></p>
+<h1 id="第六题：性能优化实战"><a href="#第六题：性能优化实战" class="headerlink" title="第六题：性能优化实战"></a>第六题：性能优化实战</h1><p><strong>您在简历中提到将 @hz&#x2F;node-server 的单实例 QPS 从 1200 提升到 6500，P99 延迟降低到 ≤180ms。这是非常显著的提升。请深入讲解一下：针对 “流式代理 + 背压处理 + Node.js cluster” 这个核心优化点，您是如何具体设计和实现的？背压处理在这里扮演了什么关键角色？</strong></p>
+<div style="color: #999">
+
+<p>设计核心目标：</p>
+<ul>
+<li>解决高并发下传统 buffer 缓冲无法高效处理大文件&#x2F;数据的问题</li>
+<li>解决单核 CPU 对 QPS 的影响，最大程度的利用硬件资源</li>
+</ul>
+<p>设计核心思想：</p>
+<ul>
+<li>以 stream 流代替传统的 buffer 缓冲，解决大文件&#x2F;数据的处理效率问题</li>
+<li>通过 cluster 模块&#x2F;PM2 等工具利用多核 CPU 提升吞吐量</li>
+</ul>
+<p>实现方案详解：</p>
+<ul>
+<li>分析 express-http-proxy 源码、查阅官方文档，发现 express-http-proxy 默认支持流式处理，但在配置skipToNextHandlerFilter&#x2F;userResDecorator&#x2F;userResHeaderDecorator的情况下会破坏流式处理逻辑<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// express-http-proxy 源码</span>
+<span class="token keyword">function</span> <span class="token function">resolveOptions</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  options <span class="token operator">=</span> options <span class="token operator">||</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> resolved<span class="token punctuation">;</span>
+
+  resolved <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">userResDecorator</span><span class="token operator">:</span> options<span class="token punctuation">.</span>userResDecorator <span class="token operator">||</span> options<span class="token punctuation">.</span>intercept<span class="token punctuation">,</span>
+    <span class="token literal-property property">userResHeaderDecorator</span><span class="token operator">:</span> options<span class="token punctuation">.</span>userResHeaderDecorator<span class="token punctuation">,</span>
+    <span class="token literal-property property">skipToNextHandlerFilter</span><span class="token operator">:</span> options<span class="token punctuation">.</span>skipToNextHandlerFilter<span class="token punctuation">,</span>
+    <span class="token literal-property property">parseReqBody</span><span class="token operator">:</span> <span class="token function">isUnset</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>parseReqBody<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token boolean">true</span> <span class="token operator">:</span> options<span class="token punctuation">.</span>parseReqBody<span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token comment">// automatically opt into stream mode if no response modifiers are specified</span>
+
+  resolved<span class="token punctuation">.</span>stream <span class="token operator">=</span> <span class="token operator">!</span>resolved<span class="token punctuation">.</span>skipToNextHandlerFilter <span class="token operator">&amp;&amp;</span>
+                    <span class="token operator">!</span>resolved<span class="token punctuation">.</span>userResDecorator <span class="token operator">&amp;&amp;</span>
+                    <span class="token operator">!</span>resolved<span class="token punctuation">.</span>userResHeaderDecorator<span class="token punctuation">;</span>
+  
+  <span class="token keyword">return</span> resolved<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">defaultSendProxyRequest</span><span class="token punctuation">(</span><span class="token parameter">Container</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">var</span> req <span class="token operator">=</span> Container<span class="token punctuation">.</span>user<span class="token punctuation">.</span>req<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> bodyContent <span class="token operator">=</span> Container<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span>bodyContent<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> reqOpt <span class="token operator">=</span> Container<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span>reqBuilder<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> options <span class="token operator">=</span> Container<span class="token punctuation">.</span>options<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">var</span> protocol <span class="token operator">=</span> Container<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span>requestModule<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> proxyReq <span class="token operator">=</span> Container<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span>req <span class="token operator">=</span> protocol<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span>reqOpt<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">rsp</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>options<span class="token punctuation">.</span>stream<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        Container<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span>res <span class="token operator">=</span> rsp<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token function">resolve</span><span class="token punctuation">(</span>Container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+
+      <span class="token keyword">var</span> chunks <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      rsp<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">chunk</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> chunks<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      rsp<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'end'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        Container<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span>res <span class="token operator">=</span> rsp<span class="token punctuation">;</span>
+        Container<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span>resData <span class="token operator">=</span> Buffer<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>chunks<span class="token punctuation">,</span> <span class="token function">chunkLength</span><span class="token punctuation">(</span>chunks<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">resolve</span><span class="token punctuation">(</span>Container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      rsp<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> reject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    proxyReq<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'socket'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">socket</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>options<span class="token punctuation">.</span>timeout<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        socket<span class="token punctuation">.</span><span class="token function">setTimeout</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>timeout<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          proxyReq<span class="token punctuation">.</span><span class="token function">abort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    proxyReq<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> reject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>options<span class="token punctuation">.</span>parseReqBody<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// We are parsing the body ourselves so we need to write the body content</span>
+      <span class="token comment">// and then manually end the request.</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>bodyContent<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">var</span> body <span class="token operator">=</span> bodyContent<span class="token punctuation">;</span>
+        <span class="token keyword">var</span> contentType <span class="token operator">=</span> proxyReq<span class="token punctuation">.</span><span class="token function">getHeader</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// contentTypes may contain semi-colon</span>
+        <span class="token comment">// example: "application/x-www-form-urlencoded; charset=UTF-8"</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>contentType <span class="token operator">&amp;&amp;</span> contentType<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token string">'x-www-form-urlencoded'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+          <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">var</span> params <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            body <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">k</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> k <span class="token operator">+</span> <span class="token string">'='</span> <span class="token operator">+</span> params<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'&amp;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// bodyContent is not json-format</span>
+          <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+        proxyReq<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">'Content-Length'</span><span class="token punctuation">,</span> Buffer<span class="token punctuation">.</span><span class="token function">byteLength</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        proxyReq<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">&#125;</span>
+      proxyReq<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>bodyContent<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      proxyReq<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>bodyContent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      proxyReq<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Pipe will call end when it has completely read from the request.</span>
+
+      req<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>proxyReq<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+    req<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'aborted'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// reject?</span>
+
+      proxyReq<span class="token punctuation">.</span><span class="token function">abort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">function</span> <span class="token function">sendUserRes</span><span class="token punctuation">(</span><span class="token parameter">Container</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Container<span class="token punctuation">.</span>user<span class="token punctuation">.</span>res<span class="token punctuation">.</span>headersSent<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Container<span class="token punctuation">.</span>options<span class="token punctuation">.</span>stream<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      Container<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span>res<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>Container<span class="token punctuation">.</span>user<span class="token punctuation">.</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+      Container<span class="token punctuation">.</span>user<span class="token punctuation">.</span>res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>Container<span class="token punctuation">.</span>proxy<span class="token punctuation">.</span>resData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>Container<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// 业务代码</span>
+<span class="token function-variable function">userResDecorator</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">proxyRes<span class="token punctuation">,</span> proxyResData</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> proxyResTime <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>uuid<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">] [</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>optReq<span class="token punctuation">.</span>method<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">] api proxy request: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>optReq<span class="token punctuation">.</span>originalUrl<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> response from </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>serverTarget<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">code: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>proxyRes<span class="token punctuation">.</span>statusCode<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">endTime: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>proxyResTime<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">total: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>proxyStartTime <span class="token operator">-</span> proxyResTime<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span>
+  <span class="token punctuation">)</span>
+
+  <span class="token comment">// 网关 token 失效，返回错误并重新请求 token</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>proxyRes<span class="token punctuation">.</span>statusCode <span class="token operator">===</span> <span class="token number">401</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">let</span> data
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+      data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>proxyResData<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      data <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>error_code <span class="token operator">===</span> <span class="token string">'["expired_accessToken"]'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">updateToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token keyword">return</span> proxyResData
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>定制 express-http-proxy 源码，修改 options.stream 的赋值逻辑<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">resolved<span class="token punctuation">.</span>stream <span class="token operator">=</span> options<span class="token punctuation">.</span>stream <span class="token operator">?</span> options<span class="token punctuation">.</span>stream <span class="token operator">:</span>
+                    <span class="token operator">!</span>resolved<span class="token punctuation">.</span>skipToNextHandlerFilter <span class="token operator">&amp;&amp;</span>
+                    <span class="token operator">!</span>resolved<span class="token punctuation">.</span>userResDecorator <span class="token operator">&amp;&amp;</span>
+                    <span class="token operator">!</span>resolved<span class="token punctuation">.</span>userResHeaderDecorator<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>options.parseReqBody 显式设置为 false，避免源码设置默认值 true</li>
+<li>弃用传统的 proxyResData 转换，自定义工具实现对 proxyRes 的流式传输<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> <span class="token punctuation">&#123;</span> Transform <span class="token punctuation">&#125;</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'stream'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">MyTransformStream</span> <span class="token keyword">extends</span> <span class="token class-name">Transform</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+
+  <span class="token function">_transform</span><span class="token punctuation">(</span><span class="token parameter">chunk<span class="token punctuation">,</span> encoding<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// 直接传递数据块（无修改）</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function-variable function">userResDecorator</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">proxyRes<span class="token punctuation">,</span> proxyResData<span class="token punctuation">,</span> userReq<span class="token punctuation">,</span> userRes</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+  <span class="token keyword">const</span> proxyResTime <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>uuid<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">] [</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>optReq<span class="token punctuation">.</span>method<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">] api proxy request: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>optReq<span class="token punctuation">.</span>originalUrl<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> response from </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>serverTarget<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">code: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>proxyRes<span class="token punctuation">.</span>statusCode<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">endTime: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>proxyResTime<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+    <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">total: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>proxyStartTime <span class="token operator">-</span> proxyResTime<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span>
+  <span class="token punctuation">)</span>
+
+  <span class="token comment">// 网关 token 失效，返回错误并重新请求 token</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>proxyRes<span class="token punctuation">.</span>statusCode <span class="token operator">===</span> <span class="token number">401</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">let</span> data
+    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+      data <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>proxyResData<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      data <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>data<span class="token punctuation">.</span>error_code <span class="token operator">===</span> <span class="token string">'["expired_accessToken"]'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token function">updateToken</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token comment">// 创建 Transform Stream</span>
+  <span class="token keyword">const</span> transformStream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyTransformStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// 处理错误事件（重要！）</span>
+  proxyRes<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=></span> transformStream<span class="token punctuation">.</span><span class="token function">destroy</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 重要：直接返回流对象</span>
+  <span class="token keyword">return</span> proxyRes<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>transformStream<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 原始响应流 -> 修改流</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">/**
+ * 关键点说明
+ 1. 避免缓冲操作：不再使用 proxyResData 参数（它是缓冲的完整响应体），而是直接操作 proxyRes（原始响应流）。
+ 2. 流式处理：proxyRes.pipe(transformStream) 将上游响应流连接到自定义 Transform Stream，实现数据块实时处理。
+ * /</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>使用 pm2 工具启动集群化部署<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pm2 start www <span class="token parameter variable">-i</span> max<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ul>
+</div>
+
+<p><strong>首屏加载从 6000ms+ 优化到 1000ms，您提到了 Gzip压缩、静态资源缓存、链接复用、关键资源优先加载、静态资源优化。其中哪一项或哪几项带来的收益最大？在实施静态资源缓存策略时，您是如何处理缓存失效问题的？特别是在微前端这种多团队协作的场景下。</strong></p>
+<p><strong>简历中提到您解决了单实例内存泄漏问题，内存波动从 400+MB 降到≤50MB（持续 24 小时）。想了解下您当时的排查思路，以及是通过哪些工具定位泄漏点的？比如 Heap Snapshot 的分析重点是什么？最终的根本原因和解决方案是什么？有没有遇到过 “误判泄漏源” 的情况，最后是如何排除的？89%的内存稳定性提升具体是如何达成的？</strong></p>
 <h1 id="第七题：工程化体系与创新"><a href="#第七题：工程化体系与创新" class="headerlink" title="第七题：工程化体系与创新"></a>第七题：工程化体系与创新</h1><strong>
 
 <p>您主导重构了前端 DevOps 体系，将 Webpack 编译总耗时从 30min 优化到 8min（中台产品甚至到 6min），并节省了 2 台服务器。</p>
@@ -2309,13 +2558,13 @@ hooks<span class="token punctuation">.</span><span class="token function">emit</
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">238k</span>
+    <span title="站点总字数">262k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">14:26</span>
+    <span title="站点阅读时长">15:55</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
