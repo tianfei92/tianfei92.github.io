@@ -28,7 +28,7 @@
 <meta property="og:description" content="第一部分：基础知识与核心概念（查漏补缺）Vue 核心概念问题： 请简述 Vue.js 的核心特点是什么？（例如：响应式数据绑定、组件系统、虚拟 DOM、模板语法等）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-30T11:30:03.000Z">
-<meta property="article:modified_time" content="2025-07-31T06:26:17.542Z">
+<meta property="article:modified_time" content="2025-08-01T01:53:12.854Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="vue">
@@ -177,31 +177,28 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/tianfei92" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tianfei92" rel="noopener me" target="_blank">GitHub</a>
+        <a href="https://github.com/tianfei92" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;tianfei92" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:tian.fi@outlook.com" title="E-Mail → mailto:tian.fi@outlook.com" rel="noopener me" target="_blank">E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://juejin.cn/user/3913917124325127" title="Juejin → https:&#x2F;&#x2F;juejin.cn&#x2F;user&#x2F;3913917124325127" rel="noopener me" target="_blank">Juejin</a>
+        <a href="mailto:tian.fi@outlook.com" title="E-Mail → mailto:tian.fi@outlook.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
@@ -262,7 +259,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-31 14:26:17" itemprop="dateModified" datetime="2025-07-31T14:26:17+08:00">2025-07-31</time>
+      <time title="修改时间：2025-08-01 09:53:12" itemprop="dateModified" datetime="2025-08-01T09:53:12+08:00">2025-08-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -315,15 +312,15 @@
 <p>常用场景：</p>
 <ol>
 <li>绑定 HTML 元素属性：如 src（图片路径）、href（链接）、class（类名）、style（样式）等。</li>
-<li>向子组件传递 props：在父组件中通过 v-bind 向子组件传递数据（子组件需在 props 中声明接收）。<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 父组件 <span class="token operator">--</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>ChildComponent <span class="token operator">:</span>user<span class="token operator">=</span><span class="token string">"currentUser"</span> <span class="token operator">:</span>isAdmin<span class="token operator">=</span><span class="token string">"isAdmin"</span> <span class="token operator">/</span><span class="token operator">></span>
+<li>向子组件传递 props：在父组件中通过 v-bind 向子组件传递数据（子组件需在 props 中声明接收）。<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 父组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ChildComponent</span> <span class="token attr-name">:user</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>currentUser<span class="token punctuation">"</span></span> <span class="token attr-name">:isAdmin</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>isAdmin<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
 
-<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 子组件 <span class="token operator">--</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token comment">&lt;!-- 子组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">props</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'user'</span><span class="token punctuation">,</span> <span class="token string">'isAdmin'</span><span class="token punctuation">]</span> <span class="token comment">// 声明接收的 props</span>
 <span class="token punctuation">&#125;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>绑定 DOM 属性或自定义属性：如绑定 id、disabled 等，或自定义数据属性（data-*）。</li>
 </ol>
 <p>二、v-on (@) 指令</p>
@@ -332,12 +329,12 @@
 <p>常用场景：</p>
 <ol>
 <li>监听 DOM 事件：如 click（点击）、input（输入）、submit（表单提交）等，触发时执行方法。</li>
-<li>监听自定义事件（组件通信）：子组件通过 $emit 触发自定义事件，父组件通过 v-on 监听并处理。<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 子组件 <span class="token operator">--</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"$emit('add', 1)"</span><span class="token operator">></span>增加数量<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
+<li>监听自定义事件（组件通信）：子组件通过 $emit 触发自定义事件，父组件通过 v-on 监听并处理。<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 子组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$emit('add', 1)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>增加数量<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
 
-<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 父组件 <span class="token operator">--</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>ChildComponent @add<span class="token operator">=</span><span class="token string">"increaseCount"</span> <span class="token operator">/</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token comment">&lt;!-- 父组件 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ChildComponent</span> <span class="token attr-name">@add</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>increaseCount<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token function">increaseCount</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -345,11 +342,11 @@
     <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li>事件修饰符：配合修饰符简化事件处理（如阻止默认行为、事件冒泡等）。<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>a @click<span class="token punctuation">.</span>prevent<span class="token operator">=</span><span class="token string">"handleClick"</span><span class="token operator">></span>点击不会跳转（阻止默认行为）<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
-<span class="token operator">&lt;</span>div @click<span class="token punctuation">.</span>stop<span class="token operator">=</span><span class="token string">"handleDivClick"</span><span class="token operator">></span>
-  <span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"handleBtnClick"</span><span class="token operator">></span>点击按钮不会触发父元素事件（阻止冒泡）<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>事件修饰符：配合修饰符简化事件处理（如阻止默认行为、事件冒泡等）。<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">@click.prevent</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>handleClick<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>点击不会跳转（阻止默认行为）<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">@click.stop</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>handleDivClick<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>handleBtnClick<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>点击按钮不会触发父元素事件（阻止冒泡）<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
 <p>三、v-model 的本质与双向数据绑定实现</p>
 <p>本质：v-model &#x3D; v-bind:value（绑定数据到表单元素的 value 属性） + v-on:input（监听表单元素的 input 事件，更新数据）。</p>
@@ -520,8 +517,8 @@
 <li>用户自定义的全局函数或变量（除非通过 app.config.globalProperties 注册）。</li>
 </ul>
 </li>
-<li>不合法（访问未暴露的全局对象）：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>p<span class="token operator">></span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> window<span class="token punctuation">.</span>innerWidth <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span> <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 无法直接访问 window <span class="token operator">--</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>p<span class="token operator">></span><span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span> <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 无法直接访问 localStorage <span class="token operator">--</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li>不合法（访问未暴露的全局对象）：<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>&#123;&#123; window.innerWidth &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- 无法直接访问 window --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>&#123;&#123; localStorage.getItem("name") &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- 无法直接访问 localStorage --></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 <li>合法（通过实例访问）：<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>&#123;&#123; winWidth &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
@@ -749,11 +746,11 @@
 <ul>
 <li><p>基本用法（只读计算属性）</p>
 <p>传入一个getter 函数，返回一个只读的响应式对象（Ref），其 .value 属性为计算结果。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">></span>
-  <span class="token operator">&lt;</span>p<span class="token operator">></span>总价：<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> totalPrice <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>总价：&#123;&#123; totalPrice &#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
 
-<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
 <span class="token keyword">import</span> <span class="token punctuation">&#123;</span> ref<span class="token punctuation">,</span> computed <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
@@ -775,7 +772,7 @@
     <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li><p>可写计算属性</p>
 <p>传入一个包含 get 和 set 方法的对象，实现可修改的计算属性。</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> fullName <span class="token operator">=</span> <span class="token function">computed</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
@@ -792,7 +789,7 @@ fullName<span class="token punctuation">.</span>value <span class="token operato
 </ul>
 <p>二、定义 watch 侦听器</p>
 <p>watch 同样需要从 vue 中导入，其基本语法为：<code>watch(数据源, 回调函数, 配置选项)</code></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span>script setup<span class="token operator">></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">setup</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
 <span class="token keyword">import</span> <span class="token punctuation">&#123;</span> ref<span class="token punctuation">,</span> watch <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
 
 <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
@@ -804,7 +801,7 @@ fullName<span class="token punctuation">.</span>value <span class="token operato
   <span class="token literal-property property">immediate</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 初始化时立即执行</span>
   <span class="token literal-property property">deep</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token comment">// 无需深度监听（基础类型）</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>总结</p>
 <p>在 setup() 中定义计算属性和侦听器的核心步骤：</p>
@@ -1174,13 +1171,13 @@ obj<span class="token punctuation">.</span>name <span class="token operator">=</
 
 <p>四、track 函数：收集依赖，建立 “属性 - 副作用” 映射</p>
 <p>track 函数的作用是在 get 陷阱触发时，记录 “当前属性” 与 “当前活跃的 effect” 之间的关联，即 “收集依赖”。其核心是维护一个 “依赖映射表”，存储结构如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">targetMap: WeakMap &#123;
-  target1: Map &#123;           &#x2F;&#x2F; 键：响应式对象（target）
-    key1: Set [effect1, effect2],  &#x2F;&#x2F; 键：属性名（key），值：依赖该属性的副作用函数集合
-    key2: Set [effect3]
-  &#125;,
-  target2: Map &#123; ... &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">targetMap</span><span class="token operator">:</span> WeakMap <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">target1</span><span class="token operator">:</span> Map <span class="token punctuation">&#123;</span>           <span class="token comment">// 键：响应式对象（target）</span>
+    <span class="token literal-property property">key1</span><span class="token operator">:</span> Set <span class="token punctuation">[</span>effect1<span class="token punctuation">,</span> effect2<span class="token punctuation">]</span><span class="token punctuation">,</span>  <span class="token comment">// 键：属性名（key），值：依赖该属性的副作用函数集合</span>
+    <span class="token literal-property property">key2</span><span class="token operator">:</span> Set <span class="token punctuation">[</span>effect3<span class="token punctuation">]</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">target2</span><span class="token operator">:</span> Map <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>工作流程：</p>
 <ul>
 <li>检查是否存在 “当前活跃的 effect”（activeEffect），若不存在则无需收集（如非副作用函数中访问属性）。</li>
@@ -2273,6 +2270,9 @@ request<span class="token punctuation">.</span>interceptors<span class="token pu
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2025/08/01/Web-design-patterns/" rel="next" title="web 前端常用的设计模式">
+                  web 前端常用的设计模式 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -2303,13 +2303,13 @@ request<span class="token punctuation">.</span>interceptors<span class="token pu
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">262k</span>
+    <span title="站点总字数">264k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">15:55</span>
+    <span title="站点阅读时长">15:59</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
