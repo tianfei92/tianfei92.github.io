@@ -28,7 +28,7 @@
 <meta property="og:description" content="1. 核心基础模块1.1 Node.js 架构与运行原理（V8&#x2F;libuv&#x2F;事件循环）核心架构组成 Node.js 的架构主要由三层构成：  V8 引擎层 Google 开发的 JavaScript 执行引擎，负责： JS 代码解析与执行（Ignition 解释器 + TurboFan 编译器） 内存管理（垃圾回收机制） 提供 C++ 绑定能力（如 Buffer 的实现）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-05T07:22:03.000Z">
-<meta property="article:modified_time" content="2025-07-11T01:36:08.335Z">
+<meta property="article:modified_time" content="2025-08-06T04:25:39.970Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="Node.js">
 <meta name="twitter:card" content="summary">
@@ -258,7 +258,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-11 09:36:08" itemprop="dateModified" datetime="2025-07-11T09:36:08+08:00">2025-07-11</time>
+      <time title="修改时间：2025-08-06 12:25:39" itemprop="dateModified" datetime="2025-08-06T12:25:39+08:00">2025-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -350,16 +350,12 @@
 <li>执行 I&#x2F;O 回调（文件读取、网络请求等）</li>
 </ul>
 </li>
-<li>面试高频题：</li>
-</ul>
-</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timeout'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<li>面试高频题： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timeout'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 fs<span class="token punctuation">.</span><span class="token function">readFile</span><span class="token punctuation">(</span><span class="token string">'file'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">setImmediate</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'immediate'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment">// 输出顺序？（答案：可能为 fs → immediate → timeout）</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="4">
+<span class="token comment">// 输出顺序？（答案：可能为 fs → immediate → timeout）</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
 <li>Check 阶段：执行 setImmediate 回调</li>
 <li>Close Callbacks：关闭资源的回调（如 socket.on(‘close’)）</li>
 </ol>
@@ -387,37 +383,42 @@ fs<span class="token punctuation">.</span><span class="token function">readFile<
 </ol>
 <p><strong>面试真题解析</strong></p>
 <p>Q: 为什么 Node.js 适合高并发 I&#x2F;O 场景？</p>
-<p><em>A: 非阻塞 I&#x2F;O + 事件循环机制，用单线程处理数千并发连接（对比 Apache 多线程模型）</em></p>
+<div style="color: #999">
+A: 非阻塞 I/O + 事件循环机制，用单线程处理数千并发连接（对比 Apache 多线程模型）
+</div>
+
 <p>Q: process.nextTick 和 setImmediate 执行顺序？</p>
-<p><em>A: nextTick 属于微任务在当前阶段立即执行，setImmediate 在 Check 阶段执行</em></p>
+<div style="color: #999">
+A: nextTick 属于微任务在当前阶段立即执行，setImmediate 在 Check 阶段执行
+</div>
+
 <p>Q: 如何用 Node.js 实现车载设备的实时数据采集？</p>
-<p><em>A: UDP 协议 + dgram 模块（低延迟）+ 流式数据处理</em></p>
+<div style="color: #999">
+A: UDP 协议 + dgram 模块（低延迟）+ 流式数据处理
+</div>
+
 <h2 id="1-2-CommonJS-与-ESM-模块系统深入"><a href="#1-2-CommonJS-与-ESM-模块系统深入" class="headerlink" title="1.2 CommonJS 与 ESM 模块系统深入"></a>1.2 CommonJS 与 ESM 模块系统深入</h2><p><strong>CommonJS 模块系统核心</strong></p>
 <ol>
-<li>运行时加载机制：</li>
-</ol>
-<p>CommonJS 采用同步阻塞式加载方式，通过 require() 函数动态加载模块。模块在首次加载后会被缓存，可以通过 require.cache 查看缓存内容。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 同步阻塞式加载</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ol start="2">
-<li>模块包装原理：</li>
-</ol>
-<p>Node.js 会将每个模块代码包裹在一个特殊函数中：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">exports<span class="token punctuation">,</span> require<span class="token punctuation">,</span> module<span class="token punctuation">,</span> __filename<span class="token punctuation">,</span> __dirname</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<li><p>运行时加载机制：</p>
+<p> CommonJS 采用同步阻塞式加载方式，通过 require() 函数动态加载模块。模块在首次加载后会被缓存，可以通过 require.cache 查看缓存内容。</p>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 同步阻塞式加载</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>模块包装原理：</p>
+<p> Node.js 会将每个模块代码包裹在一个特殊函数中：</p>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">exports<span class="token punctuation">,</span> require<span class="token punctuation">,</span> module<span class="token punctuation">,</span> __filename<span class="token punctuation">,</span> __dirname</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token comment">// 用户模块代码</span>
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p>重要考点：exports 只是 module.exports 的引用，直接对 exports 赋值会导致引用断联。</p>
-<ol start="3">
-<li>循环引用处理:</li>
-</ol>
-<p>当模块间出现循环依赖时，Node.js 会返回未执行完成的模块对象。这种行为常出现在面试题中，需要特别注意部分导出的特性。</p>
-<pre><code class="mermaid">graph LR
-    A[main.js] --&gt;|require| B(a.js)
-    B --&gt;|require| C(b.js)
-    C --&gt;|require| B</code></pre>
+<p> 重要考点：exports 只是 module.exports 的引用，直接对 exports 赋值会导致引用断联。</p>
+</li>
+<li><p>循环引用处理:</p>
+<p> 当模块间出现循环依赖时，Node.js 会返回未执行完成的模块对象。这种行为常出现在面试题中，需要特别注意部分导出的特性。</p>
+ <pre><code class="mermaid">    graph LR
+        A[main.js] --&gt;|require| B(a.js)
+        B --&gt;|require| C(b.js)
+        C --&gt;|require| B</code></pre>
 
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// a.js</span>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// a.js</span>
 exports<span class="token punctuation">.</span>done <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> b <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'在a中，b.done ='</span><span class="token punctuation">,</span> b<span class="token punctuation">.</span>done<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -428,22 +429,20 @@ exports<span class="token punctuation">.</span>done <span class="token operator"
 <span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'在b中，a.done ='</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>done<span class="token punctuation">)</span><span class="token punctuation">;</span>
 exports<span class="token punctuation">.</span>done <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="4">
-<li>性能优化</li>
-</ol>
+</li>
+<li><p>性能优化</p>
 <ul>
 <li>缓存策略：相同路径的 require() 直接读取缓存</li>
 <li>预编译：.node 文件（C++插件）直接加载二进制</li>
 </ul>
+</li>
+</ol>
 <p><strong>ES Modules 核心特性</strong></p>
 <ol>
-<li>静态分析特性</li>
-</ol>
-<p>ESM 在编译阶段就会确定模块依赖关系，使用 import&#x2F;export 语法。模块必须位于顶层作用域，不能动态导入（除动态 import() 外）。</p>
-<ol start="2">
-<li>与 CommonJS 的关键差异</li>
-</ol>
+<li><p>静态分析特性</p>
+<p> ESM 在编译阶段就会确定模块依赖关系，使用 import&#x2F;export 语法。模块必须位于顶层作用域，不能动态导入（除动态 import() 外）。</p>
+</li>
+<li><p>与 CommonJS 的关键差异</p>
 <table>
 <thead>
 <tr>
@@ -473,57 +472,57 @@ exports<span class="token punctuation">.</span>done <span class="token operator"
 <td align="left">.js&#x2F;.mjs</td>
 </tr>
 </tbody></table>
-<ol start="3">
-<li>动态导入方案</li>
+</li>
+<li><p>动态导入方案</p>
+<p> ESM 提供了动态导入功能，返回一个 Promise：</p>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> module <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./module.mjs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ol>
-<p>ESM 提供了动态导入功能，返回一个 Promise：</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> module <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./module.mjs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p><strong>双模块系统共存方案</strong></p>
 <ol>
-<li>互操作实现</li>
-</ol>
-<p>ESM 可以通过 createRequire 引入 CJS 模块，而 CJS 必须使用异步 import() 来加载 ESM 模块。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// ESM 引入 CJS，只能通过 default 导入整个 CJS 模块</span>
+<li><p>互操作实现</p>
+<p> ESM 可以通过 createRequire 引入 CJS 模块，而 CJS 必须使用异步 import() 来加载 ESM 模块。</p>
+ <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// ESM 引入 CJS，只能通过 default 导入整个 CJS 模块</span>
 <span class="token keyword">import</span> <span class="token punctuation">&#123;</span> createRequire <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'module'</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> require <span class="token operator">=</span> <span class="token function">createRequire</span><span class="token punctuation">(</span><span class="token keyword">import</span><span class="token punctuation">.</span>meta<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> cjsModule <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./legacy.cjs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// CJS 引入 ESM，必须使用异步 import()</span>
 <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'esm.mjs'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">module</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span><span class="token operator">...</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="2">
-<li>配置方式</li>
-</ol>
+</li>
+<li><p>配置方式</p>
 <ul>
 <li>两种主要配置方案：<ul>
 <li>通过文件扩展名区分（.mjs 和 .cjs）</li>
-<li>在 package.json 中配置 type 字段和 exports 映射</li>
-</ul>
-</li>
-</ul>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+<li>在 package.json 中配置 type 字段和 exports 映射 <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
   <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"module"</span><span class="token punctuation">,</span> <span class="token comment">// 默认ESM</span>
   <span class="token property">"exports"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token property">"require"</span><span class="token operator">:</span> <span class="token string">"./legacy.cjs"</span><span class="token punctuation">,</span>
     <span class="token property">"import"</span><span class="token operator">:</span> <span class="token string">"./modern.mjs"</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 <p><strong>性能与企业应用</strong></p>
 <ol>
-<li>性能对比</li>
-</ol>
-<p>ESM 在启动速度和 Tree Shaking 方面有明显优势，而 CommonJS 更适合动态加载场景。</p>
-<ol start="2">
-<li>企业级解决方案</li>
-</ol>
-<p>大型项目通常需要：</p>
+<li><p>性能对比</p>
 <ul>
+<li>ESM 在启动速度和 Tree Shaking 方面有明显优势，而 CommonJS 更适合动态加载场景。</li>
+</ul>
+</li>
+<li><p>企业级解决方案</p>
+<ul>
+<li>大型项目通常需要：<ul>
 <li>提供双格式输出</li>
 <li>处理类型声明兼容</li>
 <li>优化模块加载性能</li>
 </ul>
+</li>
+</ul>
+</li>
+</ol>
 <p><strong>调试与优化技巧</strong></p>
 <ol>
 <li>常用调试方法<ul>
@@ -821,23 +820,13 @@ console<span class="token punctuation">.</span><span class="token function">log<
 
 <p>(2) 性能分析工具</p>
 <ul>
-<li>内置profiler：</li>
+<li>内置profiler：<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">node</span> <span class="token parameter variable">--prof</span> app.js
+<span class="token function">node</span> --prof-process isolate-0x*.log <span class="token operator">></span> processed.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li>堆内存快照：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> heapdump <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'heapdump'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+heapdump<span class="token punctuation">.</span><span class="token function">writeSnapshot</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">heap-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">.heapsnapshot</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li>CPU火焰图：<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> 0x
+0x app.js<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">node</span> <span class="token parameter variable">--prof</span> app.js
-<span class="token function">node</span> --prof-process isolate-0x*.log <span class="token operator">></span> processed.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<ul>
-<li>堆内存快照：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> heapdump <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'heapdump'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-heapdump<span class="token punctuation">.</span><span class="token function">writeSnapshot</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">heap-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">.heapsnapshot</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<ul>
-<li>CPU火焰图：</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">-g</span> 0x
-0x app.js<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p><strong>全局对象使用决策树</strong></p>
 <pre><code class="mermaid">graph TD
     A[需要进程信息?] --&gt;|是| B[使用process对象]
@@ -1380,9 +1369,7 @@ process<span class="token punctuation">.</span><span class="token function">on</
 
 <p>高级错误处理模式:</p>
 <ol>
-<li>错误边界模式</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<li>错误边界模式 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">await</span> <span class="token function">criticalOperation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -1395,12 +1382,8 @@ process<span class="token punctuation">.</span><span class="token function">on</
 <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">criticalOperation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">riskyOperation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token comment">// 业务逻辑...</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="2">
-<li>错误分类处理</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">NetworkError</span> <span class="token keyword">extends</span> <span class="token class-name">Error</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>错误分类处理 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">NetworkError</span> <span class="token keyword">extends</span> <span class="token class-name">Error</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 <span class="token keyword">class</span> <span class="token class-name">ValidationError</span> <span class="token keyword">extends</span> <span class="token class-name">Error</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
 
 <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">process</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -1415,12 +1398,8 @@ process<span class="token punctuation">.</span><span class="token function">on</
       <span class="token keyword">throw</span> err<span class="token punctuation">;</span> <span class="token comment">// 未知错误向上传递</span>
     <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="3">
-<li>并行操作错误处理</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">parallelTasks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>并行操作错误处理 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">parallelTasks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">const</span> <span class="token punctuation">[</span>result1<span class="token punctuation">,</span> result2<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
     <span class="token function">task1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">error</span><span class="token operator">:</span> err <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     <span class="token function">task2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">error</span><span class="token operator">:</span> err <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -1431,8 +1410,8 @@ process<span class="token punctuation">.</span><span class="token function">on</
   <span class="token punctuation">&#125;</span>
   
   <span class="token keyword">return</span> <span class="token punctuation">[</span>result1<span class="token punctuation">,</span> result2<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 <p><strong>常见陷阱与解决方案</strong></p>
 <p>陷阱1：忘记 await</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 错误：返回Promise而非结果</span>
@@ -1512,14 +1491,12 @@ process<span class="token punctuation">.</span><span class="token function">on</
 <ul>
 <li>检查定时器堆，执行到期回调</li>
 <li>实际执行时间 &gt;&#x3D; 设定时间（受其他阶段阻塞影响）</li>
-<li>最小延迟1ms（Node.js 11+）</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timeout'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<li>最小延迟1ms（Node.js 11+）<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timeout'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">setImmediate</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'immediate'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// 可能输出：</span>
-<span class="token comment">// timeout → immediate 或 immediate → timeout</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token comment">// timeout → immediate 或 immediate → timeout</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>(2) <code>Pending I/O Callbacks</code> 阶段</p>
 <p>功能：处理系统操作（TCP错误、文件I&#x2F;O）的回调</p>
 <p>典型场景：</p>
@@ -1559,9 +1536,7 @@ process<span class="token punctuation">.</span><span class="token function">on</
 <p>特性：</p>
 <ul>
 <li>在Poll阶段后立即执行</li>
-<li>适合执行需要立即运行的任务</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<li>适合执行需要立即运行的任务<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 fs<span class="token punctuation">.</span><span class="token function">readFile</span><span class="token punctuation">(</span><span class="token string">'file.txt'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'timeout'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1569,8 +1544,8 @@ fs<span class="token punctuation">.</span><span class="token function">readFile<
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// 始终输出：</span>
-<span class="token comment">// immediate → timeout</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token comment">// immediate → timeout</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>(6) <code>Close Callbacks</code> 阶段</p>
 <p>功能：处理关闭事件的回调</p>
 <p>典型场景：</p>
@@ -1585,15 +1560,13 @@ fs<span class="token punctuation">.</span><span class="token function">readFile<
 <ul>
 <li>不属于事件循环阶段</li>
 <li>在当前操作结束后立即执行</li>
-<li>优先级最高（可能造成饥饿）</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">process<span class="token punctuation">.</span><span class="token function">nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'nextTick 1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<li>优先级最高（可能造成饥饿）<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">process<span class="token punctuation">.</span><span class="token function">nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'nextTick 1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'promise 1'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 process<span class="token punctuation">.</span><span class="token function">nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'nextTick 2'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment">// 输出顺序：</span>
-<span class="token comment">// nextTick 1 → nextTick 2 → promise 1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token comment">// nextTick 1 → nextTick 2 → promise 1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>(2) Microtask 队列</p>
 <p>组成：</p>
 <ul>
@@ -1709,9 +1682,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </ul>
 <p>适用场景:</p>
 <ol>
-<li>初始化后处理</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Database</span> <span class="token punctuation">&#123;</span>
+<li>初始化后处理 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Database</span> <span class="token punctuation">&#123;</span>
   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>connected <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
     process<span class="token punctuation">.</span><span class="token function">nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
@@ -1719,12 +1690,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
       <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'connected'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="2">
-<li>用户错误处理</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">asyncOperation</span><span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>用户错误处理 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">asyncOperation</span><span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token comment">// 模拟异步操作</span>
   <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">doWork</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   
@@ -1736,20 +1703,16 @@ console<span class="token punctuation">.</span><span class="token function">log<
       process<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'uncaughtException'</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="3">
-<li>API 设计兼容</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 确保API行为一致（同步/异步）</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>API 设计兼容 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 确保API行为一致（同步/异步）</span>
 <span class="token keyword">function</span> <span class="token function">readConfigSync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>cachedConfig<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     process<span class="token punctuation">.</span><span class="token function">nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> cachedConfig<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
     fs<span class="token punctuation">.</span><span class="token function">readFile</span><span class="token punctuation">(</span><span class="token string">'config.json'</span><span class="token punctuation">,</span> callback<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 <p><strong>setImmediate 深度剖析</strong></p>
 <p>运行机制详解:</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 示例代码</span>
@@ -1778,9 +1741,7 @@ fs<span class="token punctuation">.</span><span class="token function">readFile<
 
 <p>适用场景:</p>
 <ol>
-<li>分解CPU密集型任务</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">processLargeArray</span><span class="token punctuation">(</span><span class="token parameter">array</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<li>分解CPU密集型任务 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">processLargeArray</span><span class="token punctuation">(</span><span class="token parameter">array</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
   
   <span class="token keyword">function</span> <span class="token function">processChunk</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -1798,12 +1759,8 @@ fs<span class="token punctuation">.</span><span class="token function">readFile<
   <span class="token punctuation">&#125;</span>
   
   <span class="token function">processChunk</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="2">
-<li>确保回调在I&#x2F;O后执行</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">server<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'request'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>确保回调在I&#x2F;O后执行 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">server<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'request'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token comment">// 1. 执行I/O操作</span>
   <span class="token function">readData</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
     <span class="token comment">// 2. 使用setImmediate确保在I/O事件后执行</span>
@@ -1814,8 +1771,8 @@ fs<span class="token punctuation">.</span><span class="token function">readFile<
       <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 <p><strong>最佳实践指南</strong></p>
 <p>选择决策树:</p>
 <pre><code class="mermaid">graph TD
@@ -1844,9 +1801,7 @@ fs<span class="token punctuation">.</span><span class="token function">readFile<
 <li>实现异步迭代控制流</li>
 </ul>
 </li>
-<li>混合使用策略：</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 最佳组合示例</span>
+<li>混合使用策略： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 最佳组合示例</span>
 <span class="token keyword">function</span> <span class="token function">optimizedFlow</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token comment">// 阶段1：同步初始化</span>
   <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1860,8 +1815,8 @@ fs<span class="token punctuation">.</span><span class="token function">readFile<
       <span class="token function">backgroundProcess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 <p><strong>核心要点总结</strong></p>
 <ol>
 <li>nextTick：当前操作后立即执行，优先级最高，慎防递归滥用</li>
@@ -3984,37 +3939,27 @@ wss<span class="token punctuation">.</span><span class="token function">on</span
 </ul>
 <p>(2) 安全防护措施</p>
 <ul>
-<li>传输安全：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> wss <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebSocket<span class="token punctuation">.</span>Server</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+<li>传输安全：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> wss <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebSocket<span class="token punctuation">.</span>Server</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
   <span class="token literal-property property">server</span><span class="token operator">:</span> https<span class="token punctuation">.</span><span class="token function">createServer</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token comment">/* TLS配置 */</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token function-variable function">verifyClient</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">&#123;</span> origin <span class="token punctuation">&#125;</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> allowedOrigins<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>origin<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>数据验证：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ws<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token parameter">data</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>数据验证：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ws<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token parameter">data</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">const</span> msg <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">validateSchema</span><span class="token punctuation">(</span>msgSchema<span class="token punctuation">,</span> msg<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 验证消息结构</span>
   <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     ws<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token number">1003</span><span class="token punctuation">,</span> <span class="token string">'无效数据格式'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>速率限制：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> rateLimiter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RateLimiter</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 100条/秒</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>速率限制：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> rateLimiter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RateLimiter</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 100条/秒</span>
 ws<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token parameter">data</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>rateLimiter<span class="token punctuation">.</span><span class="token function">try</span><span class="token punctuation">(</span>ws<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
     ws<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">'错误：发送频率过高'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
   <span class="token comment">// 处理消息...</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <h1 id="3-框架与工程化"><a href="#3-框架与工程化" class="headerlink" title="3. 框架与工程化"></a>3. 框架与工程化</h1><h2 id="3-1-Express-Koa-源码分析"><a href="#3-1-Express-Koa-源码分析" class="headerlink" title="3.1 Express&#x2F;Koa 源码分析"></a>3.1 Express&#x2F;Koa 源码分析</h2><h3 id="3-1-1-中间件机制（洋葱模型）"><a href="#3-1-1-中间件机制（洋葱模型）" class="headerlink" title="3.1.1 中间件机制（洋葱模型）"></a>3.1.1 中间件机制（洋葱模型）</h3><p><strong>中间件核心概念</strong></p>
 <p>(1) 中间件定义与作用</p>
 <p>中间件是在请求-响应周期中执行特定功能的函数，具有以下核心特性：</p>
@@ -4186,9 +4131,7 @@ app<span class="token punctuation">.</span><span class="token function">listen</
 <li>异步支持：天然支持 async&#x2F;await</li>
 <li>上下文共享：所有中间件共享 ctx 对象</li>
 <li>错误冒泡：错误自动向上传递</li>
-<li>组合灵活：可任意组合中间件</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 错误处理示例</span>
+<li>组合灵活：可任意组合中间件<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 错误处理示例</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">ctx<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">await</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -4197,8 +4140,8 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
     ctx<span class="token punctuation">.</span>body <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">error</span><span class="token operator">:</span> err<span class="token punctuation">.</span>message <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
     ctx<span class="token punctuation">.</span>app<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> err<span class="token punctuation">,</span> ctx<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 触发错误事件</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>中间件设计模式</strong></p>
 <p>(1) 功能型中间件</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 请求日志中间件</span>
@@ -4433,59 +4376,41 @@ app<span class="token punctuation">.</span><span class="token function">on</span
 </tbody></table>
 <p><strong>总结：中间件开发黄金法则</strong></p>
 <ol>
-<li>控制流管理：</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 正确使用next()</span>
+<li>控制流管理： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 正确使用next()</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>req<span class="token punctuation">.</span><span class="token function">isAuthenticated</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   res<span class="token punctuation">.</span><span class="token function">redirect</span><span class="token punctuation">(</span><span class="token string">'/login'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="2">
-<li>错误处理：</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 统一错误处理</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>错误处理： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 统一错误处理</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">err<span class="token punctuation">,</span> req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   res<span class="token punctuation">.</span><span class="token function">status</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span>status <span class="token operator">||</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">error</span><span class="token operator">:</span> err<span class="token punctuation">.</span>message <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="3">
-<li>性能优化：</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 避免阻塞操作</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>性能优化： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 避免阻塞操作</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token comment">// 将CPU密集型任务放入队列</span>
   <span class="token keyword">await</span> queue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">processImage</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>file<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="4">
-<li>组合使用：</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 组合中间件</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>组合使用： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 组合中间件</span>
 <span class="token keyword">const</span> securityMiddleware <span class="token operator">=</span> <span class="token punctuation">[</span>
   <span class="token function">helmet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token function">rateLimit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token function">cors</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>securityMiddleware<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="5">
-<li>文档注释：</li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/**
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>securityMiddleware<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>文档注释： <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">/**
  * API请求验证中间件
- * @param &#123;string&#125; role 所需角色
- * @returns &#123;Function&#125; 中间件函数
- */</span>
+* @param &#123;string&#125; role 所需角色
+* @returns &#123;Function&#125; 中间件函数
+*/</span>
 <span class="token keyword">function</span> <span class="token function">apiAuth</span><span class="token punctuation">(</span><span class="token parameter">role</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
     <span class="token comment">// 实现逻辑...</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 <h3 id="3-1-2-路由系统原理"><a href="#3-1-2-路由系统原理" class="headerlink" title="3.1.2 路由系统原理"></a>3.1.2 路由系统原理</h3><p><strong>路由系统核心概念</strong></p>
 <p>(1) 路由的本质</p>
 <p>路由是 URL 到处理函数的映射机制，核心功能：</p>
@@ -4888,30 +4813,20 @@ app<span class="token punctuation">.</span><span class="token function">post</sp
 <p><strong>路由系统设计原则</strong></p>
 <p>(1) 最佳实践指南</p>
 <ul>
-<li>RESTful 设计：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 良好设计</span>
+<li>RESTful 设计：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 良好设计</span>
 <span class="token constant">GET</span> <span class="token operator">/</span>users          <span class="token comment">// 获取用户列表</span>
 <span class="token constant">POST</span> <span class="token operator">/</span>users         <span class="token comment">// 创建用户</span>
 <span class="token constant">GET</span> <span class="token operator">/</span>users<span class="token operator">/</span><span class="token operator">:</span>id      <span class="token comment">// 获取单个用户</span>
 <span class="token constant">PUT</span> <span class="token operator">/</span>users<span class="token operator">/</span><span class="token operator">:</span>id      <span class="token comment">// 更新用户</span>
-<span class="token constant">DELETE</span> <span class="token operator">/</span>users<span class="token operator">/</span><span class="token operator">:</span>id   <span class="token comment">// 删除用户</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>版本管理：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// URL路径版本控制</span>
+<span class="token constant">DELETE</span> <span class="token operator">/</span>users<span class="token operator">/</span><span class="token operator">:</span>id   <span class="token comment">// 删除用户</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>版本管理：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// URL路径版本控制</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/v1/users'</span><span class="token punctuation">,</span> v1UserRouter<span class="token punctuation">)</span><span class="token punctuation">;</span>
-app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/v2/users'</span><span class="token punctuation">,</span> v2UserRouter<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>模块化组织：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 按功能拆分路由</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/v2/users'</span><span class="token punctuation">,</span> v2UserRouter<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>模块化组织：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 按功能拆分路由</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/users'</span><span class="token punctuation">,</span> userRouter<span class="token punctuation">)</span><span class="token punctuation">;</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/products'</span><span class="token punctuation">,</span> productRouter<span class="token punctuation">)</span><span class="token punctuation">;</span>
-app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/orders'</span><span class="token punctuation">,</span> orderRouter<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'/orders'</span><span class="token punctuation">,</span> orderRouter<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>(2) 性能优化原则</p>
 <table>
 <thead>
@@ -5096,14 +5011,10 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 <p><strong>性能监控</strong></p>
 <p>(1) 事件循环延迟检测</p>
 <ul>
-<li>方案：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">setImmediate</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<li>方案：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">setImmediate</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">const</span> delay <span class="token operator">=</span> process<span class="token punctuation">.</span><span class="token function">hrtime</span><span class="token punctuation">(</span>start<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>delay<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">1e-3</span><span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">'Event loop blocked'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>原理：<ul>
 <li>setImmediate 在 check 阶段 执行，延迟反映事件循环阻塞</li>
 <li>Libuv 每个阶段有最大执行时长阈值（默认数秒）</li>
@@ -5136,17 +5047,11 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 
 <p>(2) 实现机制</p>
 <ul>
-<li>装饰器声明依赖：</li>
-</ul>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 标记可注入类</span>
+<li>装饰器声明依赖：<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 标记可注入类</span>
 <span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UserService</span> <span class="token punctuation">&#123;</span>
   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> <span class="token keyword">readonly</span> database<span class="token operator">:</span> DatabaseService<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>注入作用域：</li>
-</ul>
-<table>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>注入作用域：<table>
 <thead>
 <tr>
 <th align="left">Scope</th>
@@ -5170,6 +5075,8 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 <td align="left">避免状态污染</td>
 </tr>
 </tbody></table>
+</li>
+</ul>
 <p>(3) 高级特性原理</p>
 <p>自定义 Provider：</p>
 <pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token punctuation">&#123;</span>
@@ -5178,20 +5085,16 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <ul>
-<li><p>动态解析：useFactory 根据运行时条件生成实例</p>
-</li>
-<li><p>接口抽象：provide: ILogger, useClass: WinstonLogger 实现接口替换</p>
-</li>
+<li>动态解析：useFactory 根据运行时条件生成实例</li>
+<li>接口抽象：provide: ILogger, useClass: WinstonLogger 实现接口替换</li>
 </ul>
 <p>循环依赖解决方案：</p>
 <ul>
-<li>正向引用（ForwardRef）：</li>
-</ul>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<li>正向引用（ForwardRef）：<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token keyword">class</span> <span class="token class-name">ServiceA</span> <span class="token punctuation">&#123;</span>
   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Inject</span></span><span class="token punctuation">(</span><span class="token function">forwardRef</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> ServiceB<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">private</span> b<span class="token operator">:</span> ServiceB<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>微服务架构实现</strong></p>
 <p>(1) 通信协议支持</p>
 <table>
@@ -5225,21 +5128,15 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 </tbody></table>
 <p>(2) 核心组件</p>
 <ul>
-<li>消息模式（Message Patterns）：</li>
-</ul>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token comment">// 服务端声明</span>
+<li>消息模式（Message Patterns）：<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token comment">// 服务端声明</span>
 <span class="token decorator"><span class="token at operator">@</span><span class="token function">MessagePattern</span></span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> cmd<span class="token operator">:</span> <span class="token string">'get_user'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
 <span class="token function">getUser</span><span class="token punctuation">(</span>data<span class="token operator">:</span> <span class="token punctuation">&#123;</span> id<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span>
 
 <span class="token comment">// 客户端调用</span>
-<span class="token keyword">this</span><span class="token punctuation">.</span>client<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> cmd<span class="token operator">:</span> <span class="token string">'get_user'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> id<span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>事件模式（Event Patterns）：</li>
+<span class="token keyword">this</span><span class="token punctuation">.</span>client<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span> cmd<span class="token operator">:</span> <span class="token string">'get_user'</span> <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span> id<span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>事件模式（Event Patterns）：<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token decorator"><span class="token at operator">@</span><span class="token function">EventPattern</span></span><span class="token punctuation">(</span><span class="token string">'user_created'</span><span class="token punctuation">)</span>  <span class="token comment">// 无需回复的异步事件</span>
+<span class="token function">handleUserCreated</span><span class="token punctuation">(</span>data<span class="token operator">:</span> User<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript"><span class="token decorator"><span class="token at operator">@</span><span class="token function">EventPattern</span></span><span class="token punctuation">(</span><span class="token string">'user_created'</span><span class="token punctuation">)</span>  <span class="token comment">// 无需回复的异步事件</span>
-<span class="token function">handleUserCreated</span><span class="token punctuation">(</span>data<span class="token operator">:</span> User<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token operator">...</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p>(3) 架构原理</p>
 <ul>
 <li>传输层抽象：</li>
@@ -5308,17 +5205,14 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
   B --&gt; C[PreValidation Hook]
   C --&gt; D[Handler Execution]
   D --&gt; E[PreSerialization Hook]
-  E --&gt; F[Response Sent]
-&#96;&#96;&#96;&#96;
+  E --&gt; F[Response Sent]</code></pre>
 
-* 钩子函数通过 链表结构 管理，执行效率高于中间件栈
-
-**高性能路由系统**
-
-基于 Radix Tree 的路由匹配: 
-
-&#96;&#96;&#96;typescript
-fastify.get(&#39;&#x2F;user&#x2F;:id&#39;, handler)  &#x2F;&#x2F; 注册路由</code></pre>
+<ul>
+<li>钩子函数通过 链表结构 管理，执行效率高于中间件栈</li>
+</ul>
+<p><strong>高性能路由系统</strong></p>
+<p>基于 Radix Tree 的路由匹配: </p>
+<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">fastify<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/user/:id'</span><span class="token punctuation">,</span> handler<span class="token punctuation">)</span>  <span class="token comment">// 注册路由</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>路由查找复杂度 O(k)（k为路径长度），远快于 Express 的 O(n) 遍历</li>
@@ -5366,12 +5260,10 @@ fastify<span class="token punctuation">.</span><span class="token function">get<
 <p>请求体解析:</p>
 <ul>
 <li>按需加载解析器：未声明 Schema 的请求跳过 Body 解析</li>
-<li>流式处理支持：</li>
-</ul>
-<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">fastify<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>req<span class="token punctuation">,</span> reply<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<li>流式处理支持：<pre class="line-numbers language-typescript" data-language="typescript"><code class="language-typescript">fastify<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>req<span class="token punctuation">,</span> reply<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   req<span class="token punctuation">.</span>raw<span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>stdout<span class="token punctuation">)</span> <span class="token comment">// 直接流式传输</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>响应压缩:</p>
 <ul>
 <li>默认使用 Node.js zlib 流式压缩</li>
@@ -5574,14 +5466,12 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   C --&gt; D[Webpack Bundle]</code></pre>
 
 <ul>
-<li>函数签名：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">source<span class="token punctuation">,</span> map<span class="token punctuation">,</span> meta</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+<li>函数签名：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">source<span class="token punctuation">,</span> map<span class="token punctuation">,</span> meta</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   <span class="token comment">// source: 文件原始内容</span>
   <span class="token comment">// 返回处理后的字符串/Buffer</span>
   <span class="token keyword">return</span> transformedSource<span class="token punctuation">;</span> 
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>(2) 关键能力实现</p>
 <p>链式处理:</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// webpack.config.js</span>
@@ -6384,14 +6274,12 @@ app<span class="token punctuation">.</span><span class="token function">get</spa
 
 <ul>
 <li>性能优化：并行调用下游服务</li>
-<li>超时控制：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">Promise<span class="token punctuation">.</span><span class="token function">race</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+<li>超时控制：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">Promise<span class="token punctuation">.</span><span class="token function">race</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
   <span class="token function">fetchUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">_<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=></span> 
     <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">reject</span><span class="token punctuation">(</span><span class="token string">'Timeout'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">300</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>关键技术实现</strong></p>
 <p>(1) 数据聚合策略</p>
 <table>
@@ -6564,14 +6452,12 @@ app<span class="token punctuation">.</span><span class="token function">post</sp
   BFF-&gt;&gt;下游服务: 携带内部认证头</code></pre>
 
 <ul>
-<li>实现：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<li>实现：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   <span class="token keyword">const</span> token <span class="token operator">=</span> req<span class="token punctuation">.</span>headers<span class="token punctuation">.</span>authorization<span class="token operator">?.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
   req<span class="token punctuation">.</span>user <span class="token operator">=</span> <span class="token keyword">await</span> authService<span class="token punctuation">.</span><span class="token function">verifyToken</span><span class="token punctuation">(</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 统一鉴权</span>
   <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>(2) 敏感数据脱敏</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 响应拦截器</span>
 app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
@@ -6664,13 +6550,11 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 </li>
 <li>版本管理缺失<ul>
 <li>问题：移动端强制升级才能使用</li>
-<li>方案：</li>
+<li>方案： <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/v1/user/orders
+/v2/user/orders?fields<span class="token operator">=</span>id,amount<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 </ol>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/v1/user/orders
-/v2/user/orders?fields<span class="token operator">=</span>id,amount<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <h2 id="7-3-高并发解决方案"><a href="#7-3-高并发解决方案" class="headerlink" title="7.3 高并发解决方案"></a>7.3 高并发解决方案</h2><h3 id="7-3-1-负载均衡策略"><a href="#7-3-1-负载均衡策略" class="headerlink" title="7.3.1 负载均衡策略"></a>7.3.1 负载均衡策略</h3><p><strong>负载均衡核心目标</strong></p>
 <pre><code class="mermaid">graph LR
   A[客户端] --&gt; B[负载均衡器]
@@ -7419,13 +7303,9 @@ rule<span class="token punctuation">.</span><span class="token function">setCoun
 </ul>
 <p>(3) Seata AT模式优化</p>
 <ul>
-<li>一阶段：</li>
-</ul>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">/* 自动生成补偿SQL */</span>
+<li>一阶段：<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">/* 自动生成补偿SQL */</span>
 <span class="token keyword">UPDATE</span> product <span class="token keyword">SET</span> stock <span class="token operator">=</span> stock <span class="token operator">-</span> <span class="token number">10</span> <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">;</span>
-<span class="token comment">-- 日志记录：before_image=&#123;stock:100&#125;, after_image=&#123;stock:90&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<ul>
+<span class="token comment">-- 日志记录：before_image=&#123;stock:100&#125;, after_image=&#123;stock:90&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 <li>二阶段：<ul>
 <li>成功：异步删除日志</li>
 <li>失败：用before_image回滚</li>
@@ -7512,13 +7392,11 @@ rule<span class="token punctuation">.</span><span class="token function">setCoun
 <p>(3) 补偿策略</p>
 <ul>
 <li>正向操作：createOrder() → reserveStock() → charge()</li>
-<li>补偿操作：</li>
-</ul>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">CompensationPolicy</span><span class="token operator">:</span>
+<li>补偿操作：<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">CompensationPolicy</span><span class="token operator">:</span>
   <span class="token function">charge</span><span class="token punctuation">(</span><span class="token punctuation">)</span>失败<span class="token operator">:</span> 执行<span class="token function">compensateCharge</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">?</span> 实际无操作
   <span class="token function">reserveStock</span><span class="token punctuation">(</span><span class="token punctuation">)</span>失败<span class="token operator">:</span> 执行<span class="token function">compensateReserve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">?</span> 实际无操作
-  <span class="token function">createOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>失败<span class="token operator">:</span> 执行<span class="token function">compensateCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> → 删除订单<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+  <span class="token function">createOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>失败<span class="token operator">:</span> 执行<span class="token function">compensateCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> → 删除订单<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>消息队列事务方案</strong></p>
 <p>(1) RocketMQ事务消息</p>
 <pre><code class="mermaid">sequenceDiagram
@@ -7550,15 +7428,11 @@ rule<span class="token punctuation">.</span><span class="token function">setCoun
 <p>(1) XA规范</p>
 <ul>
 <li>资源管理器：数据库（MySQL XA）、MQ</li>
-<li>典型问题：</li>
-</ul>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">XA <span class="token keyword">START</span> <span class="token string">'order_transaction'</span><span class="token punctuation">;</span> <span class="token comment">-- 开启事务</span>
+<li>典型问题：<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">XA <span class="token keyword">START</span> <span class="token string">'order_transaction'</span><span class="token punctuation">;</span> <span class="token comment">-- 开启事务</span>
 <span class="token keyword">UPDATE</span> account <span class="token keyword">SET</span> balance<span class="token operator">=</span>balance<span class="token operator">-</span><span class="token number">100</span> <span class="token keyword">WHERE</span> user_id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
 XA <span class="token keyword">END</span> <span class="token string">'order_transaction'</span><span class="token punctuation">;</span>
 XA <span class="token keyword">PREPARE</span> <span class="token string">'order_transaction'</span><span class="token punctuation">;</span> <span class="token comment">-- 第一阶段</span>
-XA <span class="token keyword">COMMIT</span> <span class="token string">'order_transaction'</span><span class="token punctuation">;</span>  <span class="token comment">-- 第二阶段</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
+XA <span class="token keyword">COMMIT</span> <span class="token string">'order_transaction'</span><span class="token punctuation">;</span>  <span class="token comment">-- 第二阶段</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>致命缺陷：数据库连接占用时间长（不适合高并发）</li>
 </ul>
 <p>(2) Raft共识算法</p>
@@ -7678,16 +7552,12 @@ dtm detect-deadlock <span class="token parameter variable">--interval</span> 5s<
   C --&gt; E[库存服务]</code></pre>
 
 <ul>
-<li>Span：基本工作单元（如一次数据库查询）</li>
-</ul>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+<li>Span：基本工作单元（如一次数据库查询）<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
   <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"getUserInfo"</span><span class="token punctuation">,</span>
   <span class="token property">"start"</span><span class="token operator">:</span> <span class="token number">1620000000000</span><span class="token punctuation">,</span>
   <span class="token property">"end"</span><span class="token operator">:</span> <span class="token number">1620000000500</span><span class="token punctuation">,</span>
   <span class="token property">"attributes"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token property">"userId"</span><span class="token operator">:</span> <span class="token string">"123"</span><span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>Trace：完整请求链路（Span的有向无环图）</li>
 <li>Context Propagation：跨服务传递追踪上下文（TraceID&#x2F;SpanID）</li>
 </ul>
@@ -7719,15 +7589,14 @@ dtm detect-deadlock <span class="token parameter variable">--interval</span> 5s<
   B --&gt;|gRPC元数据| C[服务C]</code></pre>
 
 <ul>
-<li>Header 格式：</li>
-</ul>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
+<li>Header 格式：<pre class="line-numbers language-text" data-language="text"><code class="language-text">traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>版本：00</li>
 <li>TraceID：4bf92f…（16字节）</li>
 <li>SpanID：00f067…（8字节）</li>
 <li>采样标志：01（已采样）</li>
+</ul>
+</li>
 </ul>
 <p>(2) 采样策略</p>
 <table>
@@ -7969,28 +7838,18 @@ producer<span class="token punctuation">.</span><span class="token function">sen
 </tbody></table>
 <p><strong>最佳实践</strong></p>
 <ul>
-<li>命名规范</li>
-</ul>
-<pre class="line-numbers language-text" data-language="text"><code class="language-text">// 服务名: team-productname-service
-// Span名: HTTP方法_资源 (GET /users)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<ul>
-<li>自定义属性</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">span<span class="token punctuation">.</span><span class="token function">setAttributes</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+<li>命名规范<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 服务名: team-productname-service</span>
+<span class="token comment">// Span名: HTTP方法_资源 (GET /users)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li>自定义属性<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">span<span class="token punctuation">.</span><span class="token function">setAttributes</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
   <span class="token string-property property">"user.id"</span><span class="token operator">:</span> userId<span class="token punctuation">,</span>
   <span class="token string-property property">"http.route"</span><span class="token operator">:</span> <span class="token string">"/api/v1/users"</span><span class="token punctuation">,</span>
   <span class="token string-property property">"business.order_type"</span><span class="token operator">:</span> <span class="token string">"premium"</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>错误关联</li>
-</ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 链路与日志关联</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>错误关联<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 链路与日志关联</span>
 logger<span class="token punctuation">.</span>error<span class="token punctuation">(</span><span class="token string">"支付失败"</span><span class="token punctuation">,</span> 
   extra<span class="token operator">=</span><span class="token punctuation">&#123;</span> <span class="token string">"trace_id"</span><span class="token punctuation">:</span> trace<span class="token punctuation">.</span>get_current_span<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>context<span class="token punctuation">.</span>trace_id <span class="token punctuation">&#125;</span>
-<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <h3 id="7-4-2-容灾降级方案"><a href="#7-4-2-容灾降级方案" class="headerlink" title="7.4.2 容灾降级方案"></a>7.4.2 容灾降级方案</h3><p><strong>容灾降级核心目标</strong></p>
 <pre><code class="mermaid">graph LR
   A[故障场景] --&gt; B[快速隔离]
@@ -8301,16 +8160,12 @@ chaosblade create network loss <span class="token parameter variable">--percent<
 </ul>
 </li>
 <li>数据一致性陷阱<ul>
-<li>降级写入需明确冲突解决策略</li>
-</ul>
-</li>
-</ul>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 最终一致性检查</span>
+<li>降级写入需明确冲突解决策略<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 最终一致性检查</span>
 <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> orders 
 <span class="token keyword">WHERE</span> <span class="token keyword">status</span><span class="token operator">=</span><span class="token string">'created'</span> 
-<span class="token operator">AND</span> created_at <span class="token operator">&lt;</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">HOUR</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
+<span class="token operator">AND</span> created_at <span class="token operator">&lt;</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">HOUR</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
 <li>过度降级风险<ul>
 <li>核心功能降级需人工审批</li>
 <li>记录降级操作审计日志</li>

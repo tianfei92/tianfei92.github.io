@@ -28,7 +28,7 @@
 <meta property="og:description" content="第一章：CSS 基础与核心概念1.1 CSS 语法与选择器（基础选择器、组合选择器、属性选择器）基础语法结构&#x2F;* 标准规则 *&#x2F; selector &#123;   property: value; &#x2F;* 声明块 *&#x2F; &#125;  基础选择器元素选择器 div &#123; color: red; &#125;   权重：0,0,0,1 适用场景：全局样式覆盖  类选择器 .active &amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-22T08:47:01.000Z">
-<meta property="article:modified_time" content="2025-07-18T05:53:16.894Z">
+<meta property="article:modified_time" content="2025-08-06T07:09:48.191Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
@@ -258,7 +258,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-18 13:53:16" itemprop="dateModified" datetime="2025-07-18T13:53:16+08:00">2025-07-18</time>
+      <time title="修改时间：2025-08-06 15:09:48" itemprop="dateModified" datetime="2025-08-06T15:09:48+08:00">2025-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -985,47 +985,37 @@ element.style.<span class="token function">setProperty</span><span class="token 
 
 <h3 id="Flex-项目属性"><a href="#Flex-项目属性" class="headerlink" title="Flex 项目属性"></a>Flex 项目属性</h3><p><strong>order</strong></p>
 <ul>
-<li>定义项目的排列顺序，数值越小越靠前</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<li>定义项目的排列顺序，数值越小越靠前<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">order</span><span class="token punctuation">:</span> &lt;integer><span class="token punctuation">;</span> <span class="token comment">/* 默认 0 */</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>flex-grow</strong></p>
 <ul>
 <li>定义项目的放大比例</li>
 <li>默认0（不放大）</li>
-<li>所有项目的flex-grow值比例决定如何分配剩余空间</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<li>所有项目的flex-grow值比例决定如何分配剩余空间<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex-grow</span><span class="token punctuation">:</span> &lt;number><span class="token punctuation">;</span> <span class="token comment">/* 默认 0 */</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>flex-shrink</strong></p>
 <ul>
-<li>定义项目的缩小比例</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<li>定义项目的缩小比例<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex-shrink</span><span class="token punctuation">:</span> &lt;number><span class="token punctuation">;</span> <span class="token comment">/* 默认 1 */</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>flex-basis</strong></p>
 <ul>
 <li>定义在分配多余空间前，项目占据的主轴空间</li>
-<li>flex: 1中的0%表示”我最初不需要空间”</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<li>flex: 1中的0%表示”我最初不需要空间”<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex-basis</span><span class="token punctuation">:</span> &lt;length> | auto<span class="token punctuation">;</span> <span class="token comment">/* 默认 auto */</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>flex</strong></p>
 <ul>
-<li>flex-grow, flex-shrink 和 flex-basis 的简写</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<li>flex-grow, flex-shrink 和 flex-basis 的简写<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">flex</span><span class="token punctuation">:</span> none | [ &lt;<span class="token string">'flex-grow'</span>> &lt;<span class="token string">'flex-shrink'</span>>? || &lt;<span class="token string">'flex-basis'</span>> ]
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>常用简写值：</p>
 <ul>
 <li>flex: 0 1 auto（默认）</li>
@@ -1035,12 +1025,10 @@ element.style.<span class="token function">setProperty</span><span class="token 
 </ul>
 <p><strong>align-self</strong></p>
 <ul>
-<li>允许单个项目有与其他项目不一样的对齐方式</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
+<li>允许单个项目有与其他项目不一样的对齐方式<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.item</span> <span class="token punctuation">&#123;</span>
   <span class="token property">align-self</span><span class="token punctuation">:</span> auto | flex-start | flex-end | center | baseline | stretch<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <h3 id="三属性联调实践"><a href="#三属性联调实践" class="headerlink" title="三属性联调实践"></a>三属性联调实践</h3><p>（1）圣杯布局实现</p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.holy-grail</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
@@ -2175,12 +2163,10 @@ ellipse at 20% 30%<span aria-hidden="true" class="line-numbers-rows"><span></spa
 <p><strong>作用域规则</strong></p>
 <ul>
 <li>全局变量：定义在 <code>:root</code> 选择器内</li>
-<li>局部变量：定义在特定选择器内</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.card</span> <span class="token punctuation">&#123;</span>
+<li>局部变量：定义在特定选择器内<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.card</span> <span class="token punctuation">&#123;</span>
   <span class="token property">--card-shadow</span><span class="token punctuation">:</span> 0 2px 8px <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span>0<span class="token punctuation">,</span>0<span class="token punctuation">,</span>0.1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* 仅.card内有效 */</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <h3 id="核心特性解析"><a href="#核心特性解析" class="headerlink" title="核心特性解析"></a>核心特性解析</h3><p><strong>动态计算能力</strong></p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">:root</span> <span class="token punctuation">&#123;</span>
   <span class="token property">--base-size</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
@@ -2402,17 +2388,15 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
 <li>弹性项目（display: flex或inline-flex的直接子元素）</li>
 <li>网格项目（display: grid或inline-grid的直接子元素）</li>
 <li>多列容器（column-count或column-width不为auto，且column-count:1也属于）</li>
-<li>contain值为layout、content或paint的元素</li>
-</ol>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 任一条件即可触发 */</span>
+<li>contain值为layout、content或paint的元素 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 任一条件即可触发 */</span>
 <span class="token selector">.container</span> <span class="token punctuation">&#123;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> flow-root<span class="token punctuation">;</span> <span class="token comment">/* 最纯净的BFC */</span>
   <span class="token property">overflow</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>   <span class="token comment">/* 非visible */</span>
   <span class="token property">float</span><span class="token punctuation">:</span> left/right<span class="token punctuation">;</span>
   <span class="token property">position</span><span class="token punctuation">:</span> absolute/fixed<span class="token punctuation">;</span>
   <span class="token property">display</span><span class="token punctuation">:</span> inline-block/table-cell/flex/grid<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 <p><strong>核心特性</strong></p>
 <ul>
 <li>独立的渲染区域<ul>
@@ -2535,12 +2519,10 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
 <p>（2）避坑指南</p>
 <ul>
 <li>不要过度使用（每个页面 &lt;&#x3D; 5 个）</li>
-<li>动画结束后移除（通过 js）</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">element<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'animationend'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
+<li>动画结束后移除（通过 js）<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">element<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'animationend'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
   element<span class="token punctuation">.</span>style<span class="token punctuation">.</span>willChange <span class="token operator">=</span> <span class="token string">'auto'</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <h3 id="contain：布局隔离核武器"><a href="#contain：布局隔离核武器" class="headerlink" title="contain：布局隔离核武器"></a>contain：布局隔离核武器</h3><ul>
 <li>作用：限制浏览器重绘&#x2F;回流范围，类似于 React 的 shouldComponentUpdate</li>
 </ul>
@@ -2678,9 +2660,7 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
 <p><strong>注意事项</strong></p>
 <ul>
 <li>内存消耗：每个复合层约占用 1MB 内存</li>
-<li>层爆炸：避免超过 100 个复合层（chromium 限制）</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 错误：过度创建复合层 */</span>
+<li>层爆炸：避免超过 100 个复合层（chromium 限制）<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 错误：过度创建复合层 */</span>
 <span class="token selector">.card</span> <span class="token punctuation">&#123;</span>
   <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">translateZ</span><span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token property">box-shadow</span><span class="token punctuation">:</span> 0 0 10px <span class="token function">rgba</span><span class="token punctuation">(</span>0<span class="token punctuation">,</span>0<span class="token punctuation">,</span>0<span class="token punctuation">,</span>0.5<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -2689,8 +2669,8 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
 <span class="token comment">/* 正确：合并优化 */</span>
 <span class="token selector">.optimized-card</span> <span class="token punctuation">&#123;</span>
   <span class="token property">will-change</span><span class="token punctuation">:</span> transform<span class="token punctuation">,</span> box-shadow<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>总结</strong></p>
 <ul>
 <li>硬件（GPU）加速的关键是使用GPU友好的CSS属性：<ul>
@@ -2949,26 +2929,22 @@ const supportsFlexGap = CSS.<span class="token function">supports</span><span cl
 </ul>
 </li>
 <li>选择器权重</li>
-<li>代码顺序（后定义的覆盖先定义）</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 样式表A */</span>
+<li>代码顺序（后定义的覆盖先定义）<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token comment">/* 样式表A */</span>
 <span class="token selector">:root</span> <span class="token punctuation">&#123;</span> <span class="token property">--color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
 <span class="token selector">.box</span> <span class="token punctuation">&#123;</span> <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--color<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span>
 
 <span class="token comment">/* 样式表B（后加载） */</span>
-<span class="token selector">:root</span> <span class="token punctuation">&#123;</span> <span class="token property">--color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token selector">:root</span> <span class="token punctuation">&#123;</span> <span class="token property">--color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>最终颜色为 blue（变量遵循代码顺序）</p>
 <h3 id="CSS-变量与权重考察"><a href="#CSS-变量与权重考察" class="headerlink" title="CSS 变量与权重考察"></a>CSS 变量与权重考察</h3><p><strong>Q：CSS自定义属性的权重如何计算？</strong></p>
 <p>关键规则：</p>
 <ul>
 <li>变量本身没有权重，继承所在规则的权重</li>
-<li>使用 var() 时，最终值权重&#x3D;变量声明权重 + 使用处选择器权重</li>
-</ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">:root</span> <span class="token punctuation">&#123;</span> <span class="token property">--text-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span> <span class="token comment">/* 权重：0,1,0,0 */</span>
+<li>使用 var() 时，最终值权重&#x3D;变量声明权重 + 使用处选择器权重<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">:root</span> <span class="token punctuation">&#123;</span> <span class="token property">--text-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span> <span class="token comment">/* 权重：0,1,0,0 */</span>
 <span class="token selector">#box</span> <span class="token punctuation">&#123;</span> <span class="token property">--text-color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span> <span class="token comment">/* 权重：0,1,0,0 */</span>
-<span class="token selector">p</span> <span class="token punctuation">&#123;</span> <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--text-color<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span> <span class="token comment">/* 继承变量声明处的权重 */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token selector">p</span> <span class="token punctuation">&#123;</span> <span class="token property">color</span><span class="token punctuation">:</span> <span class="token function">var</span><span class="token punctuation">(</span>--text-color<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">&#125;</span> <span class="token comment">/* 继承变量声明处的权重 */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>此时 <code>&lt;div id=&quot;box&quot;&gt;&lt;p&gt;Text&lt;/p&gt;&lt;/div&gt;</code> 显示蓝色（相同权重下后定义生效）</p>
 <h2 id="6-2-居中布局的-N-种方式"><a href="#6-2-居中布局的-N-种方式" class="headerlink" title="6.2 居中布局的 N 种方式"></a>6.2 居中布局的 N 种方式</h2><h3 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h3><p><strong>行内&#x2F;行内块元素</strong></p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">.parent</span> <span class="token punctuation">&#123;</span>
@@ -3164,11 +3140,9 @@ document<span class="token punctuation">.</span>documentElement<span class="toke
 <p><strong>追问</strong></p>
 <ul>
 <li>为什么用 7.5？：设计稿宽度750px ÷ 100（目标rem值） &#x3D; 7.5</li>
-<li>如何解决字体闪烁？：添加CSS先设置默认字号</li>
+<li>如何解决字体闪烁？：添加CSS先设置默认字号<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">html</span> <span class="token punctuation">&#123;</span> <span class="token property">font-size</span><span class="token punctuation">:</span> 50px <span class="token punctuation">&#125;</span> <span class="token comment">/* 默认值 */</span>
+<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 375px<span class="token punctuation">)</span></span><span class="token punctuation">&#123;</span> <span class="token selector">html</span> <span class="token punctuation">&#123;</span> <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span>100vw / 7.5<span class="token punctuation">)</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token selector">html</span> <span class="token punctuation">&#123;</span> <span class="token property">font-size</span><span class="token punctuation">:</span> 50px <span class="token punctuation">&#125;</span> <span class="token comment">/* 默认值 */</span>
-<span class="token atrule"><span class="token rule">@media</span> <span class="token punctuation">(</span><span class="token property">min-width</span><span class="token punctuation">:</span> 375px<span class="token punctuation">)</span></span><span class="token punctuation">&#123;</span> <span class="token selector">html</span> <span class="token punctuation">&#123;</span> <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span>100vw / 7.5<span class="token punctuation">)</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <h3 id="viewport-进阶"><a href="#viewport-进阶" class="headerlink" title="viewport 进阶"></a>viewport 进阶</h3><p><strong>Q：<code>&lt;meta name=&quot;viewport&quot;&gt;</code>各参数的作用？</strong></p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> 
   <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, 
@@ -3288,13 +3262,13 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <ul>
 <li>解析阶段<ul>
 <li>浏览器逐条解析 CSS 规则，生成 CSSOM 树（与 DOM 树并行构建）</li>
-<li><code>@import</code>和<code>&lt;link&gt;</code>会触发同步阻塞（除非显式异步加载）</li>
-</ul>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 阻塞渲染 --></span>
+<li><code>@import</code>和<code>&lt;link&gt;</code>会触发同步阻塞（除非显式异步加载）<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 阻塞渲染 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
 <span class="token comment">&lt;!-- 异步加载 --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>print.css<span class="token punctuation">"</span></span> <span class="token attr-name">media</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>print<span class="token punctuation">"</span></span> <span class="token special-attr"><span class="token attr-name">onload</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>media<span class="token operator">=</span><span class="token string">'all'</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
 <li>计算阶段<ul>
 <li>将 CSS 规则转换为样式规则表（Style Rules）</li>
 <li>遇到 JavaScript 访问 CSSOM 属性时触发同步解析（强制完成 CSSOM 构建）</li>
@@ -3328,16 +3302,14 @@ penthouse http://example.com critical.css<span aria-hidden="true" class="line-nu
 <ul>
 <li>默认行为：<ul>
 <li>浏览器遇到<code>&lt;script&gt;</code>时会暂停 DOM 构建</li>
-<li>如果存在未完成的 CSSOM 构建，JavaScript执行将被阻塞</li>
-</ul>
-</li>
-</ul>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>slow.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<li>如果存在未完成的 CSSOM 构建，JavaScript执行将被阻塞<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>slow.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
   <span class="token comment">// 此脚本必须等待slow.css下载并解析完成</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'After CSSOM'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+</ul>
 <p><strong>Q：优化方案？</strong></p>
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 方案1：添加defer --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">defer</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>app.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>

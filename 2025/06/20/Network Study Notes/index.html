@@ -28,7 +28,7 @@
 <meta property="og:description" content="一、基础网络协议1.1 HTTP&#x2F;HTTPS协议核心HTTP协议定义 HTTP（HyperText Transfer Protocol）是应用层协议，基于 请求-响应 模型，用于客户端（浏览器）与服务器之间的数据传输，默认端口 80 核心特性  无状态：每个请求独立，服务器不保留客户端上下文（状态管理依赖 Cookie 和 Session） 明文传输：请求与响应内容以未加密的文本形式传输">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-20T07:50:13.000Z">
-<meta property="article:modified_time" content="2025-07-23T06:25:12.183Z">
+<meta property="article:modified_time" content="2025-08-06T07:21:22.616Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary">
@@ -258,7 +258,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-23 14:25:12" itemprop="dateModified" datetime="2025-07-23T14:25:12+08:00">2025-07-23</time>
+      <time title="修改时间：2025-08-06 15:21:22" itemprop="dateModified" datetime="2025-08-06T15:21:22+08:00">2025-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -455,9 +455,9 @@ Content-Type: text/html
 <li>位置：空行之后</li>
 <li>内容：<ul>
 <li>GET 请求通常无请求体</li>
-<li>POST&#x2F;PUT 请求包含数据</li>
+<li>POST&#x2F;PUT 请求包含数据<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"username"</span><span class="token operator">:</span> <span class="token string">"admin"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"username"</span><span class="token operator">:</span> <span class="token string">"admin"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</li>
 <li>格式依赖：由 <code>Content-Type</code> 请求头指定</li>
 </ul>
 <p><strong>响应报文结构</strong></p>
@@ -482,12 +482,10 @@ Content-Type: text/html
 </ul>
 <p><strong>响应体（Response Body）</strong></p>
 <ul>
-<li>内容：</li>
+<li>内容：<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"data"</span><span class="token operator">:</span> <span class="token string">"value"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"data"</span><span class="token operator">:</span> <span class="token string">"value"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <h3 id="请求-响应头结构（Content-Type-Cache-Control-Authorization）"><a href="#请求-响应头结构（Content-Type-Cache-Control-Authorization）" class="headerlink" title="请求&#x2F;响应头结构（Content-Type&#x2F;Cache-Control&#x2F;Authorization）"></a>请求&#x2F;响应头结构（Content-Type&#x2F;Cache-Control&#x2F;Authorization）</h3><p><strong>HTTP 头部核心结构</strong></p>
 <p>HTTP 头是键值对集合（不区分大小写），位于请求&#x2F;响应报文起始行之后，空行之前，格式如下：</p>
 <pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Header-Name</span><span class="token punctuation">:</span> <span class="token header-value">value1, value2</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -548,11 +546,9 @@ Content-Type: text/html
 </tr>
 </tbody></table>
 <ul>
-<li>前端优化实践：</li>
+<li>前端优化实践：<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 静态资源长期缓存
+<span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">public, max-age=31536000, immutable</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"># 静态资源长期缓存
-<span class="token header"><span class="token header-name keyword">Cache-Control</span><span class="token punctuation">:</span> <span class="token header-value">public, max-age=31536000, immutable</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p>（3）Authorization</p>
 <ul>
 <li>作用：在请求头中携带客户端身份凭证，用于访问受保护资源</li>
@@ -879,11 +875,9 @@ Content-Type: text/html
 <p>工作原理：</p>
 <ul>
 <li>HTTP&#x2F;1.1：默认启用Connection: keep-alive，允许复用连接。</li>
-<li>HTTP头部控制：</li>
+<li>HTTP头部控制：<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">keep-alive  // 启用复用</span></span>
+<span class="token header"><span class="token header-name keyword">Keep-Alive</span><span class="token punctuation">:</span> <span class="token header-value">timeout=5, max=100  // 空闲超时5秒，最多复用100次请求</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">Connection</span><span class="token punctuation">:</span> <span class="token header-value">keep-alive  // 启用复用</span></span>
-<span class="token header"><span class="token header-name keyword">Keep-Alive</span><span class="token punctuation">:</span> <span class="token header-value">timeout=5, max=100  // 空闲超时5秒，最多复用100次请求</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p>优势：</p>
 <ul>
 <li>减少 TCP 握手&#x2F;挥手开销（节省1-2 RTT&#x2F;请求）</li>
@@ -909,13 +903,11 @@ Content-Type: text/html
 </li>
 <li>HTTP&#x2F;1.1层队头阻塞<ul>
 <li>原因：HTTP&#x2F;1.1的管道化（pipelining）请求必须按顺序返回响应。</li>
-<li>示例：</li>
+<li>示例：<pre class="line-numbers language-http" data-language="http"><code class="language-http">GET /resource1  // 慢请求
+GET /resource2  // 被阻塞直到resource1完成<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-http" data-language="http"><code class="language-http">GET /resource1  // 慢请求
-GET /resource2  // 被阻塞直到resource1完成<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p>解决方案：</p>
 <ul>
 <li>HTTP&#x2F;2：引入多路复用（Multiplexing），通过二进制分帧层实现并行请求。</li>

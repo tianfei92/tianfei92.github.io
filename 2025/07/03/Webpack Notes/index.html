@@ -28,7 +28,7 @@
 <meta property="og:description" content="一、核心概念与基础1.1 Webpack 定位与核心价值1.1.1 模块化打包的本质需求前端开发的核心演变 原始阶段：全局变量污染 &lt;!-- 传统开发方式 --&gt; &lt;script src&#x3D;&quot;jquery.js&quot;&gt;&lt;&#x2F;script&gt; &lt;script src&#x3D;&quot;plugin1.js&quot;&gt;&lt;&#x2F;script&gt; &lt;!-- 可能覆盖全局变量 --&gt; &lt;script sr">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-03T01:11:35.000Z">
-<meta property="article:modified_time" content="2025-07-28T07:18:37.455Z">
+<meta property="article:modified_time" content="2025-08-06T04:37:40.516Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="webpack">
 <meta name="twitter:card" content="summary">
@@ -258,7 +258,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-28 15:18:37" itemprop="dateModified" datetime="2025-07-28T15:18:37+08:00">2025-07-28</time>
+      <time title="修改时间：2025-08-06 12:37:40" itemprop="dateModified" datetime="2025-08-06T12:37:40+08:00">2025-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -394,17 +394,15 @@ I --&gt; J</code></pre>
 <li>工程化支撑<ul>
 <li>统一构建流程</li>
 <li>多环境适配</li>
-<li>质量保障（Lint&#x2F;Test集成）</li>
-</ul>
-</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 原始代码</span>
+<li>质量保障（Lint&#x2F;Test集成）<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 原始代码</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">used</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">/*...*/</span> <span class="token punctuation">&#125;</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">unused</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">/*...*/</span> <span class="token punctuation">&#125;</span>
 
 <span class="token comment">// 打包后（未引用的unused被移除）</span>
-<span class="token comment">/* harmony export */</span> __webpack_exports__<span class="token punctuation">[</span><span class="token string">"used"</span><span class="token punctuation">]</span> <span class="token operator">=</span> used<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token comment">/* harmony export */</span> __webpack_exports__<span class="token punctuation">[</span><span class="token string">"used"</span><span class="token punctuation">]</span> <span class="token operator">=</span> used<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+</ul>
 <p><strong>面试重点解析</strong></p>
 <ul>
 <li>为什么现代前端需要打包工具？</li>
@@ -481,22 +479,18 @@ C --&gt; D[零配置输出]</code></pre>
 <li>需要深度定制构建流程</li>
 <li>多页面应用（MPA）项目</li>
 <li>需要集成大量第三方插件</li>
-<li>示例：电商后台管理系统</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 典型特征</span>
+<li>示例：电商后台管理系统<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 典型特征</span>
 - <span class="token number">500</span>+组件
 - 需要代码分割
 - 需要兼容IE11
-- 集成Ant Design等大型UI库<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+- 集成Ant Design等大型UI库<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>(2) Rollup 首选场景</p>
 <ul>
 <li>开源库&#x2F;框架开发</li>
 <li>需要输出多种格式的包（UMD&#x2F;ESM&#x2F;CJS）</li>
 <li>追求最小化bundle体积</li>
-<li>示例：React组件库</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// rollup.config.js</span>
+<li>示例：React组件库<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// rollup.config.js</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">input</span><span class="token operator">:</span> <span class="token string">'src/index.js'</span><span class="token punctuation">,</span>
   <span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">[</span>
@@ -504,33 +498,29 @@ C --&gt; D[零配置输出]</code></pre>
     <span class="token punctuation">&#123;</span> <span class="token literal-property property">file</span><span class="token operator">:</span> <span class="token string">'dist/library.cjs.js'</span><span class="token punctuation">,</span> <span class="token literal-property property">format</span><span class="token operator">:</span> <span class="token string">'cjs'</span> <span class="token punctuation">&#125;</span>
   <span class="token punctuation">]</span><span class="token punctuation">,</span>
   <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">terser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token comment">// 代码压缩</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>(3) Vite 首选场景</p>
 <ul>
 <li>基于现代框架的新项目（Vue&#x2F;React&#x2F;Svelte）</li>
 <li>需要极速开发体验</li>
 <li>使用大量ES模块的现代浏览器项目</li>
-<li>示例：创新型SaaS平台</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 开发体验对比</span>
+<li>示例：创新型SaaS平台<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 开发体验对比</span>
 Webpack启动: <span class="token number">15</span>-25s 
-Vite启动: <span class="token operator">&lt;</span>500ms <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+Vite启动: <span class="token operator">&lt;</span>500ms <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>(4) Parcel 首选场景</p>
 <ul>
 <li>快速原型开发</li>
 <li>静态网站生成</li>
 <li>不需要复杂配置的小型项目</li>
-<li>示例：个人博客网站</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 零配置使用</span>
+<li>示例：个人博客网站<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 零配置使用</span>
 parcel build index.html 
 <span class="token comment"># 自动处理：</span>
 <span class="token comment"># - Sass → CSS</span>
 <span class="token comment"># - TypeScript → JavaScript</span>
-<span class="token comment"># - 图片优化</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token comment"># - 图片优化</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>面试高频问题解析</strong></p>
 <p>(1) 为什么Vite开发环境比Webpack快？</p>
 <ul>
@@ -542,12 +532,10 @@ parcel build index.html
 <p>基本定义：</p>
 <ul>
 <li>入口起点(entry point)：Webpack构建依赖图的起始模块</li>
-<li>单入口基础配置：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+<li>单入口基础配置：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token string">'./src/index.js'</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p>入口的底层实现:</p>
 <pre><code class="mermaid">graph LR
   A[Entry] --&gt; B[创建依赖图]
@@ -678,21 +666,15 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 </ul>
 <p>(2) 动态入口在微前端中的应用？</p>
 <ul>
-<li>主应用通过动态入口加载子应用</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<li>主应用通过动态入口加载子应用<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">entry</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">mainApp</span><span class="token operator">:</span> <span class="token string">'./main.js'</span><span class="token punctuation">,</span>
   <span class="token literal-property property">childApp1</span><span class="token operator">:</span> <span class="token string">'https://child-app.com/entry.js'</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>结合Module Federation实现</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 动态配置remotes</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li>结合Module Federation实现<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 动态配置remotes</span>
 <span class="token literal-property property">remotes</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">childApp</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">promise import('child_app/entry.js')</span><span class="token template-punctuation string">`</span></span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <h3 id="1-2-2-output：文件名哈希、CDN路径、Library导出"><a href="#1-2-2-output：文件名哈希、CDN路径、Library导出" class="headerlink" title="1.2.2 output：文件名哈希、CDN路径、Library导出"></a>1.2.2 <code>output</code>：文件名哈希、CDN路径、Library导出</h3><p><strong>Output 配置核心概念</strong></p>
 <p>基本作用与结构：</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
@@ -744,14 +726,12 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 <ul>
 <li>问题：模块未变更但哈希变化</li>
 <li>原因：Webpack引导代码(manifest)变化</li>
-<li>修复：提取runtime到单独文件</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">optimization</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<li>修复：提取runtime到单独文件<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">optimization</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">runtimeChunk</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token function-variable function">name</span><span class="token operator">:</span> <span class="token parameter">entrypoint</span> <span class="token operator">=></span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">runtime-</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>entrypoint<span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>CDN路径配置策略</strong></p>
 <p>(1) publicPath 动态配置</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 根据环境切换路径</span>
@@ -879,16 +859,14 @@ button<span class="token punctuation">.</span><span class="token function">addEv
 <p>(2) 库导出冲突</p>
 <ul>
 <li>症状：多库共存时全局变量覆盖</li>
-<li>解决方案：作用域隔离</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<li>解决方案：作用域隔离<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">output</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">library</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'MyLib'</span><span class="token punctuation">,</span>
     <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'var'</span><span class="token punctuation">,</span>
     <span class="token literal-property property">umdNamedDefine</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token comment">// 添加命名空间</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>面试重点解析</strong></p>
 <p>(1) contenthash&#x2F;chunkhash&#x2F;hash的区别？</p>
 <ul>
@@ -1056,12 +1034,10 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <ul>
 <li>hidden-source-map：生成map文件但不关联</li>
 <li>nosources-source-map：显示行号但不暴露源码</li>
-<li>最佳实践：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">devtool</span><span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">SENTRY_URL</span> 
+<li>最佳实践：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">devtool</span><span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">SENTRY_URL</span> 
   <span class="token operator">?</span> <span class="token string">'source-map'</span> <span class="token comment">// 错误监控需要完整sourcemap</span>
-  <span class="token operator">:</span> <span class="token string">'hidden-source-map'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
+  <span class="token operator">:</span> <span class="token string">'hidden-source-map'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <h3 id="1-2-4-devtool：Source-Map原理与选型"><a href="#1-2-4-devtool：Source-Map原理与选型" class="headerlink" title="1.2.4 devtool：Source Map原理与选型"></a>1.2.4 <code>devtool</code>：Source Map原理与选型</h3><p><strong>Source Map 核心原理</strong></p>
 <p>工作原理示意图：</p>
 <pre><code class="mermaid">graph LR
@@ -1417,9 +1393,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <li>旧项目逐步迁移</li>
 </ul>
 </li>
-<li>构建配置：</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+<li>构建配置：<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">resolve</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token literal-property property">mainFields</span><span class="token operator">:</span> <span class="token punctuation">[</span>
       <span class="token string">'browser'</span><span class="token punctuation">,</span> 
@@ -1427,14 +1401,9 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <span class="token string">'main'</span>    <span class="token comment">// 其次CJS</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>代码质量：<ul>
-<li>使用ESLint规则检测混用问题</li>
-</ul>
-</li>
-</ul>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">// .eslintrc</span>
+<li>使用ESLint规则检测混用问题<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token comment">// .eslintrc</span>
 <span class="token punctuation">&#123;</span>
   <span class="token property">"rules"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token property">"no-restricted-syntax"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
@@ -1445,8 +1414,10 @@ module<span class="token punctuation">.</span>exports <span class="token operato
       <span class="token punctuation">&#125;</span>
     <span class="token punctuation">]</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+</ul>
 <h3 id="1-3-2-Tree-Shaking深层原理（sideEffects标志）"><a href="#1-3-2-Tree-Shaking深层原理（sideEffects标志）" class="headerlink" title="1.3.2 Tree Shaking深层原理（sideEffects标志）"></a>1.3.2 Tree Shaking深层原理（<code>sideEffects</code>标志）</h3><p><strong>Tree Shaking 的本质与限制</strong></p>
 <p>核心原理图解：</p>
 <pre><code class="mermaid">graph LR
@@ -1621,18 +1592,10 @@ _<span class="token punctuation">.</span><span class="token function">debounce</
 <p>(2) 如何验证Tree Shaking生效？</p>
 <p>验证步骤：</p>
 <ul>
-<li>添加测试导出函数</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// utils.js</span>
+<li>添加测试导出函数<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// utils.js</span>
 <span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">used</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">/*...*/</span> <span class="token punctuation">&#125;</span>
-<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">unused</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">/*...*/</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>只导入使用函数</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> used <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'./utils'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ul>
+<span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">unused</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">/*...*/</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li>只导入使用函数<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> used <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'./utils'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li>检查输出bundle：<ul>
 <li>搜索 unused 函数是否存在</li>
 <li>使用Webpack分析工具验证</li>
@@ -1642,15 +1605,11 @@ _<span class="token punctuation">.</span><span class="token function">debounce</
 <p>(3) Webpack 5的Tree Shaking改进？</p>
 <p>核心改进：</p>
 <ul>
-<li>Nested Tree Shaking：嵌套导出分析</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> nested <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+<li>Nested Tree Shaking：嵌套导出分析<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">const</span> nested <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">a</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
   <span class="token literal-property property">b</span><span class="token operator">:</span> <span class="token number">2</span>
 <span class="token punctuation">&#125;</span>
-<span class="token comment">// 仅使用nested.a时删除b属性</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
+<span class="token comment">// 仅使用nested.a时删除b属性</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li>Inner Graph：内部依赖追踪</li>
 <li>CommonJS Tree Shaking：基础CJS支持</li>
 <li>深度作用域分析：变量级删除</li>
@@ -1707,7 +1666,7 @@ module<span class="token punctuation">.</span><span class="token function-variab
 <td align="left">use: [‘sass-loader’]</td>
 </tr>
 </tbody></table>
-<p>**完整执行流程分析</p>
+<p>完整执行流程分析</p>
 <p>(1) 文件处理流程</p>
 <pre><code class="mermaid">graph TB
   A[源文件] --&gt; B[Sass-loader]
@@ -4870,14 +4829,12 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <ul>
 <li>使用 singleton: true 强制单例</li>
 <li>通过 requiredVersion 约束版本范围</li>
-<li>自定义 get 方法实现版本降级</li>
-</ul>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">shared</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+<li>自定义 get 方法实现版本降级<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">shared</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
   <span class="token literal-property property">react</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
     <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'react'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
   <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <p><strong>动态远程加载</strong></p>
 <p>(1) 运行时决定远程地址</p>
 <pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// 业务代码中动态加载</span>

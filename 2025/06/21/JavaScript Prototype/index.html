@@ -28,7 +28,7 @@
 <meta property="og:description" content="第一章：JavaScript 对象基础1.1 对象的概念与创建方式基本概念 JavaScript 对象是键值对的集合，是 JavaScript 的核心数据类型。对象可以看作是无序的属性集合，每个属性都有一个名称（键）和一个值。 对象的特点有以下几点：  动态性：随时可添加&#x2F;删除属性 引用类型：对象是通过引用访问的复合值 原型继承：每个对象都有原型链 属性特性：对象的属性可以拥有可读、可写">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-21T04:08:07.000Z">
-<meta property="article:modified_time" content="2025-07-17T02:53:17.146Z">
+<meta property="article:modified_time" content="2025-08-06T07:13:18.299Z">
 <meta property="article:author" content="Ariel">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -258,7 +258,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-17 10:53:17" itemprop="dateModified" datetime="2025-07-17T10:53:17+08:00">2025-07-17</time>
+      <time title="修改时间：2025-08-06 15:13:18" itemprop="dateModified" datetime="2025-08-06T15:13:18+08:00">2025-08-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1018,8 +1018,8 @@ console<span class="token punctuation">.</span><span class="token function">log<
 </ol>
 <p><strong>主要局限性</strong></p>
 <p>（1）跨执行环境问题（iframe&#x2F;window）</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 主页面 <span class="token operator">--</span><span class="token operator">></span>
-<span class="token operator">&lt;</span>script<span class="token operator">></span>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- 主页面 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
   <span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
   <span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   
@@ -1030,7 +1030,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
   
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>p <span class="token keyword">instanceof</span> <span class="token class-name">Person</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">instanceof</span> <span class="token class-name">IframeArray</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>原因：不同执行环境有其各自独立的全局对象和构造函数</p>
 <p>（2）原始类型检测不可靠</p>
