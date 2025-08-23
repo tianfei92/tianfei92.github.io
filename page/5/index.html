@@ -172,18 +172,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -208,6 +208,116 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tianfei92.github.io/2025/06/05/React%20Fiber/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.JPG">
+      <meta itemprop="name" content="Ariel">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ariel's Blog">
+      <meta itemprop="description" content="持而盈之，不如其已；<br/>揣而锐之，不可长保。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Ariel's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/06/05/React%20Fiber/" class="post-title-link" itemprop="url">专题知识学习：React Fiber</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-06-05 14:07:11" itemprop="dateCreated datePublished" datetime="2025-06-05T14:07:11+08:00">2025-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-06 15:44:59" itemprop="dateModified" datetime="2025-08-06T15:44:59+08:00">2025-08-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>14k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>50 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="第一章：React-Fiber-的诞生背景"><a href="#第一章：React-Fiber-的诞生背景" class="headerlink" title="第一章：React Fiber 的诞生背景"></a>第一章：React Fiber 的诞生背景</h1><h2 id="1-1-React15-及之前版本的渲染瓶颈"><a href="#1-1-React15-及之前版本的渲染瓶颈" class="headerlink" title="1.1 React15 及之前版本的渲染瓶颈"></a>1.1 React15 及之前版本的渲染瓶颈</h2><h3 id="递归不可中断的协调过程（stack-reconciler栈协调器）"><a href="#递归不可中断的协调过程（stack-reconciler栈协调器）" class="headerlink" title="递归不可中断的协调过程（stack reconciler栈协调器）"></a>递归不可中断的协调过程（stack reconciler栈协调器）</h3><p><strong>stack reconciler 是什么？</strong></p>
+<p>stack reconciler 是 React15 及之前版本中使用的虚拟 dom 协调算法，负责计算组件树的变化并更新真实 dom。其核心特点是基于递归遍历、不可中断的同步更新流程。</p>
+<p><strong>递归遍历虚拟 dom</strong></p>
+<p>采用深度优先遍历策略（FDS），从组件树根节点开始，递归调用组件的 render 方法，生成完整的虚拟 dom 树。递归遍历依赖于 JavaScript 调用栈（call stack），一旦开始就必须执行到底，无法中途暂停。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2025/06/05/React%20Fiber/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -354,13 +464,13 @@ module<span class="token punctuation">.</span>exports <span class="token operato
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">283k</span>
+    <span title="站点总字数">290k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">17:08</span>
+    <span title="站点阅读时长">17:35</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
