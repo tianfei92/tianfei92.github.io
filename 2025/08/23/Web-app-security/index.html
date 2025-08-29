@@ -295,7 +295,7 @@
 <h2 id="输入验证：拒绝-“非法输入”"><a href="#输入验证：拒绝-“非法输入”" class="headerlink" title="输入验证：拒绝 “非法输入”"></a>输入验证：拒绝 “非法输入”</h2><ul>
 <li>双重验证原则：前端验证（提升用户体验）仅作为辅助，必须在服务器端重复验证（防止绕过前端校验的攻击）</li>
 <li>验证方法：<ul>
-<li>采用 “白名单” 而非 “黑名单”：明确允许的输入类型（如手机号仅允许 11 位数字、邮箱符合<a href="mailto:&#120;&#120;&#x78;&#x40;&#x78;&#120;&#120;&#46;&#120;&#x78;&#x78;">xxx@xxx.xxx</a>格式），而非禁止已知恶意字符（黑名单易被绕过）</li>
+<li>采用 “白名单” 而非 “黑名单”：明确允许的输入类型（如手机号仅允许 11 位数字、邮箱符合<a href="mailto:&#x78;&#120;&#x78;&#64;&#120;&#120;&#120;&#46;&#x78;&#x78;&#120;">xxx@xxx.xxx</a>格式），而非禁止已知恶意字符（黑名单易被绕过）</li>
 <li>严格参数约束：限制输入长度（如密码 12-20 位、用户名 2-16 位），避免超长输入触发缓冲区溢出</li>
 <li>特殊场景校验：<ul>
 <li>文件上传：验证文件MIME 类型 + 文件头 + 后缀（如图片仅允许image&#x2F;jpeg，文件头为FF D8 FF），拒绝.php&#x2F;.jsp等可执行文件；存储时重命名文件（避免覆盖系统文件），且存放在非 Web 访问目录（如 Nginx 根目录外）</li>
@@ -586,13 +586,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">296k</span>
+    <span title="站点总字数">297k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">17:57</span>
+    <span title="站点阅读时长">18:01</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
